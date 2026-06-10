@@ -108,6 +108,17 @@ body {
   }
 }
 
+/* Chatbot animations */
+@keyframes chatbot-dot-pulse {
+  0%, 80%, 100% { opacity: 0.3; }
+  40% { opacity: 1; }
+}
+
+@keyframes chatbot-fab-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
 /* Section spacing utility */
 .section-padding {
   padding-top: 4rem;

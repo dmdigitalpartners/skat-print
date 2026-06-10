@@ -533,5 +533,11 @@
         "Short-run and custom-specification orders accepted"
       ]
     }
+  },
+  "chatbot": {
+    "aria_open": "Open chat",
+    "aria_close": "Close chat",
+    "panel_title": "SKAT Print",
+    "send": "Send"
   }
 }
