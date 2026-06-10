@@ -36,35 +36,37 @@
 Every change must follow this exact sequence. No exceptions.
 
 ```
-Local changes → git commit → git push origin develop → PR/merge to main → Vercel auto-deploys
+Local changes → git commit (code) → git push origin develop → merge to main → npx vercel --prod
 ```
 
+### What lives where
+- **GitHub** (`dani-aisystems/skat-print`) — source code only: components, pages, translations, config, docs
+- **Local filesystem** — media assets (`public/assets/`, `brand_assets/`, `public/favicon/`) — gitignored, never pushed
+- **Vercel** — full deployment including all local assets, triggered via CLI from the local machine
+
 ### Branch rules
-- `develop` — all active work happens here; push freely
-- `main` — production only; never commit directly; only merge from develop
+- `develop` — all active work happens here; push code changes freely
+- `main` — production-ready code only; merge from develop when ready to deploy
 
 ### Before every deploy
-1. Stage and commit all changes with a descriptive message (what changed and why)
+1. Commit all code changes with a descriptive message (what changed and why)
 2. Push to `develop`: `git push origin develop`
-3. Merge to `main` when ready for production: merge develop → main, then push main
-4. Tag production releases: `git tag vX.Y.Z -m "vX.Y.Z — description"` then `git push origin vX.Y.Z`
+3. Merge to `main`: `git checkout main && git merge develop --no-ff && git push origin main`
+4. Deploy to Vercel: `npx vercel --prod` (from the `skat-print/` directory)
+5. Tag production releases: `git tag vX.Y.Z -m "vX.Y.Z — description"` then `git push origin vX.Y.Z`
 
 ### Commit message format
 `type: short description of what changed`
 Types: `feat` (new feature), `fix` (bug fix), `chore` (config/tooling), `style` (visual-only), `content` (copy/translations)
 
 ### Never
-- Push directly to Vercel via `npx vercel --prod` (bypasses GitHub history)
+- Commit binary assets (images/video) to git — they are deployed from local via Vercel CLI
 - Commit directly to `main`
-- Deploy without a corresponding GitHub commit
-
-### Vercel connection
-- GitHub repo: https://github.com/dani-aisystems/skat-print
-- Production branch: `main` (auto-deploys on push)
-- Preview deployments: `develop` branch
+- Deploy to Vercel without first committing and pushing code changes to GitHub
 
 ### Rollback
-To revert to any previous version: `git revert <commit-sha>` or `git checkout tags/vX.Y.Z`
+To revert to any previous code version: `git revert <commit-sha>` or `git checkout tags/vX.Y.Z`
+To revert a Vercel deployment: use the Vercel dashboard → Deployments → promote a previous deployment
 
 ## Brand Assets
 - Always check the `brand_assets/` folder before designing. It contains logos, brand guidelines, and skat-info.
