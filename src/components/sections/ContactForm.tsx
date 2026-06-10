@@ -1,0 +1,171 @@
+'use client'
+
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
+import { motion, useReducedMotion } from 'framer-motion'
+import type { Translation } from '@/lib/useTranslation'
+
+const schema = z.object({
+  name: z.string().min(2),
+  company: z.string().min(1),
+  product_type: z.string().min(1),
+  quantity: z.string().min(1),
+  message: z.string().optional(),
+  contact: z.string().min(5),
+})
+
+type FormData = z.infer<typeof schema>
+
+export default function ContactForm({ t }: { t: Translation }) {
+  const reduced = useReducedMotion()
+  const f = t.contact_page.form
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormData>({ resolver: zodResolver(schema) })
+
+  const onSubmit = async (data: FormData) => {
+    setStatus('submitting')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+      if (res.ok) {
+        setStatus('success')
+        reset()
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
+  }
+
+  if (status === 'success') {
+    return (
+      <div className="p-8 border border-[var(--color-success)] rounded-[var(--radius-lg)] bg-[var(--color-bg-surface)] text-center">
+        <div className="text-3xl mb-3">✓</div>
+        <h3 className="font-display font-bold text-xl text-[var(--color-text)] mb-2">{f.success_heading}</h3>
+        <p className="text-[var(--color-text-muted)]">{f.success_body}</p>
+      </div>
+    )
+  }
+
+  const inputCls = `w-full px-4 py-3 rounded-[var(--radius-md)] bg-[var(--color-bg-surface)] border text-[var(--color-text)] text-sm placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] transition-[border-color,box-shadow]`
+  const labelCls = 'block text-sm font-medium text-[var(--color-text)] mb-1.5'
+  const errorCls = 'text-xs text-[var(--color-error)] mt-1'
+
+  return (
+    <motion.form
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate
+      className="space-y-5"
+      initial={reduced ? false : { opacity: 0, y: 20 }}
+      whileInView={reduced ? {} : { opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+    >
+      <h3 className="font-display font-bold text-2xl text-[var(--color-text)] mb-6">{f.heading}</h3>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label htmlFor="name" className={labelCls}>{f.label_name}</label>
+          <input
+            id="name"
+            type="text"
+            placeholder={f.placeholder_name}
+            className={`${inputCls} ${errors.name ? 'border-[var(--color-error)]' : 'border-[var(--color-border)]'}`}
+            {...register('name')}
+          />
+          {errors.name && <p className={errorCls}>{errors.name.message}</p>}
+        </div>
+
+        <div>
+          <label htmlFor="company" className={labelCls}>{f.label_company}</label>
+          <input
+            id="company"
+            type="text"
+            placeholder={f.placeholder_company}
+            className={`${inputCls} ${errors.company ? 'border-[var(--color-error)]' : 'border-[var(--color-border)]'}`}
+            {...register('company')}
+          />
+          {errors.company && <p className={errorCls}>{errors.company.message}</p>}
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="product_type" className={labelCls}>{f.label_product_type}</label>
+        <select
+          id="product_type"
+          aria-invalid={errors.product_type ? 'true' : undefined}
+          className={`${inputCls} ${errors.product_type ? 'border-[var(--color-error)]' : 'border-[var(--color-border)]'}`}
+          {...register('product_type')}
+          defaultValue=""
+        >
+          <option value="" disabled>{f.label_product_type}</option>
+          {f.product_options.map((opt) => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+        {errors.product_type && <p className={errorCls}>{errors.product_type.message}</p>}
+      </div>
+
+      <div>
+        <label htmlFor="quantity" className={labelCls}>{f.label_quantity}</label>
+        <input
+          id="quantity"
+          type="text"
+          placeholder={f.placeholder_quantity}
+          className={`${inputCls} ${errors.quantity ? 'border-[var(--color-error)]' : 'border-[var(--color-border)]'}`}
+          {...register('quantity')}
+        />
+        {errors.quantity && <p className={errorCls}>{errors.quantity.message}</p>}
+      </div>
+
+      <div>
+        <label htmlFor="contact" className={labelCls}>{f.label_contact}</label>
+        <input
+          id="contact"
+          type="text"
+          placeholder={f.placeholder_contact}
+          className={`${inputCls} ${errors.contact ? 'border-[var(--color-error)]' : 'border-[var(--color-border)]'}`}
+          {...register('contact')}
+        />
+        {errors.contact && <p className={errorCls}>{errors.contact.message}</p>}
+      </div>
+
+      <div>
+        <label htmlFor="message" className={labelCls}>{f.label_message}</label>
+        <textarea
+          id="message"
+          rows={4}
+          placeholder={f.placeholder_message}
+          className={`${inputCls} border-[var(--color-border)] resize-none`}
+          {...register('message')}
+        />
+      </div>
+
+      {status === 'error' && (
+        <p className="text-sm text-[var(--color-error)] p-3 rounded-[var(--radius-md)] border border-[var(--color-error)]/30 bg-[var(--color-error)]/5">
+          {f.error}
+        </p>
+      )}
+
+      <button
+        type="submit"
+        disabled={status === 'submitting'}
+        className="w-full min-h-[44px] px-6 py-3 rounded-[var(--radius-md)] bg-[var(--color-accent)] text-white font-medium text-sm hover:bg-[var(--color-accent-hover)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-[var(--shadow-accent)]"
+      >
+        {status === 'submitting' ? f.submitting : f.submit}
+      </button>
+    </motion.form>
+  )
+}

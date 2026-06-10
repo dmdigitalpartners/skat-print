@@ -1,0 +1,537 @@
+{
+  "meta": {
+    "home": {
+      "title": "Skat Print — Custom Corrugated Packaging & POS Displays | Bulgaria",
+      "description": "Skat Print manufactures premium corrugated packaging, retail displays, wine boxes, and food packaging since 1995. Trusted by Coca-Cola, LIDL, Johnnie Walker. Village of Trud, Plovdiv."
+    },
+    "services": {
+      "title": "Packaging & Print Services — Skat Print",
+      "description": "Offset printing, corrugated board production, laminating, die-cutting, and finishing. Roland and Heidelberg presses. Full-service corrugated packaging manufacturer."
+    },
+    "products": {
+      "title": "Products — Custom Packaging & Displays | Skat Print",
+      "description": "Browse Skat Print's product catalog: POS displays, food packaging, wine & spirits packaging, cosmetics boxes, and custom packaging. Produced in Bulgaria since 1995."
+    },
+    "about": {
+      "title": "About Skat Print — 30 Years of Family-Owned Packaging",
+      "description": "Founded in 1995, Skat Print is a family-owned corrugated packaging manufacturer in Bulgaria. We combine offset print quality with in-house corrugated board production."
+    },
+    "contact": {
+      "title": "Contact Skat Print — Get a Quote",
+      "description": "Request a packaging quote or reach our team. Two locations: Village of Trud, Plovdiv (+359 888 35 15 53) and Hisarya (+359 887 46 10 28). Email: office@skatoil.com"
+    },
+    "faq": {
+      "title": "FAQ — Skat Print",
+      "description": "Frequently asked questions about custom packaging from Skat Print. Learn about minimum quantities, lead times, printing methods, materials, and international shipping."
+    }
+  },
+  "nav": {
+    "services": "Services",
+    "products": "Products",
+    "about": "About",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "get_quote": "Get a Quote"
+  },
+  "hero": {
+    "eyebrow_country": "Bulgaria",
+    "eyebrow_year": "1995",
+    "eyebrow_industry": "Packaging & Print",
+    "headline_line1": "Your Brand.",
+    "headline_line2": "Our Craft.",
+    "subheadline": "Custom corrugated packaging and POS displays, made to your exact spec. B2B manufacturing partner since 1995.",
+    "mobile_desc": "Custom corrugated packaging and POS displays — manufactured in Bulgaria since 1995.",
+    "cta_primary": "Request Offer",
+    "cta_secondary": "View Products"
+  },
+  "trust": {
+    "stat_years_number": "30",
+    "stat_years_suffix": "+",
+    "stat_years_label": "Years in Business",
+    "stat_categories_number": "5",
+    "stat_categories_suffix": "",
+    "stat_categories_label": "Product Categories",
+    "stat_categories_label_mobile": "Products",
+    "stat_clients_number": "100",
+    "stat_clients_suffix": "+",
+    "stat_clients_label": "Active Clients",
+    "client_sentence": "Trusted by brands including Coca-Cola, LIDL, Johnnie Walker, Stella Artois, Finlandia, and Jack Daniel's."
+  },
+  "services_section": {
+    "title": "How We Make It",
+    "subtitle": "Five integrated manufacturing capabilities, offset printing, corrugated board production, laminating, die-cutting, and finishing, all under one roof.",
+    "cta": "Learn More",
+    "items": [
+      {
+        "slug": "offset-printing",
+        "title": "Offset Printing",
+        "description": "Roland and Heidelberg presses producing sharp, consistent print on corrugated and cardboard substrates, the same technology used in premium commercial printing.",
+        "icon": "print"
+      },
+      {
+        "slug": "corrugated-board",
+        "title": "Corrugated Board Production",
+        "description": "In-house N, E, B wave and five-layer corrugated board production, no external substrate dependency, full quality control at every stage.",
+        "icon": "board"
+      },
+      {
+        "slug": "laminating-finishing",
+        "title": "Laminating & Finishing",
+        "description": "Matte, gloss, silver foil, and gold foil lamination applied in-house after offset printing, for premium packaging surfaces across all product lines.",
+        "icon": "laminate"
+      },
+      {
+        "slug": "die-cutting",
+        "title": "Die-Cutting",
+        "description": "Custom shapes, structural cutouts, and die-cut configurations in unlimited dimensions. In-house tooling means fast turnaround on new dies.",
+        "icon": "cut"
+      },
+      {
+        "slug": "covering-coating",
+        "title": "Covering & Coating",
+        "description": "Covering up to 103cm width and embossing for luxury packaging, bonding laminated print to corrugated substrate with tactile surface detail.",
+        "icon": "coat"
+      }
+    ]
+  },
+  "video_section": {
+    "heading": "See How We Work",
+    "subheading": "From corrugated board production to finished packaging, one facility, end-to-end.",
+    "watch_label": "Watch Video"
+  },
+  "products_section": {
+    "title": "Our Products",
+    "subtitle": "Five specialized packaging production lines.",
+    "cta": "View Products",
+    "item_cta": "View Product",
+    "items": [
+      {
+        "slug": "pos-displays",
+        "title": "POS Displays & Shelving",
+        "description": "Custom corrugated displays, stands, and stoppers.",
+        "image": "/assets/portfolio/pos-displays/stelaji-1.jpg"
+      },
+      {
+        "slug": "food-packaging",
+        "title": "Food Packaging",
+        "description": "Corrugated and cardboard packaging for food safety.",
+        "image": "/assets/portfolio/food-packaging/hrani-opakovki-1.jpg"
+      },
+      {
+        "slug": "alcohol-packaging",
+        "title": "Wine & Spirits Packaging",
+        "description": "Bag-in-Box and luxury corrugated alcohol packaging.",
+        "image": "/assets/portfolio/alcohol-packaging/alkohol-paket-1.jpg"
+      },
+      {
+        "slug": "cosmetics-packaging",
+        "title": "Cosmetics & Perfumery",
+        "description": "Luxury cardboard and laminated boxes with premium finishes.",
+        "image": "/assets/portfolio/cosmetics-packaging/kozmetika-opakovki-1.jpg"
+      },
+      {
+        "slug": "custom-packaging",
+        "title": "Custom & Gift Packaging",
+        "description": "Non-standard sizes and premium finishes for specialty needs.",
+        "image": "/assets/portfolio/custom-packaging/nestandartni-opakovki-1.jpg"
+      }
+    ]
+  },
+  "products_page": {
+    "heading": "Our Products",
+    "subheading": "Five specialised product lines, from retail POS displays to luxury packaging, all produced in-house at our facility in Bulgaria."
+  },
+  "product_detail": {
+    "gallery_heading": "Product Gallery",
+    "specs_heading": "Specifications",
+    "pos-displays": {
+      "heading": "POS Displays & Shelving",
+      "intro": "Corrugated retail displays, stands, and stoppers, built to your campaign spec and delivered ready to deploy.",
+      "body": "Retail displays from Skat Print are designed around one goal: getting your product in front of buyers without taking existing shelf space from the retailer. Our corrugated stands and stoppers are the silent sellers of your brand, branded exactly to your campaign, engineered to carry the product weight, and produced with the same offset print quality we apply to all our packaging.\n\nWe produce shelving, display stands, advertising poles, and shelf stoppers from laminated corrugated cardboard. Every unit is custom-designed to your brand identity and delivered ready to deploy.",
+      "specs": [
+        "Materials: corrugated and laminated cardboard",
+        "Custom dimensions, shapes, and branding",
+        "Die-cut openings and structural inserts available",
+        "Matte, gloss, silver foil, and gold foil finishing",
+        "Produced in-house, no outsourced substrates"
+      ]
+    },
+    "food-packaging": {
+      "heading": "Food Packaging",
+      "intro": "Cardboard and corrugated packaging that meets food industry quality and safety standards.",
+      "body": "Food packaging from Skat Print is built for the practical demands of the food industry, moisture resistance, structural integrity under pressure, food-safe materials, and design that earns the sale at shelf level. We produce corrugated and cardboard packaging for bakery, confectionery, beverage, and general food products.\n\nOur materials are 100% recyclable, ecologically clean, and contain no harmful substances. The packaging protects your product from production to the consumer's hands.",
+      "specs": [
+        "Corrugated and cardboard constructions",
+        "Moisture-resistant variants available",
+        "Food-safe, ecologically clean materials",
+        "Eye-catching offset-printed design",
+        "Custom sizing for fragile or pressure-sensitive products"
+      ]
+    },
+    "alcohol-packaging": {
+      "heading": "Wine & Spirits Packaging",
+      "intro": "Laminated Bag-in-Box and luxury corrugated packaging built for the alcohol and beverage industry.",
+      "body": "Skat Print produces packaging for the wine and spirits industry that meets the structural demands of the category, heavy bottles, multi-pack configurations, premium retail display, and BiB (Bag-in-Box) applications. Our laminated corrugated packaging carries both print quality and structural integrity. The result is packaging that protects the product and positions the brand.\n\nWe produce both standard wine boxes and custom luxury configurations with die-cut openings, embossed surfaces, and premium foil finishes.",
+      "specs": [
+        "Bag-in-Box (BiB) laminated corrugated packaging",
+        "Luxury laminated boxes with foil and gloss options",
+        "Die-cut punch holes and custom shapes",
+        "Five-layer corrugated for heavy-duty structural needs",
+        "Offset-printed branding and finish applied in-house"
+      ]
+    },
+    "cosmetics-packaging": {
+      "heading": "Cosmetics & Perfumery Boxes",
+      "intro": "Luxury boxes in cardboard, microcorrugated, and laminated materials, finished to brand specification.",
+      "body": "Cosmetics packaging is where design and precision meet. Skat Print produces luxury boxes for the perfumery and cosmetics sector from cardboard, microcorrugated cardboard, and laminated corrugated materials, with post-printing technologies that enhance both appearance and structural integrity.\n\nPackaging plays a direct role in product selection. We treat every cosmetics box as the primary interface between your product and the buyer: designed with the right finish, the right structure, and the right weight in hand.",
+      "specs": [
+        "Materials: cardboard, microcorrugated (1.5mm E-flute), laminated cardboard",
+        "Post-printing finishes: matte, gloss, silver foil, gold foil, embossing",
+        "Custom colors, shapes, and sizes",
+        "Precision die-cutting for tight tolerances",
+        "Luxury gift box configurations available"
+      ]
+    },
+    "custom-packaging": {
+      "heading": "Custom & Gift Packaging",
+      "intro": "Non-standard packaging in individual sizes, from exposed corrugated aesthetics to premium laminated gift boxes.",
+      "body": "Some products don't fit a standard box. Skat Print produces custom packaging in any dimension, with any configuration, including non-standard structural designs that expose the corrugated layer as an intentional aesthetic element. This is packaging designed to make a statement.\n\nWe work from client briefs and product specifications to produce one-of-a-kind packaging runs for gift boxes, specialty products, and brand-forward packaging strategies.",
+      "specs": [
+        "Individual sizing, no minimum standard dimension",
+        "Exposed corrugated outer layer aesthetic available",
+        "Microcorrugated and laminated constructions",
+        "Post-printing technologies for premium finish",
+        "Short-run and custom-specification orders accepted"
+      ]
+    }
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know about ordering custom packaging from Skat Print.",
+    "items": [
+      {
+        "question": "What is the minimum order quantity?",
+        "answer": "Minimum order quantities depend on the product type and configuration. For standard corrugated boxes and packaging, we typically work from 500 units upward. For custom or specialty packaging, we accept smaller runs, contact us with your specification for a precise answer."
+      },
+      {
+        "question": "What is the typical production lead time?",
+        "answer": "Standard orders are fulfilled within 10–15 working days from approved design. Custom orders requiring new die-cutting tooling may require 15–20 working days. Rush production is available for select order types, ask when requesting your quote."
+      },
+      {
+        "question": "Can you produce non-standard sizes and shapes?",
+        "answer": "Yes. We produce packaging in any dimension with no minimum standard size. Our in-house die-cutting capacity allows for unlimited custom shapes, structural cutouts, and bespoke configurations."
+      },
+      {
+        "question": "What printing methods do you use?",
+        "answer": "We use offset printing on Roland (52×74cm) and Heidelberg (71×102cm) presses, the same technology used for high-quality commercial printing. This gives significantly sharper results than flexographic printing on corrugated board."
+      },
+      {
+        "question": "Do you offer design and pre-press support?",
+        "answer": "Yes. Our in-house design team can work from your brand guidelines, existing artwork, or brief. We handle file preparation, structural dieline creation, and pre-press for all orders."
+      },
+      {
+        "question": "What materials and finishes are available?",
+        "answer": "We work with corrugated board (N, E, B wave and 5-layer), cardboard, and microcorrugated. Available finishes include matte laminate, gloss laminate, silver foil, gold foil, and embossing. All materials are 100% recyclable."
+      },
+      {
+        "question": "Do you ship outside Bulgaria?",
+        "answer": "Yes. We supply clients across Europe. Shipping terms and logistics are arranged on a per-order basis. Contact us with your delivery location to discuss options."
+      }
+    ],
+    "sidebar": {
+      "heading": "Not sure yet?",
+      "body": "Request a sample pack to see our print quality and material finishes before you order.",
+      "cta": "Request a Sample",
+      "detail_lead": "Lead time: 10–15 working days",
+      "detail_moq": "Min. order: 500 units",
+      "detail_custom": "Custom sizes accepted"
+    }
+  },
+  "differentiators": {
+    "title": "Why Skat Print",
+    "items": [
+      {
+        "icon": "print",
+        "heading": "Offset-Corrugated Printing",
+        "copy": "We combine offset print quality directly onto corrugated substrate, Roland and Heidelberg presses, laminating, die-cutting, and embossing, all in-house."
+      },
+      {
+        "icon": "layers",
+        "heading": "Vertical Integration",
+        "copy": "Our own corrugated board production line means faster turnaround, tighter quality control, and no dependency on third-party substrates."
+      },
+      {
+        "icon": "shield",
+        "heading": "30 Years of Reliability",
+        "copy": "Family-owned since 1995. Same ownership, same standards. Long-term partnerships with global brands are built on that consistency."
+      },
+      {
+        "icon": "leaf",
+        "heading": "100% Recyclable Materials",
+        "copy": "All our packaging is produced from ecologically clean, recyclable materials that contain no harmful substances."
+      }
+    ]
+  },
+  "cta_banner": {
+    "heading": "Ready to start your packaging project?",
+    "subheading": "Tell us what you need. We'll handle the rest.",
+    "button": "Get a Quote"
+  },
+  "footer": {
+    "tagline": "Custom corrugated packaging and print solutions since 1995.",
+    "nav_title": "Navigation",
+    "contact_title": "Contact",
+    "locations": [
+      {
+        "name": "Skat Print, Main Office",
+        "address": "Village of Trud, Plovdiv Region, Industrial Zone No. 2",
+        "phone": "+359 888 35 15 53"
+      },
+      {
+        "name": "Production Base, Hisarya",
+        "address": "8 Yordan Yovkov St, Hisarya",
+        "phone": "+359 887 46 10 28"
+      }
+    ],
+    "emails": {
+      "main": "office@skatoil.com",
+      "designer": "designer@skatoil.com",
+      "marketing": "marketing@skatoil.com"
+    },
+    "copyright": "© Skat Oil Ltd. 2009–2026. All rights reserved.",
+    "company_title": "Company",
+    "founded": "Est. 1995",
+    "links": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Use"
+    },
+    "legal_entity": "Skat Oil EOOD",
+    "region": "Plovdiv Region, Bulgaria",
+    "eik_label": "EIK",
+    "eik": "825131194",
+    "vat_label": "VAT",
+    "vat": "BG825131194"
+  },
+  "contact_page": {
+    "heading": "Get in Touch",
+    "subheading": "Tell us about your packaging project. We'll follow up within one business day.",
+    "locations_heading": "Our Locations",
+    "email_heading": "Email",
+    "phone_heading": "Phone",
+    "locations": [
+      {
+        "name": "Main Office & Factory",
+        "address": "Village of Trud, Plovdiv Region, Industrial Zone No. 2",
+        "phone": "+359 888 35 15 53",
+        "map_title": "Skat Print, Village of Trud"
+      },
+      {
+        "name": "Production Base",
+        "address": "8 Yordan Yovkov St, Hisarya",
+        "phone": "+359 887 46 10 28",
+        "map_title": "Skat Oil, Hisarya Production Base"
+      }
+    ],
+    "form": {
+      "heading": "Request a Quote",
+      "label_name": "Your Name",
+      "label_company": "Company",
+      "label_product_type": "Product Type",
+      "label_quantity": "Estimated Quantity",
+      "label_message": "Message (optional)",
+      "label_contact": "Phone or Email",
+      "placeholder_name": "Ivan Petrov",
+      "placeholder_company": "Company Ltd.",
+      "placeholder_quantity": "e.g. 500 units",
+      "placeholder_message": "Tell us about your project...",
+      "placeholder_contact": "Your phone or email",
+      "product_options": [
+        {
+          "value": "pos-display",
+          "label": "POS Display / Shelving"
+        },
+        {
+          "value": "boxes-packaging",
+          "label": "Boxes & Packaging"
+        },
+        {
+          "value": "labels-print",
+          "label": "Labels & Print"
+        },
+        {
+          "value": "custom",
+          "label": "Custom / Other"
+        }
+      ],
+      "submit": "Send Request",
+      "submitting": "Sending...",
+      "success_heading": "Request received.",
+      "success_body": "We'll follow up within one business day.",
+      "error": "Something went wrong. Please call us directly at +359 888 35 15 53."
+    }
+  },
+  "services_page": {
+    "heading": "Our Services",
+    "intro": "From in-house corrugated board production to offset printing, laminating, and die-cutting, everything under one roof."
+  },
+  "about_page": {
+    "heading": "About Skat Print",
+    "founding": "Manufacturing corrugated packaging since 1995.",
+    "story_eyebrow": "Our Story",
+    "story_heading": "Family-Owned Since 1995. Built to Last.",
+    "story": "Skat Print started as a family business in 1995 and has grown under the same ownership ever since. We built our reputation in premium corrugated packaging, the kind that protects products, carries a brand, and earns space on a retail shelf. Our philosophy is straightforward: run an ecologically responsible operation that evolves alongside our clients and the market.",
+    "story_short": "Founded in 1995 and family-owned ever since. We produce premium corrugated packaging that protects products, carries a brand, and earns shelf space — built on ecological responsibility and long-term partnerships.",
+    "story_pullquote": "Premium corrugated packaging that protects products, carries a brand, and earns space on a retail shelf.",
+    "story_brands_label": "Trusted by",
+    "story_brands": ["Coca-Cola", "Johnnie Walker", "LIDL", "Stella Artois", "Finlandia"],
+    "story_brands_more": "and many more",
+    "capability_eyebrow": "What Integration Means For You",
+    "capability_heading": "From Raw Board to Finished Packaging, All Under One Roof",
+    "capability_cards": [
+      {
+        "heading": "Tighter Quality Control",
+        "copy": "Every production stage is controlled in-house, from raw board to finished packaging. No hand-offs, no gaps."
+      },
+      {
+        "heading": "Faster Turnaround",
+        "copy": "No waiting on third-party substrates. Your brief moves directly from approval to production on our own equipment."
+      },
+      {
+        "heading": "One Team, One Facility",
+        "copy": "You deal with one point of contact and one production facility. Full accountability from brief to delivery."
+      }
+    ],
+    "timeline_eyebrow": "Our Journey",
+    "timeline_heading": "Three Decades of Progress",
+    "capabilities_heading": "What We Can Do",
+    "milestones": [
+      { "year": "1995", "label": "Founded", "desc": "Family business established in the Plovdiv region" },
+      { "year": "2000", "label": "First Export", "desc": "First international packaging clients across Europe" },
+      { "year": "2010", "label": "Roland Press", "desc": "Investment in Roland 52×74cm offset press" },
+      { "year": "2015", "label": "Vertical Integration", "desc": "In-house corrugated board production line added" },
+      { "year": "2021", "label": "29% Growth", "desc": "Revenue reaches €1.87M, our strongest year on record" }
+    ]
+  },
+  "about_stats": {
+    "years": 30,
+    "years_suffix": "+",
+    "years_label": "Years in Business",
+    "projects": 3500,
+    "projects_suffix": "+",
+    "projects_label": "Orders Delivered",
+    "team": 37,
+    "team_suffix": "",
+    "team_label": "Production Specialists",
+    "leadtime_label": "Day Lead Time",
+    "leadtime_display": "10–15"
+  },
+  "service_detail": {
+    "specs_heading": "Specifications",
+    "offset-printing": {
+      "heading": "Offset Printing",
+      "bullets": [
+        "Roland (52×74cm) and Heidelberg (71×102cm) presses",
+        "CMYK + spot colour support, precise colour accuracy",
+        "Applied to laminate before corrugated bonding",
+        "Sharper, more vivid output than flexographic alternatives",
+        "Produced entirely in-house from substrate to finished packaging"
+      ]
+    },
+    "corrugated-board": {
+      "heading": "Corrugated Board Production",
+      "bullets": [
+        "N-wave (1mm), E-wave (1.5mm), B-wave (3mm), and five-layer configurations",
+        "Moisture-resistant variants available",
+        "No third-party substrate dependency, full in-house quality control",
+        "Faster turnaround and non-standard structural configurations at short notice"
+      ]
+    },
+    "laminating-finishing": {
+      "heading": "Laminating & Finishing",
+      "bullets": [
+        "Matte, gloss, silver foil, and gold foil finishes",
+        "Applied in-house after offset printing",
+        "Adds structural integrity to thinner cardboard substrates",
+        "Suited to cosmetics, gift packaging, and premium product lines"
+      ]
+    },
+    "die-cutting": {
+      "heading": "Die-Cutting",
+      "bullets": [
+        "Unlimited dimensions and custom shapes",
+        "Structural cutouts, die-cut openings, and custom fold line configurations",
+        "In-house tooling, fast turnaround on new dies",
+        "Supports standard and fully bespoke structural designs"
+      ]
+    },
+    "covering-coating": {
+      "heading": "Covering & Finishing Processes",
+      "bullets": [
+        "Covering width up to 103cm, large-format packaging and display units",
+        "Bonds printed laminate to corrugated substrate",
+        "Embossing for raised tactile surface detail",
+        "Compatible with all lamination finishes"
+      ]
+    },
+    "pos-displays": {
+      "heading": "POS Displays & Shelving",
+      "intro": "Corrugated retail displays, stands, and stoppers, built to your campaign spec and delivered ready to deploy.",
+      "body": "Retail displays from Skat Print are designed around one goal: getting your product in front of buyers without taking existing shelf space from the retailer. Our corrugated stands and stoppers are the silent sellers of your brand, branded exactly to your campaign, engineered to carry the product weight, and produced with the same offset print quality we apply to luxury packaging.\n\nWe produce shelving, display stands, advertising poles, and shelf stoppers from laminated corrugated cardboard. Every unit is custom-designed to your brand identity and advertising campaign specification.",
+      "specs": [
+        "Materials: corrugated and laminated cardboard",
+        "Custom dimensions, shapes, and branding",
+        "Die-cut openings and structural inserts available",
+        "Matte, gloss, silver foil, and gold foil finishing",
+        "Produced in-house, no outsourced substrates"
+      ]
+    },
+    "wine-packaging": {
+      "heading": "Wine & Spirits Packaging",
+      "intro": "Laminated Bag-in-Box and luxury corrugated packaging built for the alcohol and beverage industry.",
+      "body": "Skat Print produces packaging for the wine and spirits industry that meets the structural demands of the category, heavy bottles, multi-pack configurations, premium retail display, and BiB (Bag-in-Box) applications. Our laminated corrugated packaging carries both print quality and structural integrity. The result is packaging that protects the product and positions the brand.\n\nWe produce both standard wine boxes and custom luxury configurations with die-cut openings, embossed surfaces, and premium foil finishes.",
+      "specs": [
+        "Bag-in-Box (BiB) laminated corrugated packaging",
+        "Luxury laminated boxes with foil and gloss options",
+        "Die-cut punch holes and custom shapes",
+        "Five-layer corrugated for heavy-duty structural needs",
+        "Offset-printed branding and finish applied in-house"
+      ]
+    },
+    "food-packaging": {
+      "heading": "Food Packaging",
+      "intro": "Cardboard and corrugated packaging that meets food industry quality and safety standards.",
+      "body": "Food packaging from Skat Print is built for the practical demands of the food industry, moisture resistance, structural integrity under pressure, food-safe materials, and design that earns the sale at shelf level. We produce corrugated and cardboard packaging for bakery, confectionery, beverage, and general food products.\n\nOur materials are 100% recyclable, ecologically clean, and contain no harmful substances. The packaging protects your product from production to the consumer's hands.",
+      "specs": [
+        "Corrugated and cardboard constructions",
+        "Moisture-resistant variants available",
+        "Food-safe, ecologically clean materials",
+        "Eye-catching offset-printed design",
+        "Custom sizing for fragile or pressure-sensitive products"
+      ]
+    },
+    "cosmetics-packaging": {
+      "heading": "Cosmetics & Perfumery Boxes",
+      "intro": "Luxury boxes in cardboard, microcorrugated, and laminated materials, finished to brand specification.",
+      "body": "Cosmetics packaging is where design and precision meet. Skat Print produces luxury boxes for the perfumery and cosmetics sector from cardboard, microcorrugated cardboard, and laminated corrugated materials, with post-printing technologies that enhance both appearance and structural integrity.\n\nPackaging plays a direct role in product selection. We treat every cosmetics box as the primary interface between your product and the buyer: designed with the right finish, the right structure, and the right weight in hand.",
+      "specs": [
+        "Materials: cardboard, microcorrugated (1.5mm E-flute), laminated cardboard",
+        "Post-printing finishes: matte, gloss, silver foil, gold foil, embossing",
+        "Custom colors, shapes, and sizes",
+        "Precision die-cutting for tight tolerances",
+        "Luxury gift box configurations available"
+      ]
+    },
+    "custom-packaging": {
+      "heading": "Custom & Gift Packaging",
+      "intro": "Non-standard packaging in individual sizes, from exposed corrugated aesthetics to premium laminated gift boxes.",
+      "body": "Some products don't fit a standard box. Skat Print produces custom packaging in any dimension, with any configuration, including non-standard structural designs that expose the corrugated layer as an intentional aesthetic element. This is packaging designed to make a statement.\n\nWe work from client briefs and product specifications to produce one-of-a-kind packaging runs for gift boxes, specialty products, and brand-forward packaging strategies.",
+      "specs": [
+        "Individual sizing, no minimum standard dimension",
+        "Exposed corrugated outer layer aesthetic available",
+        "Microcorrugated and laminated constructions",
+        "Post-printing technologies for premium finish",
+        "Short-run and custom-specification orders accepted"
+      ]
+    }
+  }
+}

@@ -1,0 +1,137 @@
+import Link from 'next/link'
+import Image from 'next/image'
+import type { Translation, Lang } from '@/lib/useTranslation'
+
+interface Props {
+  t: Translation
+  lang: Lang
+}
+
+export default function Footer({ t, lang }: Props) {
+  const base = `/${lang}`
+
+  const navLinks = [
+    { href: `${base}#products`, label: t.nav.products },
+    { href: `${base}/services`, label: t.nav.services },
+    { href: `${base}/about`, label: t.nav.about },
+    { href: `${base}/faq`, label: t.nav.faq },
+    { href: `${base}/contact`, label: t.nav.contact },
+  ]
+
+  return (
+    <footer className="bg-[var(--color-bg-surface)] border-t border-[var(--color-border)]">
+      <div className="container-site py-12 md:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-8 lg:gap-16">
+          {/* Brand */}
+          <div>
+            <Link href={base} className="inline-block mb-5">
+              <Image
+                src={lang === 'bg' ? '/assets/logos/logo-bg-new.png' : '/assets/logos/logo-en-new.png'}
+                alt="Skat Print"
+                width={120}
+                height={56}
+                className="object-contain h-12 w-auto"
+              />
+            </Link>
+            <p className="text-sm text-[var(--color-text-muted)] leading-relaxed max-w-xs">
+              {t.footer.tagline}
+            </p>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h3 className="text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-4">
+              {t.footer.company_title}
+            </h3>
+            <div className="flex flex-col gap-3">
+              <div>
+                <p className="text-sm font-medium text-[var(--color-text)]">{t.footer.legal_entity}</p>
+                <p className="text-xs text-[var(--color-text-muted)] mt-0.5">{t.footer.founded}</p>
+                <p className="text-xs text-[var(--color-text-muted)]">{t.footer.region}</p>
+              </div>
+              <div className="flex flex-col gap-1 pt-1 border-t border-[var(--color-border)]">
+                <p className="text-xs text-[var(--color-text-muted)]">
+                  <span className="text-[var(--color-text-muted)] font-medium">{t.footer.eik_label}:</span>{' '}
+                  {t.footer.eik}
+                </p>
+                <p className="text-xs text-[var(--color-text-muted)]">
+                  <span className="text-[var(--color-text-muted)] font-medium">{t.footer.vat_label}:</span>{' '}
+                  {t.footer.vat}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <div>
+            <h3 className="text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-4">
+              {t.footer.nav_title}
+            </h3>
+            <ul className="flex flex-col gap-2">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h3 className="text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-4">
+              {t.footer.contact_title}
+            </h3>
+            <div className="flex flex-col gap-5">
+              {t.footer.locations.map((loc) => (
+                <div key={loc.name}>
+                  <p className="text-sm font-medium text-[var(--color-text)] mb-1">{loc.name}</p>
+                  <p className="text-xs text-[var(--color-text-muted)]">{loc.address}</p>
+                  <a
+                    href={`tel:${loc.phone.replace(/\s/g, '')}`}
+                    className="text-xs text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors duration-200"
+                  >
+                    {loc.phone}
+                  </a>
+                </div>
+              ))}
+              <div className="flex flex-col gap-1">
+                {Object.values(t.footer.emails).map((email) => (
+                  <a
+                    key={email}
+                    href={`mailto:${email}`}
+                    className="text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200"
+                  >
+                    {email}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-10 pt-6 border-t border-[var(--color-border)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <p className="text-xs text-[var(--color-text-muted)]">{t.footer.copyright}</p>
+          <div className="flex items-center gap-4">
+            <Link
+              href={`${base}/privacy`}
+              className="text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200"
+            >
+              {t.footer.links.privacy}
+            </Link>
+            <Link
+              href={`${base}/terms`}
+              className="text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200"
+            >
+              {t.footer.links.terms}
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
+}
