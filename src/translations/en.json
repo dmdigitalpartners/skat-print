@@ -537,7 +537,7 @@
   "chatbot": {
     "aria_open": "Open chat",
     "aria_close": "Close chat",
-    "panel_title": "X Assistant",
+    "panel_title": "Print Assistant",
     "panel_subtitle": "How can I help you today?",
     "online": "Online",
     "send": "Send"
