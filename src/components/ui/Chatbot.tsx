@@ -33,6 +33,13 @@ function IconPhone({ cls }: { cls: string }) {
     </svg>
   )
 }
+function IconArrow({ cls }: { cls: string }) {
+  return (
+    <svg className={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="9 18 15 12 9 6" />
+    </svg>
+  )
+}
 
 import type { Translation, Lang } from '@/lib/useTranslation'
 
@@ -79,7 +86,7 @@ interface Intent {
 const DEFAULT_CHIPS_EN = [
   "What's the minimum order?",
   'How fast is production?',
-  'Get a price estimate',
+  'Get a quick price estimate',
   'See our work',
   'Do you ship to my country?',
 ]
@@ -87,44 +94,44 @@ const DEFAULT_CHIPS_EN = [
 const DEFAULT_CHIPS_BG = [
   'Минимална поръчка?',
   'Колко бързо е производството?',
-  'Оценка на цената',
+  'Бърза оценка на цената',
   'Вижте нашата работа',
   'Доставяте ли до нас?',
 ]
 
 const FALLBACK_EN =
-  "I'm not sure I understood that. Could you rephrase your question, or choose one of the options below?"
+  "Hmm, I didn't quite catch that. Could you rephrase, or just pick one of the options below?"
 const FALLBACK_BG =
-  'Не съм сигурен, че разбрах. Може ли да перефразирате въпроса или да изберете една от опциите по-долу?'
+  'Хм, не успях да разбера напълно. Може ли да перефразирате или просто изберете опция по-долу?'
 
 const PAGE_WELCOMES: Record<string, { en: string; bg: string }> = {
   contact: {
-    en: "You're on our contact page. Would you like us to call you back? I can take your details right now.",
-    bg: 'Намирате се на нашата страница за контакт. Искате ли да ви се обадим? Мога да взема вашите данни в момента.',
+    en: "You're on our contact page — good timing! Want us to call you back? Just say the word and I'll grab your details right now.",
+    bg: 'Намирате се на нашата страница за контакт — точно навреме! Искате ли да ви се обадим? Само кажете и ще взема данните ви веднага.',
   },
   products: {
-    en: "You're browsing our products. Looking for something specific? I can help you find the right packaging format or get you a quote.",
-    bg: 'Разглеждате нашите продукти. Търсите нещо конкретно? Мога да ви помогна да намерите подходящия формат или да получите оферта.',
+    en: "Nice to see you browsing our products! Looking for something specific? I can help you find the right format or get you a quick quote.",
+    bg: 'Радвам се, че разглеждате нашите продукти! Търсите нещо конкретно? Мога да ви помогна да намерите подходящия формат или да получите бърза оферта.',
   },
   services: {
-    en: "You're on our services page. Want to know more about a specific production process, or are you ready to get a quote?",
-    bg: 'Намирате се на страницата ни с услуги. Искате да научите повече за конкретен производствен процес или сте готови да получите оферта?',
+    en: "Happy to walk you through our services! Curious about a specific process, or are you ready to get a quote?",
+    bg: 'С удоволствие ще ви запозная с услугите ни! Интересувате се от конкретен процес или сте готови да получите оферта?',
   },
   faq: {
-    en: "You're in the FAQ section. Can't find your answer? Choose a topic below and I'll try to help.",
-    bg: 'Намирате се в секцията с въпроси и отговори. Не можете да намерите отговора? Изберете тема по-долу и ще се опитам да помогна.',
+    en: "Great place to start! If you can't find what you need in the FAQ, just ask me directly — I'm here.",
+    bg: 'Добро начало! Ако не намерите отговора в ЧЗВ, просто ме попитайте директно — тук съм.',
   },
   portfolio: {
-    en: "You're viewing our portfolio. Impressed by something? I can tell you more about specific packaging types or help you start your own project.",
-    bg: 'Разглеждате нашето портфолио. Нещо ви е впечатлило? Мога да ви кажа повече за конкретни видове опаковки или да ви помогна да стартирате собствен проект.',
+    en: "Love the portfolio page! See something that catches your eye? I can tell you more about it or help you kick off your own project.",
+    bg: 'Страхотна страница! Нещо привлича вниманието ви? Мога да ви кажа повече или да ви помогна да стартирате собствен проект.',
   },
   home: {
-    en: 'Welcome to SKAT Print! We produce custom packaging for food, cosmetics, retail, and beverage brands. What can I help you with?',
-    bg: 'Добре дошли в SKAT Print! Произвеждаме персонализирани опаковки за хранителни, козметични, търговски и алкохолни марки. Как мога да ви помогна?',
+    en: "Hi there! Welcome to SKAT Print. We make custom packaging for food, cosmetics, retail, and beverage brands across Europe. What can I help you with today?",
+    bg: 'Здравейте! Добре дошли в SKAT Print. Произвеждаме персонализирани опаковки за хранителни, козметични, търговски и алкохолни марки в цяла Европа. Как мога да ви помогна днес?',
   },
   fallback: {
-    en: "Hi! I'm here to help with questions about packaging, pricing, or working with us. What are you looking for?",
-    bg: 'Здравейте! Тук съм за въпроси относно опаковки, цени или работата с нас. Какво търсите?',
+    en: "Hi! I'm your packaging assistant — here to help with questions about pricing, products, or working with us. What are you looking for?",
+    bg: 'Здравейте! Аз съм вашият асистент за опаковки — тук съм за въпроси относно цени, продукти или работата с нас. Какво търсите?',
   },
 }
 
@@ -141,15 +148,15 @@ const INTENTS: Intent[] = [
       'свържи ме с човек', 'жив човек', 'оператор', 'представител',
       'заявете обратно обаждане', 'заявете обаждане',
     ],
-    response_en: 'Would you like us to call you back? I can take your details right now.',
-    response_bg: 'Искате ли да ви се обадим? Мога да взема вашите данни в момента.',
+    response_en: "Of course! I'd love to get someone from our team on the phone with you. Here's how to reach us directly:",
+    response_bg: 'Разбира се! Ще се радвам да свържа някой от екипа ни с вас. Ето как да се свържете директно:',
     followUps_en: [],
     followUps_bg: [],
   },
   {
     id: 'greeting',
     triggers: [
-      'hello', 'good morning', 'good afternoon', 'good evening',
+      'hello', 'good morning', 'good afternoon', 'good evening', 'hi', 'hey',
       'zdraveyte', 'zdrasti', 'здравейте', 'здрасти',
       'добър ден', 'добър вечер', 'добро утро', 'помощ',
     ],
@@ -165,14 +172,14 @@ const INTENTS: Intent[] = [
     isPricingIntent: true,
     triggers: [
       'price', 'pricing', 'cost', 'how much', 'quote', 'estimate',
-      'get a price', 'price list', 'оценка на цената',
+      'get a price', 'price list', 'quick price', 'бърза оценка',
       'цена', 'цени', 'колко струва', 'оферта', 'оценка',
       'ценова листа', 'на каква цена', 'колко ще ми струва',
     ],
     response_en:
-      'Our pricing depends on the product type, quantity, materials, and finishing options. Let me ask you a few quick questions so I can give you a more useful estimate.',
+      "Great question! Pricing depends on the product type, quantity, materials, and finishing. Let me ask you a couple of quick questions so I can give you something useful.",
     response_bg:
-      'Цените зависят от вида продукт, количеството, материалите и довършителните опции. Позволете ми да задам няколко бързи въпроса, за да мога да ви дам по-полезна оценка.',
+      'Чудесен въпрос! Цените зависят от вида продукт, количеството, материалите и довършителните опции. Позволете ми да задам няколко бързи въпроса, за да мога да ви дам полезна оценка.',
     followUps_en: [],
     followUps_bg: [],
   },
@@ -185,11 +192,11 @@ const INTENTS: Intent[] = [
       'поне колко', 'най-малко колко', 'минимален тираж',
     ],
     response_en:
-      'Our minimum order depends on the product type. For standard folding boxes, the minimum is usually around 500 to 1,000 pieces. For corrugated boxes and display units, minimums vary by specification. For a precise minimum for your project, just get in touch or tell me what you are looking for.',
+      "Our minimum order depends on the product type. For standard folding boxes, it's usually around 500 to 1,000 pieces. For corrugated boxes and display units, minimums vary by spec. Tell me what you're looking for and I can give you a more precise answer.",
     response_bg:
-      'Минималната поръчка зависи от вида продукт. За стандартни сгъваеми кутии минимумът е обикновено около 500 до 1 000 броя. За гофрирани кутии и дисплеи минимумите варират според спецификацията. За точен минимум за вашия проект просто се свържете с нас или ми кажете какво търсите.',
-    followUps_en: ['Get a price estimate', 'See our work', 'How fast is production?', 'Contact us'],
-    followUps_bg: ['Оценка на цената', 'Вижте нашата работа', 'Колко бързо е производството?', 'Контакти'],
+      'Минималната поръчка зависи от вида продукт. За стандартни сгъваеми кутии минимумът е обикновено около 500 до 1 000 броя. За гофрирани кутии и дисплеи минимумите варират. Кажете ми какво търсите и ще ви дам по-точен отговор.',
+    followUps_en: ['Get a quick price estimate', 'See our work', 'How fast is production?', 'Contact us'],
+    followUps_bg: ['Бърза оценка на цената', 'Вижте нашата работа', 'Колко бързо е производството?', 'Контакти'],
   },
   {
     id: 'shipping_countries',
@@ -201,11 +208,11 @@ const INTENTS: Intent[] = [
       'доставяте ли до нас',
     ],
     response_en:
-      'Yes, we ship across Bulgaria and export to EU countries and beyond. Shipping costs and lead times vary by destination. For specific countries or volumes, our team can give you an exact shipping estimate alongside your production quote.',
+      'Yes! We ship across Bulgaria and export to EU countries and beyond. Costs and lead times vary by destination. Our team can include an exact shipping estimate with your production quote — just reach out.',
     response_bg:
-      'Да, доставяме из цяла България и изнасяме за страни от ЕС и извън тях. Разходите и сроковете за доставка варират според дестинацията. За конкретни държави или обеми нашият екип може да ви даде точна оценка за доставката заедно с офертата за производство.',
-    followUps_en: ['Get a price estimate', 'How fast is production?', 'Contact us', 'About us'],
-    followUps_bg: ['Оценка на цената', 'Колко бързо е производството?', 'Контакти', 'За нас'],
+      'Да! Доставяме из цяла България и изнасяме за страни от ЕС и извън тях. Разходите варират според дестинацията. Нашият екип може да включи точна оценка за доставката към офертата ви — просто се свържете с нас.',
+    followUps_en: ['Get a quick price estimate', 'How fast is production?', 'Contact us', 'About us'],
+    followUps_bg: ['Бърза оценка на цената', 'Колко бързо е производството?', 'Контакти', 'За нас'],
   },
   {
     id: 'services',
@@ -215,11 +222,11 @@ const INTENTS: Intent[] = [
       'услуги', 'какво правите', 'какво предлагате', 'какво можете',
     ],
     response_en:
-      'We offer a full range of packaging production services: offset printing, corrugated board manufacturing, laminating and finishing, die cutting, and covering and coating. Each service is tailored to your specific packaging needs.',
+      'We offer a full production suite: offset printing, corrugated board manufacturing, laminating and finishing, die cutting, and coating. Every service is tailored to your packaging needs — nothing off the shelf.',
     response_bg:
-      'Предлагаме пълен набор от услуги за производство на опаковки: офсетов печат, гофрирана хартия, ламиниране и довършителни работи, щанцоване и лакиране и покритие. Всяка услуга е съобразена с вашите специфични нужди.',
-    followUps_en: ["What's the minimum order?", 'Get a price estimate', 'How fast is production?', 'See our work'],
-    followUps_bg: ['Минимална поръчка?', 'Оценка на цената', 'Колко бързо е производството?', 'Вижте нашата работа'],
+      'Предлагаме пълен набор от производствени услуги: офсетов печат, гофрирана хартия, ламиниране и довършителни работи, щанцоване и лакиране. Всяка услуга е съобразена с вашите нужди — нищо стандартно.',
+    followUps_en: ["What's the minimum order?", 'Get a quick price estimate', 'How fast is production?', 'See our work'],
+    followUps_bg: ['Минимална поръчка?', 'Бърза оценка на цената', 'Колко бързо е производството?', 'Вижте нашата работа'],
   },
   {
     id: 'products',
@@ -229,11 +236,11 @@ const INTENTS: Intent[] = [
       'продукти', 'опаковки', 'кутии', 'правите ли', 'произвеждате ли', 'имате ли',
     ],
     response_en:
-      'We produce custom packaging across five main categories: POS displays, food packaging, alcohol packaging, cosmetics packaging, and fully custom packaging solutions. Everything is made to your specifications.',
+      'We produce custom packaging in five main categories: POS displays, food packaging, alcohol packaging, cosmetics packaging, and fully custom solutions. Everything is made to your exact specifications.',
     response_bg:
-      'Произвеждаме персонализирани опаковки в пет основни категории: POS дисплеи, хранителни опаковки, опаковки за алкохол, козметични опаковки и изцяло персонализирани решения. Всичко се изработва по вашите спецификации.',
-    followUps_en: ['Get a price estimate', "What's the minimum order?", 'See our work', 'Do you ship to my country?'],
-    followUps_bg: ['Оценка на цената', 'Минимална поръчка?', 'Вижте нашата работа', 'Доставяте ли до нас?'],
+      'Произвеждаме персонализирани опаковки в пет основни категории: POS дисплеи, хранителни опаковки, опаковки за алкохол, козметични опаковки и изцяло персонализирани решения. Всичко по вашите спецификации.',
+    followUps_en: ['Get a quick price estimate', "What's the minimum order?", 'See our work', 'Do you ship to my country?'],
+    followUps_bg: ['Бърза оценка на цената', 'Минимална поръчка?', 'Вижте нашата работа', 'Доставяте ли до нас?'],
   },
   {
     id: 'contact',
@@ -244,11 +251,11 @@ const INTENTS: Intent[] = [
       'как да се свържа с вас', 'искам да говоря',
     ],
     response_en:
-      'You can reach us by email at office@skat-print.com or through the contact form on our website. We work Monday to Friday, 9am to 6pm Sofia time.',
+      "You can reach us by email at office@skat-print.com or through our contact form. We're available Monday to Friday, 9am – 6pm Sofia time. Happy to help!",
     response_bg:
-      'Можете да се свържете с нас по имейл на office@skat-print.com или чрез формата за контакт на сайта. Работим от понеделник до петък, от 9 до 18 часа.',
-    followUps_en: ['Request a callback', 'Get a price estimate', 'How fast is production?'],
-    followUps_bg: ['Заявете обратно обаждане', 'Оценка на цената', 'Колко бързо е производството?'],
+      'Можете да се свържете с нас по имейл на office@skat-print.com или чрез формата за контакт. Работим от понеделник до петък, от 9 до 18 часа. С удоволствие ще помогнем!',
+    followUps_en: ['Request a callback', 'Get a quick price estimate', 'How fast is production?'],
+    followUps_bg: ['Заявете обратно обаждане', 'Бърза оценка на цената', 'Колко бързо е производството?'],
   },
   {
     id: 'how_it_works',
@@ -257,11 +264,11 @@ const INTENTS: Intent[] = [
       'как работи', 'как поръчам', 'как се поръчва',
     ],
     response_en:
-      'The process is straightforward. You send us your specifications and artwork. We prepare a quote and a technical review. Once approved, production begins. Typical lead time is 10 to 15 business days depending on complexity and quantity.',
+      "It's pretty straightforward. You share your specs and artwork → we prepare a quote and technical review → once approved, production begins. Typical lead time is 10 to 15 business days, depending on complexity.",
     response_bg:
-      'Процесът е прост. Изпращате ни своите спецификации и файлове. Ние подготвяме оферта и техническа проверка. След одобрение стартира производството. Типичният срок е 10 до 15 работни дни в зависимост от сложността и количеството.',
-    followUps_en: ['Get a price estimate', "What's the minimum order?", 'How fast is production?', 'Contact us'],
-    followUps_bg: ['Оценка на цената', 'Минимална поръчка?', 'Колко бързо е производството?', 'Контакти'],
+      'Доста просто е. Изпращате ни спецификациите и файловете → подготвяме оферта и техническа проверка → след одобрение стартира производството. Типичният срок е 10 до 15 работни дни в зависимост от сложността.',
+    followUps_en: ['Get a quick price estimate', "What's the minimum order?", 'How fast is production?', 'Contact us'],
+    followUps_bg: ['Бърза оценка на цената', 'Минимална поръчка?', 'Колко бързо е производството?', 'Контакти'],
   },
   {
     id: 'about',
@@ -270,11 +277,11 @@ const INTENTS: Intent[] = [
       'за нас', 'кои сте', 'фирмата', 'история', 'основана',
     ],
     response_en:
-      'SKAT Print has been producing custom packaging in Bulgaria since 1995. We work with B2B clients across Europe, specializing in high-quality print and packaging for food, cosmetics, retail, and beverage brands.',
+      'SKAT Print has been producing custom packaging in Bulgaria since 1995 — over 30 years of experience. We work with B2B clients across Europe, specializing in premium print and packaging for food, cosmetics, retail, and beverage brands.',
     response_bg:
-      'SKAT Print произвежда персонализирани опаковки в България от 1995 година. Работим с B2B клиенти в цяла Европа, специализирайки се в висококачествен печат и опаковки за хранителни, козметични, търговски и алкохолни марки.',
-    followUps_en: ['See our work', 'Our services', 'Get a price estimate', 'Contact us'],
-    followUps_bg: ['Вижте нашата работа', 'Нашите услуги', 'Оценка на цената', 'Контакти'],
+      'SKAT Print произвежда персонализирани опаковки в България от 1995 година — над 30 години опит. Работим с B2B клиенти в цяла Европа, специализирайки се в висококачествен печат и опаковки.',
+    followUps_en: ['See our work', 'Our services', 'Get a quick price estimate', 'Contact us'],
+    followUps_bg: ['Вижте нашата работа', 'Нашите услуги', 'Бърза оценка на цената', 'Контакти'],
   },
   {
     id: 'portfolio',
@@ -284,11 +291,11 @@ const INTENTS: Intent[] = [
       'портфолио', 'примери', 'мостри', 'галерия', 'проекти',
     ],
     response_en:
-      "You can browse our portfolio to see examples of our printed packaging work across different industries and formats. It's a good way to get a sense of what we can do for your brand.",
+      "Our portfolio is a great way to get a feel for what we do — examples from food, cosmetics, retail, and more. Take a look and see if anything fits what you're imagining.",
     response_bg:
-      'Можете да разгледате нашето портфолио с примери от нашата работа в различни индустрии и формати. Добър начин да усетите какво можем да направим за вашата марка.',
-    followUps_en: ['Get a price estimate', 'Our products', 'Our services', 'Contact us'],
-    followUps_bg: ['Оценка на цената', 'Нашите продукти', 'Нашите услуги', 'Контакти'],
+      'Нашето портфолио е чудесен начин да видите какво правим — примери от хранителната, козметичната, търговската сфера и не само. Разгледайте и вижте дали нещо отговаря на вашата идея.',
+    followUps_en: ['Get a quick price estimate', 'Our products', 'Our services', 'Contact us'],
+    followUps_bg: ['Бърза оценка на цената', 'Нашите продукти', 'Нашите услуги', 'Контакти'],
   },
   {
     id: 'delivery',
@@ -298,11 +305,11 @@ const INTENTS: Intent[] = [
       'срок', 'колко дни', 'производствен срок',
     ],
     response_en:
-      'Standard production lead time is 10 to 15 business days after artwork approval. Delivery time on top of that depends on your location. We ship across Bulgaria and to EU countries. For a specific estimate, reach out through our contact form.',
+      'Standard production lead time is 10 to 15 business days after artwork approval. Delivery on top of that depends on your location — we ship across Bulgaria and to EU countries. Need it faster? Reach out and we can talk options.',
     response_bg:
-      'Стандартният производствен срок е 10 до 15 работни дни след одобрение на файловете. Срокът за доставка зависи от вашето местоположение. Доставяме из цяла България и в страни от ЕС. За конкретна оценка се свържете с нас чрез формата за контакт.',
-    followUps_en: ['Get a price estimate', 'Do you ship to my country?', 'Contact us'],
-    followUps_bg: ['Оценка на цената', 'Доставяте ли до нас?', 'Контакти'],
+      'Стандартният производствен срок е 10 до 15 работни дни след одобрение на файловете. Доставката зависи от местоположението ви. Трябва ви по-бързо? Свържете се с нас и ще обсъдим варианти.',
+    followUps_en: ['Get a quick price estimate', 'Do you ship to my country?', 'Contact us'],
+    followUps_bg: ['Бърза оценка на цената', 'Доставяте ли до нас?', 'Контакти'],
   },
   {
     id: 'materials',
@@ -311,11 +318,11 @@ const INTENTS: Intent[] = [
       'материали', 'хартия', 'картон', 'качество', 'сертификат', 'покритие', 'ламинат',
     ],
     response_en:
-      'We use premium coated and uncoated papers, corrugated cardboard, and specialty substrates. Our production meets EU packaging standards. We are happy to advise on the best material choice for your product type and budget.',
+      'We use premium coated and uncoated papers, corrugated cardboard, and specialty substrates. All production meets EU packaging standards. Not sure what material suits your product? We can advise on the best fit for your type and budget.',
     response_bg:
-      'Използваме висококачествени покрити и непокрити хартии, гофриран картон и специални субстрати. Производството ни отговаря на европейските стандарти за опаковки. С удоволствие ще ви посъветваме за най-добрия избор на материал за вашия продукт и бюджет.',
-    followUps_en: ['Get a price estimate', 'Our services', 'Contact us'],
-    followUps_bg: ['Оценка на цената', 'Нашите услуги', 'Контакти'],
+      'Използваме висококачествени покрити и непокрити хартии, гофриран картон и специални субстрати. Производството отговаря на европейските стандарти. Не знаете кой материал подхожда? Ще ви посъветваме за най-доброто решение.',
+    followUps_en: ['Get a quick price estimate', 'Our services', 'Contact us'],
+    followUps_bg: ['Бърза оценка на цената', 'Нашите услуги', 'Контакти'],
   },
   {
     id: 'faq',
@@ -324,11 +331,11 @@ const INTENTS: Intent[] = [
       'чзв', 'често задавани',
     ],
     response_en:
-      'Our FAQ page covers the most common questions about ordering, materials, minimum quantities, artwork requirements, and more. It is a good starting point if you are new to working with us.',
+      'Our FAQ page covers ordering, materials, minimum quantities, artwork requirements, and more. A great starting point! If you still have questions after reading, just come back and ask me.',
     response_bg:
-      'Нашата страница с Въпроси и отговори обхваща най-честите въпроси относно поръчването, материалите, минималните количества, изискванията за файлове и повече. Добро начало ако работите с нас за първи път.',
-    followUps_en: ['Get a price estimate', 'Contact us', 'Request a callback'],
-    followUps_bg: ['Оценка на цената', 'Контакти', 'Заявете обратно обаждане'],
+      'Нашата страница с ЧЗВ покрива поръчването, материалите, минималните количества, изискванията за файлове и повече. Добро начало! Ако след прочитането все още имате въпроси, просто ме попитайте.',
+    followUps_en: ['Get a quick price estimate', 'Contact us', 'Request a callback'],
+    followUps_bg: ['Бърза оценка на цената', 'Контакти', 'Заявете обратно обаждане'],
   },
   {
     id: 'location',
@@ -337,11 +344,11 @@ const INTENTS: Intent[] = [
       'местоположение', 'адрес', 'където се намирате', 'хисаря', 'труд', 'пловдив',
     ],
     response_en:
-      'We are based in Bulgaria with facilities in the village of Trud near Plovdiv, and in Hisarya. We serve clients across Bulgaria and export to European markets. Full address details are on our Contact page.',
+      "We're based in Bulgaria — our facilities are in Trud (near Plovdiv) and Hisarya. We serve clients across Bulgaria and export to European markets. Full address details are on our Contact page.",
     response_bg:
-      'Намираме се в България с обекти в село Труд край Пловдив и в Хисаря. Обслужваме клиенти из цяла България и изнасяме за европейски пазари. Пълните ни адреси са на страницата Контакти.',
-    followUps_en: ['Contact us', 'Request a callback', 'Get a price estimate'],
-    followUps_bg: ['Контакти', 'Заявете обратно обаждане', 'Оценка на цената'],
+      'Намираме се в България — нашите обекти са в село Труд (край Пловдив) и в Хисаря. Обслужваме клиенти из цяла България и изнасяме за европейски пазари. Пълните ни адреси са на страницата Контакти.',
+    followUps_en: ['Contact us', 'Request a callback', 'Get a quick price estimate'],
+    followUps_bg: ['Контакти', 'Заявете обратно обаждане', 'Бърза оценка на цената'],
   },
 ]
 
@@ -386,6 +393,15 @@ function matchIntent(
     isCallback: false,
     isPricing: false,
   }
+}
+
+function calcTypingDelay(text: string): number {
+  const len = text.length
+  const base =
+    len < 80 ? 800 + Math.random() * 700
+    : len < 180 ? 1500 + Math.random() * 1000
+    : 2500 + Math.random() * 1500
+  return Math.round(base)
 }
 
 function trackEvent(name: string, params?: Record<string, string>) {
@@ -442,11 +458,11 @@ function makeId(): string {
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
 function TypingIndicator({ reduced }: { reduced: boolean }) {
-  const base = 'w-1.5 h-1.5 rounded-full bg-[var(--color-text-muted)]'
+  const base = 'w-2 h-2 rounded-full bg-[var(--color-text-muted)]'
   const anim = (delay: string) =>
     reduced ? {} : { animation: `chatbot-dot-pulse 1.2s ease-in-out ${delay} infinite` }
   return (
-    <div className="flex items-center gap-1 px-1 py-0.5">
+    <div className="flex items-center gap-1.5 px-1 py-1">
       <span className={base} style={anim('0s')} />
       <span className={base} style={anim('0.4s')} />
       <span className={base} style={anim('0.8s')} />
@@ -521,14 +537,15 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
     setMessages(prev => [...prev, { id: makeId(), role, text }])
   }
 
-  function injectBot(text: string, chips?: string[], nextMode?: ConversationMode, delay = 400) {
+  function injectBot(text: string, chips?: string[], nextMode?: ConversationMode, delay?: number) {
+    const typingDelay = delay ?? calcTypingDelay(text)
     setIsTyping(true)
     setTimeout(() => {
       setIsTyping(false)
       addMsg('bot', text)
       if (chips !== undefined) setFollowUpChips(chips)
       if (nextMode !== undefined) setMode(nextMode)
-    }, delay)
+    }, typingDelay)
   }
 
   function injectBotAfter(delay: number, text: string, chips?: string[], nextMode?: ConversationMode) {
@@ -541,7 +558,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
     setIsOpen(true)
     trackEvent('chatbot_opened', { page: pathname, lang })
 
-    if (messages.length > 0) return // restore existing session
+    if (messages.length > 0) return
 
     const { key, isContact } = getPageContext(pathname)
     const welcomeText = (PAGE_WELCOMES[key] ?? PAGE_WELCOMES.fallback)[lang]
@@ -564,16 +581,16 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
   function startLeadFlow() {
     const transition =
       lang === 'bg'
-        ? 'За да ви дам приблизителна ценова оценка, имам няколко бързи въпроса.'
-        : 'To give you a rough price estimate, I have a few quick questions.'
-    const step1Q = lang === 'bg' ? 'Какъв вид опаковки търсите?' : 'What type of packaging are you looking for?'
+        ? 'За да ви дам приблизителна оценка, имам само няколко бързи въпроса.'
+        : 'To give you a useful estimate, I just have a couple of quick questions.'
+    const step1Q = lang === 'bg' ? 'Какъв вид опаковки търсите?' : "What type of packaging are you looking for?"
     const step1Chips =
       lang === 'bg'
         ? ['Хранителни & Напитки', 'Козметика', 'Търговски & POS', 'Алкохол', 'Друго']
         : ['Food & Beverage', 'Cosmetics', 'Retail & POS', 'Alcohol', 'Other']
 
-    injectBot(transition, [])
-    injectBotAfter(600, step1Q, step1Chips, 'qualify_product')
+    injectBot(transition, [], undefined, 600)
+    injectBotAfter(600 + calcTypingDelay(step1Q) + 200, step1Q, step1Chips, 'qualify_product')
   }
 
   // ─── Callback success ─────────────────────────────────────────────────────
@@ -583,7 +600,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
       lang === 'bg'
         ? 'Нашият екип е готов да разговаря. Свържете се директно с нас:'
         : 'Our team is ready to talk. You can reach us directly:'
-    injectBot(msg, [], 'callback_success')
+    injectBot(msg, [], 'callback_success', 600)
   }
 
   // ─── Reset ────────────────────────────────────────────────────────────────
@@ -605,7 +622,6 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
   // ─── Handle chip click ────────────────────────────────────────────────────
 
   function handleChip(chip: string) {
-    // Navigation chips in success mode
     if (mode === 'success') {
       const portfolio = lang === 'bg' ? 'Виж портфолиото' : 'View Portfolio'
       const products = lang === 'bg' ? 'Разгледай продуктите' : 'Browse Products'
@@ -616,7 +632,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
     }
 
     if (mode === 'qualify_product') {
-      const step2Q = lang === 'bg' ? 'Какво количество имате предвид?' : 'What quantity are you thinking?'
+      const step2Q = lang === 'bg' ? 'Какво количество имате предвид?' : 'And roughly what quantity are you thinking?'
       const step2Chips =
         lang === 'bg'
           ? ['До 1 000', '1 000 – 10 000', 'Над 10 000']
@@ -631,8 +647,8 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
       const productType = leadData.productType ?? ''
       const successMsg =
         lang === 'bg'
-          ? `Отлично! Член от нашия екип с удоволствие ще обсъди вашите нужди за ${productType} опаковки. Свържете се с нас за персонализирана оферта.`
-          : `Great! A member of our team will be happy to discuss your ${productType} packaging needs. Get in touch to request a tailored quote.`
+          ? `Отлично! Член от нашия екип ще се радва да обсъди нуждите ви за ${productType} опаковки. Свържете се с нас, когато сте готови.`
+          : `Perfect! One of our team members will be happy to chat about your ${productType} packaging needs. Reach out whenever you're ready.`
       const navChips =
         lang === 'bg'
           ? ['Виж портфолиото', 'Разгледай продуктите', 'Прочети ЧЗВ']
@@ -669,7 +685,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
 
     if (result.isCallback) {
       injectBot(result.response, [])
-      setTimeout(() => startCallbackSuccess(), 600)
+      setTimeout(() => startCallbackSuccess(), 800)
       return
     }
 
@@ -682,208 +698,265 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
     injectBot(result.response, result.followUps)
   }
 
-  // ─── Motion variants ──────────────────────────────────────────────────────
+  // ─── Derived state ────────────────────────────────────────────────────────
 
   const isTerminal = mode === 'success' || mode === 'callback_success'
+  // Show chips as large option cards only in the initial state
+  const isInitialView = messages.length <= 1 && mode === 'browse'
 
-  const tabMotion = reduced
+  // ─── Motion variants ──────────────────────────────────────────────────────
+
+  const fabMotion = reduced
     ? {}
-    : { initial: { opacity: 0, x: 10 }, animate: { opacity: 1, x: 0 }, exit: { opacity: 0, x: 10 } }
+    : {
+        initial: { scale: 0, opacity: 0 },
+        animate: { scale: 1, opacity: 1 },
+        exit: { scale: 0, opacity: 0 },
+        transition: { type: 'spring' as const, stiffness: 400, damping: 25 },
+      }
 
   const panelMotion = reduced
     ? {}
-    : { initial: { x: 320 }, animate: { x: 0 }, exit: { x: 320 } }
+    : {
+        initial: { opacity: 0, scale: 0.92, y: 16 },
+        animate: { opacity: 1, scale: 1, y: 0 },
+        exit: { opacity: 0, scale: 0.92, y: 16 },
+        transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
+      }
 
   // ─── Render ───────────────────────────────────────────────────────────────
 
   return (
     <>
-      {/* Pull-tab — desktop only, shown when panel is closed */}
+      {/* FAB button — desktop only, shown when panel is closed */}
       <AnimatePresence>
         {!isOpen && (
           <motion.button
-            {...tabMotion}
-            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            {...fabMotion}
             onClick={openChat}
             aria-label={t.chatbot.aria_open}
-            className="fixed right-0 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-center gap-2 py-4 px-2.5 bg-[var(--color-accent)] text-white rounded-l-[var(--radius-md)] shadow-[var(--shadow-accent)] hover:bg-[var(--color-accent-hover)] transition-[background-color] select-none"
+            className="fixed bottom-6 right-6 z-50 hidden md:flex items-center justify-center w-14 h-14 rounded-full bg-[var(--color-accent)] text-white select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
+            style={{
+              boxShadow: '0 4px 24px rgba(0,152,212,0.40), 0 2px 8px rgba(0,0,0,0.16)',
+            }}
+            whileHover={reduced ? {} : { scale: 1.08, boxShadow: '0 6px 32px rgba(0,152,212,0.55), 0 2px 10px rgba(0,0,0,0.20)' }}
+            whileTap={reduced ? {} : { scale: 0.95 }}
           >
-            <IconMsg cls="w-5 h-5" />
-            <span
-              className="text-[10px] font-semibold tracking-wide leading-none"
-              style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
-            >
-              {lang === 'bg' ? 'Чат' : 'Chat'}
-            </span>
-            <span className="w-2 h-2 rounded-full bg-green-400 flex-shrink-0" />
+            {/* Pulse ring */}
+            {!reduced && (
+              <span
+                className="absolute inset-0 rounded-full bg-[var(--color-accent)]"
+                style={{ animation: 'chatbot-fab-ring 2.2s ease-out infinite' }}
+              />
+            )}
+            <IconMsg cls="w-6 h-6 relative z-10" />
+            {/* Online dot */}
+            <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-green-400 border-2 border-white" />
           </motion.button>
         )}
       </AnimatePresence>
 
-      {/* Chat panel — desktop only, slides in from right */}
+      {/* Chat panel — desktop only, floating above FAB */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             {...panelMotion}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             role="dialog"
             aria-modal="true"
             aria-label={lang === 'bg' ? 'Чат поддръжка' : 'Chat support'}
-            className="fixed right-0 top-[72px] bottom-0 z-50 hidden md:flex flex-col w-[320px] bg-[var(--color-bg-light-surface)] border-l border-[var(--color-border)] shadow-[var(--shadow-lg)]"
+            className="fixed bottom-[88px] right-6 z-50 hidden md:flex flex-col w-[360px] max-h-[580px] rounded-2xl overflow-hidden"
+            style={{
+              boxShadow: '0 20px 60px rgba(0,0,0,0.18), 0 4px 20px rgba(0,0,0,0.10)',
+              transformOrigin: 'bottom right',
+            }}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-3 h-11 bg-[var(--color-accent)] flex-shrink-0">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-green-400 flex-shrink-0" />
-                <span
-                  className="font-semibold text-white text-sm tracking-wide"
-                  style={{ fontFamily: 'var(--font-display)' }}
+            <div
+              className="flex-shrink-0 px-4 pt-4 pb-3"
+              style={{ background: 'linear-gradient(135deg, var(--color-primary) 0%, #1E3A5F 100%)' }}
+            >
+              <div className="flex items-center gap-3">
+                {/* Avatar */}
+                <div className="w-9 h-9 rounded-full bg-[var(--color-accent)] flex items-center justify-center flex-shrink-0">
+                  <IconMsg cls="w-4.5 h-4.5 text-white" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-semibold text-white text-[15px] leading-tight" style={{ fontFamily: 'var(--font-display)' }}>
+                    X Assistant
+                  </div>
+                  <div className="flex items-center gap-1.5 mt-0.5">
+                    <span className="w-2 h-2 rounded-full bg-green-400 flex-shrink-0" />
+                    <span className="text-green-400 text-xs">{t.chatbot.online}</span>
+                    <span className="text-white/40 text-xs mx-1">·</span>
+                    <span className="text-white/60 text-xs truncate">{t.chatbot.panel_subtitle}</span>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="text-white/50 hover:text-white transition-colors p-1 -mr-1 flex-shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-1 rounded"
+                  aria-label={t.chatbot.aria_close}
                 >
-                  {t.chatbot.panel_title}
-                </span>
+                  <IconX cls="w-4 h-4" />
+                </button>
               </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="text-white/70 hover:text-white transition-colors p-1 -mr-1"
-                aria-label={t.chatbot.aria_close}
-              >
-                <IconX cls="w-4 h-4" />
-              </button>
             </div>
 
-            {/* Success icon strip */}
-            {isTerminal && (
-              <div className="flex justify-center pt-4 pb-1 flex-shrink-0">
-                {mode === 'success' ? (
-                  <IconCheck cls="w-8 h-8 text-[var(--color-accent)]" />
-                ) : (
-                  <IconPhone cls="w-8 h-8 text-[var(--color-accent)]" />
-                )}
-              </div>
-            )}
+            {/* Body */}
+            <div className="flex-1 flex flex-col overflow-hidden bg-white">
+              {/* Success icon strip */}
+              {isTerminal && (
+                <div className="flex justify-center pt-5 pb-1 flex-shrink-0">
+                  {mode === 'success' ? (
+                    <div className="w-12 h-12 rounded-full bg-[var(--color-accent-subtle)] flex items-center justify-center">
+                      <IconCheck cls="w-6 h-6 text-[var(--color-accent)]" />
+                    </div>
+                  ) : (
+                    <div className="w-12 h-12 rounded-full bg-[var(--color-accent-subtle)] flex items-center justify-center">
+                      <IconPhone cls="w-6 h-6 text-[var(--color-accent)]" />
+                    </div>
+                  )}
+                </div>
+              )}
 
-            {/* Message list */}
-            <div
-              className="flex-1 overflow-y-auto p-3 flex flex-col gap-2 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[var(--color-border)]"
-              aria-live="polite"
-              aria-atomic="false"
-            >
-              {messages.map(msg => (
-                <motion.div
-                  key={msg.id}
-                  initial={reduced ? {} : { opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
-                  <div
-                    className={`max-w-[85%] break-words text-sm px-3 py-2 leading-relaxed ${
-                      msg.role === 'user'
-                        ? 'bg-[var(--color-accent)] text-white rounded-[var(--radius-md)] rounded-tr-sm'
-                        : 'bg-white border border-[var(--color-border)] text-[var(--color-text)] rounded-[var(--radius-md)] rounded-tl-sm'
-                    }`}
+              {/* Message list */}
+              <div
+                className="flex-1 overflow-y-auto px-3 py-3 flex flex-col gap-2.5 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[var(--color-border)]"
+                aria-live="polite"
+                aria-atomic="false"
+              >
+                {messages.map(msg => (
+                  <motion.div
+                    key={msg.id}
+                    initial={reduced ? {} : { opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
-                    {msg.text}
-                  </div>
-                </motion.div>
-              ))}
+                    <div
+                      className={`max-w-[85%] break-words text-sm px-3.5 py-2.5 leading-relaxed ${
+                        msg.role === 'user'
+                          ? 'bg-[var(--color-accent)] text-white rounded-2xl rounded-tr-sm'
+                          : 'bg-[var(--color-bg-surface)] border border-[var(--color-border)] text-[var(--color-text)] rounded-2xl rounded-tl-sm'
+                      }`}
+                    >
+                      {msg.text}
+                    </div>
+                  </motion.div>
+                ))}
 
-              {isTyping && (
-                <div className="flex justify-start">
-                  <div className="bg-white border border-[var(--color-border)] rounded-[var(--radius-md)] rounded-tl-sm px-3 py-2">
-                    <TypingIndicator reduced={reduced} />
+                {isTyping && (
+                  <div className="flex justify-start">
+                    <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border)] rounded-2xl rounded-tl-sm px-3.5 py-2.5">
+                      <TypingIndicator reduced={reduced} />
+                    </div>
+                  </div>
+                )}
+
+                <div ref={messagesEndRef} />
+              </div>
+
+              {/* Contact info for callback_success */}
+              {mode === 'callback_success' && (
+                <div className="flex-shrink-0 border-t border-[var(--color-border)] px-4 py-3 flex flex-col gap-2 bg-white">
+                  <a
+                    href="tel:+35942600500"
+                    className="flex items-center gap-2.5 text-sm text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors py-1"
+                  >
+                    <IconPhone cls="w-4 h-4 flex-shrink-0 text-[var(--color-accent)]" />
+                    +359 42 600 500
+                  </a>
+                  <a
+                    href="mailto:office@skat-print.com"
+                    className="flex items-center gap-2.5 text-sm text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors py-1"
+                  >
+                    <svg className="w-4 h-4 flex-shrink-0 text-[var(--color-accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="4" width="20" height="16" rx="2" /><polyline points="2,4 12,13 22,4" />
+                    </svg>
+                    office@skat-print.com
+                  </a>
+                  <a
+                    href={`/${lang}/contact`}
+                    className="mt-1 w-full text-center text-xs font-semibold text-white bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] rounded-xl py-2.5 px-3 transition-[background-color]"
+                  >
+                    {lang === 'bg' ? 'Към страницата за контакти →' : 'Go to Contact Page →'}
+                  </a>
+                </div>
+              )}
+
+              {/* CTA for lead success */}
+              {mode === 'success' && (
+                <div className="flex-shrink-0 border-t border-[var(--color-border)] px-3 pt-3 pb-1 bg-white">
+                  <a
+                    href={`/${lang}/contact`}
+                    className="block w-full text-center text-xs font-semibold text-white bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] rounded-xl py-2.5 px-3 transition-[background-color]"
+                  >
+                    {lang === 'bg' ? 'Свържете се с нас →' : 'Contact Our Team →'}
+                  </a>
+                </div>
+              )}
+
+              {/* CTA options — initial large cards */}
+              {isInitialView && followUpChips.length > 0 && !isTyping && (
+                <div className="flex-shrink-0 border-t border-[var(--color-border)] px-3 py-3 flex flex-col gap-1.5 bg-white">
+                  {followUpChips.map(chip => (
+                    <button
+                      key={chip}
+                      onClick={() => handleChip(chip)}
+                      className="w-full flex items-center justify-between gap-2 px-4 py-3 rounded-xl border border-[var(--color-border)] bg-white text-left text-sm font-medium text-[var(--color-text)] hover:border-[var(--color-accent)] hover:bg-[var(--color-accent-subtle)] hover:text-[var(--color-accent)] transition-all duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent)]"
+                    >
+                      <span>{chip}</span>
+                      <IconArrow cls="w-4 h-4 flex-shrink-0 opacity-40" />
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {/* Follow-up chips — after conversation */}
+              {!isInitialView && followUpChips.length > 0 && !isTerminal && (
+                <div className="flex-shrink-0 border-t border-[var(--color-border)] pt-2 pb-2 bg-white">
+                  <div className="flex flex-row flex-wrap gap-2 px-3">
+                    {followUpChips.map(chip => (
+                      <button
+                        key={chip}
+                        onClick={() => handleChip(chip)}
+                        className="flex-shrink-0 px-3 py-2 text-sm font-medium rounded-full border border-[var(--color-border)] bg-white text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-[border-color,color] duration-150 whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent)]"
+                      >
+                        {chip}
+                      </button>
+                    ))}
                   </div>
                 </div>
               )}
 
-              <div ref={messagesEndRef} />
+              {/* Nav chips for success */}
+              {mode === 'success' && followUpChips.length > 0 && (
+                <div className="flex-shrink-0 pt-1 pb-2 bg-white">
+                  <div className="flex flex-row flex-wrap gap-2 px-3">
+                    {followUpChips.map(chip => (
+                      <button
+                        key={chip}
+                        onClick={() => handleChip(chip)}
+                        className="flex-shrink-0 px-3 py-2 text-sm font-medium rounded-full border border-[var(--color-border)] bg-white text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-[border-color,color] duration-150 whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent)]"
+                      >
+                        {chip}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Reset link for terminal states */}
+              {isTerminal && (
+                <div className="flex-shrink-0 border-t border-[var(--color-border)] px-3 py-2.5 text-center bg-white">
+                  <button
+                    onClick={handleReset}
+                    className="text-xs text-[var(--color-text-muted)] underline underline-offset-2 hover:text-[var(--color-text)] transition-colors"
+                  >
+                    {lang === 'bg' ? 'Започни нов разговор' : 'Start a new conversation'}
+                  </button>
+                </div>
+              )}
             </div>
-
-            {/* Contact info for callback_success */}
-            {mode === 'callback_success' && (
-              <div className="flex-shrink-0 border-t border-[var(--color-border)] px-4 py-3 flex flex-col gap-2">
-                <a
-                  href="tel:+35942600500"
-                  className="flex items-center gap-2 text-sm text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors"
-                >
-                  <IconPhone cls="w-4 h-4 flex-shrink-0 text-[var(--color-accent)]" />
-                  +359 42 600 500
-                </a>
-                <a
-                  href="mailto:office@skat-print.com"
-                  className="flex items-center gap-2 text-sm text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors"
-                >
-                  <svg className="w-4 h-4 flex-shrink-0 text-[var(--color-accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="4" width="20" height="16" rx="2" /><polyline points="2,4 12,13 22,4" />
-                  </svg>
-                  office@skat-print.com
-                </a>
-                <a
-                  href={`/${lang}/contact`}
-                  className="mt-1 w-full text-center text-xs font-semibold text-white bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] rounded-[var(--radius-md)] py-2 px-3 transition-[background-color]"
-                >
-                  {lang === 'bg' ? 'Към страницата за контакти →' : 'Go to Contact Page →'}
-                </a>
-              </div>
-            )}
-
-            {/* CTA button for lead success */}
-            {mode === 'success' && (
-              <div className="flex-shrink-0 border-t border-[var(--color-border)] px-3 pt-3 pb-1">
-                <a
-                  href={`/${lang}/contact`}
-                  className="block w-full text-center text-xs font-semibold text-white bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] rounded-[var(--radius-md)] py-2 px-3 transition-[background-color]"
-                >
-                  {lang === 'bg' ? 'Свържете се с нас →' : 'Contact Our Team →'}
-                </a>
-              </div>
-            )}
-
-            {/* Chips */}
-            {followUpChips.length > 0 && !isTerminal && (
-              <div className="flex-shrink-0 border-t border-[var(--color-border)] pt-2 pb-1">
-                <div className="flex flex-row gap-2 overflow-x-auto px-3 [&::-webkit-scrollbar]:hidden">
-                  {followUpChips.map(chip => (
-                    <button
-                      key={chip}
-                      onClick={() => handleChip(chip)}
-                      className="flex-shrink-0 px-3 py-1.5 text-xs font-medium rounded-full border border-[var(--color-border)] bg-white text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-[border-color,color] duration-150 whitespace-nowrap"
-                    >
-                      {chip}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Nav chips for success */}
-            {mode === 'success' && followUpChips.length > 0 && (
-              <div className="flex-shrink-0 pt-1 pb-2">
-                <div className="flex flex-row gap-2 overflow-x-auto px-3 [&::-webkit-scrollbar]:hidden">
-                  {followUpChips.map(chip => (
-                    <button
-                      key={chip}
-                      onClick={() => handleChip(chip)}
-                      className="flex-shrink-0 px-3 py-1.5 text-xs font-medium rounded-full border border-[var(--color-border)] bg-white text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-[border-color,color] duration-150 whitespace-nowrap"
-                    >
-                      {chip}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Reset link for terminal states */}
-            {isTerminal && (
-              <div className="flex-shrink-0 border-t border-[var(--color-border)] px-3 py-2 text-center">
-                <button
-                  onClick={handleReset}
-                  className="text-xs text-[var(--color-text-muted)] underline underline-offset-2 hover:text-[var(--color-text)] transition-colors"
-                >
-                  {lang === 'bg' ? 'Започни нов разговор' : 'Start a new conversation'}
-                </button>
-              </div>
-            )}
           </motion.div>
         )}
       </AnimatePresence>

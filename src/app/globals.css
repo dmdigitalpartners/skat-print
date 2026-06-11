@@ -119,6 +119,11 @@ body {
   50% { transform: scale(1.06); }
 }
 
+@keyframes chatbot-fab-ring {
+  0% { transform: scale(1); opacity: 0.35; }
+  100% { transform: scale(1.65); opacity: 0; }
+}
+
 /* Section spacing utility */
 .section-padding {
   padding-top: 4rem;
