@@ -493,6 +493,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
   // ── Transient state
   const [isOpen, setIsOpen] = useState(false)
   const [isTyping, setIsTyping] = useState(false)
+  const [isConversationLocked, setIsConversationLocked] = useState(false)
   const [sessionLoaded, setSessionLoaded] = useState(false)
 
   // ── Refs
@@ -537,7 +538,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
     setMessages(prev => [...prev, { id: makeId(), role, text }])
   }
 
-  function injectBot(text: string, chips?: string[], nextMode?: ConversationMode, delay?: number) {
+  function injectBot(text: string, chips?: string[], nextMode?: ConversationMode, delay?: number, onDone?: () => void) {
     const typingDelay = delay ?? calcTypingDelay(text)
     setIsTyping(true)
     setTimeout(() => {
@@ -545,11 +546,13 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
       addMsg('bot', text)
       if (chips !== undefined) setFollowUpChips(chips)
       if (nextMode !== undefined) setMode(nextMode)
+      onDone?.()
     }, typingDelay)
   }
 
-  function injectBotAfter(delay: number, text: string, chips?: string[], nextMode?: ConversationMode) {
-    setTimeout(() => injectBot(text, chips, nextMode), delay)
+  function injectBotAfter(delay: number, text: string, chips?: string[], nextMode?: ConversationMode, onDone?: () => void) {
+    setIsTyping(true)
+    setTimeout(() => injectBot(text, chips, nextMode, undefined, onDone), delay)
   }
 
   // ─── Open chat ────────────────────────────────────────────────────────────
@@ -578,7 +581,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
 
   // ─── Lead flow ────────────────────────────────────────────────────────────
 
-  function startLeadFlow() {
+  function startLeadFlow(onDone?: () => void) {
     const transition =
       lang === 'bg'
         ? 'За да ви дам приблизителна оценка, имам само няколко бързи въпроса.'
@@ -590,17 +593,17 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
         : ['Food & Beverage', 'Cosmetics', 'Retail & POS', 'Alcohol', 'Other']
 
     injectBot(transition, [], undefined, 600)
-    injectBotAfter(600 + calcTypingDelay(step1Q) + 200, step1Q, step1Chips, 'qualify_product')
+    injectBotAfter(600 + calcTypingDelay(step1Q) + 200, step1Q, step1Chips, 'qualify_product', onDone)
   }
 
   // ─── Callback success ─────────────────────────────────────────────────────
 
-  function startCallbackSuccess() {
+  function startCallbackSuccess(onDone?: () => void) {
     const msg =
       lang === 'bg'
         ? 'Нашият екип е готов да разговаря. Свържете се директно с нас:'
         : 'Our team is ready to talk. You can reach us directly:'
-    injectBot(msg, [], 'callback_success', 600)
+    injectBot(msg, [], 'callback_success', 600, onDone)
   }
 
   // ─── Reset ────────────────────────────────────────────────────────────────
@@ -611,6 +614,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
     setFollowUpChips(chips)
     setMode('browse')
     setLeadData({ productType: null, quantityRange: null })
+    setIsConversationLocked(false)
     try {
       sessionStorage.removeItem('skat_chat_session')
     } catch {}
@@ -622,6 +626,8 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
   // ─── Handle chip click ────────────────────────────────────────────────────
 
   function handleChip(chip: string) {
+    if (isConversationLocked) return
+
     if (mode === 'success') {
       const portfolio = lang === 'bg' ? 'Виж портфолиото' : 'View Portfolio'
       const products = lang === 'bg' ? 'Разгледай продуктите' : 'Browse Products'
@@ -631,6 +637,11 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
       if (chip === faq) { router.push(`/${lang}/faq`); return }
     }
 
+    if (mode === 'callback_success') return
+
+    const unlock = () => setIsConversationLocked(false)
+    setIsConversationLocked(true)
+
     if (mode === 'qualify_product') {
       const step2Q = lang === 'bg' ? 'Какво количество имате предвид?' : 'And roughly what quantity are you thinking?'
       const step2Chips =
@@ -639,7 +650,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
           : ['Under 1,000', '1,000 – 10,000', 'Over 10,000']
       addMsg('user', chip)
       setLeadData(prev => ({ ...prev, productType: chip }))
-      injectBot(step2Q, step2Chips, 'qualify_quantity')
+      injectBot(step2Q, step2Chips, 'qualify_quantity', undefined, unlock)
       return
     }
 
@@ -667,11 +678,9 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
         product_type: leadData.productType ?? '',
         quantity_range: chip,
       })
-      injectBot(successMsg, navChips, 'success')
+      injectBot(successMsg, navChips, 'success', undefined, unlock)
       return
     }
-
-    if (mode === 'callback_success') return
 
     // browse mode — intent matching
     addMsg('user', chip)
@@ -684,18 +693,16 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
     }
 
     if (result.isCallback) {
-      injectBot(result.response, [])
-      setTimeout(() => startCallbackSuccess(), 800)
+      injectBot(result.response, [], undefined, undefined, () => startCallbackSuccess(unlock))
       return
     }
 
     if (result.isPricing) {
-      injectBot(result.response, [])
-      startLeadFlow()
+      injectBot(result.response, [], undefined, undefined, () => startLeadFlow(unlock))
       return
     }
 
-    injectBot(result.response, result.followUps)
+    injectBot(result.response, result.followUps, undefined, undefined, unlock)
   }
 
   // ─── Derived state ────────────────────────────────────────────────────────
@@ -764,7 +771,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
             role="dialog"
             aria-modal="true"
             aria-label={lang === 'bg' ? 'Чат поддръжка' : 'Chat support'}
-            className="fixed bottom-[88px] right-6 z-50 hidden md:flex flex-col w-[360px] max-h-[580px] rounded-2xl overflow-hidden"
+            className="fixed bottom-6 right-6 z-50 hidden md:flex flex-col w-[360px] h-[580px] rounded-2xl overflow-hidden"
             style={{
               boxShadow: '0 20px 60px rgba(0,0,0,0.18), 0 4px 20px rgba(0,0,0,0.10)',
               transformOrigin: 'bottom right',
@@ -782,15 +789,20 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="font-semibold text-white text-[15px] leading-tight" style={{ fontFamily: 'var(--font-display)' }}>
-                    X Assistant
+                    {t.chatbot.panel_title}
                   </div>
                   <div className="flex items-center gap-1.5 mt-0.5">
                     <span className="w-2 h-2 rounded-full bg-green-400 flex-shrink-0" />
                     <span className="text-green-400 text-xs">{t.chatbot.online}</span>
-                    <span className="text-white/40 text-xs mx-1">·</span>
-                    <span className="text-white/60 text-xs truncate">{t.chatbot.panel_subtitle}</span>
                   </div>
                 </div>
+                <button
+                  onClick={handleReset}
+                  className="text-white/60 hover:text-white transition-colors px-2 py-1 flex-shrink-0 text-xs font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-1 rounded"
+                  aria-label={lang === 'bg' ? 'Нов разговор' : 'New conversation'}
+                >
+                  ↻ {lang === 'bg' ? 'Нов' : 'New'}
+                </button>
                 <button
                   onClick={() => setIsOpen(false)}
                   className="text-white/50 hover:text-white transition-colors p-1 -mr-1 flex-shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-1 rounded"
@@ -902,7 +914,8 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
                     <button
                       key={chip}
                       onClick={() => handleChip(chip)}
-                      className="w-full flex items-center justify-between gap-2 px-4 py-3 rounded-xl border border-[var(--color-border)] bg-white text-left text-sm font-medium text-[var(--color-text)] hover:border-[var(--color-accent)] hover:bg-[var(--color-accent-subtle)] hover:text-[var(--color-accent)] transition-all duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent)]"
+                      disabled={isConversationLocked}
+                      className="w-full flex items-center justify-between gap-2 px-4 py-3 rounded-xl border border-[var(--color-border)] bg-white text-left text-sm font-medium text-[var(--color-text)] hover:border-[var(--color-accent)] hover:bg-[var(--color-accent-subtle)] hover:text-[var(--color-accent)] transition-all duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] disabled:opacity-40 disabled:pointer-events-none"
                     >
                       <span>{chip}</span>
                       <IconArrow cls="w-4 h-4 flex-shrink-0 opacity-40" />
@@ -919,7 +932,8 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
                       <button
                         key={chip}
                         onClick={() => handleChip(chip)}
-                        className="flex-shrink-0 px-3 py-2 text-sm font-medium rounded-full border border-[var(--color-border)] bg-white text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-[border-color,color] duration-150 whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent)]"
+                        disabled={isConversationLocked}
+                        className="flex-shrink-0 px-3 py-2 text-sm font-medium rounded-full border border-[var(--color-border)] bg-white text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-[border-color,color] duration-150 whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] disabled:opacity-40 disabled:pointer-events-none"
                       >
                         {chip}
                       </button>
@@ -936,7 +950,8 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
                       <button
                         key={chip}
                         onClick={() => handleChip(chip)}
-                        className="flex-shrink-0 px-3 py-2 text-sm font-medium rounded-full border border-[var(--color-border)] bg-white text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-[border-color,color] duration-150 whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent)]"
+                        disabled={isConversationLocked}
+                        className="flex-shrink-0 px-3 py-2 text-sm font-medium rounded-full border border-[var(--color-border)] bg-white text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-[border-color,color] duration-150 whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] disabled:opacity-40 disabled:pointer-events-none"
                       >
                         {chip}
                       </button>
@@ -945,17 +960,6 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
                 </div>
               )}
 
-              {/* Reset link for terminal states */}
-              {isTerminal && (
-                <div className="flex-shrink-0 border-t border-[var(--color-border)] px-3 py-2.5 text-center bg-white">
-                  <button
-                    onClick={handleReset}
-                    className="text-xs text-[var(--color-text-muted)] underline underline-offset-2 hover:text-[var(--color-text)] transition-colors"
-                  >
-                    {lang === 'bg' ? 'Започни нов разговор' : 'Start a new conversation'}
-                  </button>
-                </div>
-              )}
             </div>
           </motion.div>
         )}
