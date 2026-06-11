@@ -3,7 +3,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
-// Inline SVG icons — no external icon library required
+
+// Inline SVG icons
 function IconMsg({ cls }: { cls: string }) {
   return (
     <svg className={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -15,13 +16,6 @@ function IconX({ cls }: { cls: string }) {
   return (
     <svg className={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
       <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
-    </svg>
-  )
-}
-function IconArrow({ cls }: { cls: string }) {
-  return (
-    <svg className={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
     </svg>
   )
 }
@@ -39,6 +33,7 @@ function IconPhone({ cls }: { cls: string }) {
     </svg>
   )
 }
+
 import type { Translation, Lang } from '@/lib/useTranslation'
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -47,9 +42,6 @@ type ConversationMode =
   | 'browse'
   | 'qualify_product'
   | 'qualify_quantity'
-  | 'qualify_email'
-  | 'callback_name'
-  | 'callback_phone'
   | 'success'
   | 'callback_success'
 
@@ -62,12 +54,6 @@ interface Message {
 interface LeadData {
   productType: string | null
   quantityRange: string | null
-  email: string | null
-}
-
-interface CallbackData {
-  name: string | null
-  phone: string | null
 }
 
 interface ChatSession {
@@ -75,7 +61,6 @@ interface ChatSession {
   followUpChips: string[]
   mode: ConversationMode
   leadData: LeadData
-  callbackData: CallbackData
 }
 
 interface Intent {
@@ -126,8 +111,8 @@ const PAGE_WELCOMES: Record<string, { en: string; bg: string }> = {
     bg: 'Намирате се на страницата ни с услуги. Искате да научите повече за конкретен производствен процес или сте готови да получите оферта?',
   },
   faq: {
-    en: "You're in the FAQ section. Can't find your answer? Type your question and I'll try to help directly.",
-    bg: 'Намирате се в секцията с въпроси и отговори. Не можете да намерите отговора? Напишете въпроса си и ще се опитам да помогна директно.',
+    en: "You're in the FAQ section. Can't find your answer? Choose a topic below and I'll try to help.",
+    bg: 'Намирате се в секцията с въпроси и отговори. Не можете да намерите отговора? Изберете тема по-долу и ще се опитам да помогна.',
   },
   portfolio: {
     en: "You're viewing our portfolio. Impressed by something? I can tell you more about specific packaging types or help you start your own project.",
@@ -144,7 +129,6 @@ const PAGE_WELCOMES: Record<string, { en: string; bg: string }> = {
 }
 
 // ─── Intents ──────────────────────────────────────────────────────────────────
-// Evaluated in order — most specific first
 
 const INTENTS: Intent[] = [
   {
@@ -364,7 +348,6 @@ const INTENTS: Intent[] = [
 // ─── Utilities ────────────────────────────────────────────────────────────────
 
 function normalizeInput(input: string): string {
-  // Pad with spaces for reliable word-boundary matching via includes()
   return (
     ' ' +
     input
@@ -382,7 +365,6 @@ function matchIntent(
 ): { response: string; followUps: string[]; intentId: string | null; isCallback: boolean; isPricing: boolean } {
   for (const intent of INTENTS) {
     for (const trigger of intent.triggers) {
-      // Multi-word triggers use direct substring; single-word use space-padded boundary
       const check = trigger.includes(' ')
         ? normalized.includes(trigger)
         : normalized.includes(' ' + trigger + ' ')
@@ -404,14 +386,6 @@ function matchIntent(
     isCallback: false,
     isPricing: false,
   }
-}
-
-function validateEmail(v: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())
-}
-
-function validatePhone(v: string): boolean {
-  return v.replace(/\D/g, '').length >= 7
 }
 
 function trackEvent(name: string, params?: Record<string, string>) {
@@ -498,24 +472,15 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
     lang === 'bg' ? DEFAULT_CHIPS_BG : DEFAULT_CHIPS_EN
   )
   const [mode, setMode] = useState<ConversationMode>('browse')
-  const [leadData, setLeadData] = useState<LeadData>({ productType: null, quantityRange: null, email: null })
-  const [callbackData, setCallbackData] = useState<CallbackData>({ name: null, phone: null })
+  const [leadData, setLeadData] = useState<LeadData>({ productType: null, quantityRange: null })
 
-  // ── Transient state (never persisted)
+  // ── Transient state
   const [isOpen, setIsOpen] = useState(false)
-  const [inputValue, setInputValue] = useState('')
   const [isTyping, setIsTyping] = useState(false)
-  const [showNudge, setShowNudge] = useState(false)
-  const [inputError, setInputError] = useState<string | null>(null)
-  const [phoneFailCount, setPhoneFailCount] = useState(0)
   const [sessionLoaded, setSessionLoaded] = useState(false)
 
   // ── Refs
   const messagesEndRef = useRef<HTMLDivElement>(null)
-  const inputRef = useRef<HTMLInputElement>(null)
-  const hasEngagedRef = useRef(false)
-  const langRef = useRef(lang)
-  langRef.current = lang
 
   // ── Session restore on mount
   useEffect(() => {
@@ -525,7 +490,6 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
       setFollowUpChips(session.followUpChips)
       setMode(session.mode)
       setLeadData(session.leadData)
-      setCallbackData(session.callbackData)
     }
     setSessionLoaded(true)
   }, [])
@@ -533,8 +497,8 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
   // ── Session save on state change
   useEffect(() => {
     if (!sessionLoaded) return
-    saveSession({ messages, followUpChips, mode, leadData, callbackData })
-  }, [messages, followUpChips, mode, leadData, callbackData, sessionLoaded])
+    saveSession({ messages, followUpChips, mode, leadData })
+  }, [messages, followUpChips, mode, leadData, sessionLoaded])
 
   // ── Auto-scroll on new messages
   useEffect(() => {
@@ -549,75 +513,6 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
     }
     document.addEventListener('keydown', handler)
     return () => document.removeEventListener('keydown', handler)
-  }, [isOpen])
-
-  // ── Focus input when mode requires text entry
-  useEffect(() => {
-    if (!isOpen) return
-    if (['qualify_email', 'callback_name', 'callback_phone'].includes(mode)) {
-      const t = setTimeout(() => {
-        inputRef.current?.focus()
-        inputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
-      }, 500)
-      return () => clearTimeout(t)
-    }
-  }, [mode, isOpen])
-
-  // ── Proactive triggers — run once per mount, use refs to avoid stale closures
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    if (sessionStorage.getItem('skat_nudge_shown')) return
-
-    const idleTimer = setTimeout(() => {
-      if (!hasEngagedRef.current) {
-        setShowNudge(true)
-        sessionStorage.setItem('skat_nudge_shown', '1')
-        trackEvent('chatbot_nudge_shown', { page: window.location.pathname })
-      }
-    }, 40000)
-
-    const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY >= 10 || hasEngagedRef.current) return
-      clearTimeout(idleTimer)
-      sessionStorage.setItem('skat_nudge_shown', '1')
-      trackEvent('chatbot_exit_intent', { page: window.location.pathname })
-
-      const currentLang = langRef.current
-      const exitMsg =
-        currentLang === 'bg'
-          ? 'Преди да тръгнете — мога ли да ви помогна да намерите това, което търсите?'
-          : "Before you go — can I help you find what you're looking for?"
-      const chips = currentLang === 'bg' ? DEFAULT_CHIPS_BG : DEFAULT_CHIPS_EN
-
-      hasEngagedRef.current = true
-      setIsOpen(true)
-      setShowNudge(false)
-      setMessages([])
-      setFollowUpChips(chips)
-      setMode('browse')
-
-      setTimeout(() => {
-        setIsTyping(true)
-        setTimeout(() => {
-          setIsTyping(false)
-          setMessages([{ id: makeId(), role: 'bot', text: exitMsg }])
-        }, 400)
-      }, 150)
-    }
-
-    if (window.matchMedia('(pointer: fine)').matches) {
-      document.addEventListener('mouseleave', handleMouseLeave)
-    }
-
-    return () => {
-      clearTimeout(idleTimer)
-      document.removeEventListener('mouseleave', handleMouseLeave)
-    }
-  }, []) // intentionally empty — refs handle state access
-
-  // ── Hide nudge when chat opens
-  useEffect(() => {
-    if (isOpen) setShowNudge(false)
   }, [isOpen])
 
   // ─── Core helpers ─────────────────────────────────────────────────────────
@@ -643,19 +538,21 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
   // ─── Open chat ────────────────────────────────────────────────────────────
 
   function openChat() {
-    hasEngagedRef.current = true
     setIsOpen(true)
     trackEvent('chatbot_opened', { page: pathname, lang })
 
-    if (messages.length > 0) return // restore existing session — don't re-inject welcome
+    if (messages.length > 0) return // restore existing session
 
     const { key, isContact } = getPageContext(pathname)
     const welcomeText = (PAGE_WELCOMES[key] ?? PAGE_WELCOMES.fallback)[lang]
 
     if (isContact) {
-      const nameQ = lang === 'bg' ? 'Как се казвате?' : "What's your name?"
+      const contactMsg =
+        lang === 'bg'
+          ? 'Нашият екип е готов да разговаря. Свържете се директно с нас:'
+          : 'Our team is ready to talk. You can reach us directly:'
       injectBot(welcomeText, [], 'browse')
-      injectBotAfter(1000, nameQ, [], 'callback_name')
+      injectBotAfter(1000, contactMsg, [], 'callback_success')
     } else {
       const chips = lang === 'bg' ? DEFAULT_CHIPS_BG : DEFAULT_CHIPS_EN
       injectBot(welcomeText, chips)
@@ -667,8 +564,8 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
   function startLeadFlow() {
     const transition =
       lang === 'bg'
-        ? 'За да ви дам приблизителна ценова оценка, имам няколко бързи въпроса. Можете да пропуснете по всяко време.'
-        : 'To give you a rough price estimate, I have a few quick questions. You can skip this at any point.'
+        ? 'За да ви дам приблизителна ценова оценка, имам няколко бързи въпроса.'
+        : 'To give you a rough price estimate, I have a few quick questions.'
     const step1Q = lang === 'bg' ? 'Какъв вид опаковки търсите?' : 'What type of packaging are you looking for?'
     const step1Chips =
       lang === 'bg'
@@ -679,24 +576,14 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
     injectBotAfter(600, step1Q, step1Chips, 'qualify_product')
   }
 
-  // ─── Callback flow ────────────────────────────────────────────────────────
+  // ─── Callback success ─────────────────────────────────────────────────────
 
-  function startCallbackFlow() {
-    const nameQ = lang === 'bg' ? 'Як се казвате?' : "What's your name?"
-    injectBotAfter(600, nameQ, [], 'callback_name')
-  }
-
-  // ─── Skip ─────────────────────────────────────────────────────────────────
-
-  function handleSkip() {
+  function startCallbackSuccess() {
     const msg =
       lang === 'bg'
-        ? 'Няма проблем! Винаги можете да се свържете с нас на office@skat-print.com или чрез страницата за контакт.'
-        : 'No problem! You can always reach us at office@skat-print.com or through the Contact page.'
-    const chips = lang === 'bg' ? DEFAULT_CHIPS_BG : DEFAULT_CHIPS_EN
-    setMode('browse')
-    setInputError(null)
-    injectBot(msg, chips)
+        ? 'Нашият екип е готов да разговаря. Свържете се директно с нас:'
+        : 'Our team is ready to talk. You can reach us directly:'
+    injectBot(msg, [], 'callback_success')
   }
 
   // ─── Reset ────────────────────────────────────────────────────────────────
@@ -706,11 +593,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
     setMessages([])
     setFollowUpChips(chips)
     setMode('browse')
-    setLeadData({ productType: null, quantityRange: null, email: null })
-    setCallbackData({ name: null, phone: null })
-    setInputValue('')
-    setInputError(null)
-    setPhoneFailCount(0)
+    setLeadData({ productType: null, quantityRange: null })
     try {
       sessionStorage.removeItem('skat_chat_session')
     } catch {}
@@ -745,129 +628,48 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
     }
 
     if (mode === 'qualify_quantity') {
-      const step3Q =
+      const productType = leadData.productType ?? ''
+      const successMsg =
         lang === 'bg'
-          ? 'Последна стъпка — какъв е имейлът ви, за да ви изпратим персонализирана оферта?'
-          : "Last step — what's your email so we can send you a tailored quote?"
+          ? `Отлично! Член от нашия екип с удоволствие ще обсъди вашите нужди за ${productType} опаковки. Свържете се с нас за персонализирана оферта.`
+          : `Great! A member of our team will be happy to discuss your ${productType} packaging needs. Get in touch to request a tailored quote.`
+      const navChips =
+        lang === 'bg'
+          ? ['Виж портфолиото', 'Разгледай продуктите', 'Прочети ЧЗВ']
+          : ['View Portfolio', 'Browse Products', 'Read FAQ']
       addMsg('user', chip)
       setLeadData(prev => ({ ...prev, quantityRange: chip }))
-      injectBot(step3Q, [], 'qualify_email')
-      return
-    }
-
-    // Default: treat chip as a message
-    sendMessage(chip)
-  }
-
-  // ─── Send message ─────────────────────────────────────────────────────────
-
-  function sendMessage(text?: string) {
-    const value = (text ?? inputValue).trim()
-    if (!value) return
-    setInputError(null)
-    setInputValue('')
-
-    // qualify_email
-    if (mode === 'qualify_email') {
-      addMsg('user', value)
-      if (!validateEmail(value)) {
-        const err =
-          lang === 'bg'
-            ? 'Това не изглежда като валиден имейл. Опитайте отново?'
-            : "That doesn't look like a valid email. Try again?"
-        setInputError(err)
-        injectBot(err, undefined, 'qualify_email')
-        return
-      }
-      const newLead = { ...leadData, email: value }
-      setLeadData(newLead)
       saveToStorage('skat_leads', {
         type: 'lead',
-        product_type: newLead.productType ?? '',
-        quantity_range: newLead.quantityRange ?? '',
-        email: value,
+        product_type: leadData.productType ?? '',
+        quantity_range: chip,
         lang,
         page: pathname,
         timestamp: new Date().toISOString(),
       })
       trackEvent('chatbot_lead', {
-        product_type: newLead.productType ?? '',
-        quantity_range: newLead.quantityRange ?? '',
+        product_type: leadData.productType ?? '',
+        quantity_range: chip,
       })
-      const navChips =
-        lang === 'bg'
-          ? ['Виж портфолиото', 'Разгледай продуктите', 'Прочети ЧЗВ']
-          : ['View Portfolio', 'Browse Products', 'Read FAQ']
-      const successMsg =
-        lang === 'bg'
-          ? `Готово! Ще се свържем с вас на ${value} с оферта за ${newLead.productType ?? ''} опаковки в диапазон ${newLead.quantityRange ?? ''}. До скоро!`
-          : `You're all set! We'll be in touch at ${value} with a quote for your ${newLead.productType ?? ''} packaging in the ${newLead.quantityRange ?? ''} range. Talk soon!`
       injectBot(successMsg, navChips, 'success')
       return
     }
 
-    // callback_name
-    if (mode === 'callback_name') {
-      addMsg('user', value)
-      setCallbackData(prev => ({ ...prev, name: value }))
-      const phoneQ = lang === 'bg' ? 'И на какъв номер да ви се обадим?' : 'And what number should we call you on?'
-      injectBot(phoneQ, [], 'callback_phone')
-      return
-    }
+    if (mode === 'callback_success') return
 
-    // callback_phone
-    if (mode === 'callback_phone') {
-      addMsg('user', value)
-      if (!validatePhone(value)) {
-        const newCount = phoneFailCount + 1
-        setPhoneFailCount(newCount)
-        const err =
-          newCount >= 2
-            ? lang === 'bg'
-              ? 'Няма проблем — можете също да ни пишете директно на office@skat-print.com.'
-              : 'No worries — you can also reach us directly at office@skat-print.com.'
-            : lang === 'bg'
-              ? 'Този номер не изглежда правилен. Опитайте отново?'
-              : "That number doesn't look right. Could you try again?"
-        setInputError(err)
-        injectBot(err, undefined, 'callback_phone')
-        return
-      }
-      const newCallback = { ...callbackData, phone: value }
-      setCallbackData(newCallback)
-      saveToStorage('skat_callbacks', {
-        type: 'callback',
-        name: newCallback.name ?? '',
-        phone: value,
-        lang,
-        page: pathname,
-        timestamp: new Date().toISOString(),
-      })
-      trackEvent('chatbot_callback', { timestamp: new Date().toISOString() })
-      const confirmMsg =
-        lang === 'bg'
-          ? `Перфектно, ${newCallback.name ?? ''}! Ще ви се обадим на ${value} в рамките на един работен ден. Очакваме разговора.`
-          : `Perfect, ${newCallback.name ?? ''}! We'll call you at ${value} within one business day. Looking forward to talking with you.`
-      injectBot(confirmMsg, [], 'callback_success')
-      return
-    }
-
-    // browse — intent matching
-    if (mode !== 'browse') return
-    addMsg('user', value)
-
-    const normalized = normalizeInput(value)
-    const result = matchIntent(normalized, lang)
+    // browse mode — intent matching
+    addMsg('user', chip)
+    const result = matchIntent(normalizeInput(chip), lang)
 
     if (result.intentId) {
       trackEvent('chatbot_intent', { intent_id: result.intentId, lang })
     } else {
-      trackEvent('chatbot_fallback', { input: value.slice(0, 80), lang })
+      trackEvent('chatbot_fallback', { input: chip.slice(0, 80), lang })
     }
 
     if (result.isCallback) {
       injectBot(result.response, [])
-      startCallbackFlow()
+      setTimeout(() => startCallbackSuccess(), 600)
       return
     }
 
@@ -880,64 +682,54 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
     injectBot(result.response, result.followUps)
   }
 
-  // ─── Derived view state ───────────────────────────────────────────────────
+  // ─── Motion variants ──────────────────────────────────────────────────────
 
   const isTerminal = mode === 'success' || mode === 'callback_success'
-  const showInput = !isTerminal && mode !== 'qualify_product' && mode !== 'qualify_quantity'
-  const showSkip = ['qualify_product', 'qualify_quantity', 'qualify_email'].includes(mode)
 
-  const inputPlaceholder = () => {
-    if (mode === 'qualify_email') return lang === 'bg' ? 'вашия@имейл.com' : 'your@email.com'
-    if (mode === 'callback_name') return lang === 'bg' ? 'Вашето име...' : 'Your name...'
-    if (mode === 'callback_phone') return '+359 ...'
-    return lang === 'bg' ? 'Напишете въпроса си...' : 'Type your question...'
-  }
+  const tabMotion = reduced
+    ? {}
+    : { initial: { opacity: 0, x: 10 }, animate: { opacity: 1, x: 0 }, exit: { opacity: 0, x: 10 } }
 
   const panelMotion = reduced
     ? {}
-    : {
-        initial: { opacity: 0, scale: 0.95, y: 12 },
-        animate: { opacity: 1, scale: 1, y: 0 },
-        exit: { opacity: 0, scale: 0.95, y: 12 },
-      }
+    : { initial: { x: 320 }, animate: { x: 0 }, exit: { x: 320 } }
 
   // ─── Render ───────────────────────────────────────────────────────────────
 
   return (
     <>
-      {/* Idle nudge tooltip */}
+      {/* Pull-tab — desktop only, shown when panel is closed */}
       <AnimatePresence>
-        {showNudge && !isOpen && (
-          <motion.div
-            initial={reduced ? {} : { opacity: 0, y: 6 }}
-            animate={reduced ? {} : { opacity: 1, y: 0 }}
-            exit={reduced ? {} : { opacity: 0, y: 6 }}
-            transition={{ duration: 0.2 }}
-            className="fixed bottom-[4.5rem] left-6 sm:bottom-[5rem] sm:left-8 z-40 flex items-center gap-2 bg-[var(--color-bg-dark)] text-white text-xs font-medium px-3 py-2 rounded-full shadow-[var(--shadow-lg)] whitespace-nowrap select-none"
+        {!isOpen && (
+          <motion.button
+            {...tabMotion}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            onClick={openChat}
+            aria-label={t.chatbot.aria_open}
+            className="fixed right-0 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-center gap-2 py-4 px-2.5 bg-[var(--color-accent)] text-white rounded-l-[var(--radius-md)] shadow-[var(--shadow-accent)] hover:bg-[var(--color-accent-hover)] transition-[background-color] select-none"
           >
-            <span>{lang === 'bg' ? 'Въпроси за опаковки?' : 'Questions about packaging?'}</span>
-            <button
-              onClick={() => setShowNudge(false)}
-              className="text-white/60 hover:text-white transition-colors ml-0.5"
-              aria-label="Dismiss"
+            <IconMsg cls="w-5 h-5" />
+            <span
+              className="text-[10px] font-semibold tracking-wide leading-none"
+              style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
             >
-              <IconX cls="w-3 h-3" />
-            </button>
-          </motion.div>
+              {lang === 'bg' ? 'Чат' : 'Chat'}
+            </span>
+            <span className="w-2 h-2 rounded-full bg-green-400 flex-shrink-0" />
+          </motion.button>
         )}
       </AnimatePresence>
 
-      {/* Chat panel */}
+      {/* Chat panel — desktop only, slides in from right */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             {...panelMotion}
-            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            style={{ transformOrigin: 'bottom left', width: 'min(calc(100vw - 3rem), 320px)', maxHeight: 'min(480px, 60dvh)' }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             role="dialog"
             aria-modal="true"
             aria-label={lang === 'bg' ? 'Чат поддръжка' : 'Chat support'}
-            className="fixed bottom-[4.5rem] left-6 sm:bottom-20 sm:left-8 z-40 flex flex-col bg-[var(--color-bg-light-surface)] border border-[var(--color-border)] rounded-[var(--radius-lg)] overflow-hidden shadow-[var(--shadow-lg)]"
+            className="fixed right-0 top-[72px] bottom-0 z-50 hidden md:flex flex-col w-[320px] bg-[var(--color-bg-light-surface)] border-l border-[var(--color-border)] shadow-[var(--shadow-lg)]"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-3 h-11 bg-[var(--color-accent)] flex-shrink-0">
@@ -1007,8 +799,48 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
               <div ref={messagesEndRef} />
             </div>
 
+            {/* Contact info for callback_success */}
+            {mode === 'callback_success' && (
+              <div className="flex-shrink-0 border-t border-[var(--color-border)] px-4 py-3 flex flex-col gap-2">
+                <a
+                  href="tel:+35942600500"
+                  className="flex items-center gap-2 text-sm text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors"
+                >
+                  <IconPhone cls="w-4 h-4 flex-shrink-0 text-[var(--color-accent)]" />
+                  +359 42 600 500
+                </a>
+                <a
+                  href="mailto:office@skat-print.com"
+                  className="flex items-center gap-2 text-sm text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors"
+                >
+                  <svg className="w-4 h-4 flex-shrink-0 text-[var(--color-accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2" /><polyline points="2,4 12,13 22,4" />
+                  </svg>
+                  office@skat-print.com
+                </a>
+                <a
+                  href={`/${lang}/contact`}
+                  className="mt-1 w-full text-center text-xs font-semibold text-white bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] rounded-[var(--radius-md)] py-2 px-3 transition-[background-color]"
+                >
+                  {lang === 'bg' ? 'Към страницата за контакти →' : 'Go to Contact Page →'}
+                </a>
+              </div>
+            )}
+
+            {/* CTA button for lead success */}
+            {mode === 'success' && (
+              <div className="flex-shrink-0 border-t border-[var(--color-border)] px-3 pt-3 pb-1">
+                <a
+                  href={`/${lang}/contact`}
+                  className="block w-full text-center text-xs font-semibold text-white bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] rounded-[var(--radius-md)] py-2 px-3 transition-[background-color]"
+                >
+                  {lang === 'bg' ? 'Свържете се с нас →' : 'Contact Our Team →'}
+                </a>
+              </div>
+            )}
+
             {/* Chips */}
-            {followUpChips.length > 0 && (
+            {followUpChips.length > 0 && !isTerminal && (
               <div className="flex-shrink-0 border-t border-[var(--color-border)] pt-2 pb-1">
                 <div className="flex flex-row gap-2 overflow-x-auto px-3 [&::-webkit-scrollbar]:hidden">
                   {followUpChips.map(chip => (
@@ -1024,43 +856,20 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
               </div>
             )}
 
-            {/* Skip link */}
-            {showSkip && (
-              <div className="flex-shrink-0 px-3 pb-2 pt-1">
-                <button
-                  onClick={handleSkip}
-                  className="text-xs text-[var(--color-text-muted)] underline underline-offset-2 hover:text-[var(--color-text)] transition-colors"
-                >
-                  {lang === 'bg' ? 'Пропусни засега' : 'Skip for now'}
-                </button>
-              </div>
-            )}
-
-            {/* Input row */}
-            {showInput && (
-              <div className="flex items-center gap-2 px-3 py-2 border-t border-[var(--color-border)] flex-shrink-0">
-                <input
-                  ref={inputRef}
-                  type={mode === 'qualify_email' ? 'email' : 'text'}
-                  value={inputValue}
-                  onChange={e => {
-                    setInputValue(e.target.value)
-                    setInputError(null)
-                  }}
-                  onKeyDown={e => {
-                    if (e.key === 'Enter') sendMessage()
-                  }}
-                  placeholder={inputPlaceholder()}
-                  className="flex-1 text-sm bg-transparent outline-none placeholder-[var(--color-text-muted)] text-[var(--color-text)] min-w-0"
-                />
-                <button
-                  onClick={() => sendMessage()}
-                  disabled={!inputValue.trim()}
-                  className="w-8 h-8 rounded-full bg-[var(--color-accent)] text-white flex items-center justify-center disabled:opacity-40 hover:bg-[var(--color-accent-hover)] transition-[background-color,opacity] flex-shrink-0"
-                  aria-label={t.chatbot.send}
-                >
-                  <IconArrow cls="w-4 h-4" />
-                </button>
+            {/* Nav chips for success */}
+            {mode === 'success' && followUpChips.length > 0 && (
+              <div className="flex-shrink-0 pt-1 pb-2">
+                <div className="flex flex-row gap-2 overflow-x-auto px-3 [&::-webkit-scrollbar]:hidden">
+                  {followUpChips.map(chip => (
+                    <button
+                      key={chip}
+                      onClick={() => handleChip(chip)}
+                      className="flex-shrink-0 px-3 py-1.5 text-xs font-medium rounded-full border border-[var(--color-border)] bg-white text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-[border-color,color] duration-150 whitespace-nowrap"
+                    >
+                      {chip}
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
 
@@ -1078,21 +887,6 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* FAB button */}
-      <button
-        onClick={isOpen ? () => setIsOpen(false) : openChat}
-        aria-label={isOpen ? t.chatbot.aria_close : t.chatbot.aria_open}
-        className="fixed bottom-6 left-6 sm:bottom-8 sm:left-8 z-40 rounded-full bg-[var(--color-accent)] text-white flex items-center justify-center shadow-[var(--shadow-accent)] hover:bg-[var(--color-accent-hover)] transition-[background-color] relative"
-        style={{
-          width: 52,
-          height: 52,
-          animation: !isOpen && !reduced ? 'chatbot-fab-pulse 3s ease-in-out infinite' : 'none',
-        }}
-      >
-        <span className="absolute top-0.5 right-0.5 w-2.5 h-2.5 rounded-full bg-green-400 border-2 border-white" />
-        {isOpen ? <IconX cls="w-5 h-5" /> : <IconMsg cls="w-5 h-5" />}
-      </button>
     </>
   )
 }
