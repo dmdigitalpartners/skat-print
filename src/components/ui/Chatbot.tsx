@@ -796,20 +796,22 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
                     <span className="text-green-400 text-xs">{t.chatbot.online}</span>
                   </div>
                 </div>
+                <div className="flex items-center gap-0.5 flex-shrink-0">
                 <button
                   onClick={handleReset}
-                  className="text-white/60 hover:text-white transition-colors px-2 py-1 flex-shrink-0 text-xs font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-1 rounded"
+                  className="text-white/60 hover:text-white transition-colors p-1 text-base leading-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-1 rounded"
                   aria-label={lang === 'bg' ? 'Нов разговор' : 'New conversation'}
                 >
-                  ↻ {lang === 'bg' ? 'Нов' : 'New'}
+                  ↻
                 </button>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="text-white/50 hover:text-white transition-colors p-1 -mr-1 flex-shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-1 rounded"
+                  className="text-white/50 hover:text-white transition-colors p-1 -mr-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-1 rounded"
                   aria-label={t.chatbot.aria_close}
                 >
                   <IconX cls="w-4 h-4" />
                 </button>
+                </div>
               </div>
             </div>
 
