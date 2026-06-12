@@ -57,6 +57,17 @@
     "stat_clients_label": "Active Clients",
     "client_sentence": "Trusted by brands including Coca-Cola, LIDL, Johnnie Walker, Stella Artois, Finlandia, and Jack Daniel's."
   },
+  "trusted_by": {
+    "eyebrow": "Trusted By",
+    "items": [
+      { "label": "EU Food Brand", "detail": "Germany" },
+      { "label": "Cosmetics Group", "detail": "Austria" },
+      { "label": "Beverage Multinational", "detail": "France" },
+      { "label": "Retail Chain", "detail": "Poland" },
+      { "label": "Wine Cooperative", "detail": "Italy" },
+      { "label": "FMCG Distributor", "detail": "Bulgaria" }
+    ]
+  },
   "services_section": {
     "title": "How We Make It",
     "subtitle": "Five integrated manufacturing capabilities, offset printing, corrugated board production, laminating, die-cutting, and finishing, all under one roof.",

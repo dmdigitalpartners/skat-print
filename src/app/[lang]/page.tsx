@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { getTranslation } from '@/lib/useTranslation'
 import type { Lang } from '@/lib/useTranslation'
 import Hero from '@/components/sections/Hero'
+import TrustedBy from '@/components/sections/TrustedBy'
 import VideoSection from '@/components/sections/VideoSection'
 import ProductsCatalog from '@/components/sections/ProductsCatalog'
 import Differentiators from '@/components/sections/Differentiators'
@@ -36,6 +37,7 @@ export default async function HomePage({
   return (
     <>
       <Hero t={t} lang={currentLang} />
+      <TrustedBy t={t} />
       <ProductsCatalog t={t} lang={currentLang} />
       <VideoSection t={t} />
       <Differentiators t={t} />
