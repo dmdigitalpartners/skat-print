@@ -576,6 +576,10 @@
     "panel_title": "Print Assistant",
     "panel_subtitle": "How can I help you today?",
     "online": "Online",
-    "send": "Send"
+    "send": "Send",
+    "response_time_promise": "We respond within 4 business hours.",
+    "send_request": "Send My Request",
+    "email_placeholder": "Your email address",
+    "request_sent": "Request sent! We'll be in touch soon."
   }
 }

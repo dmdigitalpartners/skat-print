@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, FormEvent } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { trackEvent as trackAnalyticsEvent } from '@/lib/analytics'
@@ -493,6 +493,14 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
   const [isConversationLocked, setIsConversationLocked] = useState(false)
   const [sessionLoaded, setSessionLoaded] = useState(false)
 
+  // ── Mobile detection
+  const [isMobile, setIsMobile] = useState(false)
+
+  // ── Lead submission state
+  const [leadEmail, setLeadEmail] = useState('')
+  const [leadSubmitted, setLeadSubmitted] = useState(false)
+  const [leadSubmitting, setLeadSubmitting] = useState(false)
+
   // ── Refs
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
@@ -528,6 +536,15 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
     document.addEventListener('keydown', handler)
     return () => document.removeEventListener('keydown', handler)
   }, [isOpen])
+
+  // ── Mobile breakpoint detection (shared with Tailwind's md = 768px)
+  useEffect(() => {
+    const mql = window.matchMedia('(max-width: 767px)')
+    const check = () => setIsMobile(mql.matches)
+    check()
+    mql.addEventListener('change', check)
+    return () => mql.removeEventListener('change', check)
+  }, [])
 
   // ─── Core helpers ─────────────────────────────────────────────────────────
 
@@ -613,6 +630,8 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
     setMode('browse')
     setLeadData({ productType: null, quantityRange: null })
     setIsConversationLocked(false)
+    setLeadEmail('')
+    setLeadSubmitted(false)
     try {
       sessionStorage.removeItem('skat_chat_session')
     } catch {}
@@ -704,6 +723,30 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
     injectBot(result.response, result.followUps, undefined, undefined, unlock)
   }
 
+  // ─── Lead submit ──────────────────────────────────────────────────────────
+
+  async function handleLeadSubmit(e: FormEvent) {
+    e.preventDefault()
+    if (!leadEmail.trim() || leadSubmitting || leadSubmitted) return
+    setLeadSubmitting(true)
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'chatbot-lead',
+          contact: leadEmail.trim(),
+          product_type: leadData.productType ?? '',
+          quantity: leadData.quantityRange ?? '',
+          lang,
+          page: pathname,
+        }),
+      })
+    } catch {}
+    setLeadSubmitted(true)
+    setLeadSubmitting(false)
+  }
+
   // ─── Derived state ────────────────────────────────────────────────────────
 
   const isTerminal = mode === 'success' || mode === 'callback_success'
@@ -730,13 +773,225 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
         transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
       }
 
+  // ─── Shared render helpers ────────────────────────────────────────────────
+
+  function renderHeader(onClose: () => void) {
+    return (
+      <div
+        className="flex-shrink-0 px-4 pt-4 pb-3"
+        style={{ background: 'linear-gradient(135deg, var(--color-primary) 0%, #1E3A5F 100%)' }}
+      >
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-full bg-[var(--color-accent)] flex items-center justify-center flex-shrink-0">
+            <IconMsg cls="w-4.5 h-4.5 text-white" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="font-semibold text-white text-[15px] leading-tight" style={{ fontFamily: 'var(--font-display)' }}>
+              {t.chatbot.panel_title}
+            </div>
+            <div className="flex items-center gap-1.5 mt-0.5">
+              <span className="w-2 h-2 rounded-full bg-green-400 flex-shrink-0" />
+              <span className="text-green-400 text-xs">{t.chatbot.online}</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-0.5 flex-shrink-0">
+            <button
+              onClick={handleReset}
+              className="text-white/60 hover:text-white transition-colors p-1 text-base leading-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-1 rounded"
+              aria-label={lang === 'bg' ? 'Нов разговор' : 'New conversation'}
+            >
+              ↻
+            </button>
+            <button
+              onClick={onClose}
+              className="text-white/50 hover:text-white transition-colors p-1 -mr-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-1 rounded"
+              aria-label={t.chatbot.aria_close}
+            >
+              <IconX cls="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  function renderBody() {
+    return (
+      <div className="flex-1 flex flex-col overflow-hidden bg-white">
+        {/* Success icon strip */}
+        {isTerminal && (
+          <div className="flex justify-center pt-5 pb-1 flex-shrink-0">
+            {mode === 'success' ? (
+              <div className="w-12 h-12 rounded-full bg-[var(--color-accent-subtle)] flex items-center justify-center">
+                <IconCheck cls="w-6 h-6 text-[var(--color-accent)]" />
+              </div>
+            ) : (
+              <div className="w-12 h-12 rounded-full bg-[var(--color-accent-subtle)] flex items-center justify-center">
+                <IconPhone cls="w-6 h-6 text-[var(--color-accent)]" />
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Message list */}
+        <div
+          className="flex-1 overflow-y-auto px-3 py-3 flex flex-col gap-2.5 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[var(--color-border)]"
+          aria-live="polite"
+          aria-atomic="false"
+        >
+          {messages.map(msg => (
+            <motion.div
+              key={msg.id}
+              initial={reduced ? {} : { opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2 }}
+              className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+            >
+              <div
+                className={`max-w-[85%] break-words text-sm px-3.5 py-2.5 leading-relaxed ${
+                  msg.role === 'user'
+                    ? 'bg-[var(--color-accent)] text-white rounded-2xl rounded-tr-sm'
+                    : 'bg-[var(--color-bg-surface)] border border-[var(--color-border)] text-[var(--color-text)] rounded-2xl rounded-tl-sm'
+                }`}
+              >
+                {msg.text}
+              </div>
+            </motion.div>
+          ))}
+
+          {isTyping && (
+            <div className="flex justify-start">
+              <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border)] rounded-2xl rounded-tl-sm px-3.5 py-2.5">
+                <TypingIndicator reduced={reduced} />
+              </div>
+            </div>
+          )}
+
+          <div ref={messagesEndRef} />
+        </div>
+
+        {/* Contact info + response time for callback_success */}
+        {mode === 'callback_success' && (
+          <div className="flex-shrink-0 border-t border-[var(--color-border)] px-4 py-3 flex flex-col gap-2 bg-white">
+            <p className="text-xs text-[var(--color-text-muted)]">{t.chatbot.response_time_promise}</p>
+            <a
+              href="tel:+35942600500"
+              className="flex items-center gap-2.5 text-sm text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors py-1"
+            >
+              <IconPhone cls="w-4 h-4 flex-shrink-0 text-[var(--color-accent)]" />
+              +359 42 600 500
+            </a>
+            <a
+              href="mailto:office@skat-print.com"
+              className="flex items-center gap-2.5 text-sm text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors py-1"
+            >
+              <svg className="w-4 h-4 flex-shrink-0 text-[var(--color-accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2" /><polyline points="2,4 12,13 22,4" />
+              </svg>
+              office@skat-print.com
+            </a>
+            <a
+              href={`/${lang}/contact`}
+              className="mt-1 w-full text-center text-xs font-semibold text-white bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] rounded-xl py-2.5 px-3 transition-[background-color]"
+            >
+              {lang === 'bg' ? 'Към страницата за контакти →' : 'Go to Contact Page →'}
+            </a>
+          </div>
+        )}
+
+        {/* Lead email form for success mode */}
+        {mode === 'success' && (
+          <div className="flex-shrink-0 border-t border-[var(--color-border)] px-3 pt-3 pb-2 bg-white">
+            {leadSubmitted ? (
+              <p className="text-xs font-medium text-[var(--color-accent)] text-center py-2">
+                {t.chatbot.request_sent}
+              </p>
+            ) : (
+              <form onSubmit={handleLeadSubmit} className="flex flex-col gap-2">
+                <p className="text-xs text-[var(--color-text-muted)]">{t.chatbot.response_time_promise}</p>
+                <input
+                  type="email"
+                  required
+                  value={leadEmail}
+                  onChange={e => setLeadEmail(e.target.value)}
+                  placeholder={t.chatbot.email_placeholder}
+                  className="w-full text-sm px-3 py-2 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-surface)] text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-[var(--color-accent)] transition-[border-color]"
+                />
+                <button
+                  type="submit"
+                  disabled={leadSubmitting || !leadEmail.trim()}
+                  className="w-full text-xs font-semibold text-white bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] rounded-xl py-2.5 px-3 transition-[background-color] disabled:opacity-50 disabled:pointer-events-none"
+                >
+                  {leadSubmitting ? '…' : t.chatbot.send_request}
+                </button>
+              </form>
+            )}
+          </div>
+        )}
+
+        {/* CTA options — initial large cards */}
+        {isInitialView && followUpChips.length > 0 && !isTyping && (
+          <div className="flex-shrink-0 border-t border-[var(--color-border)] px-3 py-3 flex flex-col gap-1.5 bg-white">
+            {followUpChips.map(chip => (
+              <button
+                key={chip}
+                onClick={() => handleChip(chip)}
+                disabled={isConversationLocked}
+                className="w-full flex items-center justify-between gap-2 px-4 py-3 rounded-xl border border-[var(--color-border)] bg-white text-left text-sm font-medium text-[var(--color-text)] hover:border-[var(--color-accent)] hover:bg-[var(--color-accent-subtle)] hover:text-[var(--color-accent)] transition-all duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] disabled:opacity-40 disabled:pointer-events-none"
+              >
+                <span>{chip}</span>
+                <IconArrow cls="w-4 h-4 flex-shrink-0 opacity-40" />
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Follow-up chips — after conversation */}
+        {!isInitialView && followUpChips.length > 0 && !isTerminal && (
+          <div className="flex-shrink-0 border-t border-[var(--color-border)] pt-2 pb-2 bg-white">
+            <div className="flex flex-row flex-wrap gap-2 px-3">
+              {followUpChips.map(chip => (
+                <button
+                  key={chip}
+                  onClick={() => handleChip(chip)}
+                  disabled={isConversationLocked}
+                  className="flex-shrink-0 px-3 py-2 text-sm font-medium rounded-full border border-[var(--color-border)] bg-white text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-[border-color,color] duration-150 whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] disabled:opacity-40 disabled:pointer-events-none"
+                >
+                  {chip}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Nav chips for success */}
+        {mode === 'success' && followUpChips.length > 0 && (
+          <div className="flex-shrink-0 pt-1 pb-2 bg-white">
+            <div className="flex flex-row flex-wrap gap-2 px-3">
+              {followUpChips.map(chip => (
+                <button
+                  key={chip}
+                  onClick={() => handleChip(chip)}
+                  disabled={isConversationLocked}
+                  className="flex-shrink-0 px-3 py-2 text-sm font-medium rounded-full border border-[var(--color-border)] bg-white text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-[border-color,color] duration-150 whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] disabled:opacity-40 disabled:pointer-events-none"
+                >
+                  {chip}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    )
+  }
+
   // ─── Render ───────────────────────────────────────────────────────────────
 
   return (
     <>
-      {/* FAB button — desktop only, shown when panel is closed */}
+      {/* ── Desktop FAB — shown when panel is closed */}
       <AnimatePresence>
-        {!isOpen && (
+        {!isOpen && !isMobile && (
           <motion.button
             {...fabMotion}
             onClick={openChat}
@@ -748,7 +1003,6 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
             whileHover={reduced ? {} : { scale: 1.08, boxShadow: '0 6px 32px rgba(0,152,212,0.55), 0 2px 10px rgba(0,0,0,0.20)' }}
             whileTap={reduced ? {} : { scale: 0.95 }}
           >
-            {/* Pulse ring */}
             {!reduced && (
               <span
                 className="absolute inset-0 rounded-full bg-[var(--color-accent)]"
@@ -756,15 +1010,14 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
               />
             )}
             <IconMsg cls="w-6 h-6 relative z-10" />
-            {/* Online dot */}
             <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-green-400 border-2 border-white" />
           </motion.button>
         )}
       </AnimatePresence>
 
-      {/* Chat panel — desktop only, floating above FAB */}
+      {/* ── Desktop chat panel */}
       <AnimatePresence>
-        {isOpen && (
+        {isOpen && !isMobile && (
           <motion.div
             {...panelMotion}
             role="dialog"
@@ -776,193 +1029,68 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
               transformOrigin: 'bottom right',
             }}
           >
-            {/* Header */}
-            <div
-              className="flex-shrink-0 px-4 pt-4 pb-3"
-              style={{ background: 'linear-gradient(135deg, var(--color-primary) 0%, #1E3A5F 100%)' }}
-            >
-              <div className="flex items-center gap-3">
-                {/* Avatar */}
-                <div className="w-9 h-9 rounded-full bg-[var(--color-accent)] flex items-center justify-center flex-shrink-0">
-                  <IconMsg cls="w-4.5 h-4.5 text-white" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="font-semibold text-white text-[15px] leading-tight" style={{ fontFamily: 'var(--font-display)' }}>
-                    {t.chatbot.panel_title}
-                  </div>
-                  <div className="flex items-center gap-1.5 mt-0.5">
-                    <span className="w-2 h-2 rounded-full bg-green-400 flex-shrink-0" />
-                    <span className="text-green-400 text-xs">{t.chatbot.online}</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-0.5 flex-shrink-0">
-                <button
-                  onClick={handleReset}
-                  className="text-white/60 hover:text-white transition-colors p-1 text-base leading-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-1 rounded"
-                  aria-label={lang === 'bg' ? 'Нов разговор' : 'New conversation'}
-                >
-                  ↻
-                </button>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="text-white/50 hover:text-white transition-colors p-1 -mr-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-1 rounded"
-                  aria-label={t.chatbot.aria_close}
-                >
-                  <IconX cls="w-4 h-4" />
-                </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Body */}
-            <div className="flex-1 flex flex-col overflow-hidden bg-white">
-              {/* Success icon strip */}
-              {isTerminal && (
-                <div className="flex justify-center pt-5 pb-1 flex-shrink-0">
-                  {mode === 'success' ? (
-                    <div className="w-12 h-12 rounded-full bg-[var(--color-accent-subtle)] flex items-center justify-center">
-                      <IconCheck cls="w-6 h-6 text-[var(--color-accent)]" />
-                    </div>
-                  ) : (
-                    <div className="w-12 h-12 rounded-full bg-[var(--color-accent-subtle)] flex items-center justify-center">
-                      <IconPhone cls="w-6 h-6 text-[var(--color-accent)]" />
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {/* Message list */}
-              <div
-                className="flex-1 overflow-y-auto px-3 py-3 flex flex-col gap-2.5 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[var(--color-border)]"
-                aria-live="polite"
-                aria-atomic="false"
-              >
-                {messages.map(msg => (
-                  <motion.div
-                    key={msg.id}
-                    initial={reduced ? {} : { opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                  >
-                    <div
-                      className={`max-w-[85%] break-words text-sm px-3.5 py-2.5 leading-relaxed ${
-                        msg.role === 'user'
-                          ? 'bg-[var(--color-accent)] text-white rounded-2xl rounded-tr-sm'
-                          : 'bg-[var(--color-bg-surface)] border border-[var(--color-border)] text-[var(--color-text)] rounded-2xl rounded-tl-sm'
-                      }`}
-                    >
-                      {msg.text}
-                    </div>
-                  </motion.div>
-                ))}
-
-                {isTyping && (
-                  <div className="flex justify-start">
-                    <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border)] rounded-2xl rounded-tl-sm px-3.5 py-2.5">
-                      <TypingIndicator reduced={reduced} />
-                    </div>
-                  </div>
-                )}
-
-                <div ref={messagesEndRef} />
-              </div>
-
-              {/* Contact info for callback_success */}
-              {mode === 'callback_success' && (
-                <div className="flex-shrink-0 border-t border-[var(--color-border)] px-4 py-3 flex flex-col gap-2 bg-white">
-                  <a
-                    href="tel:+35942600500"
-                    className="flex items-center gap-2.5 text-sm text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors py-1"
-                  >
-                    <IconPhone cls="w-4 h-4 flex-shrink-0 text-[var(--color-accent)]" />
-                    +359 42 600 500
-                  </a>
-                  <a
-                    href="mailto:office@skat-print.com"
-                    className="flex items-center gap-2.5 text-sm text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors py-1"
-                  >
-                    <svg className="w-4 h-4 flex-shrink-0 text-[var(--color-accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="2" y="4" width="20" height="16" rx="2" /><polyline points="2,4 12,13 22,4" />
-                    </svg>
-                    office@skat-print.com
-                  </a>
-                  <a
-                    href={`/${lang}/contact`}
-                    className="mt-1 w-full text-center text-xs font-semibold text-white bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] rounded-xl py-2.5 px-3 transition-[background-color]"
-                  >
-                    {lang === 'bg' ? 'Към страницата за контакти →' : 'Go to Contact Page →'}
-                  </a>
-                </div>
-              )}
-
-              {/* CTA for lead success */}
-              {mode === 'success' && (
-                <div className="flex-shrink-0 border-t border-[var(--color-border)] px-3 pt-3 pb-1 bg-white">
-                  <a
-                    href={`/${lang}/contact`}
-                    className="block w-full text-center text-xs font-semibold text-white bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] rounded-xl py-2.5 px-3 transition-[background-color]"
-                  >
-                    {lang === 'bg' ? 'Свържете се с нас →' : 'Contact Our Team →'}
-                  </a>
-                </div>
-              )}
-
-              {/* CTA options — initial large cards */}
-              {isInitialView && followUpChips.length > 0 && !isTyping && (
-                <div className="flex-shrink-0 border-t border-[var(--color-border)] px-3 py-3 flex flex-col gap-1.5 bg-white">
-                  {followUpChips.map(chip => (
-                    <button
-                      key={chip}
-                      onClick={() => handleChip(chip)}
-                      disabled={isConversationLocked}
-                      className="w-full flex items-center justify-between gap-2 px-4 py-3 rounded-xl border border-[var(--color-border)] bg-white text-left text-sm font-medium text-[var(--color-text)] hover:border-[var(--color-accent)] hover:bg-[var(--color-accent-subtle)] hover:text-[var(--color-accent)] transition-all duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] disabled:opacity-40 disabled:pointer-events-none"
-                    >
-                      <span>{chip}</span>
-                      <IconArrow cls="w-4 h-4 flex-shrink-0 opacity-40" />
-                    </button>
-                  ))}
-                </div>
-              )}
-
-              {/* Follow-up chips — after conversation */}
-              {!isInitialView && followUpChips.length > 0 && !isTerminal && (
-                <div className="flex-shrink-0 border-t border-[var(--color-border)] pt-2 pb-2 bg-white">
-                  <div className="flex flex-row flex-wrap gap-2 px-3">
-                    {followUpChips.map(chip => (
-                      <button
-                        key={chip}
-                        onClick={() => handleChip(chip)}
-                        disabled={isConversationLocked}
-                        className="flex-shrink-0 px-3 py-2 text-sm font-medium rounded-full border border-[var(--color-border)] bg-white text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-[border-color,color] duration-150 whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] disabled:opacity-40 disabled:pointer-events-none"
-                      >
-                        {chip}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Nav chips for success */}
-              {mode === 'success' && followUpChips.length > 0 && (
-                <div className="flex-shrink-0 pt-1 pb-2 bg-white">
-                  <div className="flex flex-row flex-wrap gap-2 px-3">
-                    {followUpChips.map(chip => (
-                      <button
-                        key={chip}
-                        onClick={() => handleChip(chip)}
-                        disabled={isConversationLocked}
-                        className="flex-shrink-0 px-3 py-2 text-sm font-medium rounded-full border border-[var(--color-border)] bg-white text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-[border-color,color] duration-150 whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] disabled:opacity-40 disabled:pointer-events-none"
-                      >
-                        {chip}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-            </div>
+            {renderHeader(() => setIsOpen(false))}
+            {renderBody()}
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ── Mobile FAB — shown when drawer is closed */}
+      <AnimatePresence>
+        {!isOpen && isMobile && (
+          <motion.button
+            {...fabMotion}
+            onClick={openChat}
+            aria-label={t.chatbot.aria_open}
+            className="fixed bottom-6 right-6 z-50 flex md:hidden items-center justify-center w-14 h-14 rounded-full bg-[var(--color-accent)] text-white select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
+            style={{
+              boxShadow: '0 4px 24px rgba(0,152,212,0.40), 0 2px 8px rgba(0,0,0,0.16)',
+            }}
+            whileHover={reduced ? {} : { scale: 1.08 }}
+            whileTap={reduced ? {} : { scale: 0.95 }}
+          >
+            {!reduced && (
+              <span
+                className="absolute inset-0 rounded-full bg-[var(--color-accent)]"
+                style={{ animation: 'chatbot-fab-ring 2.2s ease-out infinite' }}
+              />
+            )}
+            <IconMsg cls="w-6 h-6 relative z-10" />
+            <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-green-400 border-2 border-white" />
+          </motion.button>
+        )}
+      </AnimatePresence>
+
+      {/* ── Mobile drawer — slides up from bottom */}
+      <AnimatePresence>
+        {isOpen && isMobile && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={reduced ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={reduced ? {} : { opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setIsOpen(false)}
+              className="fixed inset-0 z-50 bg-black/40"
+              aria-hidden="true"
+            />
+            {/* Drawer panel */}
+            <motion.div
+              initial={reduced ? false : { y: '100%' }}
+              animate={{ y: 0 }}
+              exit={reduced ? {} : { y: '100%' }}
+              transition={{ type: 'spring', stiffness: 280, damping: 28 }}
+              role="dialog"
+              aria-modal="true"
+              aria-label={lang === 'bg' ? 'Чат поддръжка' : 'Chat support'}
+              className="fixed inset-x-0 bottom-0 z-[51] flex flex-col h-[90vh] rounded-t-2xl overflow-hidden"
+              style={{ boxShadow: '0 -8px 40px rgba(0,0,0,0.20)' }}
+            >
+              {renderHeader(() => setIsOpen(false))}
+              {renderBody()}
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>
