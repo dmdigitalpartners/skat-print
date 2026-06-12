@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { motion, useReducedMotion } from 'framer-motion'
 import type { Translation } from '@/lib/useTranslation'
+import { trackEvent } from '@/lib/analytics'
 
 const schema = z.object({
   name: z.string().min(2),
@@ -41,6 +42,7 @@ export default function ContactForm({ t }: { t: Translation }) {
       if (res.ok) {
         setStatus('success')
         reset()
+        trackEvent({ name: 'form_submitted', form_type: 'contact' })
       } else {
         setStatus('error')
       }

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
+import { trackEvent as trackAnalyticsEvent } from '@/lib/analytics'
 
 // Inline SVG icons
 function IconMsg({ cls }: { cls: string }) {
@@ -405,12 +406,8 @@ function calcTypingDelay(text: string): number {
 }
 
 function trackEvent(name: string, params?: Record<string, string>) {
-  if (typeof window !== 'undefined' && typeof (window as unknown as { gtag?: unknown }).gtag === 'function') {
-    ;(window as unknown as { gtag: (cmd: string, name: string, params?: Record<string, string>) => void }).gtag(
-      'event',
-      name,
-      params
-    )
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('event', name, params)
   }
 }
 
@@ -560,6 +557,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
   function openChat() {
     setIsOpen(true)
     trackEvent('chatbot_opened', { page: pathname, lang })
+    trackAnalyticsEvent({ name: 'chatbot_opened' })
 
     if (messages.length > 0) return
 
@@ -678,6 +676,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
         product_type: leadData.productType ?? '',
         quantity_range: chip,
       })
+      trackAnalyticsEvent({ name: 'chatbot_lead_qualified' })
       injectBot(successMsg, navChips, 'success', undefined, unlock)
       return
     }
