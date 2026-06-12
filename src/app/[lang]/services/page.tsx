@@ -4,16 +4,7 @@ import type { Lang } from '@/lib/useTranslation'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import CTABanner from '@/components/sections/CTABanner'
 import PageHero from '@/components/ui/PageHero'
-
-const VALID_SERVICES = [
-  'offset-printing',
-  'corrugated-board',
-  'laminating-finishing',
-  'die-cutting',
-  'covering-coating',
-] as const
-
-type ServiceSlug = (typeof VALID_SERVICES)[number]
+import { type ServiceSlug } from '@/config/routes'
 
 export function generateStaticParams() {
   return [{ lang: 'en' }, { lang: 'bg' }]

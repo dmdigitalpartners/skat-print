@@ -7,16 +7,7 @@ import CTABanner from '@/components/sections/CTABanner'
 import PortfolioGrid from '@/components/sections/PortfolioGrid'
 import PageHero from '@/components/ui/PageHero'
 import SpecsAccordion from '@/components/ui/SpecsAccordion'
-
-const VALID_CATEGORIES = [
-  'pos-displays',
-  'food-packaging',
-  'alcohol-packaging',
-  'cosmetics-packaging',
-  'custom-packaging',
-] as const
-
-type CategorySlug = (typeof VALID_CATEGORIES)[number]
+import { VALID_CATEGORIES, type CategorySlug } from '@/config/routes'
 
 export function generateStaticParams() {
   const langs = ['en', 'bg']

@@ -1,14 +1,5 @@
 import { redirect } from 'next/navigation'
-
-const VALID_SERVICES = [
-  'offset-printing',
-  'corrugated-board',
-  'laminating-finishing',
-  'die-cutting',
-  'covering-coating',
-] as const
-
-type ServiceSlug = (typeof VALID_SERVICES)[number]
+import { VALID_SERVICES, type ServiceSlug } from '@/config/routes'
 
 export function generateStaticParams() {
   const langs = ['en', 'bg']
