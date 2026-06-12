@@ -15,6 +15,11 @@ export default function ProductsCatalog({ t, lang, hideHeader }: Props) {
       <div className="container-site">
         {!hideHeader && (
           <div className="mb-10 md:mb-12">
+            {/* Eyebrow — matches rhythm of other sections */}
+            <span className="inline-flex items-center gap-2 text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent)] mb-4">
+              <span className="block w-5 h-px bg-[var(--color-accent)] shrink-0" />
+              {t.products_section.eyebrow}
+            </span>
             <h2 className="font-display font-bold text-4xl md:text-5xl text-[var(--color-text)] mb-4">
               {t.products_section.title}
             </h2>
@@ -24,12 +29,18 @@ export default function ProductsCatalog({ t, lang, hideHeader }: Props) {
           </div>
         )}
 
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-4 md:gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-6 md:gap-8">
           {t.products_section.items.map((product, idx) => (
             <ScrollReveal
               key={product.slug}
               delay={idx * 0.08}
-              className={idx < 3 ? 'col-span-1 md:col-span-2' : 'col-span-1 md:col-span-3'}
+              className={
+                // Desktop: top 3 = 2-col each (3-up), bottom 2 = 3-col each (2-up)
+                // Mobile: top 4 = 1-col each (2-up grid), last card = full-width to avoid orphan
+                idx < 4
+                  ? 'col-span-1 md:col-span-2'
+                  : 'col-span-2 md:col-span-3'
+              }
             >
               <Link
                 href={`/${lang}/products/${product.slug}`}
@@ -44,12 +55,10 @@ export default function ProductsCatalog({ t, lang, hideHeader }: Props) {
                   loading={idx < 2 ? 'eager' : 'lazy'}
                 />
 
-                {/* Desktop: bottom-to-top gradient */}
-                <div className="absolute inset-0 hidden md:block bg-gradient-to-t from-black/80 via-black/35 to-transparent" />
-                {/* Mobile: bottom-to-top gradient */}
-                <div className="absolute inset-0 md:hidden bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent" />
 
-                {/* Desktop content: bottom-anchored strip */}
+                {/* Desktop content: bottom-anchored */}
                 <div className="absolute bottom-0 left-0 right-0 hidden md:flex flex-col gap-1.5 px-5 pb-5">
                   <h3 className="font-display font-bold text-base text-white truncate">
                     {product.title}
@@ -57,23 +66,35 @@ export default function ProductsCatalog({ t, lang, hideHeader }: Props) {
                   <p className="text-white/75 text-xs truncate">
                     {product.description}
                   </p>
-                  <span className="text-xs font-semibold text-[var(--color-accent)] transition-opacity duration-200 group-hover:opacity-75">
+                  {/* CTA: hidden by default, revealed on hover */}
+                  <span className="text-xs font-semibold text-[var(--color-accent)] opacity-0 translate-y-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0">
                     {t.products_section.item_cta} →
                   </span>
                 </div>
 
-                {/* Mobile content: bottom strip */}
+                {/* Mobile content: always visible */}
                 <div className="absolute bottom-0 left-0 right-0 p-3 flex flex-col gap-1.5 md:hidden">
                   <h3 className="font-display font-bold text-sm text-white leading-tight line-clamp-2">
                     {product.title}
                   </h3>
-                  <span className="text-xs font-semibold text-[var(--color-accent)] transition-opacity duration-200 group-hover:opacity-75">
+                  <span className="text-xs font-semibold text-[var(--color-accent)]">
                     {t.products_section.item_cta} →
                   </span>
                 </div>
               </Link>
             </ScrollReveal>
           ))}
+        </div>
+
+        {/* Section footer CTA */}
+        <div className="mt-8 md:mt-10 text-right">
+          <Link
+            href={`/${lang}/portfolio`}
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors duration-200"
+          >
+            {t.products_section.view_portfolio}
+            <span aria-hidden>→</span>
+          </Link>
         </div>
       </div>
     </section>

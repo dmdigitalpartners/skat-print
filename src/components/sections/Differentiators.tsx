@@ -44,27 +44,26 @@ export default function Differentiators({ t, sectionStyle }: { t: Translation; s
   return (
     <SectionWrapper surface style={sectionStyle}>
       <ScrollReveal>
-        <h2 className="font-display font-bold text-4xl md:text-5xl text-[var(--color-text)] mb-14 md:mb-20">
+        {/* Eyebrow */}
+        <span className="inline-flex items-center gap-2 text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent)] mb-5">
+          <span className="block w-5 h-px bg-[var(--color-accent)] shrink-0" />
+          {t.differentiators.eyebrow}
+        </span>
+        <h2 className="font-display font-bold text-4xl md:text-5xl text-[var(--color-text)] max-w-xl mb-14 md:mb-20">
           {t.differentiators.title}
         </h2>
       </ScrollReveal>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
         {t.differentiators.items.map((item, i) => (
           <ScrollReveal key={i} delay={i * 0.12}>
             <div className="group">
-              {/* Icon container */}
               <div
                 className="w-11 h-11 flex items-center justify-center rounded-[var(--radius-md)] mb-6 transition-colors duration-300"
-                style={{
-                  backgroundColor: 'var(--color-accent-subtle)',
-                  color: 'var(--color-accent)',
-                }}
+                style={{ backgroundColor: 'var(--color-accent-subtle)', color: 'var(--color-accent)' }}
               >
-                <div className="w-5 h-5">
-                  {iconMap[item.icon] ?? iconMap['print']}
-                </div>
+                <div className="w-5 h-5">{iconMap[item.icon] ?? iconMap['print']}</div>
               </div>
-
               <h3 className="font-display font-bold text-lg text-[var(--color-text)] mb-3 relative inline-block">
                 {item.heading}
                 <span className="absolute bottom-0 left-0 h-px w-0 bg-[var(--color-accent)] transition-[width] duration-300 group-hover:w-full" />
@@ -74,6 +73,27 @@ export default function Differentiators({ t, sectionStyle }: { t: Translation; s
           </ScrollReveal>
         ))}
       </div>
+
+      {/* Certifications block — verify each entry with client before launch */}
+      <ScrollReveal>
+        <div className="mt-16 md:mt-20 pt-10 border-t border-[var(--color-border)]">
+          <p className="text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-6">
+            {t.differentiators.certifications_heading}
+          </p>
+          <div className="flex flex-wrap gap-3">
+            {t.differentiators.certifications.map((cert) => (
+              <div
+                key={cert.code}
+                className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-bg)]"
+              >
+                <span className="font-display font-bold text-sm text-[var(--color-text)]">{cert.code}</span>
+                <span className="h-3.5 w-px bg-[var(--color-border)]" aria-hidden />
+                <span className="text-xs text-[var(--color-text-muted)]">{cert.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </ScrollReveal>
     </SectionWrapper>
   )
 }

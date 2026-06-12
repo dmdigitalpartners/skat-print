@@ -100,10 +100,12 @@
     "watch_label": "Watch Video"
   },
   "products_section": {
+    "eyebrow": "Product Range",
     "title": "Our Products",
     "subtitle": "Five specialized packaging production lines.",
     "cta": "View Products",
     "item_cta": "View Product",
+    "view_portfolio": "View Full Portfolio",
     "items": [
       {
         "slug": "pos-displays",
@@ -248,7 +250,27 @@
     }
   },
   "differentiators": {
+    "eyebrow": "Why Choose Us",
     "title": "Why Skat Print",
+    "certifications_heading": "Quality & Compliance",
+    "certifications": [
+      {
+        "code": "ISO 9001:2015",
+        "label": "Quality Management"
+      },
+      {
+        "code": "FSC®",
+        "label": "Chain of Custody"
+      },
+      {
+        "code": "EU REACH",
+        "label": "Materials Compliance"
+      },
+      {
+        "code": "BG16RFOP002",
+        "label": "EU Co-funded Project"
+      }
+    ],
     "items": [
       {
         "icon": "print",
@@ -273,9 +295,10 @@
     ]
   },
   "cta_banner": {
-    "heading": "Ready to start your packaging project?",
+    "heading": "Get Your Custom Quote Today",
     "subheading": "Tell us what you need. We'll handle the rest.",
-    "button": "Get a Quote"
+    "response_time": "We respond within 4 business hours.",
+    "button": "Contact Our Team"
   },
   "footer": {
     "tagline": "Custom corrugated packaging and print solutions since 1995.",
@@ -305,6 +328,8 @@
       "privacy": "Privacy Policy",
       "terms": "Terms of Use"
     },
+    "eu_badge_label": "Co-funded by the European Union",
+    "eu_badge_code": "BG16RFOP002-3.001-0074-C01",
     "legal_entity": "Skat Oil EOOD",
     "region": "Plovdiv Region, Bulgaria",
     "eik_label": "EIK",

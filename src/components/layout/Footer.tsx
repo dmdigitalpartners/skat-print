@@ -114,21 +114,37 @@ export default function Footer({ t, lang }: Props) {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-[var(--color-border)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-          <p className="text-xs text-[var(--color-text-muted)]">{t.footer.copyright}</p>
-          <div className="flex items-center gap-4">
-            <Link
-              href={`${base}/privacy`}
-              className="text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200"
-            >
-              {t.footer.links.privacy}
-            </Link>
-            <Link
-              href={`${base}/terms`}
-              className="text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200"
-            >
-              {t.footer.links.terms}
-            </Link>
+        <div className="mt-10 pt-6 border-t border-[var(--color-border)] flex flex-col gap-4">
+          {/* EU funded project badge — credibility signal, link placeholder until PDF is provided */}
+          <div className="flex items-center gap-2.5">
+            {/* EU flag */}
+            <div className="flex-none w-7 h-5 rounded-sm overflow-hidden border border-[var(--color-border)]" aria-hidden>
+              <div className="w-full h-full bg-[#003399] flex items-center justify-center">
+                <span className="text-[6px] text-[#FFCC00] leading-none select-none">★★★★★★★★★★★★</span>
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[10px] text-[var(--color-text-muted)] leading-none">{t.footer.eu_badge_label}</span>
+              <span className="text-[10px] text-[var(--color-text-muted)] opacity-60 leading-none mt-0.5">{t.footer.eu_badge_code}</span>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <p className="text-xs text-[var(--color-text-muted)]">{t.footer.copyright}</p>
+            <div className="flex items-center gap-4">
+              <Link
+                href={`${base}/privacy`}
+                className="text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200"
+              >
+                {t.footer.links.privacy}
+              </Link>
+              <Link
+                href={`${base}/terms`}
+                className="text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200"
+              >
+                {t.footer.links.terms}
+              </Link>
+            </div>
           </div>
         </div>
       </div>
