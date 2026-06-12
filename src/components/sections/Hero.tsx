@@ -107,7 +107,7 @@ export default function Hero({ t, lang }: Props) {
             className="flex items-center gap-3 pt-1"
           >
             <Button
-              href={`/${lang}/contact`}
+              href={`/${lang}/samples`}
               variant="primary"
               className="flex-1 !px-3 !text-[13px] whitespace-nowrap"
             >
@@ -188,7 +188,7 @@ export default function Hero({ t, lang }: Props) {
 
             {/* CTAs */}
             <motion.div variants={reduced ? undefined : item} className="flex items-center gap-3">
-              <Button href={`/${lang}/contact`} variant="primary">
+              <Button href={`/${lang}/samples`} variant="primary">
                 {t.hero.cta_primary}
               </Button>
               <Button href={`/${lang}#products`} variant="secondary">
