@@ -1042,7 +1042,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
             {...fabMotion}
             onClick={openChat}
             aria-label={t.chatbot.aria_open}
-            className="fixed bottom-6 right-6 z-50 flex md:hidden items-center justify-center w-14 h-14 rounded-full bg-[var(--color-accent)] text-white select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
+            className="fixed bottom-[80px] right-6 z-50 flex md:hidden items-center justify-center w-14 h-14 rounded-full bg-[var(--color-accent)] text-white select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
             style={{
               boxShadow: '0 4px 24px rgba(0,152,212,0.40), 0 2px 8px rgba(0,0,0,0.16)',
             }}

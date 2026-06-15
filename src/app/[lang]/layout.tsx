@@ -2,6 +2,7 @@ import { Analytics } from '@vercel/analytics/react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Chatbot from '@/components/ui/Chatbot'
+import MobileConversionBar from '@/components/ui/MobileConversionBar'
 import JsonLd from '@/components/seo/JsonLd'
 import HtmlLang from '@/components/ui/HtmlLang'
 import { getTranslation } from '@/lib/useTranslation'
@@ -27,9 +28,10 @@ export default async function LangLayout({
       <HtmlLang lang={currentLang} />
       <JsonLd lang={currentLang} />
       <Navbar t={t} lang={currentLang} />
-      <main className="flex-1 overflow-x-hidden">{children}</main>
+      <main className="flex-1 overflow-x-hidden pb-[56px] md:pb-0">{children}</main>
       <Footer t={t} lang={currentLang} />
       <Chatbot t={t} lang={currentLang} />
+      <MobileConversionBar lang={currentLang} />
       <Analytics />
     </>
   )
