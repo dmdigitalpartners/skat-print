@@ -16,7 +16,7 @@ export default function ProductsCatalog({ t, lang, hideHeader }: Props) {
         {!hideHeader && (
           <div className="mb-10 md:mb-12">
             {/* Eyebrow — matches rhythm of other sections */}
-            <span className="inline-flex items-center gap-2 text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent)] mb-4">
+            <span className="inline-flex items-center gap-2 text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent-text)] mb-4">
               <span className="block w-5 h-px bg-[var(--color-accent)] shrink-0" />
               {t.products_section.eyebrow}
             </span>

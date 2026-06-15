@@ -55,7 +55,7 @@ export default async function BlogPostPage({
 
         {/* Header */}
         <header className="mb-10">
-          <p className="text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent)] mb-3">
+          <p className="text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent-text)] mb-3">
             {post.category}
           </p>
           <h1 className="font-display font-bold text-3xl md:text-4xl text-[var(--color-text)] leading-tight mb-4">

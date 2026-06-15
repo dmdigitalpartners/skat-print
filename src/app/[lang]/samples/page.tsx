@@ -40,7 +40,7 @@ export default async function SamplesPage({
       <div className="max-w-2xl mx-auto">
         {/* Page header */}
         <div className="mb-10 md:mb-12">
-          <span className="inline-flex items-center gap-2 text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent)] mb-4">
+          <span className="inline-flex items-center gap-2 text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent-text)] mb-4">
             <span className="block w-5 h-px bg-[var(--color-accent)]" />
             {s.page_eyebrow}
             <span className="block w-5 h-px bg-[var(--color-accent)]" />

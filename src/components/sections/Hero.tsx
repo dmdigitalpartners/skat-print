@@ -131,19 +131,19 @@ export default function Hero({ t, lang }: Props) {
             <div className="font-display font-bold text-[1.15rem] leading-none text-[var(--color-accent)]">
               <CountUp to={parseInt(t.trust.stat_years_number)} suffix={t.trust.stat_years_suffix} />
             </div>
-            <div className="text-[9px] text-white/45 mt-1 font-condensed uppercase tracking-wider leading-none text-center">{t.trust.stat_years_label}</div>
+            <div className="text-[11px] text-white/70 mt-1 font-condensed uppercase tracking-wider leading-none text-center">{t.trust.stat_years_label}</div>
           </div>
           <div className="flex flex-col items-center justify-center px-2">
             <div className="font-display font-bold text-[1.15rem] leading-none text-[var(--color-accent)]">
               <CountUp to={parseInt(t.trust.stat_clients_number)} suffix={t.trust.stat_clients_suffix} />
             </div>
-            <div className="text-[9px] text-white/45 mt-1 font-condensed uppercase tracking-wider leading-none text-center">{t.trust.stat_clients_label}</div>
+            <div className="text-[11px] text-white/70 mt-1 font-condensed uppercase tracking-wider leading-none text-center">{t.trust.stat_clients_label}</div>
           </div>
           <div className="flex flex-col items-center justify-center px-2">
             <div className="font-display font-bold text-[1.15rem] leading-none text-[var(--color-accent)]">
               <CountUp to={parseInt(t.trust.stat_categories_number)} suffix={t.trust.stat_categories_suffix} />
             </div>
-            <div className="text-[9px] text-white/45 mt-1 font-condensed uppercase tracking-wider leading-none text-center">{t.trust.stat_categories_label_mobile}</div>
+            <div className="text-[11px] text-white/70 mt-1 font-condensed uppercase tracking-wider leading-none text-center">{t.trust.stat_categories_label_mobile}</div>
           </div>
         </div>
       </div>

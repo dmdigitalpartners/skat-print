@@ -31,7 +31,11 @@ export default function PortfolioGrid({ t, lang, filterCategory, galleryHeading,
           </h2>
         </div>
 
-        {displayed.length === 0 ? null : (
+        {displayed.length === 0 ? (
+          <p className="text-[var(--color-text-muted)] text-sm py-8">
+            {lang === 'bg' ? 'Няма намерени проекти в тази категория.' : 'No projects found in this category.'}
+          </p>
+        ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
             {displayed.map((item, idx) => (
               <motion.div

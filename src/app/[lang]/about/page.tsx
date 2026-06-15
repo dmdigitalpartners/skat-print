@@ -90,7 +90,7 @@ export default async function AboutPage({
         <div className="container-site">
           <div className="max-w-3xl">
             <ScrollReveal>
-              <span className="inline-flex items-center gap-2 text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent)] mb-5">
+              <span className="inline-flex items-center gap-2 text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent-text)] mb-5">
                 <span className="block w-5 h-px bg-[var(--color-accent)]" />
                 {a.story_eyebrow}
               </span>
@@ -139,7 +139,7 @@ export default async function AboutPage({
       <section className="section-padding" style={{ backgroundColor: '#F3F7FB', borderTop: '1px solid #E2E9F3' }}>
         <div className="container-site">
           <ScrollReveal>
-            <span className="inline-flex items-center gap-2 text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent)] mb-5">
+            <span className="inline-flex items-center gap-2 text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent-text)] mb-5">
               <span className="block w-5 h-px bg-[var(--color-accent)]" />
               {a.capability_eyebrow}
             </span>

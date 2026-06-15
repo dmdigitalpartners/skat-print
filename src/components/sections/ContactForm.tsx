@@ -54,7 +54,11 @@ export default function ContactForm({ t }: { t: Translation }) {
   if (status === 'success') {
     return (
       <div className="p-8 border border-[var(--color-success)] rounded-[var(--radius-lg)] bg-[var(--color-bg-surface)] text-center">
-        <div className="text-3xl mb-3">✓</div>
+        <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[var(--color-success)]/10 mx-auto mb-4">
+          <svg className="w-6 h-6 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
         <h3 className="font-display font-bold text-xl text-[var(--color-text)] mb-2">{f.success_heading}</h3>
         <p className="text-[var(--color-text-muted)]">{f.success_body}</p>
       </div>
@@ -63,7 +67,7 @@ export default function ContactForm({ t }: { t: Translation }) {
 
   const inputCls = `w-full px-4 py-3 rounded-[var(--radius-md)] bg-[var(--color-bg-surface)] border text-[var(--color-text)] text-sm placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] transition-[border-color,box-shadow]`
   const labelCls = 'block text-sm font-medium text-[var(--color-text)] mb-1.5'
-  const errorCls = 'text-xs text-[var(--color-error)] mt-1'
+  const errorCls = 'text-sm text-[var(--color-error)] mt-1'
 
   return (
     <motion.form
@@ -79,7 +83,7 @@ export default function ContactForm({ t }: { t: Translation }) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <label htmlFor="name" className={labelCls}>{f.label_name}</label>
+          <label htmlFor="name" className={labelCls}>{f.label_name}<span className="text-[var(--color-error)] ml-0.5" aria-hidden>*</span></label>
           <input
             id="name"
             type="text"
@@ -91,7 +95,7 @@ export default function ContactForm({ t }: { t: Translation }) {
         </div>
 
         <div>
-          <label htmlFor="company" className={labelCls}>{f.label_company}</label>
+          <label htmlFor="company" className={labelCls}>{f.label_company}<span className="text-[var(--color-error)] ml-0.5" aria-hidden>*</span></label>
           <input
             id="company"
             type="text"
@@ -104,7 +108,7 @@ export default function ContactForm({ t }: { t: Translation }) {
       </div>
 
       <div>
-        <label htmlFor="product_type" className={labelCls}>{f.label_product_type}</label>
+        <label htmlFor="product_type" className={labelCls}>{f.label_product_type}<span className="text-[var(--color-error)] ml-0.5" aria-hidden>*</span></label>
         <select
           id="product_type"
           aria-invalid={errors.product_type ? 'true' : undefined}
@@ -121,7 +125,7 @@ export default function ContactForm({ t }: { t: Translation }) {
       </div>
 
       <div>
-        <label htmlFor="quantity" className={labelCls}>{f.label_quantity}</label>
+        <label htmlFor="quantity" className={labelCls}>{f.label_quantity}<span className="text-[var(--color-error)] ml-0.5" aria-hidden>*</span></label>
         <input
           id="quantity"
           type="text"
@@ -133,7 +137,7 @@ export default function ContactForm({ t }: { t: Translation }) {
       </div>
 
       <div>
-        <label htmlFor="contact" className={labelCls}>{f.label_contact}</label>
+        <label htmlFor="contact" className={labelCls}>{f.label_contact}<span className="text-[var(--color-error)] ml-0.5" aria-hidden>*</span></label>
         <input
           id="contact"
           type="text"

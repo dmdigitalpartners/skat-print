@@ -64,17 +64,17 @@ export default function Navbar({ t, lang }: Props) {
 
   const linkCls = (href: string) =>
     `text-sm font-medium transition-colors duration-200 ${
-      isActive(href) ? 'text-[#0D1117]' : 'text-[#5E6679] hover:text-[#0D1117]'
+      isActive(href) ? 'text-[var(--color-text)]' : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)]'
     }`
 
   const mobileLinkCls = (href: string, isLast: boolean) =>
-    `text-base font-medium py-3 transition-colors duration-200 ${!isLast ? 'border-b border-[#E8E4DF]' : ''} ${
-      isActive(href) ? 'text-[#0D1117]' : 'text-[#5E6679] hover:text-[#0D1117]'
+    `text-base font-medium py-3 transition-colors duration-200 ${!isLast ? 'border-b border-[var(--color-border)]' : ''} ${
+      isActive(href) ? 'text-[var(--color-text)]' : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)]'
     }`
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 bg-white border-b border-[#E8E4DF] transition-shadow duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 bg-white border-b border-[var(--color-border)] transition-shadow duration-300 ${
         scrolled ? 'shadow-sm' : ''
       }`}
     >
@@ -112,7 +112,7 @@ export default function Navbar({ t, lang }: Props) {
                 aria-haspopup="true"
                 aria-expanded={productsOpen}
                 className={`flex items-center gap-1 text-sm font-medium transition-colors duration-200 ${
-                  isProductActive() ? 'text-[#0D1117]' : 'text-[#5E6679] hover:text-[#0D1117]'
+                  isProductActive() ? 'text-[var(--color-text)]' : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)]'
                 }`}
               >
                 {t.nav.products}
@@ -130,12 +130,12 @@ export default function Navbar({ t, lang }: Props) {
 
               {/* Dropdown panel */}
               {productsOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-56 bg-white border border-[#E8E4DF] rounded-[var(--radius-md)] shadow-md overflow-hidden">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-56 bg-white border border-[var(--color-border)] rounded-[var(--radius-md)] shadow-md overflow-hidden">
                   {t.products_section.items.map((item) => (
                     <Link
                       key={item.slug}
                       href={`${base}/products/${item.slug}`}
-                      className="block px-4 py-2.5 text-sm text-[#5E6679] hover:text-[#0D1117] hover:bg-[#F4F2ED] transition-colors duration-150"
+                      className="block px-4 py-2.5 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-bg-surface)] transition-colors duration-150"
                     >
                       {item.title}
                     </Link>
@@ -166,7 +166,7 @@ export default function Navbar({ t, lang }: Props) {
           <div className="md:hidden flex items-center gap-2">
             <LanguageToggle lang={lang} variant="light" />
             <button
-              className="p-2 text-[#5E6679] hover:text-[#0D1117] transition-colors duration-200"
+              className="p-2 text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200"
               onClick={() => setMobileOpen((v) => !v)}
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileOpen}
@@ -187,18 +187,18 @@ export default function Navbar({ t, lang }: Props) {
 
       {/* Mobile menu */}
       <div
-        className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-300 bg-white border-t border-[#E8E4DF] ${
+        className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-300 bg-white border-t border-[var(--color-border)] ${
           mobileOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
         <nav className="container-site py-4 flex flex-col" aria-label="Mobile navigation">
 
           {/* Products accordion */}
-          <div className="border-b border-[#E8E4DF]">
+          <div className="border-b border-[var(--color-border)]">
             <button
               onClick={() => setMobileProductsOpen((v) => !v)}
               className={`w-full flex items-center justify-between py-3 text-base font-medium transition-colors duration-200 ${
-                isProductActive() ? 'text-[#0D1117]' : 'text-[#5E6679]'
+                isProductActive() ? 'text-[var(--color-text)]' : 'text-[var(--color-text-muted)]'
               }`}
             >
               {t.nav.products}
@@ -220,7 +220,7 @@ export default function Navbar({ t, lang }: Props) {
                   <Link
                     key={item.slug}
                     href={`${base}/products/${item.slug}`}
-                    className="py-2 px-3 text-sm text-[#5E6679] hover:text-[#0D1117] transition-colors duration-150"
+                    className="py-2 px-3 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-150"
                     onClick={() => setMobileOpen(false)}
                   >
                     {item.title}
@@ -241,7 +241,7 @@ export default function Navbar({ t, lang }: Props) {
             </Link>
           ))}
 
-          <div className="pt-4 mt-2 flex items-center justify-end border-t border-[#E8E4DF]">
+          <div className="pt-4 mt-2 flex items-center justify-end border-t border-[var(--color-border)]">
             <Link
               href={`${base}/contact`}
               className="px-5 py-2.5 rounded-[var(--radius-md)] bg-[var(--color-accent)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-colors duration-200"

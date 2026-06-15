@@ -232,7 +232,7 @@ export default async function IndustryPage({
             {/* Case study */}
             {caseStudy && (
               <div className="rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-bg-surface)] p-6 md:p-8">
-                <p className="text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent)] mb-4">
+                <p className="text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent-text)] mb-4">
                   {lang === 'bg' ? 'Казус' : 'Case Study'}
                 </p>
                 <p className="font-semibold text-[var(--color-text)] mb-5">{caseStudy.client}</p>

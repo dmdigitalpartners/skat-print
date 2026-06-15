@@ -45,7 +45,7 @@ export default function Differentiators({ t, sectionStyle }: { t: Translation; s
     <SectionWrapper surface style={sectionStyle}>
       <ScrollReveal>
         {/* Eyebrow */}
-        <span className="inline-flex items-center gap-2 text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent)] mb-5">
+        <span className="inline-flex items-center gap-2 text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent-text)] mb-5">
           <span className="block w-5 h-px bg-[var(--color-accent)] shrink-0" />
           {t.differentiators.eyebrow}
         </span>

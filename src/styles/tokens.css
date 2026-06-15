@@ -9,6 +9,7 @@
   --color-primary-light: #243563;
   --color-accent: #0098D4;
   --color-accent-hover: #007DB5;
+  --color-accent-text: #007CAB; /* WCAG AA on white — use for small text on light backgrounds */
   --color-accent-subtle: rgba(0, 152, 212, 0.10);
 
   /* Light Backgrounds (global default — light-first) */

@@ -38,7 +38,7 @@ export default async function BlogIndexPage({
   return (
     <main className="container-site py-16 md:py-24 max-w-3xl mx-auto">
       <div className="mb-12">
-        <span className="inline-flex items-center gap-2 text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent)] mb-4">
+        <span className="inline-flex items-center gap-2 text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent-text)] mb-4">
           <span className="block w-5 h-px bg-[var(--color-accent)]" />
           {isBg ? 'Ресурси' : 'Resources'}
         </span>
