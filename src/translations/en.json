@@ -614,5 +614,259 @@
     "send_request": "Send My Request",
     "email_placeholder": "Your email address",
     "request_sent": "Request sent! We'll be in touch soon."
+  },
+  "testimonials": [
+    {
+      "quote": "Skat Print delivered 40,000 cosmetics boxes in three weeks after we changed the brief mid-production. Quality was flawless and communication was transparent throughout. They're now our primary packaging partner.",
+      "author": "Anna K.",
+      "title": "Procurement Manager",
+      "company_type": "Mid-size Cosmetics Brand",
+      "country": "Austria"
+    },
+    {
+      "quote": "We needed FSC-certified corrugated boxes that could pass Austrian retail shelf audits. Skat Print understood the brief immediately, sourced the right substrate, and hit our MOQ requirements without compromise.",
+      "author": "Thomas B.",
+      "title": "Category Manager",
+      "company_type": "Organic Food Distributor",
+      "country": "Germany"
+    },
+    {
+      "quote": "Coordinating a POS campaign across 80 stores for 15 SKUs is complex. Skat Print managed the full production run and delivered in coordinated batches on schedule. We'll be running the next campaign with them too.",
+      "author": "Michał W.",
+      "title": "Marketing Director",
+      "company_type": "Retail Chain",
+      "country": "Poland"
+    }
+  ],
+  "case_studies": [
+    {
+      "client": "Mid-size Cosmetics Brand, Germany",
+      "problem": "A 40,000-unit run was approved with packaging specs, then a rebrand changed the brief three weeks before the production deadline.",
+      "constraint": "No timeline extension was possible — the product was already committed to retail planograms for Q3.",
+      "solution": "Skat Print restructured the print schedule, re-plated the new artwork within 48 hours, and prioritised the run across two shifts.",
+      "result": "Full 40,000-unit run delivered on the original date. Zero compromises on print quality or material spec."
+    },
+    {
+      "client": "Organic Food Distributor, Austria",
+      "problem": "A distributor needed corrugated transit boxes that met Austrian retailer shelf-audit requirements and carried FSC Chain of Custody certification.",
+      "constraint": "The client had previously failed audits with two other suppliers on substrate certification documentation.",
+      "solution": "Skat Print supplied FSC-certified corrugated board from its in-house production line and provided full chain-of-custody documentation for each delivery.",
+      "result": "First-time audit pass at all three retail partners. Reorder placed within 60 days."
+    },
+    {
+      "client": "Retail Chain, Poland",
+      "problem": "A 15-SKU seasonal POS display campaign needed to roll out across 80 store locations simultaneously within a 10-day window.",
+      "constraint": "Each store required a different SKU mix, and the chain's logistics team could not manage split deliveries.",
+      "solution": "Skat Print produced and pre-sorted all 15 SKU display units into store-specific pallet configurations before dispatch.",
+      "result": "All 80 stores set up within the 10-day window. Zero mis-picks reported."
+    }
+  ],
+  "industries": {
+    "eyebrow": "Industry Solutions",
+    "back_to_industries": "← All Industries",
+    "related_products": "Related Products",
+    "related_industries": "Related Industries",
+    "request_samples_cta": "Request Samples",
+    "get_quote_cta": "Get a Quote",
+    "food_packaging": {
+      "meta_title": "Food Packaging Manufacturer Bulgaria — Skat Print",
+      "meta_description": "Custom corrugated and cardboard food packaging for EU food brands. FSC-certified materials, food-grade production, shelf-ready boxes. B2B manufacturer since 1995.",
+      "hero_headline": "Food-Grade Packaging Built for Europe's Shelves",
+      "hero_subheadline": "Corrugated and cardboard food packaging that meets EU food-contact standards, survives the supply chain, and performs on retail shelves.",
+      "intro": "Food brands face a packaging brief that most manufacturers struggle with: structural integrity for transit, compliance with EU food-contact regulations, shelf appeal, and FSC-certification requirements — all at a price that works for your margin. Since 1995, Skat Print has supplied corrugated and cardboard packaging to food manufacturers, distributors, and private-label brands across Europe. Our in-house corrugated board production means we control substrate quality from the first layer, not just the print stage.",
+      "capabilities_heading": "What We Produce for Food Brands",
+      "capabilities": [
+        "Shelf-ready packaging (SRP) with easy-open perforations for supermarket planograms",
+        "Transit boxes for ambient, chilled, and frozen food products",
+        "Custom printed corrugated cases with offset colour across six printing units",
+        "FSC Chain of Custody certified substrate on all food-grade orders",
+        "Micro-flute (E and N wave) cartons for high-resolution shelf packaging",
+        "Bag-in-Box outer packaging for liquid food and beverage products"
+      ],
+      "process_heading": "How a Food Packaging Order Works",
+      "process_steps": [
+        { "title": "Brief & Specification", "desc": "Share your dimensions, weight requirements, print artwork, and any retail compliance specifications. We review and confirm substrate suitability." },
+        { "title": "Technical Review", "desc": "Our team runs compression and stacking tests on the proposed spec. For shelf-ready designs, we confirm retailer planogram compatibility." },
+        { "title": "Sample Approval", "desc": "We produce a pre-production sample. You approve the print, structure, and finish before full production begins." },
+        { "title": "Production & Delivery", "desc": "Standard lead time is 10–15 business days. We ship in coordinated batches for multi-SKU orders across EU destinations." }
+      ],
+      "use_cases_heading": "Common Applications",
+      "use_cases": [
+        "Supermarket shelf-ready cases for snack, dairy, and beverage brands",
+        "E-commerce outer boxes for direct-to-consumer food subscription brands",
+        "Bulk transit packaging for food processors and co-packers",
+        "Gift and seasonal food hamper boxes with premium finish",
+        "Private-label outer cases for retail chains across the EU"
+      ],
+      "faq_heading": "Food Packaging — Common Questions",
+      "faq": [
+        {
+          "q": "Are your food packaging materials EU food-contact compliant?",
+          "a": "Yes. All food-contact packaging we produce uses substrates that comply with EU Regulation 1935/2004 on food contact materials. We can provide compliance documentation on request."
+        },
+        {
+          "q": "Can you supply FSC-certified food packaging?",
+          "a": "Yes. Skat Print holds FSC Chain of Custody certification. All food packaging orders can be produced on FSC-certified corrugated board, with full documentation provided per delivery."
+        },
+        {
+          "q": "What is the minimum order quantity for food packaging?",
+          "a": "Minimum order quantities start at 500 units for standard corrugated cases. For shelf-ready packaging with die-cut perforations, minimums are typically 1,000 units depending on complexity."
+        }
+      ],
+      "case_study_index": 1,
+      "cta_label": "Request Food Packaging Samples",
+      "related_product_slugs": ["food-packaging", "custom-packaging"],
+      "related_industry_slugs": ["cosmetics-packaging", "wine-spirits-packaging"]
+    },
+    "cosmetics_packaging": {
+      "meta_title": "Cosmetics Packaging Manufacturer Bulgaria — Skat Print",
+      "meta_description": "Premium custom cosmetics packaging — luxury boxes, gift sets, and counter displays. Offset printing with foil, laminate, and emboss. B2B manufacturer for EU beauty brands.",
+      "hero_headline": "Cosmetics Packaging That Sells Before the Lid Opens",
+      "hero_subheadline": "Luxury corrugated and rigid boxes, gift sets, and counter displays for cosmetics brands selling through retail, e-commerce, and professional channels.",
+      "intro": "In cosmetics, packaging is the first brand moment — before the scent, before the texture, before the formula. We produce premium corrugated and rigid cardboard boxes, counter display units, and gift sets for cosmetics brands and private-label manufacturers across the EU. Our offset printing capability reaches six colours with matte, gloss, silver foil, and gold foil lamination applied in-house, giving cosmetics clients the surface quality they need at production volumes that work for smaller and mid-size brands.",
+      "capabilities_heading": "What We Produce for Cosmetics Brands",
+      "capabilities": [
+        "Premium folding cartons with six-colour offset print and in-house lamination",
+        "Matte, gloss, silver foil, and gold foil laminate finishes",
+        "Rigid gift boxes with covering up to 103cm width",
+        "Counter display units and testers with shelf-placement graphics",
+        "E-commerce protective inners with custom foam and corrugated inserts",
+        "Private-label cosmetics outer cases for retail and professional distribution"
+      ],
+      "process_heading": "Production Process",
+      "process_steps": [
+        { "title": "Design & Dieline", "desc": "Share your artwork or work with our pre-press team to optimise your design for offset production. We supply structural dielines for all formats." },
+        { "title": "Material Selection", "desc": "We advise on substrate weight, flute grade, and laminate finish based on your product weight, retail environment, and budget." },
+        { "title": "Pre-Production Sample", "desc": "A hand-assembled sample is produced for approval before press. Critical for verifying colour, finish, and structural fit to your product." },
+        { "title": "Production & QC", "desc": "Production runs with inline colour control. Every pallet is inspected for print consistency and structural integrity before dispatch." }
+      ],
+      "use_cases_heading": "Common Applications",
+      "use_cases": [
+        "Luxury gift boxes for fragrance, skincare, and makeup collections",
+        "Counter display units for retail chains and pharmacies",
+        "E-commerce gift sets with protective inner packaging",
+        "Private-label cosmetics outer cases with custom branding",
+        "Subscription beauty box outers and inners"
+      ],
+      "faq_heading": "Cosmetics Packaging — Common Questions",
+      "faq": [
+        {
+          "q": "Can you match Pantone colours for cosmetics packaging?",
+          "a": "Yes. Our offset presses support Pantone colour matching. We produce a press proof for colour-critical cosmetics orders before committing to the full production run."
+        },
+        {
+          "q": "What finish options are available for luxury cosmetics boxes?",
+          "a": "We offer matte lamination, gloss lamination, silver foil, and gold foil — all applied in-house after offset printing. Embossing and spot UV are available on selected formats."
+        },
+        {
+          "q": "What is the minimum order for cosmetics packaging?",
+          "a": "Minimums start at 500 units for folding cartons. For rigid gift boxes with covering, minimums are typically 300–500 units depending on the format."
+        }
+      ],
+      "case_study_index": 0,
+      "cta_label": "Request Cosmetics Packaging Samples",
+      "related_product_slugs": ["cosmetics-packaging", "pos-displays"],
+      "related_industry_slugs": ["food-packaging", "retail-pos-displays"]
+    },
+    "wine_spirits_packaging": {
+      "meta_title": "Wine & Spirits Packaging Manufacturer Bulgaria — Skat Print",
+      "meta_description": "Custom Bag-in-Box, wine carriers, gift boxes and shelf displays for wineries and spirits producers. Premium corrugated packaging. B2B manufacturer since 1995.",
+      "hero_headline": "Packaging for Wineries and Spirits Producers That Works at Shelf and in Transit",
+      "hero_subheadline": "Bag-in-Box packaging, corrugated wine carriers, gift boxes, and POS displays for wine producers, distilleries, and importers across Europe.",
+      "intro": "Wine and spirits packaging has two separate jobs: protect the product through transit and communicate the brand at shelf. These demands rarely align without a manufacturer who understands both. We produce Bag-in-Box packaging, corrugated wine carriers, luxury gift boxes, and POS shelf displays for wineries, distilleries, and importers — from boutique labels with 2,000-unit runs to volume producers shipping across the EU. Our offset printing reaches six colours with gold and silver foil lamination, which is what premium alcohol brands need.",
+      "capabilities_heading": "What We Produce for the Alcohol Sector",
+      "capabilities": [
+        "Bag-in-Box outer packaging in 2L, 3L, 5L, and 10L formats",
+        "Corrugated wine carriers (single, double, six-bottle, and twelve-bottle)",
+        "Luxury gift boxes with gold and silver foil lamination",
+        "Shelf display units and floor stands for retail wine aisles",
+        "Transit cases with divider inserts for bottle protection",
+        "Custom-shaped corrugated display trays for premium spirits"
+      ],
+      "process_heading": "How We Work with Alcohol Brands",
+      "process_steps": [
+        { "title": "Format Consultation", "desc": "We review your bottle dimensions, transit requirements, and retail shelf format before specifying the structural design." },
+        { "title": "Structural Prototyping", "desc": "For gift boxes and display units, a structural prototype is produced and tested for bottle fit, stacking strength, and opening experience." },
+        { "title": "Print & Finish Approval", "desc": "A press proof is produced for premium finishes (foil, gloss, emboss). You approve colour and finish before full production." },
+        { "title": "Production & Batching", "desc": "Production is batched to your vintage schedule or retail campaign calendar. We accommodate seasonal volume spikes." }
+      ],
+      "use_cases_heading": "Common Applications",
+      "use_cases": [
+        "Bag-in-Box outer packaging for bulk wine and juice producers",
+        "Six-bottle corrugated carriers for wine exporters and importers",
+        "Gift sets for premium spirits and cognac brands for holiday retail",
+        "Shelf display trays for wine bottles in supermarket wine aisles",
+        "Promotional POS displays for spirits launch campaigns"
+      ],
+      "faq_heading": "Wine & Spirits Packaging — Common Questions",
+      "faq": [
+        {
+          "q": "Do you produce Bag-in-Box packaging for wine?",
+          "a": "Yes. We produce the outer corrugated packaging for Bag-in-Box formats including 2L, 3L, 5L, and 10L. The outer can be plain or custom offset-printed with up to six colours."
+        },
+        {
+          "q": "Can you produce wine packaging for small wineries with low MOQs?",
+          "a": "Yes. We work with boutique wineries from 2,000-unit runs. Minimum quantities depend on the format — carriers and gift boxes typically start from 500–1,000 units."
+        },
+        {
+          "q": "What print and finish options are available for luxury spirits packaging?",
+          "a": "Our offset presses produce up to six colours. We apply gold foil, silver foil, matte, and gloss lamination in-house, giving spirits brands the premium surface quality the category demands."
+        }
+      ],
+      "case_study_index": 0,
+      "cta_label": "Request Wine & Spirits Packaging Samples",
+      "related_product_slugs": ["alcohol-packaging", "pos-displays"],
+      "related_industry_slugs": ["food-packaging", "retail-pos-displays"]
+    },
+    "retail_pos_displays": {
+      "meta_title": "POS Display Manufacturer Bulgaria — Skat Print",
+      "meta_description": "Custom corrugated POS displays, floor stands, counter units and shelf talkers for retail chains and brand owners. B2B manufacturer since 1995. Ships across EU.",
+      "hero_headline": "POS Displays That Turn Retail Space Into Sales",
+      "hero_subheadline": "Corrugated floor stands, counter displays, pallet skirts, and shelf talkers for retail chains and brand owners — from 10 stores to 10,000.",
+      "intro": "Point-of-sale displays are among the highest-ROI packaging investments a retail brand can make. A well-executed floor stand can outsell the adjacent shelf position by 2–4× in the first week. We design and produce corrugated floor displays, counter units, pallet skirts, PDQ trays, and shelf talkers for retail chains, FMCG brand owners, and distributors across Europe. Our in-house die-cutting and offset printing means we can produce structural prototypes quickly and scale to full campaign volumes without outsourcing.",
+      "capabilities_heading": "What We Produce for Retail",
+      "capabilities": [
+        "Full corrugated floor displays and dump bins for campaign placements",
+        "Counter PDQ trays with offset-printed header cards",
+        "Pallet skirts and pallet displays for entry and end-aisle positions",
+        "Shelf talkers and printed shelf strips",
+        "Pre-filled display units delivered store-ready",
+        "Multi-SKU display systems with modular shelving inserts"
+      ],
+      "process_heading": "From Brief to Store Floor",
+      "process_steps": [
+        { "title": "Retail Brief", "desc": "Share your retail chain specifications, floor placement zone, product weight per unit, and campaign timeline. We review structural requirements." },
+        { "title": "Structural Design", "desc": "Our team produces a structural dieline optimised for your product load, shipping flat-pack efficiency, and in-store assembly time." },
+        { "title": "Prototype & Load Test", "desc": "A physical prototype is produced and load-tested before sign-off. For chain roll-outs, we confirm compliance with retailer floor-placement guidelines." },
+        { "title": "Production & Store Delivery", "desc": "We batch and sort production by store configuration for multi-location campaigns. Flat-pack delivery with simple pop-up assembly for store staff." }
+      ],
+      "use_cases_heading": "Common Applications",
+      "use_cases": [
+        "Seasonal campaign floor displays for FMCG brands in supermarket chains",
+        "Launch displays for new product introductions in retail and pharmacy",
+        "Pallet displays for warehouse clubs and cash-and-carry outlets",
+        "Counter PDQ units for confectionery, health, and beauty brands",
+        "Multi-store roll-outs with pre-sorted pallet configurations by location"
+      ],
+      "faq_heading": "POS Displays — Common Questions",
+      "faq": [
+        {
+          "q": "Can you produce displays compliant with specific retail chain floor guidelines?",
+          "a": "Yes. We work to retailer floor placement specifications including load requirements, dimension constraints, and base pad configurations. Share the chain's supplier guidelines and we'll design to compliance."
+        },
+        {
+          "q": "What is the minimum order quantity for POS displays?",
+          "a": "Minimum orders start at 50 units for floor displays and 100 units for counter PDQ trays. For multi-store roll-outs, we can produce and sort by store from 200 units upward."
+        },
+        {
+          "q": "Do you deliver POS displays pre-assembled or flat-pack?",
+          "a": "We deliver flat-pack for efficient transport and in-store assembly. All displays are designed for fast pop-up assembly by store staff, typically under 5 minutes per unit."
+        }
+      ],
+      "case_study_index": 2,
+      "cta_label": "Request POS Display Samples",
+      "related_product_slugs": ["pos-displays", "custom-packaging"],
+      "related_industry_slugs": ["food-packaging", "cosmetics-packaging"]
+    }
   }
 }
