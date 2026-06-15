@@ -51,8 +51,35 @@ export default async function ProductCategoryPage({
 
   const detail = t.product_detail[category as CategorySlug]
 
+  const baseUrl = 'https://skatprint.bg'
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: lang === 'bg' ? 'Начало' : 'Home', item: `${baseUrl}/${lang}` },
+          { '@type': 'ListItem', position: 2, name: t.nav.products, item: `${baseUrl}/${lang}/products` },
+          { '@type': 'ListItem', position: 3, name: detail.heading, item: `${baseUrl}/${lang}/products/${category}` },
+        ],
+      },
+      {
+        '@type': 'Product',
+        name: detail.heading,
+        description: detail.intro,
+        brand: { '@type': 'Brand', name: 'Skat Print' },
+        manufacturer: { '@type': 'Organization', name: 'Skat Print', url: baseUrl },
+        url: `${baseUrl}/${lang}/products/${category}`,
+      },
+    ],
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
       <PageHero eyebrow={t.nav.products} heading={detail.heading} intro={detail.intro} />
 
       {/* Body */}

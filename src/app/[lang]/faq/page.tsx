@@ -37,8 +37,22 @@ export default async function FAQPage({
   const currentLang = (lang === 'bg' ? 'bg' : 'en') as Lang
   const s = t.faq.sidebar
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: t.faq.items.map((item: { question: string; answer: string }) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <PageHero eyebrow={t.nav.faq} heading={t.faq.heading} intro={t.faq.subtitle} />
 
       <section className="section-padding bg-[var(--color-bg-light)]">

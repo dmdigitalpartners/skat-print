@@ -100,8 +100,35 @@ export default async function IndustryPage({
     'custom-packaging': lang === 'bg' ? 'Персонализирани опаковки' : 'Custom Packaging',
   }
 
+  const baseUrl = 'https://skatprint.bg'
+  const industrySchema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: lang === 'bg' ? 'Начало' : 'Home', item: `${baseUrl}/${lang}` },
+          { '@type': 'ListItem', position: 2, name: ind.eyebrow, item: `${baseUrl}/${lang}/products` },
+          { '@type': 'ListItem', position: 3, name: data.hero_headline, item: `${baseUrl}/${lang}/industries/${industry}` },
+        ],
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: data.faq.map((item: { q: string; a: string }) => ({
+          '@type': 'Question',
+          name: item.q,
+          acceptedAnswer: { '@type': 'Answer', text: item.a },
+        })),
+      },
+    ],
+  }
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(industrySchema) }}
+      />
       {/* Hero */}
       <section className="bg-[var(--color-primary-dark)] text-white py-20 md:py-28">
         <div className="container-site max-w-3xl">

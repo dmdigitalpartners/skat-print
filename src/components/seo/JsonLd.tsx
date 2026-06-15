@@ -3,10 +3,14 @@ import type { Lang } from '@/lib/useTranslation'
 export default function JsonLd({ lang }: { lang: Lang }) {
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
+    '@type': ['LocalBusiness', 'Organization'],
     name: 'Skat Print',
     alternateName: 'Скат Принт',
     url: 'https://skatprint.bg',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://skatprint.bg/assets/logos/logo-en.png',
+    },
     description:
       lang === 'bg'
         ? 'Производство на гофрирани опаковки, POS дисплеи и решения за печат от 1995 г. с. Труд, Пловдив.'
@@ -28,8 +32,14 @@ export default function JsonLd({ lang }: { lang: Lang }) {
       },
     ],
     telephone: ['+359888351553', '+359887461028'],
-    email: 'office@skatoil.com',
+    email: 'office@skatoil.com', // intentional fallback — parent company (Skat Oil)
     priceRange: '$$',
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'sales',
+      telephone: '+359888351553',
+      availableLanguage: ['English', 'Bulgarian'],
+    },
   }
 
   return (
