@@ -34,13 +34,7 @@ export default function ProductsCatalog({ t, lang, hideHeader }: Props) {
             <ScrollReveal
               key={product.slug}
               delay={idx * 0.08}
-              className={
-                // Desktop: top 3 = 2-col each (3-up), bottom 2 = 3-col each (2-up)
-                // Mobile: top 4 = 1-col each (2-up grid), last card = full-width to avoid orphan
-                idx < 4
-                  ? 'col-span-1 md:col-span-2'
-                  : 'col-span-2 md:col-span-3'
-              }
+              className="col-span-1 md:col-span-2"
             >
               <Link
                 href={`/${lang}/products/${product.slug}`}
@@ -87,13 +81,12 @@ export default function ProductsCatalog({ t, lang, hideHeader }: Props) {
         </div>
 
         {/* Section footer CTA */}
-        <div className="mt-8 md:mt-10 text-right">
+        <div className="mt-8 md:mt-10">
           <Link
             href={`/${lang}/portfolio`}
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors duration-200"
+            className="inline-flex items-center text-base font-semibold text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors duration-200"
           >
             {t.products_section.view_portfolio}
-            <span aria-hidden>→</span>
           </Link>
         </div>
       </div>

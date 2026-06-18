@@ -80,7 +80,7 @@ export default function Differentiators({ t, sectionStyle }: { t: Translation; s
           <p className="text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-6">
             {t.differentiators.certifications_heading}
           </p>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap md:flex-nowrap gap-3">
             {t.differentiators.certifications.map((cert) => (
               <div
                 key={cert.code}
