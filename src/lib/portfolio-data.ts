@@ -44,7 +44,6 @@ export const portfolioItems: PortfolioItem[] = [
   { src: '/assets/portfolio/alcohol-packaging/alkohol-paket-4.jpg', alt: 'Luxury wine packaging', altBg: 'Луксозна кутия за вино', category: 'alcohol-packaging' },
   { src: '/assets/portfolio/alcohol-packaging/alkohol-paket-5.jpg', alt: 'Corrugated alcohol packaging', altBg: 'Гофрирана опаковка за алкохол', category: 'alcohol-packaging' },
   { src: '/assets/portfolio/alcohol-packaging/alkohol-paket-6.jpg', alt: 'Premium spirits box', altBg: 'Премиум кутия за спиртни', category: 'alcohol-packaging' },
-  { src: '/assets/portfolio/alcohol-packaging/alkohol-paket-7.jpg', alt: 'Alcohol packaging box', altBg: 'Опаковка за алкохол', category: 'alcohol-packaging' },
 
   // Cosmetics (6)
   { src: '/assets/portfolio/cosmetics-packaging/kozmetika-opakovki-1.jpg', alt: 'Cosmetics packaging box', altBg: 'Козметична опаковка', category: 'cosmetics-packaging' },

@@ -48,20 +48,19 @@ export default function CTABanner({ t, lang }: Props) {
         <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-[1.05] mb-5">
           {t.cta_banner.heading}
         </h2>
-        <p className="text-white/70 text-lg md:text-xl mb-4 leading-relaxed max-w-xl mx-auto">
+        <p className={`text-white/70 text-lg md:text-xl mb-4 leading-relaxed mx-auto ${lang === 'bg' ? 'max-w-2xl' : 'max-w-xl'}`}>
           {t.cta_banner.subheading}
         </p>
         <p className="text-white/45 text-sm mb-10">
           {t.cta_banner.response_time}
         </p>
-        <div className="flex flex-col sm:flex-row items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href={`/${lang}/contact`}
             onClick={() => trackEvent({ name: 'cta_click', section: 'cta_banner', label: t.cta_banner.button })}
             className="inline-flex items-center justify-center min-h-[52px] px-10 py-3.5 rounded-[var(--radius-md)] bg-[var(--color-accent)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-[background-color,box-shadow] duration-200 shadow-[var(--shadow-accent)] hover:shadow-[0_6px_32px_rgba(10,153,222,0.45)]"
           >
             {t.cta_banner.button}
-            <span className="ml-2" aria-hidden>→</span>
           </Link>
           <Link
             href={`/${lang}/samples`}
