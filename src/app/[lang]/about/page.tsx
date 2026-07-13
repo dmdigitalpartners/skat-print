@@ -41,7 +41,7 @@ export default async function AboutPage({
       {/* Stats Strip — dark surface, continuous with hero */}
       <div style={{ backgroundColor: 'var(--color-bg-dark-surface)' }} className="py-14 md:py-16 border-t border-[var(--color-border-dark)]">
         <div className="container-site">
-          <div className="grid grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 gap-4 md:gap-6 max-w-md mx-auto">
             {/* Years */}
             <div className="flex flex-col items-center justify-end text-center">
               <div className="font-display font-bold text-3xl md:text-5xl text-[var(--color-accent)] leading-none mb-2">
@@ -52,28 +52,8 @@ export default async function AboutPage({
               </p>
             </div>
 
-            {/* Orders */}
+            {/* Lead Time */}
             <div className="flex flex-col items-center justify-end text-center">
-              <div className="font-display font-bold text-3xl md:text-5xl text-[var(--color-accent)] leading-none mb-2">
-                <CountUp to={s.projects} suffix={s.projects_suffix} />
-              </div>
-              <p className="text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-text-muted-dark)]">
-                {s.projects_label}
-              </p>
-            </div>
-
-            {/* Team */}
-            <div className="flex flex-col items-center justify-end text-center">
-              <div className="font-display font-bold text-3xl md:text-5xl text-[var(--color-accent)] leading-none mb-2">
-                <CountUp to={s.team} suffix={s.team_suffix} />
-              </div>
-              <p className="text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-text-muted-dark)]">
-                {s.team_label}
-              </p>
-            </div>
-
-            {/* Lead Time — hidden on mobile */}
-            <div className="hidden md:flex flex-col items-center justify-end text-center">
               <div className="font-display font-bold text-3xl md:text-5xl text-[var(--color-accent)] leading-none mb-2">
                 {s.leadtime_display}
               </div>

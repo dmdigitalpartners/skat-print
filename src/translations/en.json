@@ -52,9 +52,6 @@
     "stat_categories_suffix": "",
     "stat_categories_label": "Product Categories",
     "stat_categories_label_mobile": "Products",
-    "stat_clients_number": "100",
-    "stat_clients_suffix": "+",
-    "stat_clients_label": "Active Clients",
     "client_sentence": "Trusted by brands including Coca-Cola, LIDL, Johnnie Walker, Stella Artois, Finlandia, and Jack Daniel's."
   },
   "services_section": {
@@ -298,7 +295,7 @@
       "designer": "designer@skatoil.com",
       "marketing": "marketing@skatoil.com"
     },
-    "copyright": "© Skat Oil Ltd. 2009–2026. All rights reserved.",
+    "copyright": "© Skat Oil EOOD 2009–2026. All rights reserved.",
     "company_title": "Company",
     "founded": "Est. 1995",
     "links": {
@@ -308,9 +305,9 @@
     "legal_entity": "Skat Oil EOOD",
     "region": "Plovdiv Region, Bulgaria",
     "eik_label": "EIK",
-    "eik": "825131194",
+    "eik": "100110",
     "vat_label": "VAT",
-    "vat": "BG825131194"
+    "vat": "BG100110"
   },
   "contact_page": {
     "heading": "Get in Touch",
@@ -329,7 +326,7 @@
         "name": "Production Base",
         "address": "8 Yordan Yovkov St, Hisarya",
         "phone": "+359 887 46 10 28",
-        "map_title": "Skat Oil, Hisarya Production Base"
+        "map_title": "Skat Print, Hisarya Production Base"
       }
     ],
     "form": {
@@ -367,7 +364,12 @@
       "submitting": "Sending...",
       "success_heading": "Request received.",
       "success_body": "We'll follow up within one business day.",
-      "error": "Something went wrong. Please call us directly at +359 888 35 15 53."
+      "error": "Something went wrong. Please call us directly at +359 888 35 15 53.",
+      "error_name": "Please enter your name (at least 2 characters).",
+      "error_company": "Please enter your company name.",
+      "error_product_type": "Please select a product type.",
+      "error_quantity": "Please enter an estimated quantity.",
+      "error_contact": "Please enter a phone number or email (at least 5 characters)."
     }
   },
   "services_page": {
@@ -383,7 +385,7 @@
     "story_short": "Founded in 1995 and family-owned ever since. We produce premium corrugated packaging that protects products, carries a brand, and earns shelf space — built on ecological responsibility and long-term partnerships.",
     "story_pullquote": "Premium corrugated packaging that protects products, carries a brand, and earns space on a retail shelf.",
     "story_brands_label": "Trusted by",
-    "story_brands": ["Coca-Cola", "Johnnie Walker", "LIDL", "Stella Artois", "Finlandia"],
+    "story_brands": ["Coca-Cola", "Johnnie Walker", "LIDL", "Stella Artois", "Finlandia", "Jack Daniel's"],
     "story_brands_more": "and many more",
     "capability_eyebrow": "What Integration Means For You",
     "capability_heading": "From Raw Board to Finished Packaging, All Under One Roof",
@@ -408,20 +410,13 @@
       { "year": "1995", "label": "Founded", "desc": "Family business established in the Plovdiv region" },
       { "year": "2000", "label": "First Export", "desc": "First international packaging clients across Europe" },
       { "year": "2010", "label": "Roland Press", "desc": "Investment in Roland 52×74cm offset press" },
-      { "year": "2015", "label": "Vertical Integration", "desc": "In-house corrugated board production line added" },
-      { "year": "2021", "label": "29% Growth", "desc": "Revenue reaches €1.87M, our strongest year on record" }
+      { "year": "2015", "label": "Vertical Integration", "desc": "In-house corrugated board production line added" }
     ]
   },
   "about_stats": {
     "years": 30,
     "years_suffix": "+",
     "years_label": "Years in Business",
-    "projects": 3500,
-    "projects_suffix": "+",
-    "projects_label": "Orders Delivered",
-    "team": 37,
-    "team_suffix": "",
-    "team_label": "Production Specialists",
     "leadtime_label": "Day Lead Time",
     "leadtime_display": "10–15"
   },
@@ -476,7 +471,7 @@
     "pos-displays": {
       "heading": "POS Displays & Shelving",
       "intro": "Corrugated retail displays, stands, and stoppers, built to your campaign spec and delivered ready to deploy.",
-      "body": "Retail displays from Skat Print are designed around one goal: getting your product in front of buyers without taking existing shelf space from the retailer. Our corrugated stands and stoppers are the silent sellers of your brand, branded exactly to your campaign, engineered to carry the product weight, and produced with the same offset print quality we apply to luxury packaging.\n\nWe produce shelving, display stands, advertising poles, and shelf stoppers from laminated corrugated cardboard. Every unit is custom-designed to your brand identity and advertising campaign specification.",
+      "body": "Retail displays from Skat Print are designed around one goal: getting your product in front of buyers without taking existing shelf space from the retailer. Our corrugated stands and stoppers are the silent sellers of your brand, branded exactly to your campaign, engineered to carry the product weight, and produced with the same offset print quality we apply to all our packaging.\n\nWe produce shelving, display stands, advertising poles, and shelf stoppers from laminated corrugated cardboard. Every unit is custom-designed to your brand identity and delivered ready to deploy.",
       "specs": [
         "Materials: corrugated and laminated cardboard",
         "Custom dimensions, shapes, and branding",
@@ -533,6 +528,11 @@
         "Short-run and custom-specification orders accepted"
       ]
     }
+  },
+  "not_found": {
+    "heading": "Page not found",
+    "body": "The page you're looking for doesn't exist or has been moved.",
+    "cta": "← Back to Home"
   },
   "chatbot": {
     "aria_open": "Open chat",

@@ -15,11 +15,11 @@ export interface PortfolioItem {
 export const portfolioItems: PortfolioItem[] = [
   // POS Displays (11)
   { src: '/assets/portfolio/pos-displays/stelaji-1.jpg', alt: 'POS display stand', altBg: 'POS дисплей щанд', category: 'pos-displays' },
-  { src: '/assets/portfolio/pos-displays/stelaji-2.jpg', alt: 'Corrugated shelving unit', altBg: 'Гофриран стелаж', category: 'pos-displays' },
+  { src: '/assets/portfolio/pos-displays/stelaji-2.jpg', alt: 'Corrugated shelving unit', altBg: 'Стелаж от велпапе', category: 'pos-displays' },
   { src: '/assets/portfolio/pos-displays/stelaji-3.jpg', alt: 'Retail display stand', altBg: 'Търговски дисплей', category: 'pos-displays' },
   { src: '/assets/portfolio/pos-displays/stelaji-4.jpg', alt: 'Custom POS display', altBg: 'POS дисплей по поръчка', category: 'pos-displays' },
   { src: '/assets/portfolio/pos-displays/stelaji-5.jpg', alt: 'Branded shelf display', altBg: 'Брандиран рафтов дисплей', category: 'pos-displays' },
-  { src: '/assets/portfolio/pos-displays/stelaji-6.jpg', alt: 'Corrugated display stand', altBg: 'Гофриран дисплей щанд', category: 'pos-displays' },
+  { src: '/assets/portfolio/pos-displays/stelaji-6.jpg', alt: 'Corrugated display stand', altBg: 'Дисплей щанд от велпапе', category: 'pos-displays' },
   { src: '/assets/portfolio/pos-displays/stelaji-7.jpg', alt: 'Retail shelving display', altBg: 'Търговски стелаж дисплей', category: 'pos-displays' },
   { src: '/assets/portfolio/pos-displays/stelaji-8.jpg', alt: 'POS display unit', altBg: 'POS дисплей единица', category: 'pos-displays' },
   { src: '/assets/portfolio/pos-displays/pos-display-9.jpg', alt: 'POS rack and stopper display', altBg: 'POS стелаж и стопер', category: 'pos-displays' },
@@ -34,7 +34,7 @@ export const portfolioItems: PortfolioItem[] = [
   { src: '/assets/portfolio/food-packaging/hrani-opakovki-7.jpg', alt: 'Dairy product display tray', altBg: 'Дисплей тава за млечни продукти', category: 'food-packaging' },
   { src: '/assets/portfolio/food-packaging/hrani-opakovki-8.jpg', alt: 'Butter master carton', altBg: 'Транспортна кутия за масло', category: 'food-packaging' },
   { src: '/assets/portfolio/food-packaging/hrani-opakovki-9.jpg', alt: 'Pastry packaging box', altBg: 'Кутия за сладкиши', category: 'food-packaging' },
-  { src: '/assets/portfolio/food-packaging/hrani-opakovki-10.jpg', alt: 'Corrugated fruit tray', altBg: 'Гофрирана тава за плодове', category: 'food-packaging' },
+  { src: '/assets/portfolio/food-packaging/hrani-opakovki-10.jpg', alt: 'Corrugated fruit tray', altBg: 'Тава от велпапе за плодове', category: 'food-packaging' },
 
   // Alcohol Packaging (8)
   { src: '/assets/portfolio/food-packaging/hrani-opakovki-12.jpg', alt: 'Craft beer box', altBg: 'Кутия за крафт бира', category: 'alcohol-packaging' },
@@ -42,7 +42,7 @@ export const portfolioItems: PortfolioItem[] = [
   { src: '/assets/portfolio/alcohol-packaging/alkohol-paket-2.jpg', alt: 'Spirits packaging', altBg: 'Опаковка за спиртни напитки', category: 'alcohol-packaging' },
   { src: '/assets/portfolio/alcohol-packaging/alkohol-paket-3.jpg', alt: 'Bag-in-Box packaging', altBg: 'Bag-in-Box опаковка', category: 'alcohol-packaging' },
   { src: '/assets/portfolio/alcohol-packaging/alkohol-paket-4.jpg', alt: 'Luxury wine packaging', altBg: 'Луксозна кутия за вино', category: 'alcohol-packaging' },
-  { src: '/assets/portfolio/alcohol-packaging/alkohol-paket-5.jpg', alt: 'Corrugated alcohol packaging', altBg: 'Гофрирана опаковка за алкохол', category: 'alcohol-packaging' },
+  { src: '/assets/portfolio/alcohol-packaging/alkohol-paket-5.jpg', alt: 'Corrugated alcohol packaging', altBg: 'Опаковка от велпапе за алкохол', category: 'alcohol-packaging' },
   { src: '/assets/portfolio/alcohol-packaging/alkohol-paket-6.jpg', alt: 'Premium spirits box', altBg: 'Премиум кутия за спиртни', category: 'alcohol-packaging' },
   { src: '/assets/portfolio/alcohol-packaging/alkohol-paket-7.jpg', alt: 'Alcohol packaging box', altBg: 'Опаковка за алкохол', category: 'alcohol-packaging' },
 

@@ -126,8 +126,8 @@ const PAGE_WELCOMES: Record<string, { en: string; bg: string }> = {
     bg: 'Страхотна страница! Нещо привлича вниманието ви? Мога да ви кажа повече или да ви помогна да стартирате собствен проект.',
   },
   home: {
-    en: "Hi there! Welcome to SKAT Print. We make custom packaging for food, cosmetics, retail, and beverage brands across Europe. What can I help you with today?",
-    bg: 'Здравейте! Добре дошли в SKAT Print. Произвеждаме персонализирани опаковки за хранителни, козметични, търговски и алкохолни марки в цяла Европа. Как мога да ви помогна днес?',
+    en: "Hi there! Welcome to Skat Print. We make custom packaging for food, cosmetics, retail, and beverage brands across Europe. What can I help you with today?",
+    bg: 'Здравейте! Добре дошли в Скат Принт. Произвеждаме персонализирани опаковки за хранителни, козметични, търговски и алкохолни марки в цяла Европа. Как мога да ви помогна днес?',
   },
   fallback: {
     en: "Hi! I'm your packaging assistant — here to help with questions about pricing, products, or working with us. What are you looking for?",
@@ -161,9 +161,9 @@ const INTENTS: Intent[] = [
       'добър ден', 'добър вечер', 'добро утро', 'помощ',
     ],
     response_en:
-      'Hello! Welcome to SKAT Print. We produce custom packaging for food, cosmetics, retail, and beverage brands. What can I help you with?',
+      'Hello! Welcome to Skat Print. We produce custom packaging for food, cosmetics, retail, and beverage brands. What can I help you with?',
     response_bg:
-      'Здравейте! Добре дошли в SKAT Print. Произвеждаме персонализирани опаковки за хранителни, козметични, търговски и алкохолни марки. Как мога да ви помогна?',
+      'Здравейте! Добре дошли в Скат Принт. Произвеждаме персонализирани опаковки за хранителни, козметични, търговски и алкохолни марки. Как мога да ви помогна?',
     followUps_en: DEFAULT_CHIPS_EN,
     followUps_bg: DEFAULT_CHIPS_BG,
   },
@@ -192,9 +192,9 @@ const INTENTS: Intent[] = [
       'поне колко', 'най-малко колко', 'минимален тираж',
     ],
     response_en:
-      "Our minimum order depends on the product type. For standard folding boxes, it's usually around 500 to 1,000 pieces. For corrugated boxes and display units, minimums vary by spec. Tell me what you're looking for and I can give you a more precise answer.",
+      "Our minimum order depends on the product type. For standard boxes and packaging, we typically work from 500 units upward. For custom or specialty packaging and display units, minimums vary by spec. Tell me what you're looking for and I can give you a more precise answer.",
     response_bg:
-      'Минималната поръчка зависи от вида продукт. За стандартни сгъваеми кутии минимумът е обикновено около 500 до 1 000 броя. За гофрирани кутии и дисплеи минимумите варират. Кажете ми какво търсите и ще ви дам по-точен отговор.',
+      'Минималната поръчка зависи от вида продукт. За стандартни кутии и опаковки обикновено работим от 500 броя нагоре. За нестандартни или специализирани опаковки и дисплеи минимумите варират. Кажете ми какво търсите и ще ви дам по-точен отговор.',
     followUps_en: ['Get a quick price estimate', 'See our work', 'How fast is production?', 'Contact us'],
     followUps_bg: ['Бърза оценка на цената', 'Вижте нашата работа', 'Колко бързо е производството?', 'Контакти'],
   },
@@ -208,9 +208,9 @@ const INTENTS: Intent[] = [
       'доставяте ли до нас',
     ],
     response_en:
-      'Yes! We ship across Bulgaria and export to EU countries and beyond. Costs and lead times vary by destination. Our team can include an exact shipping estimate with your production quote — just reach out.',
+      'Yes! We supply clients across Bulgaria and Europe. Costs and lead times vary by destination. Our team can include an exact shipping estimate with your production quote — just reach out.',
     response_bg:
-      'Да! Доставяме из цяла България и изнасяме за страни от ЕС и извън тях. Разходите варират според дестинацията. Нашият екип може да включи точна оценка за доставката към офертата ви — просто се свържете с нас.',
+      'Да! Доставяме продукти на клиенти из цяла България и Европа. Разходите варират според дестинацията. Нашият екип може да включи точна оценка за доставката към офертата ви — просто се свържете с нас.',
     followUps_en: ['Get a quick price estimate', 'How fast is production?', 'Contact us', 'About us'],
     followUps_bg: ['Бърза оценка на цената', 'Колко бързо е производството?', 'Контакти', 'За нас'],
   },
@@ -224,7 +224,7 @@ const INTENTS: Intent[] = [
     response_en:
       'We offer a full production suite: offset printing, corrugated board manufacturing, laminating and finishing, die cutting, and coating. Every service is tailored to your packaging needs — nothing off the shelf.',
     response_bg:
-      'Предлагаме пълен набор от производствени услуги: офсетов печат, гофрирана хартия, ламиниране и довършителни работи, щанцоване и лакиране. Всяка услуга е съобразена с вашите нужди — нищо стандартно.',
+      'Предлагаме пълен набор от производствени услуги: офсетов печат, производство на велпапе, ламиниране и довършителни работи, щанцоване и каширане. Всяка услуга е съобразена с вашите нужди — нищо стандартно.',
     followUps_en: ["What's the minimum order?", 'Get a quick price estimate', 'How fast is production?', 'See our work'],
     followUps_bg: ['Минимална поръчка?', 'Бърза оценка на цената', 'Колко бързо е производството?', 'Вижте нашата работа'],
   },
@@ -251,9 +251,9 @@ const INTENTS: Intent[] = [
       'как да се свържа с вас', 'искам да говоря',
     ],
     response_en:
-      "You can reach us by email at office@skat-print.com or through our contact form. We're available Monday to Friday, 9am – 6pm Sofia time. Happy to help!",
+      "You can reach us by email at office@skatoil.com or through our contact form — we'll follow up within one business day. Happy to help!",
     response_bg:
-      'Можете да се свържете с нас по имейл на office@skat-print.com или чрез формата за контакт. Работим от понеделник до петък, от 9 до 18 часа. С удоволствие ще помогнем!',
+      'Можете да се свържете с нас по имейл на office@skatoil.com или чрез формата за контакт — ще се свържем с вас в рамките на един работен ден. С удоволствие ще помогнем!',
     followUps_en: ['Request a callback', 'Get a quick price estimate', 'How fast is production?'],
     followUps_bg: ['Заявете обратно обаждане', 'Бърза оценка на цената', 'Колко бързо е производството?'],
   },
@@ -277,9 +277,9 @@ const INTENTS: Intent[] = [
       'за нас', 'кои сте', 'фирмата', 'история', 'основана',
     ],
     response_en:
-      'SKAT Print has been producing custom packaging in Bulgaria since 1995 — over 30 years of experience. We work with B2B clients across Europe, specializing in premium print and packaging for food, cosmetics, retail, and beverage brands.',
+      'Skat Print has been producing custom packaging in Bulgaria since 1995 — over 30 years of experience. We work with B2B clients across Europe, specializing in premium print and packaging for food, cosmetics, retail, and beverage brands.',
     response_bg:
-      'SKAT Print произвежда персонализирани опаковки в България от 1995 година — над 30 години опит. Работим с B2B клиенти в цяла Европа, специализирайки се в висококачествен печат и опаковки.',
+      'Скат Принт произвежда персонализирани опаковки в България от 1995 година — над 30 години опит. Работим с B2B клиенти в цяла Европа, специализирайки се в висококачествен печат и опаковки.',
     followUps_en: ['See our work', 'Our services', 'Get a quick price estimate', 'Contact us'],
     followUps_bg: ['Вижте нашата работа', 'Нашите услуги', 'Бърза оценка на цената', 'Контакти'],
   },
@@ -318,9 +318,9 @@ const INTENTS: Intent[] = [
       'материали', 'хартия', 'картон', 'качество', 'сертификат', 'покритие', 'ламинат',
     ],
     response_en:
-      'We use premium coated and uncoated papers, corrugated cardboard, and specialty substrates. All production meets EU packaging standards. Not sure what material suits your product? We can advise on the best fit for your type and budget.',
+      'We use premium coated and uncoated papers, corrugated board (velpape), and specialty substrates — all 100% recyclable and produced under strict in-house quality control. Not sure what material suits your product? We can advise on the best fit for your type and budget.',
     response_bg:
-      'Използваме висококачествени покрити и непокрити хартии, гофриран картон и специални субстрати. Производството отговаря на европейските стандарти. Не знаете кой материал подхожда? Ще ви посъветваме за най-доброто решение.',
+      'Използваме висококачествени покрити и непокрити хартии, велпапе и специални субстрати — всички 100% рециклируеми и произведени под строг вътрешен контрол на качеството. Не знаете кой материал подхожда? Ще ви посъветваме за най-доброто решение.',
     followUps_en: ['Get a quick price estimate', 'Our services', 'Contact us'],
     followUps_bg: ['Бърза оценка на цената', 'Нашите услуги', 'Контакти'],
   },
@@ -340,7 +340,7 @@ const INTENTS: Intent[] = [
   {
     id: 'location',
     triggers: [
-      'location', 'address', 'where are you', 'stara zagora', 'trud', 'plovdiv', 'hisarya',
+      'location', 'address', 'where are you', 'trud', 'plovdiv', 'hisarya',
       'местоположение', 'адрес', 'където се намирате', 'хисаря', 'труд', 'пловдив',
     ],
     response_en:
@@ -589,8 +589,8 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
     const step1Q = lang === 'bg' ? 'Какъв вид опаковки търсите?' : "What type of packaging are you looking for?"
     const step1Chips =
       lang === 'bg'
-        ? ['Хранителни & Напитки', 'Козметика', 'Търговски & POS', 'Алкохол', 'Друго']
-        : ['Food & Beverage', 'Cosmetics', 'Retail & POS', 'Alcohol', 'Other']
+        ? ['POS дисплеи и щендери', 'Опаковки за храни', 'Вино и спиртни напитки', 'Козметика и парфюмерия', 'Нестандартни и подаръчни']
+        : ['POS Displays & Shelving', 'Food Packaging', 'Wine & Spirits Packaging', 'Cosmetics & Perfumery', 'Custom & Gift Packaging']
 
     injectBot(transition, [], undefined, 600)
     injectBotAfter(600 + calcTypingDelay(step1Q) + 200, step1Q, step1Chips, 'qualify_product', onDone)
@@ -873,20 +873,20 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
               {mode === 'callback_success' && (
                 <div className="flex-shrink-0 border-t border-[var(--color-border)] px-4 py-3 flex flex-col gap-2 bg-white">
                   <a
-                    href="tel:+35942600500"
+                    href="tel:+359888351553"
                     className="flex items-center gap-2.5 text-sm text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors py-1"
                   >
                     <IconPhone cls="w-4 h-4 flex-shrink-0 text-[var(--color-accent)]" />
-                    +359 42 600 500
+                    +359 888 35 15 53
                   </a>
                   <a
-                    href="mailto:office@skat-print.com"
+                    href="mailto:office@skatoil.com"
                     className="flex items-center gap-2.5 text-sm text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors py-1"
                   >
                     <svg className="w-4 h-4 flex-shrink-0 text-[var(--color-accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                       <rect x="2" y="4" width="20" height="16" rx="2" /><polyline points="2,4 12,13 22,4" />
                     </svg>
-                    office@skat-print.com
+                    office@skatoil.com
                   </a>
                   <a
                     href={`/${lang}/contact`}
