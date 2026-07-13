@@ -8,16 +8,18 @@ import { motion, useReducedMotion } from 'framer-motion'
 import type { Translation } from '@/lib/useTranslation'
 import { trackEvent } from '@/lib/analytics'
 
-const schema = z.object({
-  name: z.string().min(2),
-  company: z.string().min(1),
-  product_type: z.string().min(1),
-  quantity: z.string().min(1),
-  message: z.string().optional(),
-  contact: z.string().min(5),
-})
+function buildSchema(f: Translation['contact_page']['form']) {
+  return z.object({
+    name: z.string().min(2, f.error_name),
+    company: z.string().min(1, f.error_company),
+    product_type: z.string().min(1, f.error_product_type),
+    quantity: z.string().min(1, f.error_quantity),
+    message: z.string().optional(),
+    contact: z.string().min(5, f.error_contact),
+  })
+}
 
-type FormData = z.infer<typeof schema>
+type FormData = z.infer<ReturnType<typeof buildSchema>>
 
 export default function ContactForm({ t }: { t: Translation }) {
   const reduced = useReducedMotion()
@@ -29,7 +31,7 @@ export default function ContactForm({ t }: { t: Translation }) {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormData>({ resolver: zodResolver(schema) })
+  } = useForm<FormData>({ resolver: zodResolver(buildSchema(f)) })
 
   const onSubmit = async (data: FormData) => {
     setStatus('submitting')

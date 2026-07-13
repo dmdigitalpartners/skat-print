@@ -44,13 +44,16 @@ export default function Timeline({ milestones, eyebrow, heading, sectionStyle }:
           <div
             className="absolute top-2 left-2 h-px"
             style={{
-              right: 'calc(20% - 1.75rem)',
+              right: `calc(${100 / milestones.length}% - 1.75rem)`,
               backgroundColor: 'var(--color-border)',
             }}
             aria-hidden
           />
 
-          <div className="grid grid-cols-5 gap-6 relative">
+          <div
+            className="grid gap-6 relative"
+            style={{ gridTemplateColumns: `repeat(${milestones.length}, minmax(0, 1fr))` }}
+          >
             {milestones.map((m, i) => (
               <motion.div
                 key={m.year}

@@ -13,7 +13,7 @@ export default function JsonLd({ lang }: { lang: Lang }) {
     },
     description:
       lang === 'bg'
-        ? 'Производство на гофрирани опаковки, POS дисплеи и решения за печат от 1995 г. с. Труд, Пловдив.'
+        ? 'Производство на опаковки от велпапе, POS дисплеи и решения за печат от 1995 г. с. Труд, Пловдив.'
         : 'Custom corrugated packaging, POS displays and print solutions since 1995. Village of Trud, Plovdiv.',
     foundingDate: '1995',
     address: [
@@ -27,13 +27,13 @@ export default function JsonLd({ lang }: { lang: Lang }) {
       {
         '@type': 'PostalAddress',
         addressLocality: 'Hisarya',
+        addressRegion: 'Plovdiv',
         addressCountry: 'BG',
         streetAddress: '8 Yordan Yovkov St',
       },
     ],
     telephone: ['+359888351553', '+359887461028'],
     email: 'office@skatoil.com', // intentional fallback — parent company (Skat Oil)
-    priceRange: '$$',
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'sales',

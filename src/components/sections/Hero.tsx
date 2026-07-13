@@ -126,18 +126,12 @@ export default function Hero({ t, lang }: Props) {
 
       {/* ── Mobile stats bar — in normal flow, always at bottom of section ── */}
       <div className="md:hidden relative z-10 border-t border-white/10 bg-black/70 backdrop-blur-md">
-        <div className="grid grid-cols-3 divide-x divide-white/10 py-3">
+        <div className="grid grid-cols-2 divide-x divide-white/10 py-3">
           <div className="flex flex-col items-center justify-center px-2">
             <div className="font-display font-bold text-[1.15rem] leading-none text-[var(--color-accent)]">
               <CountUp to={parseInt(t.trust.stat_years_number)} suffix={t.trust.stat_years_suffix} />
             </div>
             <div className="text-[11px] text-white/70 mt-1 font-condensed uppercase tracking-wider leading-none text-center">{t.trust.stat_years_label}</div>
-          </div>
-          <div className="flex flex-col items-center justify-center px-2">
-            <div className="font-display font-bold text-[1.15rem] leading-none text-[var(--color-accent)]">
-              <CountUp to={parseInt(t.trust.stat_clients_number)} suffix={t.trust.stat_clients_suffix} />
-            </div>
-            <div className="text-[11px] text-white/70 mt-1 font-condensed uppercase tracking-wider leading-none text-center">{t.trust.stat_clients_label}</div>
           </div>
           <div className="flex flex-col items-center justify-center px-2">
             <div className="font-display font-bold text-[1.15rem] leading-none text-[var(--color-accent)]">
@@ -207,12 +201,6 @@ export default function Hero({ t, lang }: Props) {
               <CountUp to={parseInt(t.trust.stat_years_number)} suffix={t.trust.stat_years_suffix} />
             </div>
             <div className="text-[11px] text-white/55 mt-0.5 font-condensed uppercase tracking-wide">{t.trust.stat_years_label}</div>
-          </div>
-          <div className="flex-1 text-center">
-            <div className="font-display font-bold text-3xl text-[var(--color-accent)]">
-              <CountUp to={parseInt(t.trust.stat_clients_number)} suffix={t.trust.stat_clients_suffix} />
-            </div>
-            <div className="text-[11px] text-white/55 mt-0.5 font-condensed uppercase tracking-wide">{t.trust.stat_clients_label}</div>
           </div>
           <div className="flex-1 text-center">
             <div className="font-display font-bold text-3xl text-[var(--color-accent)]">

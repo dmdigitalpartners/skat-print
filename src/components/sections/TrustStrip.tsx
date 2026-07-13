@@ -8,7 +8,6 @@ export default function TrustStrip({ t }: { t: Translation }) {
   const stats = [
     { number: parseInt(t.trust.stat_years_number), suffix: t.trust.stat_years_suffix, label: t.trust.stat_years_label },
     { number: parseInt(t.trust.stat_categories_number), suffix: t.trust.stat_categories_suffix, label: t.trust.stat_categories_label },
-    { number: parseInt(t.trust.stat_clients_number), suffix: t.trust.stat_clients_suffix, label: t.trust.stat_clients_label },
   ]
 
   return (
