@@ -9,7 +9,7 @@ export default function JsonLd({ lang }: { lang: Lang }) {
     url: 'https://skatprint.bg',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://skatprint.bg/assets/logos/logo-en.png',
+      url: 'https://skatprint.bg/assets/logos/logo-en-new.png',
     },
     description:
       lang === 'bg'
