@@ -32,7 +32,7 @@ export async function generateMetadata({
 const contentEn = [
   {
     heading: 'Data Controller',
-    body: 'Skat Print Ltd (EIK 115088421), Village of Trud, 4204, Plovdiv Province, Bulgaria. Email: office@skat-print.com',
+    body: 'Skat Print Ltd (EIK 100110), Village of Trud, 4204, Plovdiv Province, Bulgaria. Email: office@skat-print.com',
   },
   {
     heading: 'What Data We Collect',
@@ -63,7 +63,7 @@ const contentEn = [
 const contentBg = [
   {
     heading: 'Администратор на лични данни',
-    body: 'Скат Принт ЕООД (ЕИК 115088421), с. Труд, 4204, обл. Пловдив, България. Имейл: office@skat-print.com',
+    body: 'Скат Принт ЕООД (ЕИК 100110), с. Труд, 4204, обл. Пловдив, България. Имейл: office@skat-print.com',
   },
   {
     heading: 'Какви данни събираме',
