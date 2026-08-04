@@ -54,10 +54,15 @@
     "stat_categories_suffix": "",
     "stat_categories_label": "Продуктови категории",
     "stat_categories_label_mobile": "Продукта",
+    "stat_units_number": "1",
+    "stat_units_suffix": "M+",
+    "stat_units_label": "Опаковани единици",
     "client_sentence": "Доверени партньори на Coca-Cola, LIDL, Johnnie Walker, Stella Artois, Finlandia и Jack Daniel's."
   },
   "trusted_by": {
     "eyebrow": "Какво казват клиентите",
+    "heading": "Доверени от компании в цяла България",
+    "subheading": "Бизнесите избират Скат Принт заради надеждно производство, постоянно качество и дългосрочно партньорство.",
     "source_label": "в Google",
     "google_badge_suffix": "в Google",
     "items": [
@@ -373,7 +378,9 @@
     "vat_label": "ДДС №",
     "vat": "BG825131194",
     "social_linkedin": "https://uk.linkedin.com/company/skatprint",
-    "social_linkedin_label": "LinkedIn"
+    "social_linkedin_label": "LinkedIn",
+    "social_instagram": "https://www.instagram.com/skatprint_/",
+    "social_instagram_label": "Instagram"
   },
   "contact_page": {
     "heading": "Свържете се с нас",

@@ -5,7 +5,6 @@ import { motion, useReducedMotion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import CountUp from '@/components/ui/CountUp'
 import type { Translation } from '@/lib/useTranslation'
-import { getYearsSince } from '@/lib/constants'
 
 const stagger = {
   hidden: {},
@@ -26,7 +25,7 @@ export default function Hero({ t, lang }: Props) {
   const reduced = useReducedMotion()
 
   return (
-    <section className="relative flex flex-col overflow-hidden" style={{ height: '100dvh' }}>
+    <section className="relative flex flex-col overflow-hidden h-[calc(100dvh-64px)] md:h-[100dvh]">
       {/* Mobile background image */}
       <div className="absolute inset-0 md:hidden">
         <Image
@@ -126,19 +125,25 @@ export default function Hero({ t, lang }: Props) {
       </div>
 
       {/* ── Mobile stats bar — in normal flow, always at bottom of section ── */}
-      <div className="md:hidden relative z-10 border-t border-white/10 bg-black/70 backdrop-blur-md">
-        <div className="grid grid-cols-2 divide-x divide-white/10 py-3">
-          <div className="flex flex-col items-center justify-center px-2">
-            <div className="font-display font-bold text-[1.15rem] leading-none text-[var(--color-accent)]">
-              <CountUp to={getYearsSince()} suffix="" />
+      <div className="md:hidden relative z-10 border-t border-white/10 bg-black/70 backdrop-blur-md mb-[76px]">
+        <div className="grid grid-cols-3 divide-x divide-white/10 py-3">
+          <div className="flex flex-col items-center justify-center px-1.5">
+            <div className="font-display font-bold text-[1.05rem] leading-none text-[var(--color-accent)]">
+              <CountUp to={30} suffix="+" />
             </div>
-            <div className="text-[11px] text-white/70 mt-1 font-condensed uppercase tracking-wider leading-none text-center">{t.trust.stat_years_label}</div>
+            <div className="text-[10px] text-white/70 mt-1 font-condensed uppercase tracking-wider leading-tight text-center">{t.trust.stat_years_label}</div>
           </div>
-          <div className="flex flex-col items-center justify-center px-2">
-            <div className="font-display font-bold text-[1.15rem] leading-none text-[var(--color-accent)]">
+          <div className="flex flex-col items-center justify-center px-1.5">
+            <div className="font-display font-bold text-[1.05rem] leading-none text-[var(--color-accent)]">
               <CountUp to={parseInt(t.trust.stat_categories_number)} suffix={t.trust.stat_categories_suffix} />
             </div>
-            <div className="text-[11px] text-white/70 mt-1 font-condensed uppercase tracking-wider leading-none text-center">{t.trust.stat_categories_label_mobile}</div>
+            <div className="text-[10px] text-white/70 mt-1 font-condensed uppercase tracking-wider leading-tight text-center">{t.trust.stat_categories_label_mobile}</div>
+          </div>
+          <div className="flex flex-col items-center justify-center px-1.5">
+            <div className="font-display font-bold text-[1.05rem] leading-none text-[var(--color-accent)]">
+              <CountUp to={parseInt(t.trust.stat_units_number)} suffix={t.trust.stat_units_suffix} />
+            </div>
+            <div className="text-[10px] text-white/70 mt-1 font-condensed uppercase tracking-wider leading-tight text-center">{t.trust.stat_units_label}</div>
           </div>
         </div>
       </div>
@@ -199,7 +204,7 @@ export default function Hero({ t, lang }: Props) {
         <div className="container-site flex divide-x divide-white/15 py-5">
           <div className="flex-1 text-center">
             <div className="font-display font-bold text-3xl text-[var(--color-accent)]">
-              <CountUp to={getYearsSince()} suffix="" />
+              <CountUp to={30} suffix="+" />
             </div>
             <div className="text-[11px] text-white/55 mt-0.5 font-condensed uppercase tracking-wide">{t.trust.stat_years_label}</div>
           </div>
@@ -208,6 +213,12 @@ export default function Hero({ t, lang }: Props) {
               <CountUp to={parseInt(t.trust.stat_categories_number)} suffix={t.trust.stat_categories_suffix} />
             </div>
             <div className="text-[11px] text-white/55 mt-0.5 font-condensed uppercase tracking-wide">{t.trust.stat_categories_label}</div>
+          </div>
+          <div className="flex-1 text-center">
+            <div className="font-display font-bold text-3xl text-[var(--color-accent)]">
+              <CountUp to={parseInt(t.trust.stat_units_number)} suffix={t.trust.stat_units_suffix} />
+            </div>
+            <div className="text-[11px] text-white/55 mt-0.5 font-condensed uppercase tracking-wide">{t.trust.stat_units_label}</div>
           </div>
         </div>
       </div>

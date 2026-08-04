@@ -49,15 +49,20 @@
     "cta_secondary": "View Products"
   },
   "trust": {
-    "stat_years_label": "Years in Business",
+    "stat_years_label": "Years Experience",
     "stat_categories_number": "5",
     "stat_categories_suffix": "",
     "stat_categories_label": "Product Categories",
     "stat_categories_label_mobile": "Products",
+    "stat_units_number": "1",
+    "stat_units_suffix": "M+",
+    "stat_units_label": "Units Packaged",
     "client_sentence": "Trusted by brands including Coca-Cola, LIDL, Johnnie Walker, Stella Artois, Finlandia, and Jack Daniel's."
   },
   "trusted_by": {
     "eyebrow": "What Clients Say",
+    "heading": "Trusted by Businesses Across Bulgaria",
+    "subheading": "Businesses choose Skat Print for reliable production, consistent quality, and long-term partnerships.",
     "source_label": "via Google",
     "google_badge_suffix": "on Google",
     "items": [
@@ -373,7 +378,9 @@
     "vat_label": "VAT",
     "vat": "BG825131194",
     "social_linkedin": "https://uk.linkedin.com/company/skatprint",
-    "social_linkedin_label": "LinkedIn"
+    "social_linkedin_label": "LinkedIn",
+    "social_instagram": "https://www.instagram.com/skatprint_/",
+    "social_instagram_label": "Instagram"
   },
   "contact_page": {
     "heading": "Get in Touch",
