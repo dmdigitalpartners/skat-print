@@ -24,7 +24,7 @@ export default function TrustedBy({ t }: Props) {
       style={{ background: 'linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-primary-light) 100%)' }}
     >
       <div className="container-site py-16 md:py-20">
-        {/* Centered heading + subheading + rating badge */}
+        {/* Centered heading + subheading */}
         <div className="flex flex-col items-center gap-3 md:gap-4 mb-10 md:mb-12 text-center">
           <p className="text-xs md:text-sm font-condensed font-semibold uppercase tracking-widest text-white/60">
             {t.trusted_by.eyebrow}
@@ -35,9 +35,6 @@ export default function TrustedBy({ t }: Props) {
           <p className="text-sm md:text-base text-white/65 leading-relaxed max-w-lg">
             {t.trusted_by.subheading}
           </p>
-          <div className="mt-2">
-            <GoogleRatingBadge t={t} />
-          </div>
         </div>
 
         {/* Testimonial marquee */}
@@ -64,6 +61,11 @@ export default function TrustedBy({ t }: Props) {
               </li>
             ))}
           </ul>
+        </div>
+
+        {/* Rating badge — below the conveyor */}
+        <div className="flex justify-center mt-10 md:mt-12">
+          <GoogleRatingBadge t={t} />
         </div>
       </div>
     </section>
