@@ -43,7 +43,6 @@ next-env.d.ts
 # dev scripts (local tooling)
 temporary screenshots/
 
-# media assets — large binaries, deployed via Vercel CLI from local
-public/assets/
-public/favicon/
+# media assets — public/assets and public/favicon are tracked (required for Git-based Vercel
+# builds); brand_assets is design-source only and unreferenced by the site, kept out of Git
 brand_assets/
