@@ -33,9 +33,20 @@ export default function Footer({ t, lang }: Props) {
                 className="object-contain h-12 w-auto"
               />
             </Link>
-            <p className="text-sm text-[var(--color-text-muted)] leading-relaxed max-w-xs">
+            <p className="text-sm text-[var(--color-text-muted)] leading-relaxed max-w-xs mb-4">
               {t.footer.tagline}
             </p>
+            <a
+              href={t.footer.social_linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" aria-hidden>
+                <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.44-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.25 2.36 4.25 5.44v6.3zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
+              </svg>
+              {t.footer.social_linkedin_label}
+            </a>
           </div>
 
           {/* Company */}
@@ -126,6 +137,7 @@ export default function Footer({ t, lang }: Props) {
             <div className="flex flex-col">
               <span className="text-[10px] text-[var(--color-text-muted)] leading-none">{t.footer.eu_badge_label}</span>
               <span className="text-[10px] text-[var(--color-text-muted)] opacity-60 leading-none mt-0.5">{t.footer.eu_badge_code}</span>
+              <span className="text-[10px] text-[var(--color-text-muted)] opacity-80 leading-snug mt-1 max-w-xs">{t.footer.eu_badge_description}</span>
             </div>
           </div>
 

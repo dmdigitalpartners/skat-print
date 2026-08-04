@@ -2,6 +2,7 @@ import type { CSSProperties } from 'react'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import type { Translation } from '@/lib/useTranslation'
+import { getYearsSince } from '@/lib/constants'
 
 const PrintIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -65,7 +66,7 @@ export default function Differentiators({ t, sectionStyle }: { t: Translation; s
                 <div className="w-5 h-5">{iconMap[item.icon] ?? iconMap['print']}</div>
               </div>
               <h3 className="font-display font-bold text-lg text-[var(--color-text)] mb-3 relative inline-block">
-                {item.heading}
+                {item.icon === 'shield' ? `${getYearsSince()} ${item.heading}` : item.heading}
                 <span className="absolute bottom-0 left-0 h-px w-0 bg-[var(--color-accent)] transition-[width] duration-300 group-hover:w-full" />
               </h3>
               <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">{item.copy}</p>

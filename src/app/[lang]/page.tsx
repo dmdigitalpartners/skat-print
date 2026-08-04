@@ -8,6 +8,10 @@ import ProductsCatalog from '@/components/sections/ProductsCatalog'
 import Differentiators from '@/components/sections/Differentiators'
 import CTABanner from '@/components/sections/CTABanner'
 
+// Revalidate daily so computed "years in business" figures self-correct
+// after a new year turns over, without requiring a redeploy.
+export const revalidate = 86400
+
 export async function generateMetadata({
   params,
 }: {

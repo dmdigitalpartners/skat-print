@@ -8,6 +8,11 @@ import Differentiators from '@/components/sections/Differentiators'
 import PageHero from '@/components/ui/PageHero'
 import CountUp from '@/components/ui/CountUp'
 import Timeline from '@/components/ui/Timeline'
+import { getYearsSince } from '@/lib/constants'
+
+// Revalidate daily so computed "years in business" figures self-correct
+// after a new year turns over, without requiring a redeploy.
+export const revalidate = 86400
 
 export async function generateMetadata({
   params,
@@ -17,7 +22,7 @@ export async function generateMetadata({
   const { lang } = await params
   const t = getTranslation(lang)
   return {
-    title: t.meta.about.title,
+    title: t.meta.about.title.replace('{years}', String(getYearsSince())),
     description: t.meta.about.description,
     alternates: { canonical: `/${lang}/about`, languages: { en: '/en/about', bg: '/bg/about' } },
   }
@@ -41,11 +46,11 @@ export default async function AboutPage({
       {/* Stats Strip — dark surface, continuous with hero */}
       <div style={{ backgroundColor: 'var(--color-bg-dark-surface)' }} className="py-14 md:py-16 border-t border-[var(--color-border-dark)]">
         <div className="container-site">
-          <div className="grid grid-cols-2 gap-4 md:gap-6 max-w-md mx-auto">
+          <div className="grid grid-cols-3 gap-4 md:gap-6 max-w-2xl mx-auto">
             {/* Years */}
             <div className="flex flex-col items-center justify-end text-center">
               <div className="font-display font-bold text-3xl md:text-5xl text-[var(--color-accent)] leading-none mb-2">
-                <CountUp to={s.years} suffix={s.years_suffix} />
+                <CountUp to={getYearsSince()} suffix="" />
               </div>
               <p className="text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-text-muted-dark)]">
                 {s.years_label}
@@ -59,6 +64,16 @@ export default async function AboutPage({
               </div>
               <p className="text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-text-muted-dark)]">
                 {s.leadtime_label}
+              </p>
+            </div>
+
+            {/* Units Produced */}
+            <div className="flex flex-col items-center justify-end text-center">
+              <div className="font-display font-bold text-3xl md:text-5xl text-[var(--color-accent)] leading-none mb-2">
+                {s.units_number}{s.units_suffix}
+              </div>
+              <p className="text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-text-muted-dark)]">
+                {s.units_label}
               </p>
             </div>
           </div>
