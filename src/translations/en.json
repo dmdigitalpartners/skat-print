@@ -6,15 +6,15 @@
     },
     "services": {
       "title": "Packaging & Print Services — Skat Print",
-      "description": "Offset printing, corrugated board production, laminating, die-cutting, and finishing. Roland and Heidelberg presses. Full-service corrugated packaging manufacturer."
+      "description": "Offset printing, corrugated cardboard production, laminating, die-cutting, and finishing. Roland and Heidelberg presses. Full-service corrugated packaging manufacturer."
     },
     "products": {
       "title": "Products — Custom Packaging & Displays | Skat Print",
       "description": "Browse Skat Print's product catalog: POS displays, food packaging, wine & spirits packaging, cosmetics boxes, and custom packaging. Produced in Bulgaria since 1995."
     },
     "about": {
-      "title": "About Skat Print — 30 Years of Family-Owned Packaging",
-      "description": "Founded in 1995, Skat Print is a family-owned corrugated packaging manufacturer in Bulgaria. We combine offset print quality with in-house corrugated board production."
+      "title": "About Skat Print — {years} Years of Family-Owned Packaging",
+      "description": "Founded in 1995, Skat Print is a family-owned corrugated packaging manufacturer in Bulgaria. We combine offset print quality with in-house corrugated cardboard production."
     },
     "contact": {
       "title": "Contact Skat Print — Get a Quote",
@@ -49,8 +49,6 @@
     "cta_secondary": "View Products"
   },
   "trust": {
-    "stat_years_number": "30",
-    "stat_years_suffix": "+",
     "stat_years_label": "Years in Business",
     "stat_categories_number": "5",
     "stat_categories_suffix": "",
@@ -59,19 +57,19 @@
     "client_sentence": "Trusted by brands including Coca-Cola, LIDL, Johnnie Walker, Stella Artois, Finlandia, and Jack Daniel's."
   },
   "trusted_by": {
-    "eyebrow": "Trusted By",
+    "eyebrow": "What Clients Say",
+    "source_label": "via Google",
+    "google_badge_suffix": "on Google",
     "items": [
-      { "label": "EU Food Brand", "detail": "Germany" },
-      { "label": "Cosmetics Group", "detail": "Austria" },
-      { "label": "Beverage Multinational", "detail": "France" },
-      { "label": "Retail Chain", "detail": "Poland" },
-      { "label": "Wine Cooperative", "detail": "Italy" },
-      { "label": "FMCG Distributor", "detail": "Bulgaria" }
+      { "quote": "Skat Print produced branded boxes for our Artisannel line — we were delighted with how stylish the final result turned out.", "name": "Artisannel", "rating": 5 },
+      { "quote": "Communication was smooth throughout, especially with Elena on the team, and turnaround was consistently fast.", "name": "Елена Сулева", "rating": 5 },
+      { "quote": "Excellent print quality, fast turnaround, and responsive customer service throughout.", "name": "Ilian Gochev", "rating": 5 },
+      { "quote": "Quality and speed came together for a perfect result.", "name": "Чавдар Димов", "rating": 5 }
     ]
   },
   "services_section": {
     "title": "How We Make It",
-    "subtitle": "Five integrated manufacturing capabilities, offset printing, corrugated board production, laminating, die-cutting, and finishing, all under one roof.",
+    "subtitle": "Five integrated manufacturing capabilities, offset printing, corrugated cardboard production, laminating, die-cutting, and finishing, all under one roof.",
     "cta": "Learn More",
     "items": [
       {
@@ -82,8 +80,8 @@
       },
       {
         "slug": "corrugated-board",
-        "title": "Corrugated Board Production",
-        "description": "In-house N, E, B wave and five-layer corrugated board production, no external substrate dependency, full quality control at every stage.",
+        "title": "Corrugated Cardboard Production",
+        "description": "In-house N, E, B wave and five-layer corrugated cardboard production, no external substrate dependency, full quality control at every stage.",
         "icon": "board"
       },
       {
@@ -108,13 +106,13 @@
   },
   "video_section": {
     "heading": "See How We Work",
-    "subheading": "From corrugated board production to finished packaging, one facility, end-to-end.",
+    "subheading": "Our own production facility in Hisarya, plus a head office in Trud — vertical integration from raw board to finished packaging, all under our direct control.",
     "watch_label": "Watch Video"
   },
   "products_section": {
     "eyebrow": "Product Range",
     "title": "Our Products",
-    "subtitle": "Five specialized packaging production lines.",
+    "subtitle": "Five specialized packaging product lines.",
     "cta": "View Products",
     "item_cta": "View Product",
     "view_portfolio": "View Full Portfolio",
@@ -167,7 +165,7 @@
         "Custom dimensions, shapes, and branding",
         "Die-cut openings and structural inserts available",
         "Matte, gloss, silver foil, and gold foil finishing",
-        "Produced in-house, no outsourced substrates"
+        "Produced in-house on our own equipment"
       ]
     },
     "food-packaging": {
@@ -237,19 +235,27 @@
       },
       {
         "question": "What printing methods do you use?",
-        "answer": "We use offset printing on Roland (52×74cm) and Heidelberg (71×102cm) presses, the same technology used for high-quality commercial printing. This gives significantly sharper results than flexographic printing on corrugated board."
+        "answer": "We use offset printing on Roland (52×74cm) and Heidelberg (71×102cm) presses, the same technology used for high-quality commercial printing. This gives significantly sharper results than flexographic printing on corrugated cardboard."
       },
       {
         "question": "Do you offer design and pre-press support?",
         "answer": "Yes. Our in-house design team can work from your brand guidelines, existing artwork, or brief. We handle file preparation, structural dieline creation, and pre-press for all orders."
       },
       {
-        "question": "What materials and finishes are available?",
-        "answer": "We work with corrugated board (N, E, B wave and 5-layer), cardboard, and microcorrugated. Available finishes include matte laminate, gloss laminate, silver foil, gold foil, and embossing. All materials are 100% recyclable."
+        "question": "Do you offer packaging consultation?",
+        "answer": "Yes. Our team can advise on material choice, structural design, and finish options based on your product, budget, and shelf requirements before you commit to a spec. Get in touch to discuss your project."
       },
       {
-        "question": "Do you ship outside Bulgaria?",
-        "answer": "Yes. We supply clients across Europe. Shipping terms and logistics are arranged on a per-order basis. Contact us with your delivery location to discuss options."
+        "question": "What materials and finishes are available?",
+        "answer": "We work with corrugated cardboard (N, E, B wave and 5-layer), cardboard, and microcorrugated. Available finishes include matte laminate, gloss laminate, silver foil, gold foil, and embossing. All materials are 100% recyclable."
+      },
+      {
+        "question": "Do you hold any sustainability certifications?",
+        "answer": "We don't currently hold formal third-party certifications such as ISO or FSC. All our materials are 100% recyclable and contain no harmful substances, and our production line was upgraded through an EU-co-funded energy-efficiency investment. Contact us if you need specific compliance documentation for your market."
+      },
+      {
+        "question": "What are your delivery options?",
+        "answer": "We deliver across Bulgaria and export throughout Europe. Delivery method and timing are arranged per order based on volume, packaging type, and destination. Contact us with your location for specifics."
       }
     ],
     "sidebar": {
@@ -267,18 +273,6 @@
     "certifications_heading": "Quality & Compliance",
     "certifications": [
       {
-        "code": "ISO 9001:2015",
-        "label": "Quality Management"
-      },
-      {
-        "code": "FSC®",
-        "label": "Chain of Custody"
-      },
-      {
-        "code": "EU REACH",
-        "label": "Materials Compliance"
-      },
-      {
         "code": "BG16RFOP002",
         "label": "EU Co-funded Project"
       }
@@ -287,16 +281,16 @@
       {
         "icon": "print",
         "heading": "Offset-Corrugated Printing",
-        "copy": "We combine offset print quality directly onto corrugated substrate, Roland and Heidelberg presses, laminating, die-cutting, and embossing, all in-house."
+        "copy": "We combine offset print quality directly onto corrugated substrate, Roland and Heidelberg presses, laminating, die-cutting, and embossing — all under our direct control."
       },
       {
         "icon": "layers",
         "heading": "Vertical Integration",
-        "copy": "Our own corrugated board production line means faster turnaround, tighter quality control, and no dependency on third-party substrates."
+        "copy": "Our own corrugated cardboard production line means faster turnaround, tighter quality control, and no dependency on third-party substrates."
       },
       {
         "icon": "shield",
-        "heading": "30 Years of Reliability",
+        "heading": "Years of Reliability",
         "copy": "Family-owned since 1995. Same ownership, same standards. Long-term partnerships with global brands are built on that consistency."
       },
       {
@@ -337,7 +331,7 @@
   "cta_banner": {
     "heading": "Get Your Custom Quote Today",
     "subheading": "Tell us what you need. We'll handle the rest.",
-    "response_time": "We respond within 4 business hours.",
+    "response_time": "We respond within 1 business day.",
     "button": "Contact Our Team",
     "samples_cta": "Request Free Samples"
   },
@@ -348,7 +342,7 @@
     "locations": [
       {
         "name": "Skat Print, Main Office",
-        "address": "Village of Trud, Plovdiv Region, Industrial Zone No. 2",
+        "address": "Village of Trud, Plovdiv Region, Stopanski dvor № 2",
         "phone": "+359 888 35 15 53"
       },
       {
@@ -364,19 +358,22 @@
     },
     "copyright": "© Skat Oil EOOD 2009–2026. All rights reserved.",
     "company_title": "Company",
-    "founded": "Est. 1995",
+    "founded": "Manufacturing since 1995",
     "links": {
       "privacy": "Privacy Policy",
       "terms": "Terms of Use"
     },
     "eu_badge_label": "Co-funded by the European Union",
     "eu_badge_code": "BG16RFOP002-3.001-0074-C01",
+    "eu_badge_description": "EU-co-funded investment in energy-efficient manufacturing equipment",
     "legal_entity": "Skat Oil EOOD",
     "region": "Plovdiv Region, Bulgaria",
     "eik_label": "EIK",
-    "eik": "100110",
+    "eik": "825131194",
     "vat_label": "VAT",
-    "vat": "BG100110"
+    "vat": "BG825131194",
+    "social_linkedin": "https://uk.linkedin.com/company/skatprint",
+    "social_linkedin_label": "LinkedIn"
   },
   "contact_page": {
     "heading": "Get in Touch",
@@ -386,8 +383,8 @@
     "phone_heading": "Phone",
     "locations": [
       {
-        "name": "Main Office & Factory",
-        "address": "Village of Trud, Plovdiv Region, Industrial Zone No. 2",
+        "name": "Main Office",
+        "address": "Village of Trud, Plovdiv Region, Stopanski dvor № 2",
         "phone": "+359 888 35 15 53",
         "map_title": "Skat Print, Village of Trud"
       },
@@ -443,7 +440,7 @@
   },
   "services_page": {
     "heading": "Our Services",
-    "intro": "From in-house corrugated board production to offset printing, laminating, and die-cutting, everything under one roof."
+    "intro": "From in-house corrugated cardboard production to offset printing, laminating, and die-cutting, everything under one roof."
   },
   "about_page": {
     "heading": "About Skat Print",
@@ -468,8 +465,8 @@
         "copy": "No waiting on third-party substrates. Your brief moves directly from approval to production on our own equipment."
       },
       {
-        "heading": "One Team, One Facility",
-        "copy": "You deal with one point of contact and one production facility. Full accountability from brief to delivery."
+        "heading": "One Point of Contact, Two Sites",
+        "copy": "One team, full accountability across both our Hisarya facility and Trud office, from brief to delivery."
       }
     ],
     "timeline_eyebrow": "Our Journey",
@@ -479,15 +476,17 @@
       { "year": "1995", "label": "Founded", "desc": "Family business established in the Plovdiv region" },
       { "year": "2000", "label": "First Export", "desc": "First international packaging clients across Europe" },
       { "year": "2010", "label": "Roland Press", "desc": "Investment in Roland 52×74cm offset press" },
-      { "year": "2015", "label": "Vertical Integration", "desc": "In-house corrugated board production line added" }
+      { "year": "2015", "label": "Vertical Integration", "desc": "In-house corrugated cardboard production line added" },
+      { "year": "2021", "label": "29% Growth", "desc": "Revenue reaches €1.87M, our strongest year on record" }
     ]
   },
   "about_stats": {
-    "years": 30,
-    "years_suffix": "+",
     "years_label": "Years in Business",
     "leadtime_label": "Day Lead Time",
-    "leadtime_display": "10–15"
+    "leadtime_display": "10–15",
+    "units_number": "1,000,000",
+    "units_suffix": "+",
+    "units_label": "Packaging Units Produced Since 1995"
   },
   "service_detail": {
     "specs_heading": "Specifications",
@@ -498,11 +497,11 @@
         "CMYK + spot colour support, precise colour accuracy",
         "Applied to laminate before corrugated bonding",
         "Sharper, more vivid output than flexographic alternatives",
-        "Produced entirely in-house from substrate to finished packaging"
+        "Produced in-house on our own equipment"
       ]
     },
     "corrugated-board": {
-      "heading": "Corrugated Board Production",
+      "heading": "Corrugated Cardboard Production",
       "bullets": [
         "N-wave (1mm), E-wave (1.5mm), B-wave (3mm), and five-layer configurations",
         "Moisture-resistant variants available",
