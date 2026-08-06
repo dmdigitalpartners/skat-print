@@ -40,9 +40,9 @@ Local changes → git commit (code) → git push origin develop → merge to mai
 ```
 
 ### What lives where
-- **GitHub** (`dani-aisystems/skat-print`) — source code only: components, pages, translations, config, docs
-- **Local filesystem** — media assets (`public/assets/`, `brand_assets/`, `public/favicon/`) — gitignored, never pushed
-- **Vercel** — full deployment including all local assets, triggered via CLI from the local machine
+- **GitHub** (`dani-aisystems/skat-print`) — source code, translations, config, docs, **and `public/assets/` + `public/favicon/`** — these ARE tracked in git (required for Vercel's git-based builds). Only `brand_assets/` (design-source originals, unreferenced by the site) is gitignored and stays local-only.
+- **Local filesystem** — `brand_assets/` (design-source only, not deployed)
+- **Vercel** — full deployment, triggered via CLI from the local machine
 
 ### Branch rules
 - `develop` — all active work happens here; push code changes freely
