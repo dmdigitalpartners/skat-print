@@ -29,7 +29,7 @@ export default function Hero({ t, lang }: Props) {
       {/* Mobile background image */}
       <div className="absolute inset-0 md:hidden">
         <Image
-          src="/assets/hero/hero-mobile.png"
+          src="/assets/hero/hero-mobile.jpg"
           alt=""
           fill
           sizes="100vw"
@@ -125,7 +125,7 @@ export default function Hero({ t, lang }: Props) {
       </div>
 
       {/* ── Mobile stats bar — in normal flow, always at bottom of section ── */}
-      <div className="md:hidden relative z-10 border-t border-white/10 bg-black/70 backdrop-blur-md mb-[76px]">
+      <div className="md:hidden relative z-10 border-t border-white/10 bg-black/70 backdrop-blur-md mb-[calc(var(--mobile-bar-height)+env(safe-area-inset-bottom))]">
         <div className="grid grid-cols-3 divide-x divide-white/10 py-3">
           <div className="flex flex-col items-center justify-center px-1.5">
             <div className="font-display font-bold text-[1.05rem] leading-none text-[var(--color-accent)]">
