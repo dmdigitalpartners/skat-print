@@ -85,4 +85,11 @@
 
   /* Navbar height */
   --navbar-height: 72px;
+
+  /* Fixed mobile conversion bar (MobileConversionBar.tsx) — its real content
+     height, single source of truth so every page that reserves clearance
+     for it (layout main padding, Hero stats bar, its own quick-form drawer)
+     stays in sync. Add env(safe-area-inset-bottom) on top where used, for
+     the iOS home-indicator area. */
+  --mobile-bar-height: 64px;
 }
