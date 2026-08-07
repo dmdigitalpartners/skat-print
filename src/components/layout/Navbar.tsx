@@ -28,11 +28,16 @@ export default function Navbar({ t, lang }: Props) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  useEffect(() => {
+  // Close all menus on route change. Adjusted during render (rather than in
+  // an effect) so the closed state is reflected in the very first render for
+  // the new route instead of flashing the old open state for a frame.
+  const [prevPathname, setPrevPathname] = useState(pathname)
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname)
     setMobileOpen(false)
     setProductsOpen(false)
     setMobileProductsOpen(false)
-  }, [pathname])
+  }
 
   useEffect(() => {
     if (!productsOpen) return

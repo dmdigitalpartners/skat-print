@@ -44,7 +44,7 @@ export default async function BlogPostPage({
   const isBg = lang === 'bg'
 
   return (
-    <main className="container-site py-16 md:py-24">
+    <div className="container-site py-16 md:py-24">
       <div className="max-w-2xl mx-auto">
         {/* Breadcrumb */}
         <nav className="mb-8 text-xs text-[var(--color-text-muted)]">
@@ -97,6 +97,6 @@ export default async function BlogPostPage({
           </Link>
         </div>
       </div>
-    </main>
+    </div>
   )
 }

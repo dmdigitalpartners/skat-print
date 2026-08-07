@@ -28,7 +28,7 @@ export default async function LangLayout({
       <HtmlLang lang={currentLang} />
       <JsonLd lang={currentLang} />
       <Navbar t={t} lang={currentLang} />
-      <main className="flex-1 overflow-x-hidden pb-[56px] md:pb-0">{children}</main>
+      <main className="flex-1 overflow-x-hidden pb-[calc(var(--mobile-bar-height)+env(safe-area-inset-bottom)+16px)] md:pb-0">{children}</main>
       <Footer t={t} lang={currentLang} />
       <Chatbot t={t} lang={currentLang} />
       <MobileConversionBar lang={currentLang} />

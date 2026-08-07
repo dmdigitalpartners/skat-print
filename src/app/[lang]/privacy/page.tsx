@@ -1,7 +1,9 @@
-// TODO: replace placeholder content with actual privacy policy reviewed by legal counsel
+// Reviewed 2026-08 for accuracy against the site's actual data flows (forms,
+// email processors, analytics). Not a substitute for sign-off by qualified
+// legal counsel before launch — the underlying legal judgment calls
+// (retention periods, liability language, GDPR basis) still need that review.
 
 import type { Metadata } from 'next'
-import { getTranslation } from '@/lib/useTranslation'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import PageHero from '@/components/ui/PageHero'
 
@@ -32,7 +34,7 @@ export async function generateMetadata({
 const contentEn = [
   {
     heading: 'Data Controller',
-    body: 'Skat Print Ltd (EIK 825131194), Village of Trud, 4204, Plovdiv Province, Bulgaria. Email: office@skat-print.com',
+    body: 'Skat Oil EOOD (EIK 825131194), Village of Trud, 4204, Plovdiv Province, Bulgaria. Email: office@skatoil.com',
   },
   {
     heading: 'What Data We Collect',
@@ -43,12 +45,16 @@ const contentEn = [
     body: 'Your data is used solely to respond to your enquiry and provide the requested service. We do not sell, rent, or share your personal data with third parties for marketing purposes.',
   },
   {
+    heading: 'Third-Party Service Providers',
+    body: 'We use the following processors to operate this website and handle enquiries submitted through it: Resend (primary email delivery for form submissions), Formspree (fallback email delivery if Resend is unavailable), and Vercel (website hosting and anonymised analytics). These providers only receive the data needed to perform their function and do not use it for their own marketing purposes.',
+  },
+  {
     heading: 'Data Retention',
     body: 'Contact enquiry data is retained for up to 3 years. You may request deletion at any time by contacting us.',
   },
   {
     heading: 'Your Rights (GDPR)',
-    body: 'Under the General Data Protection Regulation (GDPR), you have the right to access, correct, delete, or restrict processing of your personal data. To exercise these rights, contact office@skat-print.com.',
+    body: 'Under the General Data Protection Regulation (GDPR), you have the right to access, correct, delete, or restrict processing of your personal data. To exercise these rights, contact office@skatoil.com.',
   },
   {
     heading: 'Cookies',
@@ -56,14 +62,14 @@ const contentEn = [
   },
   {
     heading: 'Contact',
-    body: 'For any privacy-related questions: office@skat-print.com',
+    body: 'For any privacy-related questions: office@skatoil.com',
   },
 ]
 
 const contentBg = [
   {
     heading: 'Администратор на лични данни',
-    body: 'Скат Принт ЕООД (ЕИК 825131194), с. Труд, 4204, обл. Пловдив, България. Имейл: office@skat-print.com',
+    body: 'Скат Ойл ЕООД (ЕИК 825131194), с. Труд, 4204, обл. Пловдив, България. Имейл: office@skatoil.com',
   },
   {
     heading: 'Какви данни събираме',
@@ -74,12 +80,16 @@ const contentBg = [
     body: 'Вашите данни се използват единствено за отговор на вашето запитване и предоставяне на исканата услуга. Ние не продаваме, отдаваме под наем или споделяме вашите лични данни с трети страни за маркетингови цели.',
   },
   {
+    heading: 'Доставчици на услуги (трети страни)',
+    body: 'Използваме следните обработващи лични данни за работата на уебсайта и обработката на запитвания: Resend (основна услуга за изпращане на имейли от формите), Formspree (резервна услуга за изпращане на имейли при недостъпност на Resend) и Vercel (хостинг на уебсайта и анонимизирани анализи). Тези доставчици получават само данните, необходими за изпълнение на функцията им, и не ги използват за собствени маркетингови цели.',
+  },
+  {
     heading: 'Срок на съхранение',
     body: 'Данните от запитвания се съхраняват до 3 години. Можете да поискате изтриване по всяко време, като се свържете с нас.',
   },
   {
     heading: 'Вашите права (GDPR)',
-    body: 'По силата на Общия регламент за защита на данните (GDPR) имате право на достъп, коригиране, изтриване или ограничаване на обработката на вашите лични данни. За упражняване на тези права: office@skat-print.com.',
+    body: 'По силата на Общия регламент за защита на данните (GDPR) имате право на достъп, коригиране, изтриване или ограничаване на обработката на вашите лични данни. За упражняване на тези права: office@skatoil.com.',
   },
   {
     heading: 'Бисквитки',
@@ -87,7 +97,7 @@ const contentBg = [
   },
   {
     heading: 'Контакт',
-    body: 'За въпроси, свързани с поверителността: office@skat-print.com',
+    body: 'За въпроси, свързани с поверителността: office@skatoil.com',
   },
 ]
 
@@ -99,7 +109,6 @@ export default async function PrivacyPage({
   const { lang } = await params
   const isEn = lang !== 'bg'
   const content = isEn ? contentEn : contentBg
-  const t = getTranslation(lang)
 
   return (
     <>
@@ -125,7 +134,7 @@ export default async function PrivacyPage({
           ))}
         </div>
         <p className="mt-12 text-xs text-[var(--color-text-muted)]">
-          {isEn ? 'Last updated: June 2025' : 'Последна актуализация: юни 2025'}
+          {isEn ? 'Last updated: August 2026' : 'Последна актуализация: август 2026'}
         </p>
       </SectionWrapper>
     </>

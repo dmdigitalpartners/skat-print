@@ -46,14 +46,30 @@ export default function PortfolioGrid({ t, lang, filterCategory, galleryHeading,
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.4, ease: 'easeOut', delay: (idx % 9) * 0.06 }}
               >
-                <Image
-                  src={item.src}
-                  alt={lang === 'bg' ? item.altBg : item.alt}
-                  fill
-                  sizes="(max-width: 768px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading={idx < 6 ? 'eager' : 'lazy'}
-                />
+                {idx === 0 ? (
+                  // Lead tile — the category's representative shot. Contained
+                  // rather than cropped so the full product (incl. header
+                  // graphics/base panels that a hard crop would cut off) stays visible.
+                  <div className="absolute inset-0 p-5 md:p-6">
+                    <Image
+                      src={item.src}
+                      alt={lang === 'bg' ? item.altBg : item.alt}
+                      fill
+                      sizes="(max-width: 768px) 50vw, 33vw"
+                      className="object-contain object-center transition-transform duration-500 group-hover:scale-105"
+                      loading="eager"
+                    />
+                  </div>
+                ) : (
+                  <Image
+                    src={item.src}
+                    alt={lang === 'bg' ? item.altBg : item.alt}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading={idx < 6 ? 'eager' : 'lazy'}
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-250" />
                 <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-[opacity,transform] duration-250">
                   <Badge>{categoryLabel}</Badge>

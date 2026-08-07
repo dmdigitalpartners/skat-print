@@ -40,7 +40,10 @@ export default function MobileConversionBar({ lang }: { lang: string }) {
   return (
     <>
       {/* Sticky bar */}
-      <div className="fixed bottom-0 inset-x-0 z-40 md:hidden bg-[var(--color-primary-dark)] border-t border-white/10 safe-area-bottom">
+      <div
+        className="fixed bottom-0 inset-x-0 z-40 md:hidden bg-[var(--color-primary-dark)] border-t border-white/10 shadow-[0_-8px_20px_rgba(0,0,0,0.18)]"
+        style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+      >
         <div className="grid grid-cols-3 divide-x divide-white/10">
           <a
             href={`tel:${CONTACT.phone_primary}`}
@@ -98,7 +101,7 @@ export default function MobileConversionBar({ lang }: { lang: string }) {
               animate={{ y: 0 }}
               exit={reduced ? {} : { y: '100%' }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="fixed inset-x-0 bottom-[56px] z-[49] bg-white rounded-t-2xl shadow-2xl md:hidden"
+              className="fixed inset-x-0 bottom-[calc(var(--mobile-bar-height)+env(safe-area-inset-bottom))] z-[49] bg-white rounded-t-2xl shadow-2xl md:hidden"
             >
               <div className="p-5">
                 <div className="flex items-center justify-between mb-4">

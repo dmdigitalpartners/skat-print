@@ -1,7 +1,9 @@
-// TODO: replace placeholder content with actual terms of service reviewed by legal counsel
+// Reviewed 2026-08 for accuracy against the site's actual data flows (forms,
+// email processors, analytics). Not a substitute for sign-off by qualified
+// legal counsel before launch — the underlying legal judgment calls
+// (liability language, governing-law terms) still need that review.
 
 import type { Metadata } from 'next'
-import { getTranslation } from '@/lib/useTranslation'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import PageHero from '@/components/ui/PageHero'
 
@@ -40,7 +42,7 @@ const contentEn = [
   },
   {
     heading: 'Intellectual Property',
-    body: 'All content on this website — including text, images, logos, and design — is the property of Skat Print Ltd and is protected by Bulgarian and EU copyright law. You may not reproduce or redistribute any content without written permission.',
+    body: 'All content on this website — including text, images, logos, and design — is the property of Skat Oil EOOD and is protected by Bulgarian and EU copyright law. You may not reproduce or redistribute any content without written permission.',
   },
   {
     heading: 'Accuracy of Information',
@@ -60,7 +62,7 @@ const contentEn = [
   },
   {
     heading: 'Contact',
-    body: 'For questions about these terms: office@skat-print.com',
+    body: 'For questions about these terms: office@skatoil.com',
   },
 ]
 
@@ -75,7 +77,7 @@ const contentBg = [
   },
   {
     heading: 'Интелектуална собственост',
-    body: 'Цялото съдържание на уебсайта — включително текстове, изображения, лога и дизайн — е собственост на Скат Принт ЕООД и е защитено от авторското право на България и ЕС. Не може да се възпроизвежда или разпространява без писмено разрешение.',
+    body: 'Цялото съдържание на уебсайта — включително текстове, изображения, лога и дизайн — е собственост на Скат Ойл ЕООД и е защитено от авторското право на България и ЕС. Не може да се възпроизвежда или разпространява без писмено разрешение.',
   },
   {
     heading: 'Точност на информацията',
@@ -95,7 +97,7 @@ const contentBg = [
   },
   {
     heading: 'Контакт',
-    body: 'За въпроси относно тези условия: office@skat-print.com',
+    body: 'За въпроси относно тези условия: office@skatoil.com',
   },
 ]
 
@@ -107,7 +109,6 @@ export default async function TermsPage({
   const { lang } = await params
   const isEn = lang !== 'bg'
   const content = isEn ? contentEn : contentBg
-  const t = getTranslation(lang)
 
   return (
     <>
@@ -133,7 +134,7 @@ export default async function TermsPage({
           ))}
         </div>
         <p className="mt-12 text-xs text-[var(--color-text-muted)]">
-          {isEn ? 'Last updated: June 2025' : 'Последна актуализация: юни 2025'}
+          {isEn ? 'Last updated: August 2026' : 'Последна актуализация: август 2026'}
         </p>
       </SectionWrapper>
     </>

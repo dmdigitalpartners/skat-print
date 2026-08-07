@@ -38,19 +38,25 @@ export default function ProductsCatalog({ t, lang, hideHeader }: Props) {
             >
               <Link
                 href={`/${lang}/products/${product.slug}`}
-                className="group relative block aspect-[3/4] md:aspect-[4/3] overflow-hidden rounded-[var(--radius-lg)] bg-[var(--color-bg-surface)]"
+                className="group relative block aspect-[4/5] overflow-hidden rounded-[var(--radius-lg)] bg-[var(--color-bg-surface)]"
               >
-                <Image
-                  src={product.image}
-                  alt={product.title}
-                  fill
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading={idx < 2 ? 'eager' : 'lazy'}
-                />
+                {/* Image well — contains the full product, never crops it.
+                    Padding gives every product (tall floor displays through
+                    wide gift boxes) room to sit fully visible on its native
+                    light backdrop, whatever its aspect ratio. */}
+                <div className="absolute inset-0 p-6 sm:p-8 md:p-9">
+                  <Image
+                    src={product.image}
+                    alt={product.title}
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    className="object-contain object-center transition-transform duration-500 group-hover:scale-105"
+                    loading={idx < 2 ? 'eager' : 'lazy'}
+                  />
+                </div>
 
                 {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
 
                 {/* Desktop content: bottom-anchored */}
                 <div className="absolute bottom-0 left-0 right-0 hidden md:flex flex-col gap-1.5 px-5 pb-5">

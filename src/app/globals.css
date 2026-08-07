@@ -41,6 +41,10 @@
 /* Base Styles */
 html {
   scroll-behavior: smooth;
+  /* Keep keyboard-focused/scrolled-into-view elements clear of the fixed
+     mobile conversion bar (MobileConversionBar.tsx) instead of landing
+     underneath it. */
+  scroll-padding-bottom: calc(var(--mobile-bar-height) + env(safe-area-inset-bottom));
 }
 
 body {
