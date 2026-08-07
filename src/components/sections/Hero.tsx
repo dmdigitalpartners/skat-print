@@ -25,7 +25,7 @@ export default function Hero({ t, lang }: Props) {
   const reduced = useReducedMotion()
 
   return (
-    <section className="relative flex flex-col overflow-hidden h-[calc(100dvh-64px)] md:h-[100dvh]">
+    <section className="relative flex flex-col overflow-hidden h-[calc(100dvh-var(--mobile-bar-height)-env(safe-area-inset-bottom))] md:h-[100dvh]">
       {/* Mobile background image */}
       <div className="absolute inset-0 md:hidden">
         <Image
@@ -124,8 +124,12 @@ export default function Hero({ t, lang }: Props) {
         </motion.div>
       </div>
 
-      {/* ── Mobile stats bar — in normal flow, always at bottom of section ── */}
-      <div className="md:hidden relative z-10 border-t border-white/10 bg-black/70 backdrop-blur-md mb-[calc(var(--mobile-bar-height)+env(safe-area-inset-bottom))]">
+      {/* ── Mobile stats bar — in normal flow, always at bottom of section.
+           Clearance for the fixed MobileConversionBar (+ iOS safe area) is
+           reserved once, on the section's own height above — no margin
+           needed here, or the reservation doubles up and leaves a blank
+           gap between this bar and the fixed bar below it. ── */}
+      <div className="md:hidden relative z-10 border-t border-white/10 bg-black/70 backdrop-blur-md">
         <div className="grid grid-cols-3 divide-x divide-white/10 py-3">
           <div className="flex flex-col items-center justify-center px-1.5">
             <div className="font-display font-bold text-[1.05rem] leading-none text-[var(--color-accent)]">

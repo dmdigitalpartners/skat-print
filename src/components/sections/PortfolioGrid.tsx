@@ -36,40 +36,31 @@ export default function PortfolioGrid({ t, lang, filterCategory, galleryHeading,
             {lang === 'bg' ? 'Няма намерени проекти в тази категория.' : 'No projects found in this category.'}
           </p>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+          // Multi-column masonry, not a fixed grid: every tile renders at its
+          // own real aspect ratio (width/height from portfolio-data.ts, see
+          // scripts/generate-portfolio-dimensions.mjs) instead of being forced
+          // into a uniform square and cropped. Each column reflows
+          // independently, so one unusually tall/wide image only extends its
+          // own column and never overlaps a neighbor.
+          <div className="columns-2 md:columns-3 gap-3 md:gap-4">
             {displayed.map((item, idx) => (
               <motion.div
                 key={item.src}
-                className="group relative aspect-square overflow-hidden rounded-[var(--radius-md)] bg-[var(--color-bg-light-surface)]"
-                initial={reduced ? false : { opacity: 0, scale: 0.96 }}
-                whileInView={reduced ? {} : { opacity: 1, scale: 1 }}
+                className="group relative mb-3 md:mb-4 break-inside-avoid overflow-hidden rounded-[var(--radius-md)] bg-[var(--color-bg-light-surface)]"
+                initial={reduced ? false : { opacity: 0, y: 12 }}
+                whileInView={reduced ? {} : { opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.4, ease: 'easeOut', delay: (idx % 9) * 0.06 }}
+                transition={{ duration: 0.4, ease: 'easeOut', delay: (idx % 6) * 0.04 }}
               >
-                {idx === 0 ? (
-                  // Lead tile — the category's representative shot. Contained
-                  // rather than cropped so the full product (incl. header
-                  // graphics/base panels that a hard crop would cut off) stays visible.
-                  <div className="absolute inset-0 p-5 md:p-6">
-                    <Image
-                      src={item.src}
-                      alt={lang === 'bg' ? item.altBg : item.alt}
-                      fill
-                      sizes="(max-width: 768px) 50vw, 33vw"
-                      className="object-contain object-center transition-transform duration-500 group-hover:scale-105"
-                      loading="eager"
-                    />
-                  </div>
-                ) : (
-                  <Image
-                    src={item.src}
-                    alt={lang === 'bg' ? item.altBg : item.alt}
-                    fill
-                    sizes="(max-width: 768px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading={idx < 6 ? 'eager' : 'lazy'}
-                  />
-                )}
+                <Image
+                  src={item.src}
+                  alt={lang === 'bg' ? item.altBg : item.alt}
+                  width={item.width}
+                  height={item.height}
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                  className="block w-full h-auto transition-transform duration-500 group-hover:scale-105"
+                  loading={idx < 6 ? 'eager' : 'lazy'}
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-250" />
                 <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-[opacity,transform] duration-250">
                   <Badge>{categoryLabel}</Badge>
