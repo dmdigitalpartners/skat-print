@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, FormEvent } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { trackEvent as trackAnalyticsEvent } from '@/lib/analytics'
+import { CONTACT } from '@/config/contact'
 import { IconMsg, IconX, IconCheck, IconPhone, IconArrow } from '@/components/icons/ChatbotIcons'
 import {
   DEFAULT_CHIPS_EN,
@@ -141,7 +142,14 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   // ── Session restore on mount
+  // Intentionally an effect, not a lazy useState initializer: sessionStorage
+  // isn't available during SSR, so reading it during render would make the
+  // client's first paint diverge from the server-rendered HTML (a hydration
+  // mismatch). Running it post-mount keeps the first paint matching the
+  // server, then syncs in the saved session. React 19 batches these setState
+  // calls into a single re-render, so this doesn't cascade despite the count.
   useEffect(() => {
+    /* eslint-disable react-hooks/set-state-in-effect */
     const session = loadSession()
     if (session) {
       setMessages(session.messages)
@@ -150,6 +158,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
       setLeadData(session.leadData)
     }
     setSessionLoaded(true)
+    /* eslint-enable react-hooks/set-state-in-effect */
   }, [])
 
   // ── Session save on state change
@@ -511,20 +520,20 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
           <div className="flex-shrink-0 border-t border-[var(--color-border)] px-4 py-3 flex flex-col gap-2 bg-white">
             <p className="text-xs text-[var(--color-text-muted)]">{t.chatbot.response_time_promise}</p>
             <a
-              href="tel:+359888351553"
+              href={`tel:${CONTACT.phone_primary}`}
               className="flex items-center gap-2.5 text-sm text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors py-1"
             >
               <IconPhone cls="w-4 h-4 flex-shrink-0 text-[var(--color-accent)]" />
-              +359 888 35 15 53
+              {CONTACT.phone_primary_display}
             </a>
             <a
-              href="mailto:office@skatoil.com"
+              href={`mailto:${CONTACT.email}`}
               className="flex items-center gap-2.5 text-sm text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors py-1"
             >
               <svg className="w-4 h-4 flex-shrink-0 text-[var(--color-accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="4" width="20" height="16" rx="2" /><polyline points="2,4 12,13 22,4" />
               </svg>
-              office@skatoil.com
+              {CONTACT.email}
             </a>
             <a
               href={`/${lang}/contact`}

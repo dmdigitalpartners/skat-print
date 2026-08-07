@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Bundled Claude Code skill packages — not site source, shouldn't be linted.
+    ".agents/**",
+    "agent/**",
+    ".claude/**",
   ]),
 ]);
 

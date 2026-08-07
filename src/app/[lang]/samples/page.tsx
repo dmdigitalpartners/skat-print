@@ -36,7 +36,7 @@ export default async function SamplesPage({
   const s = t.samples
 
   return (
-    <main className="container-site py-16 md:py-24">
+    <div className="container-site py-16 md:py-24">
       <div className="max-w-2xl mx-auto">
         {/* Page header */}
         <div className="mb-10 md:mb-12">
@@ -55,6 +55,6 @@ export default async function SamplesPage({
 
         <SamplesForm t={t} lang={currentLang} />
       </div>
-    </main>
+    </div>
   )
 }

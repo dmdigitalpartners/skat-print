@@ -4,7 +4,6 @@ import { notFound } from 'next/navigation'
 import { getTranslation } from '@/lib/useTranslation'
 import type { Lang } from '@/lib/useTranslation'
 import { VALID_INDUSTRIES, LANGS } from '@/config/routes'
-import type { IndustrySlug } from '@/config/routes'
 
 export async function generateStaticParams() {
   return LANGS.flatMap(lang =>
@@ -124,7 +123,7 @@ export default async function IndustryPage({
   }
 
   return (
-    <main>
+    <div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(industrySchema) }}
@@ -326,6 +325,6 @@ export default async function IndustryPage({
           </aside>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

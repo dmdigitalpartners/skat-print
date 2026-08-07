@@ -47,6 +47,7 @@ export function getAllPosts(lang: string): PostMeta[] {
     .map(slug => {
       const post = getPost(lang, slug)
       if (!post) return null
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars -- destructured only to omit `content` from the returned meta
       const { content: _, ...meta } = post
       return meta
     })
