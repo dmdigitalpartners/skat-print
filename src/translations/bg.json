@@ -126,7 +126,7 @@
         "slug": "pos-displays",
         "title": "POS дисплеи и щендери",
         "description": "Дисплеи, щандове и стопери от велпапе по поръчка.",
-        "image": "/assets/portfolio/pos-displays/pos-displays-hero.jpg"
+        "image": "/assets/portfolio/pos-displays/pos-displays-02.jpg"
       },
       {
         "slug": "food-packaging",
@@ -138,19 +138,19 @@
         "slug": "alcohol-packaging",
         "title": "Опаковки за вино и алкохол",
         "description": "Bag-in-Box и луксозни опаковки от велпапе за алкохол.",
-        "image": "/assets/portfolio/alcohol-packaging/alcohol-packaging-hero.jpg"
+        "image": "/assets/portfolio/alcohol-packaging/alcohol-packaging-11.jpg"
       },
       {
         "slug": "cosmetics-packaging",
         "title": "Козметика и парфюмерия",
         "description": "Луксозни картонени и ламинирани кутии с висококачествени покрития.",
-        "image": "/assets/portfolio/cosmetics-packaging/cosmetics-packaging-hero.jpg"
+        "image": "/assets/portfolio/cosmetics-packaging/cosmetics-packaging-03.jpg"
       },
       {
         "slug": "custom-packaging",
         "title": "Нестандартни и подаръчни опаковки",
         "description": "Нестандартни размери и висококачествени покрития за специални нужди.",
-        "image": "/assets/portfolio/custom-packaging/custom-packaging-hero.jpg"
+        "image": "/assets/portfolio/custom-packaging/custom-packaging-11.jpg"
       }
     ]
   },
@@ -491,8 +491,8 @@
     "years_label": "Години производствен опит",
     "leadtime_label": "Работни дни срок",
     "leadtime_display": "10–15",
-    "units_number": "1 000 000",
-    "units_suffix": "+",
+    "units_number": "1",
+    "units_suffix": "M+",
     "units_label": "произведени опаковъчни единици от 1995 г."
   },
   "service_detail": {

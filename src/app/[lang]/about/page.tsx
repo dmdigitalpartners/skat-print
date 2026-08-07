@@ -46,9 +46,9 @@ export default async function AboutPage({
       {/* Stats Strip — dark surface, continuous with hero */}
       <div style={{ backgroundColor: 'var(--color-bg-dark-surface)' }} className="py-14 md:py-16 border-t border-[var(--color-border-dark)]">
         <div className="container-site">
-          <div className="grid grid-cols-3 gap-4 md:gap-6 max-w-2xl mx-auto">
+          <div className="grid grid-cols-3 divide-x divide-[var(--color-border-dark)] gap-6 md:gap-10 max-w-2xl mx-auto">
             {/* Years */}
-            <div className="flex flex-col items-center justify-end text-center">
+            <div className="flex flex-col items-center text-center px-3 md:px-6">
               <div className="font-display font-bold text-3xl md:text-5xl text-[var(--color-accent)] leading-none mb-2">
                 <CountUp to={getYearsSince()} suffix="" />
               </div>
@@ -58,7 +58,7 @@ export default async function AboutPage({
             </div>
 
             {/* Lead Time */}
-            <div className="flex flex-col items-center justify-end text-center">
+            <div className="flex flex-col items-center text-center px-3 md:px-6">
               <div className="font-display font-bold text-3xl md:text-5xl text-[var(--color-accent)] leading-none mb-2">
                 {s.leadtime_display}
               </div>
@@ -68,7 +68,7 @@ export default async function AboutPage({
             </div>
 
             {/* Units Produced */}
-            <div className="flex flex-col items-center justify-end text-center">
+            <div className="flex flex-col items-center text-center px-3 md:px-6">
               <div className="font-display font-bold text-3xl md:text-5xl text-[var(--color-accent)] leading-none mb-2">
                 {s.units_number}{s.units_suffix}
               </div>

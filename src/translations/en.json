@@ -126,7 +126,7 @@
         "slug": "pos-displays",
         "title": "POS Displays & Shelving",
         "description": "Custom corrugated displays, stands, and stoppers.",
-        "image": "/assets/portfolio/pos-displays/pos-displays-hero.jpg"
+        "image": "/assets/portfolio/pos-displays/pos-displays-02.jpg"
       },
       {
         "slug": "food-packaging",
@@ -138,19 +138,19 @@
         "slug": "alcohol-packaging",
         "title": "Wine & Spirits Packaging",
         "description": "Bag-in-Box and luxury corrugated alcohol packaging.",
-        "image": "/assets/portfolio/alcohol-packaging/alcohol-packaging-hero.jpg"
+        "image": "/assets/portfolio/alcohol-packaging/alcohol-packaging-11.jpg"
       },
       {
         "slug": "cosmetics-packaging",
         "title": "Cosmetics & Perfumery",
         "description": "Luxury cardboard and laminated boxes with premium finishes.",
-        "image": "/assets/portfolio/cosmetics-packaging/cosmetics-packaging-hero.jpg"
+        "image": "/assets/portfolio/cosmetics-packaging/cosmetics-packaging-03.jpg"
       },
       {
         "slug": "custom-packaging",
         "title": "Custom & Gift Packaging",
         "description": "Non-standard sizes and premium finishes for specialty needs.",
-        "image": "/assets/portfolio/custom-packaging/custom-packaging-hero.jpg"
+        "image": "/assets/portfolio/custom-packaging/custom-packaging-11.jpg"
       }
     ]
   },
@@ -491,8 +491,8 @@
     "years_label": "Years in Business",
     "leadtime_label": "Day Lead Time",
     "leadtime_display": "10–15",
-    "units_number": "1,000,000",
-    "units_suffix": "+",
+    "units_number": "1",
+    "units_suffix": "M+",
     "units_label": "Packaging Units Produced Since 1995"
   },
   "service_detail": {
