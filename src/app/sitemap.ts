@@ -1,7 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { LANGS, VALID_SERVICES, VALID_CATEGORIES, VALID_INDUSTRIES } from '@/config/routes'
-
-const BASE_URL = 'https://skatprint.bg'
+import { SITE_URL as BASE_URL } from '@/config/site'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes: MetadataRoute.Sitemap = []

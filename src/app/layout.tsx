@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Montserrat, Inter } from 'next/font/google'
+import { SITE_URL } from '@/config/site'
 import './globals.css'
 
 const montserrat = Montserrat({
@@ -17,7 +18,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://skatprint.bg'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Skat Print — Custom Corrugated Packaging & POS Displays',
     template: '%s | Skat Print',
@@ -40,6 +41,7 @@ export const metadata: Metadata = {
     ],
     apple: { url: '/favicon/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
   },
+  manifest: '/manifest.json',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -50,9 +52,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${montserrat.variable} ${inter.variable} h-full antialiased`}
     >
       <head>
-        {/* Resource hints for external dependencies */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Resource hints for external dependencies actually loaded at runtime.
+            (next/font/google self-hosts font files at build time — no runtime
+            request to Google's font CDN, so no preconnect needed for it.) */}
         <link rel="dns-prefetch" href="https://maps.googleapis.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       </head>

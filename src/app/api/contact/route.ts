@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import { CONTACT } from '@/config/contact'
+import { SITE_URL } from '@/config/site'
 
 // In-memory sliding window rate limiter — 5 requests per minute per IP
 const rateLimitMap = new Map<string, number[]>()
@@ -16,7 +18,7 @@ function isRateLimited(ip: string): boolean {
 }
 
 const ALLOWED_ORIGINS = [
-  'https://skatprint.bg',
+  SITE_URL,
   'https://skat-print.vercel.app',
   'http://localhost:3000',
 ]
@@ -77,7 +79,7 @@ Form Type: ${type || 'contact'}
   // Try Resend first
   const resendKey = process.env.RESEND_API_KEY
   if (!process.env.RESEND_TO_EMAIL) {
-    console.warn('[contact] RESEND_TO_EMAIL is not set — falling back to office@skatoil.com (parent company)')
+    console.warn(`[contact] RESEND_TO_EMAIL is not set — falling back to ${CONTACT.email}`)
   }
   if (resendKey) {
     try {
@@ -89,8 +91,7 @@ Form Type: ${type || 'contact'}
         },
         body: JSON.stringify({
           from: 'Skat Print Website <onboarding@resend.dev>',
-          // intentional fallback — office@skatoil.com is the parent company (Skat Oil)
-          to: process.env.RESEND_TO_EMAIL ?? 'office@skatoil.com',
+          to: process.env.RESEND_TO_EMAIL ?? CONTACT.email,
           subject: `${subjectPrefix} — ${company || contact || 'Unknown'}`,
           text: emailBody,
         }),

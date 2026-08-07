@@ -1,4 +1,6 @@
 import type { Lang } from '@/lib/useTranslation'
+import { SITE_URL } from '@/config/site'
+import { CONTACT } from '@/config/contact'
 
 export default function JsonLd({ lang }: { lang: Lang }) {
   const schema = {
@@ -6,10 +8,10 @@ export default function JsonLd({ lang }: { lang: Lang }) {
     '@type': ['LocalBusiness', 'Organization'],
     name: 'Skat Print',
     alternateName: 'Скат Принт',
-    url: 'https://skatprint.bg',
+    url: SITE_URL,
     logo: {
       '@type': 'ImageObject',
-      url: 'https://skatprint.bg/assets/logos/logo-en-new.png',
+      url: `${SITE_URL}/assets/logos/logo-en-new.png`,
     },
     description:
       lang === 'bg'
@@ -32,12 +34,12 @@ export default function JsonLd({ lang }: { lang: Lang }) {
         streetAddress: '8 Yordan Yovkov St',
       },
     ],
-    telephone: ['+359888351553', '+359887461028'],
-    email: 'office@skatoil.com', // intentional fallback — parent company (Skat Oil)
+    telephone: [CONTACT.phone_primary, CONTACT.phone_secondary],
+    email: CONTACT.email,
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'sales',
-      telephone: '+359888351553',
+      telephone: CONTACT.phone_primary,
       availableLanguage: ['English', 'Bulgarian'],
     },
   }

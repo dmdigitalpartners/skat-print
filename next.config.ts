@@ -30,6 +30,26 @@ const nextConfig: NextConfig = {
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+          {
+            key: 'Content-Security-Policy',
+            // 'unsafe-inline' on script/style is the pragmatic choice for a
+            // non-nonce Next.js setup (Next's own bootstrap + Tailwind/Framer
+            // Motion inline styles need it). frame-src allows the Google Maps
+            // embeds on /contact; everything else is same-origin only.
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com",
+              "style-src 'self' 'unsafe-inline'",
+              "img-src 'self' data:",
+              "font-src 'self' data:",
+              "connect-src 'self' https://va.vercel-scripts.com https://vitals.vercel-insights.com",
+              "frame-src https://www.google.com",
+              "frame-ancestors 'none'",
+              "object-src 'none'",
+              "base-uri 'self'",
+              "form-action 'self'",
+            ].join('; '),
+          },
         ],
       },
     ]
