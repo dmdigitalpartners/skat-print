@@ -40,17 +40,17 @@ export default function ProductsCatalog({ t, lang, hideHeader }: Props) {
                 href={`/${lang}/products/${product.slug}`}
                 className="group relative block aspect-[4/5] overflow-hidden rounded-[var(--radius-lg)] bg-[var(--color-bg-surface)]"
               >
-                {/* Image well — contains the full product, never crops it.
-                    Padding gives every product (tall floor displays through
-                    wide gift boxes) room to sit fully visible on its native
-                    light backdrop, whatever its aspect ratio. */}
-                <div className="absolute inset-0 p-6 sm:p-8 md:p-9">
+                {/* Image well — fills the card edge-to-edge. Each product's
+                    image was chosen for a close aspect-ratio match to this
+                    card (see products_section.items), so the cover crop is
+                    a light, even trim on one axis, not a hard cut. */}
+                <div className="absolute inset-0">
                   <Image
                     src={product.image}
                     alt={product.title}
                     fill
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    className="object-contain object-center transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                     loading={idx < 2 ? 'eager' : 'lazy'}
                   />
                 </div>
