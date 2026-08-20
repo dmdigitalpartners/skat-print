@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { getTranslation } from '@/lib/useTranslation'
 import type { Lang } from '@/lib/useTranslation'
 import { buildPageMetadata } from '@/lib/metadata'
+import { buildBreadcrumbSchema } from '@/lib/schema'
 import FAQSection from '@/components/sections/FAQSection'
 import CTABanner from '@/components/sections/CTABanner'
 import PageHero from '@/components/ui/PageHero'
@@ -46,11 +47,20 @@ export default async function FAQPage({
     })),
   }
 
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: lang === 'bg' ? 'Начало' : 'Home', path: `/${lang}` },
+    { name: t.nav.faq, path: `/${lang}/faq` },
+  ])
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <PageHero eyebrow={t.nav.faq} heading={t.faq.heading} intro={t.faq.subtitle} />
 

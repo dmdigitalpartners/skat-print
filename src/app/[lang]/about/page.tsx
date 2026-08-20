@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { getTranslation } from '@/lib/useTranslation'
 import type { Lang } from '@/lib/useTranslation'
 import { buildPageMetadata } from '@/lib/metadata'
+import { buildBreadcrumbSchema } from '@/lib/schema'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import CTABanner from '@/components/sections/CTABanner'
 import VideoSection from '@/components/sections/VideoSection'
@@ -41,8 +42,17 @@ export default async function AboutPage({
   const a = t.about_page
   const s = t.about_stats
 
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: lang === 'bg' ? 'Начало' : 'Home', path: `/${lang}` },
+    { name: t.nav.about, path: `/${lang}/about` },
+  ])
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <PageHero eyebrow={t.nav.about} heading={a.heading} intro={a.founding} />
 
       {/* Stats Strip — dark surface, continuous with hero */}

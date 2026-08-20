@@ -35,7 +35,9 @@
     "about": "About",
     "faq": "FAQ",
     "contact": "Contact",
-    "get_quote": "Get a Quote"
+    "get_quote": "Get a Quote",
+    "blog": "Blog",
+    "industries": "Industries We Serve"
   },
   "hero": {
     "eyebrow_country": "Bulgaria",

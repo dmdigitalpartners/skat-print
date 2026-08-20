@@ -88,8 +88,12 @@ export default function ProductsCatalog({ t, lang, hideHeader }: Props) {
 
         {/* Section footer CTA */}
         <div className="mt-8 md:mt-10">
+          {/* Was `/portfolio`, which itself just redirects to `/products`,
+               which redirects to this same section's own anchor — a
+               pointless double-redirect back to where the user already is.
+               Send them straight to a real gallery page instead. */}
           <Link
-            href={`/${lang}/portfolio`}
+            href={`/${lang}/products/${t.products_section.items[0].slug}`}
             className="inline-flex items-center text-base font-semibold text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors duration-200"
           >
             {t.products_section.view_portfolio}
