@@ -18,9 +18,11 @@ export default function FAQSection({ t, layout = 'full' }: FAQSectionProps) {
       {t.faq.items.map((faqItem, idx) => (
         <div key={idx}>
           <button
+            id={`faq-question-${idx}`}
             className="w-full flex items-center justify-between py-5 text-left gap-3 md:gap-4"
             onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
             aria-expanded={openIndex === idx}
+            aria-controls={`faq-panel-${idx}`}
           >
             <span className="font-medium text-[var(--color-text)] leading-relaxed hyphens-auto">{faqItem.question}</span>
             <svg
@@ -38,6 +40,9 @@ export default function FAQSection({ t, layout = 'full' }: FAQSectionProps) {
           <AnimatePresence initial={false}>
             {openIndex === idx && (
               <motion.div
+                id={`faq-panel-${idx}`}
+                role="region"
+                aria-labelledby={`faq-question-${idx}`}
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}

@@ -67,7 +67,7 @@ export default function ProductsCatalog({ t, lang, hideHeader }: Props) {
                     {product.description}
                   </p>
                   {/* CTA: hidden by default, revealed on hover */}
-                  <span className="text-xs font-semibold text-[var(--color-accent)] opacity-0 translate-y-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0">
+                  <span className="text-xs font-semibold text-[var(--color-accent)] opacity-0 translate-y-1 transition-[opacity,transform] duration-200 group-hover:opacity-100 group-hover:translate-y-0 group-focus-visible:opacity-100 group-focus-visible:translate-y-0">
                     {t.products_section.item_cta} →
                   </span>
                 </div>

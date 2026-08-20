@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 interface SpecsAccordionProps {
@@ -10,13 +10,16 @@ interface SpecsAccordionProps {
 
 export default function SpecsAccordion({ heading, specs }: SpecsAccordionProps) {
   const [open, setOpen] = useState(false)
+  const id = useId()
 
   return (
     <div className="border-t border-[var(--color-border)]">
       <button
+        id={`specs-heading-${id}`}
         className="w-full flex items-center justify-between py-5 text-left gap-4"
         onClick={() => setOpen(!open)}
         aria-expanded={open}
+        aria-controls={`specs-panel-${id}`}
       >
         <span className="font-display font-semibold text-lg text-[var(--color-text)]">{heading}</span>
         <svg
@@ -34,6 +37,9 @@ export default function SpecsAccordion({ heading, specs }: SpecsAccordionProps) 
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
+            id={`specs-panel-${id}`}
+            role="region"
+            aria-labelledby={`specs-heading-${id}`}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}

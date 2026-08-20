@@ -99,10 +99,11 @@ export default function SamplesForm({ t, lang }: Props) {
     <div className="w-full">
       {/* Progress indicator */}
       {step < 3 && (
-        <div className="flex items-center gap-2 mb-8">
+        <div className="flex items-center gap-2 mb-8" role="group" aria-label={`Step ${step} of 2`}>
           {([1, 2] as const).map(n => (
             <div key={n} className="flex items-center gap-2">
               <div
+                aria-current={step === n ? 'step' : undefined}
                 className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold transition-[background-color,color] duration-200 ${
                   step === n
                     ? 'bg-[var(--color-accent-text)] text-white'
@@ -146,8 +147,10 @@ export default function SamplesForm({ t, lang }: Props) {
                     <button
                       key={slug}
                       type="button"
+                      role="checkbox"
+                      aria-checked={checked}
                       onClick={() => toggleCategory(slug)}
-                      className={`flex items-center gap-3 px-4 py-3.5 rounded-[var(--radius-sm)] border text-left transition-all duration-150 ${
+                      className={`flex items-center gap-3 px-4 py-3.5 rounded-[var(--radius-sm)] border text-left transition-[border-color,background-color,color] duration-150 ${
                         checked
                           ? 'border-[var(--color-accent)] bg-[var(--color-accent-subtle)] text-[var(--color-accent)]'
                           : 'border-[var(--color-border)] bg-[var(--color-bg-surface)] text-[var(--color-text)] hover:border-[var(--color-accent)]'
@@ -171,7 +174,7 @@ export default function SamplesForm({ t, lang }: Props) {
               </div>
 
               {validationError && (
-                <p className="text-sm text-red-600 mb-4">{s.select_at_least_one}</p>
+                <p role="alert" className="text-sm text-[var(--color-error)] mb-4">{s.select_at_least_one}</p>
               )}
 
               <button
@@ -201,10 +204,11 @@ export default function SamplesForm({ t, lang }: Props) {
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-medium text-[var(--color-text-muted)] mb-1.5">
-                      {s.field_name} <span className="text-red-500">*</span>
+                    <label htmlFor="samples-name" className="block text-xs font-medium text-[var(--color-text-muted)] mb-1.5">
+                      {s.field_name} <span className="text-[var(--color-error)]" aria-hidden>*</span>
                     </label>
                     <input
+                      id="samples-name"
                       required
                       type="text"
                       value={name}
@@ -214,10 +218,11 @@ export default function SamplesForm({ t, lang }: Props) {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium text-[var(--color-text-muted)] mb-1.5">
-                      {s.field_company} <span className="text-red-500">*</span>
+                    <label htmlFor="samples-company" className="block text-xs font-medium text-[var(--color-text-muted)] mb-1.5">
+                      {s.field_company} <span className="text-[var(--color-error)]" aria-hidden>*</span>
                     </label>
                     <input
+                      id="samples-company"
                       required
                       type="text"
                       value={company}
@@ -229,10 +234,11 @@ export default function SamplesForm({ t, lang }: Props) {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-[var(--color-text-muted)] mb-1.5">
-                    {s.field_email} <span className="text-red-500">*</span>
+                  <label htmlFor="samples-email" className="block text-xs font-medium text-[var(--color-text-muted)] mb-1.5">
+                    {s.field_email} <span className="text-[var(--color-error)]" aria-hidden>*</span>
                   </label>
                   <input
+                    id="samples-email"
                     required
                     type="email"
                     value={email}
@@ -243,10 +249,11 @@ export default function SamplesForm({ t, lang }: Props) {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-[var(--color-text-muted)] mb-1.5">
-                    {s.field_address} <span className="text-red-500">*</span>
+                  <label htmlFor="samples-address" className="block text-xs font-medium text-[var(--color-text-muted)] mb-1.5">
+                    {s.field_address} <span className="text-[var(--color-error)]" aria-hidden>*</span>
                   </label>
                   <input
+                    id="samples-address"
                     required
                     type="text"
                     value={address}
@@ -257,10 +264,11 @@ export default function SamplesForm({ t, lang }: Props) {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-[var(--color-text-muted)] mb-1.5">
-                    {s.field_country} <span className="text-red-500">*</span>
+                  <label htmlFor="samples-country" className="block text-xs font-medium text-[var(--color-text-muted)] mb-1.5">
+                    {s.field_country} <span className="text-[var(--color-error)]" aria-hidden>*</span>
                   </label>
                   <input
+                    id="samples-country"
                     required
                     type="text"
                     value={country}
@@ -271,10 +279,11 @@ export default function SamplesForm({ t, lang }: Props) {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-[var(--color-text-muted)] mb-1.5">
+                  <label htmlFor="samples-notes" className="block text-xs font-medium text-[var(--color-text-muted)] mb-1.5">
                     {s.field_notes}
                   </label>
                   <textarea
+                    id="samples-notes"
                     rows={3}
                     value={notes}
                     onChange={e => setNotes(e.target.value)}

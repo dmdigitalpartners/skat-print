@@ -90,10 +90,12 @@ export default function ContactForm({ t }: { t: Translation }) {
             id="name"
             type="text"
             placeholder={f.placeholder_name}
+            aria-invalid={errors.name ? 'true' : undefined}
+            aria-describedby={errors.name ? 'name-error' : undefined}
             className={`${inputCls} ${errors.name ? 'border-[var(--color-error)]' : 'border-[var(--color-border)]'}`}
             {...register('name')}
           />
-          {errors.name && <p className={errorCls}>{errors.name.message}</p>}
+          {errors.name && <p id="name-error" className={errorCls}>{errors.name.message}</p>}
         </div>
 
         <div>
@@ -102,10 +104,12 @@ export default function ContactForm({ t }: { t: Translation }) {
             id="company"
             type="text"
             placeholder={f.placeholder_company}
+            aria-invalid={errors.company ? 'true' : undefined}
+            aria-describedby={errors.company ? 'company-error' : undefined}
             className={`${inputCls} ${errors.company ? 'border-[var(--color-error)]' : 'border-[var(--color-border)]'}`}
             {...register('company')}
           />
-          {errors.company && <p className={errorCls}>{errors.company.message}</p>}
+          {errors.company && <p id="company-error" className={errorCls}>{errors.company.message}</p>}
         </div>
       </div>
 
@@ -114,6 +118,7 @@ export default function ContactForm({ t }: { t: Translation }) {
         <select
           id="product_type"
           aria-invalid={errors.product_type ? 'true' : undefined}
+          aria-describedby={errors.product_type ? 'product_type-error' : undefined}
           className={`${inputCls} ${errors.product_type ? 'border-[var(--color-error)]' : 'border-[var(--color-border)]'}`}
           {...register('product_type')}
           defaultValue=""
@@ -123,7 +128,7 @@ export default function ContactForm({ t }: { t: Translation }) {
             <option key={opt.value} value={opt.value}>{opt.label}</option>
           ))}
         </select>
-        {errors.product_type && <p className={errorCls}>{errors.product_type.message}</p>}
+        {errors.product_type && <p id="product_type-error" className={errorCls}>{errors.product_type.message}</p>}
       </div>
 
       <div>
@@ -132,10 +137,12 @@ export default function ContactForm({ t }: { t: Translation }) {
           id="quantity"
           type="text"
           placeholder={f.placeholder_quantity}
+          aria-invalid={errors.quantity ? 'true' : undefined}
+          aria-describedby={errors.quantity ? 'quantity-error' : undefined}
           className={`${inputCls} ${errors.quantity ? 'border-[var(--color-error)]' : 'border-[var(--color-border)]'}`}
           {...register('quantity')}
         />
-        {errors.quantity && <p className={errorCls}>{errors.quantity.message}</p>}
+        {errors.quantity && <p id="quantity-error" className={errorCls}>{errors.quantity.message}</p>}
       </div>
 
       <div>
@@ -144,10 +151,12 @@ export default function ContactForm({ t }: { t: Translation }) {
           id="contact"
           type="text"
           placeholder={f.placeholder_contact}
+          aria-invalid={errors.contact ? 'true' : undefined}
+          aria-describedby={errors.contact ? 'contact-error' : undefined}
           className={`${inputCls} ${errors.contact ? 'border-[var(--color-error)]' : 'border-[var(--color-border)]'}`}
           {...register('contact')}
         />
-        {errors.contact && <p className={errorCls}>{errors.contact.message}</p>}
+        {errors.contact && <p id="contact-error" className={errorCls}>{errors.contact.message}</p>}
       </div>
 
       <div>
