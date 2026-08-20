@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { getTranslation } from '@/lib/useTranslation'
 import type { Lang } from '@/lib/useTranslation'
+import { buildPageMetadata } from '@/lib/metadata'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import CTABanner from '@/components/sections/CTABanner'
 import VideoSection from '@/components/sections/VideoSection'
@@ -21,11 +22,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params
   const t = getTranslation(lang)
-  return {
+  return buildPageMetadata({
     title: t.meta.about.title.replace('{years}', String(getYearsSince())),
     description: t.meta.about.description,
-    alternates: { canonical: `/${lang}/about`, languages: { en: '/en/about', bg: '/bg/about' } },
-  }
+    path: '/about',
+    lang,
+  })
 }
 
 export default async function AboutPage({

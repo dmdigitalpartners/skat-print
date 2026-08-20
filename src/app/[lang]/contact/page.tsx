@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { getTranslation } from '@/lib/useTranslation'
+import { buildPageMetadata } from '@/lib/metadata'
 import ContactForm from '@/components/sections/ContactForm'
 import PageHero from '@/components/ui/PageHero'
 
@@ -10,11 +11,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params
   const t = getTranslation(lang)
-  return {
+  return buildPageMetadata({
     title: t.meta.contact.title,
     description: t.meta.contact.description,
-    alternates: { canonical: `/${lang}/contact`, languages: { en: '/en/contact', bg: '/bg/contact' } },
-  }
+    path: '/contact',
+    lang,
+  })
 }
 
 export default async function ContactPage({

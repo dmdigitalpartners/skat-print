@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getTranslation } from '@/lib/useTranslation'
 import type { Lang } from '@/lib/useTranslation'
+import { buildPageMetadata } from '@/lib/metadata'
+import { SITE_URL } from '@/config/site'
 import { VALID_INDUSTRIES, LANGS } from '@/config/routes'
 
 export async function generateStaticParams() {
@@ -26,17 +28,12 @@ export async function generateMetadata({
   const key = slugToKey(industry) as keyof typeof t.industries
   const data = t.industries[key] as { meta_title: string; meta_description: string } | undefined
   if (!data || typeof data !== 'object' || !('meta_title' in data)) return {}
-  return {
+  return buildPageMetadata({
     title: data.meta_title,
     description: data.meta_description,
-    alternates: {
-      canonical: `/${lang}/industries/${industry}`,
-      languages: {
-        en: `/en/industries/${industry}`,
-        bg: `/bg/industries/${industry}`,
-      },
-    },
-  }
+    path: `/industries/${industry}`,
+    lang,
+  })
 }
 
 interface IndustryData {
@@ -99,7 +96,7 @@ export default async function IndustryPage({
     'custom-packaging': lang === 'bg' ? 'Персонализирани опаковки' : 'Custom Packaging',
   }
 
-  const baseUrl = 'https://skatprint.bg'
+  const baseUrl = SITE_URL
   const industrySchema = {
     '@context': 'https://schema.org',
     '@graph': [

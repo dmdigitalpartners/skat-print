@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { LANGS } from '@/config/routes'
 import { getPost, getPostSlugs } from '@/lib/blog'
+import { buildPageMetadata } from '@/lib/metadata'
+import { SITE_URL } from '@/config/site'
 
 export async function generateStaticParams() {
   return LANGS.flatMap(lang =>
@@ -19,17 +21,12 @@ export async function generateMetadata({
   const { lang, slug } = await params
   const post = getPost(lang, slug)
   if (!post) return {}
-  return {
+  return buildPageMetadata({
     title: post.title,
     description: post.description,
-    alternates: {
-      canonical: `/${lang}/blog/${slug}`,
-      languages: {
-        en: `/en/blog/${slug}`,
-        bg: `/bg/blog/${slug}`,
-      },
-    },
-  }
+    path: `/blog/${slug}`,
+    lang,
+  })
 }
 
 export default async function BlogPostPage({
@@ -43,8 +40,24 @@ export default async function BlogPostPage({
 
   const isBg = lang === 'bg'
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    dateModified: post.date,
+    inLanguage: isBg ? 'bg' : 'en',
+    url: `${SITE_URL}/${lang}/blog/${slug}`,
+    publisher: { '@type': 'Organization', name: 'Skat Print', url: SITE_URL },
+  }
+
   return (
     <div className="container-site py-16 md:py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <div className="max-w-2xl mx-auto">
         {/* Breadcrumb */}
         <nav className="mb-8 text-xs text-[var(--color-text-muted)]">

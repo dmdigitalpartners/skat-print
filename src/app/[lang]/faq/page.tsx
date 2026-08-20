@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getTranslation } from '@/lib/useTranslation'
 import type { Lang } from '@/lib/useTranslation'
+import { buildPageMetadata } from '@/lib/metadata'
 import FAQSection from '@/components/sections/FAQSection'
 import CTABanner from '@/components/sections/CTABanner'
 import PageHero from '@/components/ui/PageHero'
@@ -17,14 +18,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params
   const t = getTranslation(lang)
-  return {
+  return buildPageMetadata({
     title: t.meta.faq.title,
     description: t.meta.faq.description,
-    alternates: {
-      canonical: `/${lang}/faq`,
-      languages: { en: '/en/faq', bg: '/bg/faq' },
-    },
-  }
+    path: '/faq',
+    lang,
+  })
 }
 
 export default async function FAQPage({
