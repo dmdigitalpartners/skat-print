@@ -16,11 +16,12 @@ export default function LanguageToggle({ lang, variant = 'dark' }: Props) {
     router.push(href, { scroll: false })
   }
 
-  const borderCls = variant === 'light' ? 'border-[#DDD9D3]' : 'border-[var(--color-border)]'
-  const inactiveCls =
-    variant === 'light'
-      ? 'text-[#5E6679] hover:text-[#0D1117]'
-      : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)]'
+  // Both the dark- and light-navbar variants render identically once
+  // expressed as tokens (they used to be separately hardcoded hex values
+  // that happened to duplicate --color-border/--color-text-muted/--color-text).
+  void variant
+  const borderCls = 'border-[var(--color-border)]'
+  const inactiveCls = 'text-[var(--color-text-muted)] hover:text-[var(--color-text)]'
 
   return (
     <div
