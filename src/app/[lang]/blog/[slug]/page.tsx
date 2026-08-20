@@ -98,7 +98,7 @@ export default async function BlogPostPage({
         <div className="mt-12 pt-8 border-t border-[var(--color-border)] flex flex-col sm:flex-row gap-4">
           <Link
             href={`/${lang}/samples`}
-            className="inline-flex items-center justify-center min-h-[48px] px-8 py-3 rounded-[var(--radius-md)] bg-[var(--color-accent)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-[background-color] shadow-[var(--shadow-accent)]"
+            className="inline-flex items-center justify-center min-h-[48px] px-8 py-3 rounded-[var(--radius-md)] bg-[var(--color-accent-text)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-[background-color] shadow-[var(--shadow-accent)]"
           >
             {isBg ? 'Заявете мостри →' : 'Request Free Samples →'}
           </Link>

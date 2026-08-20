@@ -32,7 +32,7 @@ export default function LanguageToggle({ lang, variant = 'dark' }: Props) {
           key={l}
           onClick={() => handleSwitch(l)}
           className={`px-3 py-1 transition-colors duration-200 uppercase tracking-wide ${
-            lang === l ? 'bg-[var(--color-accent)] text-white' : inactiveCls
+            lang === l ? 'bg-[var(--color-accent-text)] text-white' : inactiveCls
           }`}
           aria-current={lang === l ? 'page' : undefined}
         >

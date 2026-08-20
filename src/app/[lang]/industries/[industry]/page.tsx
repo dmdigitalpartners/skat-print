@@ -149,7 +149,7 @@ export default async function IndustryPage({
           <div className="flex flex-wrap gap-4 mt-8">
             <Link
               href={`/${currentLang}/samples`}
-              className="inline-flex items-center justify-center min-h-[48px] px-8 py-3 rounded-[var(--radius-md)] bg-[var(--color-accent)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-[background-color] shadow-[var(--shadow-accent)]"
+              className="inline-flex items-center justify-center min-h-[48px] px-8 py-3 rounded-[var(--radius-md)] bg-[var(--color-accent-text)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-[background-color] shadow-[var(--shadow-accent)]"
             >
               {data.cta_label}
             </Link>
@@ -198,7 +198,7 @@ export default async function IndustryPage({
               <ol className="space-y-5">
                 {data.process_steps.map((step, i) => (
                   <li key={i} className="flex gap-4">
-                    <span className="flex-none w-7 h-7 rounded-full bg-[var(--color-accent)] text-white text-xs font-bold flex items-center justify-center mt-0.5">
+                    <span className="flex-none w-7 h-7 rounded-full bg-[var(--color-accent-text)] text-white text-xs font-bold flex items-center justify-center mt-0.5">
                       {i + 1}
                     </span>
                     <div>
@@ -314,7 +314,7 @@ export default async function IndustryPage({
               </p>
               <Link
                 href={`/${currentLang}/samples`}
-                className="block w-full text-center text-sm font-semibold bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white py-2.5 px-4 rounded-[var(--radius-sm)] transition-[background-color]"
+                className="block w-full text-center text-sm font-semibold bg-[var(--color-accent-text)] hover:bg-[var(--color-accent-hover)] text-white py-2.5 px-4 rounded-[var(--radius-sm)] transition-[background-color]"
               >
                 {ind.request_samples_cta} →
               </Link>

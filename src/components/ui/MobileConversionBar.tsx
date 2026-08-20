@@ -150,7 +150,7 @@ export default function MobileConversionBar({ lang }: { lang: string }) {
                     <button
                       type="submit"
                       disabled={status === 'submitting'}
-                      className="w-full py-3 rounded-[var(--radius-md)] bg-[var(--color-accent)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-colors disabled:opacity-50"
+                      className="w-full py-3 rounded-[var(--radius-md)] bg-[var(--color-accent-text)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-colors disabled:opacity-50"
                     >
                       {status === 'submitting'
                         ? (isBg ? 'Изпращане…' : 'Sending…')

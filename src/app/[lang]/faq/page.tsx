@@ -83,7 +83,7 @@ export default async function FAQPage({
                 </p>
                 <Link
                   href={`/${lang}/contact`}
-                  className="inline-flex items-center gap-2 w-full justify-center px-5 py-3 rounded-[var(--radius-md)] bg-[var(--color-accent)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-colors duration-200"
+                  className="inline-flex items-center gap-2 w-full justify-center px-5 py-3 rounded-[var(--radius-md)] bg-[var(--color-accent-text)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-colors duration-200"
                 >
                   {s.cta}
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden>

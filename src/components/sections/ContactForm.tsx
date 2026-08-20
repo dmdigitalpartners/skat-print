@@ -170,7 +170,7 @@ export default function ContactForm({ t }: { t: Translation }) {
       <button
         type="submit"
         disabled={status === 'submitting'}
-        className="w-full min-h-[44px] px-6 py-3 rounded-[var(--radius-md)] bg-[var(--color-accent)] text-white font-medium text-sm hover:bg-[var(--color-accent-hover)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-[var(--shadow-accent)]"
+        className="w-full min-h-[44px] px-6 py-3 rounded-[var(--radius-md)] bg-[var(--color-accent-text)] text-white font-medium text-sm hover:bg-[var(--color-accent-hover)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-[var(--shadow-accent)]"
       >
         {status === 'submitting' ? f.submitting : f.submit}
       </button>

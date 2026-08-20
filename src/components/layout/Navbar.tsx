@@ -161,7 +161,7 @@ export default function Navbar({ t, lang }: Props) {
             <LanguageToggle lang={lang} variant="light" />
             <Link
               href={`${base}/contact`}
-              className="px-5 py-2 rounded-[var(--radius-md)] bg-[var(--color-accent)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-colors duration-200"
+              className="px-5 py-2 rounded-[var(--radius-md)] bg-[var(--color-accent-text)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-colors duration-200"
             >
               {t.nav.get_quote}
             </Link>
@@ -249,7 +249,7 @@ export default function Navbar({ t, lang }: Props) {
           <div className="pt-4 mt-2 flex items-center justify-end border-t border-[var(--color-border)]">
             <Link
               href={`${base}/contact`}
-              className="px-5 py-2.5 rounded-[var(--radius-md)] bg-[var(--color-accent)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-colors duration-200"
+              className="px-5 py-2.5 rounded-[var(--radius-md)] bg-[var(--color-accent-text)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-colors duration-200"
               onClick={() => setMobileOpen(false)}
             >
               {t.nav.get_quote}

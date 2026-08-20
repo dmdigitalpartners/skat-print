@@ -105,9 +105,9 @@ export default function SamplesForm({ t, lang }: Props) {
               <div
                 className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold transition-[background-color,color] duration-200 ${
                   step === n
-                    ? 'bg-[var(--color-accent)] text-white'
+                    ? 'bg-[var(--color-accent-text)] text-white'
                     : step > n
-                    ? 'bg-[var(--color-accent)] text-white opacity-60'
+                    ? 'bg-[var(--color-accent-text)] text-white opacity-60'
                     : 'bg-[var(--color-bg-surface)] border border-[var(--color-border)] text-[var(--color-text-muted)]'
                 }`}
               >
@@ -177,7 +177,7 @@ export default function SamplesForm({ t, lang }: Props) {
               <button
                 type="button"
                 onClick={goToStep2}
-                className="mt-4 w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] px-8 py-3 rounded-[var(--radius-md)] bg-[var(--color-accent)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-[background-color] shadow-[var(--shadow-accent)]"
+                className="mt-4 w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] px-8 py-3 rounded-[var(--radius-md)] bg-[var(--color-accent-text)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-[background-color] shadow-[var(--shadow-accent)]"
               >
                 {s.continue} →
               </button>
@@ -294,7 +294,7 @@ export default function SamplesForm({ t, lang }: Props) {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="flex-1 sm:flex-none inline-flex items-center justify-center min-h-[48px] px-8 py-3 rounded-[var(--radius-md)] bg-[var(--color-accent)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-[background-color] shadow-[var(--shadow-accent)] disabled:opacity-50 disabled:pointer-events-none"
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center min-h-[48px] px-8 py-3 rounded-[var(--radius-md)] bg-[var(--color-accent-text)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-[background-color] shadow-[var(--shadow-accent)] disabled:opacity-50 disabled:pointer-events-none"
                   >
                     {submitting ? s.submitting : s.submit}
                   </button>
