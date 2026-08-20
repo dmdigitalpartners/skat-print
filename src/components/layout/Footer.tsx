@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Translation, Lang } from '@/lib/useTranslation'
-import { VALID_INDUSTRIES } from '@/config/routes'
 
 interface Props {
   t: Translation
@@ -19,15 +18,6 @@ export default function Footer({ t, lang }: Props) {
     { href: `${base}/contact`, label: t.nav.contact },
     { href: `${base}/blog`, label: t.nav.blog },
   ]
-
-  // No standalone "/industries" index page exists — link each real
-  // industry page individually so they're reachable from site navigation
-  // rather than only via the sitemap.
-  const industryLinks = VALID_INDUSTRIES.map((slug) => {
-    const key = slug.replace(/-/g, '_') as keyof typeof t.industries
-    const data = t.industries[key] as { hero_headline: string } | undefined
-    return { href: `${base}/industries/${slug}`, label: data?.hero_headline ?? slug }
-  })
 
   return (
     <footer className="bg-[var(--color-bg-surface)] border-t border-[var(--color-border)]">
@@ -104,22 +94,6 @@ export default function Footer({ t, lang }: Props) {
             </h3>
             <ul className="flex flex-col gap-2">
               {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            <h3 className="text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mt-6 mb-3">
-              {t.nav.industries}
-            </h3>
-            <ul className="flex flex-col gap-2">
-              {industryLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
