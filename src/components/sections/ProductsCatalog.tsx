@@ -67,7 +67,7 @@ export default function ProductsCatalog({ t, lang, hideHeader }: Props) {
                     {product.description}
                   </p>
                   {/* CTA: hidden by default, revealed on hover */}
-                  <span className="text-xs font-semibold text-[var(--color-accent)] opacity-0 translate-y-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0">
+                  <span className="text-xs font-semibold text-[var(--color-accent)] opacity-0 translate-y-1 transition-[opacity,transform] duration-200 group-hover:opacity-100 group-hover:translate-y-0 group-focus-visible:opacity-100 group-focus-visible:translate-y-0">
                     {t.products_section.item_cta} →
                   </span>
                 </div>
@@ -88,8 +88,12 @@ export default function ProductsCatalog({ t, lang, hideHeader }: Props) {
 
         {/* Section footer CTA */}
         <div className="mt-8 md:mt-10">
+          {/* Was `/portfolio`, which itself just redirects to `/products`,
+               which redirects to this same section's own anchor — a
+               pointless double-redirect back to where the user already is.
+               Send them straight to a real gallery page instead. */}
           <Link
-            href={`/${lang}/portfolio`}
+            href={`/${lang}/products/${t.products_section.items[0].slug}`}
             className="inline-flex items-center text-base font-semibold text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors duration-200"
           >
             {t.products_section.view_portfolio}

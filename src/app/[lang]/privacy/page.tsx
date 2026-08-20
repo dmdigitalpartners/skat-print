@@ -6,6 +6,7 @@
 import type { Metadata } from 'next'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import PageHero from '@/components/ui/PageHero'
+import { buildPageMetadata } from '@/lib/metadata'
 
 export function generateStaticParams() {
   return [{ lang: 'en' }, { lang: 'bg' }]
@@ -18,17 +19,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params
   const isEn = lang !== 'bg'
-  return {
+  return buildPageMetadata({
     title: isEn ? 'Privacy Policy — Skat Print' : 'Политика за поверителност — Скат Принт',
     description: isEn
       ? 'How Skat Print collects, uses, and protects your personal data.'
       : 'Как Скат Принт събира, използва и защитава вашите лични данни.',
-    robots: { index: false },
-    alternates: {
-      canonical: `/${lang}/privacy`,
-      languages: { en: '/en/privacy', bg: '/bg/privacy' },
-    },
-  }
+    path: '/privacy',
+    lang,
+    noIndex: true,
+  })
 }
 
 const contentEn = [
@@ -57,8 +56,8 @@ const contentEn = [
     body: 'Under the General Data Protection Regulation (GDPR), you have the right to access, correct, delete, or restrict processing of your personal data. To exercise these rights, contact office@skatoil.com.',
   },
   {
-    heading: 'Cookies',
-    body: 'We use anonymous analytics cookies (Vercel Analytics). No personally identifiable information is stored in cookies. You can disable cookies in your browser settings.',
+    heading: 'Cookies & Local Storage',
+    body: 'We use Vercel Analytics, a cookieless analytics service that does not set cookies or store personally identifiable information. Our website chatbot uses your browser’s local storage (not cookies) to remember your conversation during a visit; this data stays on your device, is not used for tracking or advertising, and is not shared with third parties.',
   },
   {
     heading: 'Contact',
@@ -92,8 +91,8 @@ const contentBg = [
     body: 'По силата на Общия регламент за защита на данните (GDPR) имате право на достъп, коригиране, изтриване или ограничаване на обработката на вашите лични данни. За упражняване на тези права: office@skatoil.com.',
   },
   {
-    heading: 'Бисквитки',
-    body: 'Използваме анонимни аналитични бисквитки (Vercel Analytics). В бисквитките не се съхранява лично идентифицираща информация. Можете да деактивирате бисквитките в настройките на браузъра си.',
+    heading: 'Бисквитки и локално съхранение',
+    body: 'Използваме Vercel Analytics — аналитична услуга без бисквитки, която не съхранява лично идентифицираща информация. Чатботът на нашия уебсайт използва локалното съхранение на браузъра ви (не бисквитки), за да запомни разговора ви по време на посещението; тези данни остават на вашето устройство, не се използват за проследяване или реклама и не се споделят с трети страни.',
   },
   {
     heading: 'Контакт',

@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { getTranslation } from '@/lib/useTranslation'
+import { buildPageMetadata } from '@/lib/metadata'
+import { buildBreadcrumbSchema } from '@/lib/schema'
 import ContactForm from '@/components/sections/ContactForm'
 import PageHero from '@/components/ui/PageHero'
 
@@ -10,11 +12,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params
   const t = getTranslation(lang)
-  return {
+  return buildPageMetadata({
     title: t.meta.contact.title,
     description: t.meta.contact.description,
-    alternates: { canonical: `/${lang}/contact`, languages: { en: '/en/contact', bg: '/bg/contact' } },
-  }
+    path: '/contact',
+    lang,
+  })
 }
 
 export default async function ContactPage({
@@ -34,8 +37,17 @@ export default async function ContactPage({
     'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11763.095604620705!2d24.7269473!3d42.5176126!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a9ea7a27aacb85%3A0x270f2a0e104a0f49!2z0KHQutCw0YIg0J7QudC7!5e0!3m2!1sen!2sbg!4v1780901119602!5m2!1sen!2sbg',
   ]
 
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: lang === 'bg' ? 'Начало' : 'Home', path: `/${lang}` },
+    { name: t.nav.contact, path: `/${lang}/contact` },
+  ])
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <PageHero eyebrow={t.nav.contact} heading={c.heading} intro={c.subheading} />
 
       <div className="bg-[var(--color-bg)] section-padding">

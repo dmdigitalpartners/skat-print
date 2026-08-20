@@ -14,8 +14,11 @@ interface ButtonProps {
 }
 
 const variants: Record<Variant, string> = {
+  // --color-accent is too light for white text at 3.26:1 (fails WCAG AA);
+  // --color-accent-text was already defined as the WCAG-AA-safe variant
+  // (~4.7:1) — reused here as the fill instead of introducing a new color.
   primary:
-    'bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] shadow-[var(--shadow-accent)]',
+    'bg-[var(--color-accent-text)] text-white hover:bg-[var(--color-accent-hover)] shadow-[var(--shadow-accent)]',
   secondary:
     'bg-white/10 backdrop-blur-sm border border-white/60 text-white hover:bg-white/20 hover:border-white',
   ghost:

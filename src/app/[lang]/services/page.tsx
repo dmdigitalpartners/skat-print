@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { getTranslation } from '@/lib/useTranslation'
 import type { Lang } from '@/lib/useTranslation'
+import { buildPageMetadata } from '@/lib/metadata'
+import { buildBreadcrumbSchema } from '@/lib/schema'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import CTABanner from '@/components/sections/CTABanner'
 import PageHero from '@/components/ui/PageHero'
@@ -17,11 +19,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params
   const t = getTranslation(lang)
-  return {
+  return buildPageMetadata({
     title: t.meta.services.title,
     description: t.meta.services.description,
-    alternates: { canonical: `/${lang}/services`, languages: { en: '/en/services', bg: '/bg/services' } },
-  }
+    path: '/services',
+    lang,
+  })
 }
 
 export default async function ServicesPage({
@@ -33,8 +36,17 @@ export default async function ServicesPage({
   const t = getTranslation(lang)
   const currentLang = (lang === 'bg' ? 'bg' : 'en') as Lang
 
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: lang === 'bg' ? 'Начало' : 'Home', path: `/${lang}` },
+    { name: t.nav.services, path: `/${lang}/services` },
+  ])
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <PageHero eyebrow={t.nav.services} heading={t.services_page.heading} intro={t.services_page.intro} />
 
       <SectionWrapper>

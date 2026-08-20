@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getTranslation } from '@/lib/useTranslation'
 import type { Lang } from '@/lib/useTranslation'
+import { buildPageMetadata } from '@/lib/metadata'
+import { buildBreadcrumbSchema } from '@/lib/schema'
 import FAQSection from '@/components/sections/FAQSection'
 import CTABanner from '@/components/sections/CTABanner'
 import PageHero from '@/components/ui/PageHero'
@@ -17,14 +19,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params
   const t = getTranslation(lang)
-  return {
+  return buildPageMetadata({
     title: t.meta.faq.title,
     description: t.meta.faq.description,
-    alternates: {
-      canonical: `/${lang}/faq`,
-      languages: { en: '/en/faq', bg: '/bg/faq' },
-    },
-  }
+    path: '/faq',
+    lang,
+  })
 }
 
 export default async function FAQPage({
@@ -47,11 +47,20 @@ export default async function FAQPage({
     })),
   }
 
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: lang === 'bg' ? 'Начало' : 'Home', path: `/${lang}` },
+    { name: t.nav.faq, path: `/${lang}/faq` },
+  ])
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <PageHero eyebrow={t.nav.faq} heading={t.faq.heading} intro={t.faq.subtitle} />
 
@@ -74,7 +83,7 @@ export default async function FAQPage({
                 </p>
                 <Link
                   href={`/${lang}/contact`}
-                  className="inline-flex items-center gap-2 w-full justify-center px-5 py-3 rounded-[var(--radius-md)] bg-[var(--color-accent)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-colors duration-200"
+                  className="inline-flex items-center gap-2 w-full justify-center px-5 py-3 rounded-[var(--radius-md)] bg-[var(--color-accent-text)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-colors duration-200"
                 >
                   {s.cta}
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden>

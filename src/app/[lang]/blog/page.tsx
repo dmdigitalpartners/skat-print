@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { LANGS } from '@/config/routes'
 import { getAllPosts } from '@/lib/blog'
+import { buildPageMetadata } from '@/lib/metadata'
 
 export async function generateStaticParams() {
   return LANGS.map(lang => ({ lang }))
@@ -14,16 +15,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params
   const isBg = lang === 'bg'
-  return {
+  return buildPageMetadata({
     title: isBg ? 'Блог — Скат Принт' : 'Blog — Skat Print',
     description: isBg
       ? 'Ръководства и статии за опаковки, печат и производство от екипа на Скат Принт.'
       : 'Packaging guides, production insights, and industry articles from the Skat Print team.',
-    alternates: {
-      canonical: `/${lang}/blog`,
-      languages: { en: '/en/blog', bg: '/bg/blog' },
-    },
-  }
+    path: '/blog',
+    lang,
+  })
 }
 
 export default async function BlogIndexPage({

@@ -6,6 +6,7 @@
 import type { Metadata } from 'next'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import PageHero from '@/components/ui/PageHero'
+import { buildPageMetadata } from '@/lib/metadata'
 
 export function generateStaticParams() {
   return [{ lang: 'en' }, { lang: 'bg' }]
@@ -18,17 +19,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params
   const isEn = lang !== 'bg'
-  return {
+  return buildPageMetadata({
     title: isEn ? 'Terms of Use — Skat Print' : 'Условия за ползване — Скат Принт',
     description: isEn
       ? 'Terms governing your use of the Skat Print website and services.'
       : 'Условия, регулиращи използването на уебсайта и услугите на Скат Принт.',
-    robots: { index: false },
-    alternates: {
-      canonical: `/${lang}/terms`,
-      languages: { en: '/en/terms', bg: '/bg/terms' },
-    },
-  }
+    path: '/terms',
+    lang,
+    noIndex: true,
+  })
 }
 
 const contentEn = [

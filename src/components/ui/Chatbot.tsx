@@ -495,8 +495,8 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
               <div
                 className={`max-w-[85%] break-words text-sm px-3.5 py-2.5 leading-relaxed ${
                   msg.role === 'user'
-                    ? 'bg-[var(--color-accent)] text-white rounded-2xl rounded-tr-sm'
-                    : 'bg-[var(--color-bg-surface)] border border-[var(--color-border)] text-[var(--color-text)] rounded-2xl rounded-tl-sm'
+                    ? 'bg-[var(--color-accent-text)] text-white rounded-[var(--radius-xl)] rounded-tr-[var(--radius-sm)]'
+                    : 'bg-[var(--color-bg-surface)] border border-[var(--color-border)] text-[var(--color-text)] rounded-[var(--radius-xl)] rounded-tl-[var(--radius-sm)]'
                 }`}
               >
                 {msg.text}
@@ -506,7 +506,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
 
           {isTyping && (
             <div className="flex justify-start">
-              <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border)] rounded-2xl rounded-tl-sm px-3.5 py-2.5">
+              <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border)] rounded-[var(--radius-xl)] rounded-tl-[var(--radius-sm)] px-3.5 py-2.5">
                 <TypingIndicator reduced={reduced} />
               </div>
             </div>
@@ -537,7 +537,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
             </a>
             <a
               href={`/${lang}/contact`}
-              className="mt-1 w-full text-center text-xs font-semibold text-white bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] rounded-xl py-2.5 px-3 transition-[background-color]"
+              className="mt-1 w-full text-center text-xs font-semibold text-white bg-[var(--color-accent-text)] hover:bg-[var(--color-accent-hover)] rounded-[var(--radius-lg)] py-2.5 px-3 transition-[background-color]"
             >
               {lang === 'bg' ? 'Към страницата за контакти →' : 'Go to Contact Page →'}
             </a>
@@ -560,12 +560,12 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
                   value={leadEmail}
                   onChange={e => setLeadEmail(e.target.value)}
                   placeholder={t.chatbot.email_placeholder}
-                  className="w-full text-sm px-3 py-2 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-surface)] text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-[var(--color-accent)] transition-[border-color]"
+                  className="w-full text-sm px-3 py-2 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-bg-surface)] text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-[var(--color-accent)] transition-[border-color]"
                 />
                 <button
                   type="submit"
                   disabled={leadSubmitting || !leadEmail.trim()}
-                  className="w-full text-xs font-semibold text-white bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] rounded-xl py-2.5 px-3 transition-[background-color] disabled:opacity-50 disabled:pointer-events-none"
+                  className="w-full text-xs font-semibold text-white bg-[var(--color-accent-text)] hover:bg-[var(--color-accent-hover)] rounded-[var(--radius-lg)] py-2.5 px-3 transition-[background-color] disabled:opacity-50 disabled:pointer-events-none"
                 >
                   {leadSubmitting ? '…' : t.chatbot.send_request}
                 </button>
@@ -582,7 +582,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
                 key={chip}
                 onClick={() => handleChip(chip)}
                 disabled={isConversationLocked}
-                className="w-full flex items-center justify-between gap-2 px-4 py-3 rounded-xl border border-[var(--color-border)] bg-white text-left text-sm font-medium text-[var(--color-text)] hover:border-[var(--color-accent)] hover:bg-[var(--color-accent-subtle)] hover:text-[var(--color-accent)] transition-all duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] disabled:opacity-40 disabled:pointer-events-none"
+                className="w-full flex items-center justify-between gap-2 px-4 py-3 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-white text-left text-sm font-medium text-[var(--color-text)] hover:border-[var(--color-accent)] hover:bg-[var(--color-accent-subtle)] hover:text-[var(--color-accent)] transition-[border-color,background-color,color] duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] disabled:opacity-40 disabled:pointer-events-none"
               >
                 <span>{chip}</span>
                 <IconArrow cls="w-4 h-4 flex-shrink-0 opacity-40" />
@@ -641,7 +641,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
             {...fabMotion}
             onClick={openChat}
             aria-label={t.chatbot.aria_open}
-            className="fixed bottom-6 right-6 z-50 hidden md:flex items-center justify-center w-14 h-14 rounded-full bg-[var(--color-accent)] text-white select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
+            className="fixed bottom-6 right-6 z-50 hidden md:flex items-center justify-center w-14 h-14 rounded-full bg-[var(--color-accent-text)] text-white select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
             style={{
               boxShadow: '0 4px 24px rgba(0,152,212,0.40), 0 2px 8px rgba(0,0,0,0.16)',
             }}
@@ -668,7 +668,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
             role="dialog"
             aria-modal="true"
             aria-label={lang === 'bg' ? 'Чат поддръжка' : 'Chat support'}
-            className="fixed bottom-6 right-6 z-50 hidden md:flex flex-col w-[360px] h-[580px] rounded-2xl overflow-hidden"
+            className="fixed bottom-6 right-6 z-50 hidden md:flex flex-col w-[360px] h-[580px] rounded-[var(--radius-xl)] overflow-hidden"
             style={{
               boxShadow: '0 20px 60px rgba(0,0,0,0.18), 0 4px 20px rgba(0,0,0,0.10)',
               transformOrigin: 'bottom right',
@@ -687,7 +687,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
             {...fabMotion}
             onClick={openChat}
             aria-label={t.chatbot.aria_open}
-            className="fixed bottom-[80px] right-6 z-50 flex md:hidden items-center justify-center w-14 h-14 rounded-full bg-[var(--color-accent)] text-white select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
+            className="fixed bottom-[calc(var(--mobile-bar-height)+env(safe-area-inset-bottom)+16px)] right-6 z-50 flex md:hidden items-center justify-center w-14 h-14 rounded-full bg-[var(--color-accent-text)] text-white select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
             style={{
               boxShadow: '0 4px 24px rgba(0,152,212,0.40), 0 2px 8px rgba(0,0,0,0.16)',
             }}

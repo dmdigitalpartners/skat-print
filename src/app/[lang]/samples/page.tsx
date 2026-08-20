@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { getTranslation } from '@/lib/useTranslation'
 import type { Lang } from '@/lib/useTranslation'
 import { LANGS } from '@/config/routes'
+import { buildPageMetadata } from '@/lib/metadata'
 import SamplesForm from '@/components/sections/SamplesForm'
 
 export async function generateStaticParams() {
@@ -15,14 +16,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params
   const t = getTranslation(lang)
-  return {
+  return buildPageMetadata({
     title: t.meta.samples.title,
     description: t.meta.samples.description,
-    alternates: {
-      canonical: `/${lang}/samples`,
-      languages: { en: '/en/samples', bg: '/bg/samples' },
-    },
-  }
+    path: '/samples',
+    lang,
+  })
 }
 
 export default async function SamplesPage({

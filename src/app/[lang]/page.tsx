@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { getTranslation } from '@/lib/useTranslation'
 import type { Lang } from '@/lib/useTranslation'
+import { buildPageMetadata } from '@/lib/metadata'
 import Hero from '@/components/sections/Hero'
 import TrustedBy from '@/components/sections/TrustedBy'
 import VideoSection from '@/components/sections/VideoSection'
@@ -19,14 +20,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params
   const t = getTranslation(lang)
-  return {
+  return buildPageMetadata({
     title: t.meta.home.title,
     description: t.meta.home.description,
-    alternates: {
-      canonical: `/${lang}`,
-      languages: { en: '/en', bg: '/bg' },
-    },
-  }
+    path: '',
+    lang,
+  })
 }
 
 export default async function HomePage({

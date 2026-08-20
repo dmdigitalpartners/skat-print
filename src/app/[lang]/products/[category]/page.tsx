@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getTranslation } from '@/lib/useTranslation'
 import type { Lang } from '@/lib/useTranslation'
+import { buildPageMetadata } from '@/lib/metadata'
+import { SITE_URL } from '@/config/site'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import CTABanner from '@/components/sections/CTABanner'
 import PortfolioGrid from '@/components/sections/PortfolioGrid'
@@ -25,17 +27,12 @@ export async function generateMetadata({
   const t = getTranslation(lang)
   const detail = t.product_detail[category as CategorySlug]
   if (!detail) return {}
-  return {
+  return buildPageMetadata({
     title: `${detail.heading} — Skat Print`,
     description: detail.intro,
-    alternates: {
-      canonical: `/${lang}/products/${category}`,
-      languages: {
-        en: `/en/products/${category}`,
-        bg: `/bg/products/${category}`,
-      },
-    },
-  }
+    path: `/products/${category}`,
+    lang,
+  })
 }
 
 export default async function ProductCategoryPage({
@@ -51,7 +48,7 @@ export default async function ProductCategoryPage({
 
   const detail = t.product_detail[category as CategorySlug]
 
-  const baseUrl = 'https://skatprint.bg'
+  const baseUrl = SITE_URL
   const productSchema = {
     '@context': 'https://schema.org',
     '@graph': [

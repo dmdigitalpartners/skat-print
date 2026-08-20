@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { getTranslation } from '@/lib/useTranslation'
 import type { Lang } from '@/lib/useTranslation'
+import { buildPageMetadata } from '@/lib/metadata'
+import { buildBreadcrumbSchema } from '@/lib/schema'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import CTABanner from '@/components/sections/CTABanner'
 import VideoSection from '@/components/sections/VideoSection'
@@ -21,11 +23,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params
   const t = getTranslation(lang)
-  return {
+  return buildPageMetadata({
     title: t.meta.about.title.replace('{years}', String(getYearsSince())),
     description: t.meta.about.description,
-    alternates: { canonical: `/${lang}/about`, languages: { en: '/en/about', bg: '/bg/about' } },
-  }
+    path: '/about',
+    lang,
+  })
 }
 
 export default async function AboutPage({
@@ -39,8 +42,17 @@ export default async function AboutPage({
   const a = t.about_page
   const s = t.about_stats
 
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: lang === 'bg' ? 'Начало' : 'Home', path: `/${lang}` },
+    { name: t.nav.about, path: `/${lang}/about` },
+  ])
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <PageHero eyebrow={t.nav.about} heading={a.heading} intro={a.founding} />
 
       {/* Stats Strip — dark surface, continuous with hero */}
@@ -131,7 +143,7 @@ export default async function AboutPage({
       </section>
 
       {/* Story Block 2 — Capability proof: 3-column cards, no image */}
-      <section className="section-padding" style={{ backgroundColor: '#F3F7FB', borderTop: '1px solid #E2E9F3' }}>
+      <section className="section-padding" style={{ backgroundColor: 'var(--color-bg-surface)', borderTop: '1px solid var(--color-border)' }}>
         <div className="container-site">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent-text)] mb-5">
@@ -150,7 +162,7 @@ export default async function AboutPage({
                   className="p-8 rounded-[var(--radius-lg)] h-full"
                   style={{
                     backgroundColor: '#FFFFFF',
-                    border: '1px solid #E2E9F3',
+                    border: '1px solid var(--color-border)',
                   }}
                 >
                   <div
@@ -181,7 +193,7 @@ export default async function AboutPage({
         milestones={a.milestones}
         eyebrow={a.timeline_eyebrow}
         heading={a.timeline_heading}
-        sectionStyle={{ backgroundColor: '#F3F7FB' }}
+        sectionStyle={{ backgroundColor: 'var(--color-bg-surface)' }}
       />
 
       {/* Video */}
