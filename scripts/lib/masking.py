@@ -44,6 +44,13 @@ def compute_alpha_mask(
     bL, ba, bb = _rgb_to_lab_point(backdrop_rgb)
 
     chroma_dist = np.sqrt((a_ch - ba) ** 2 + (b_ch - bb) ** 2)
+    # Light pre-smoothing: raw per-pixel chroma distance is noisy enough
+    # (JPEG blocking, sensor noise) that individual pixels right at the
+    # product/backdrop boundary randomly flip across the threshold, producing
+    # a speckled boundary that survives 1px erosion. Smoothing the distance
+    # field first — not the final mask — keeps the boundary itself sharp
+    # while removing that pixel-level jitter.
+    chroma_dist = ndimage.gaussian_filter(chroma_dist, sigma=1.0)
 
     # Adaptive thresholds seeded from this image's own measured border noise.
     low = max(3.0 * backdrop_stdev * 0.35 + 3.0, 4.0)
@@ -77,8 +84,29 @@ def compute_alpha_mask(
     else:
         connected = np.zeros_like(binary_seed)
 
-    final_backdrop_score = np.where(connected, achromatic_score, 0.0)
-    alpha = np.clip(1.0 - final_backdrop_score, 0.0, 1.0)
+    # Binarize the foreground decisively, THEN erode it by ~1px before
+    # re-softening the edge. The wide chroma smoothstep above leaves a several-
+    # pixel-wide "confused middle" band where the pixel is a blend of true
+    # product-edge color and backdrop; despill can't perfectly invert that
+    # blend, so compositing it straight onto a new (very different-toned)
+    # background leaves a visible halo of the OLD backdrop color right at the
+    # edge. Eroding first discards that contaminated ring outright — anything
+    # within ~1px of the boundary becomes fully background and gets fully
+    # replaced — then a small blur reintroduces smooth (not jagged) anti-
+    # aliasing from a clean binary edge, with a much narrower, less-contaminated
+    # transition band for despill to work on.
+    foreground_binary = ~connected
+    # A full 3x3 (8-connected) structuring element erodes/opens diagonal
+    # edges evenly — the default cross-shaped element eats diagonals
+    # unevenly, leaving a visible zigzag/sawtooth rather than a clean line.
+    struct8 = np.ones((3, 3), dtype=bool)
+    # Opening (erode then dilate) first drops isolated speckle flecks near the
+    # boundary that a plain erosion of the final mask wouldn't clean up;
+    # the extra erosion pass after that eats the contaminated edge ring itself.
+    foreground_opened = ndimage.binary_opening(foreground_binary, structure=struct8, iterations=1, border_value=0)
+    foreground_eroded = ndimage.binary_erosion(foreground_opened, structure=struct8, iterations=2, border_value=0)
+    edge_alpha = ndimage.gaussian_filter(foreground_eroded.astype(np.float32), sigma=1.8)
+    alpha = np.clip(edge_alpha, 0.0, 1.0)
 
     h, w = alpha.shape
     debug = {

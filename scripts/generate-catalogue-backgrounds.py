@@ -55,8 +55,20 @@ def load_calibration() -> dict:
     return json.loads(CALIBRATION_PATH.read_text())
 
 
+ORIGINALS_ROOT = REPO_ROOT / "scripts" / "output" / "portfolio-originals"
+
+
+def _resolve_source(rel_path: str) -> Path:
+    """rel_path is the logical 'public/assets/portfolio/...' key; the actual
+    pixels always come from the pristine-originals mirror, never from
+    public/assets/portfolio directly (that now holds finished composites —
+    see the note in calibrate-backdrop-colors.py)."""
+    suffix = rel_path.split("public/assets/portfolio/", 1)[1]
+    return ORIGINALS_ROOT / suffix
+
+
 def process_one(rel_path: str, entry: dict, save_qc: bool) -> dict:
-    src = REPO_ROOT / rel_path
+    src = _resolve_source(rel_path)
     im = Image.open(src).convert("RGB")
     backdrop_rgb = tuple(entry["backdrop_rgb"])
     backdrop_stdev = entry["backdrop_stdev"]

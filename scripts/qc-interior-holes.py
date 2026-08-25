@@ -27,7 +27,7 @@ SPECKLE_COMPONENT_COUNT_THRESHOLD = 40  # many small holes = noisy/speckled mask
 
 
 def analyze(rel_path: str, entry: dict) -> dict:
-    src = REPO_ROOT / rel_path
+    src = REPO_ROOT / "scripts" / "output" / "portfolio-originals" / rel_path.split("public/assets/portfolio/", 1)[1]
     im = Image.open(src).convert("RGB")
     alpha, _debug = masking.compute_alpha_mask(im, tuple(entry["backdrop_rgb"]), entry["backdrop_stdev"])
     fg_mask = alpha > 0.5

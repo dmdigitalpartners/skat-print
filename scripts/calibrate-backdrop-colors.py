@@ -17,7 +17,12 @@ from pathlib import Path
 from PIL import Image
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-PORTFOLIO_ROOT = REPO_ROOT / "public" / "assets" / "portfolio"
+# IMPORTANT: read pixels from the pristine-original mirror, never from
+# public/assets/portfolio directly — that directory now holds finished
+# composites (background already swapped), and re-deriving a backdrop key
+# from an already-composited image silently produces garbage (this bit us
+# once already: see scripts/output/portfolio-originals below).
+PORTFOLIO_ROOT = REPO_ROOT / "scripts" / "output" / "portfolio-originals"
 OUTPUT_PATH = REPO_ROOT / "scripts" / "output" / "backdrop-calibration.json"
 
 OUTLIER_STDEV = 20.0  # border R-channel stdev above this -> not a uniform seamless backdrop
@@ -50,7 +55,10 @@ def main() -> None:
     outlier_count = 0
 
     for path in files:
-        rel = path.relative_to(REPO_ROOT).as_posix()
+        # Manifest keys stay in the logical "public/assets/portfolio/..." form
+        # (used everywhere downstream) even though we read pixels from the
+        # originals mirror above.
+        rel = "public/assets/portfolio/" + path.relative_to(PORTFOLIO_ROOT).as_posix()
         im = Image.open(path).convert("RGB")
         samples = sample_border_ring(im)
         rs = [s[0] for s in samples]
