@@ -38,7 +38,7 @@ export default function PortfolioGrid({ t, lang, filterCategory, galleryHeading,
         ) : (
           // Multi-column masonry, not a fixed grid: every tile renders at its
           // own real aspect ratio (width/height from portfolio-data.ts, see
-          // scripts/generate-portfolio-dimensions.mjs) instead of being forced
+          // scripts/generate-portfolio-data.mjs) instead of being forced
           // into a uniform square and cropped. Each column reflows
           // independently, so one unusually tall/wide image only extends its
           // own column and never overlaps a neighbor.
