@@ -25,7 +25,7 @@ Locale-prefixed routes live under `src/app/[lang]/` (`bg` default, `en` availabl
 
 ## Media assets
 
-Large media (`public/assets/`, `public/favicon/`, `brand_assets/`) is intentionally excluded from version control (see `.gitignore`) and deployed directly via the Vercel CLI from a local machine that holds those files, rather than being committed to this repository.
+`public/assets/` and `public/favicon/` are tracked in version control — they are required for Git-based Vercel builds. `brand_assets/` is intentionally excluded (see `.gitignore`): it is design-source material, unreferenced by the site, and kept only on local machines that hold those files.
 
 ## Deployment workflow
 
