@@ -26,9 +26,26 @@ const ALCOHOL = `${SOURCE_ROOT}/Alcohol_BIB`
 const COSMETICS = `${SOURCE_ROOT}/Cosmetics-Pharmacy`
 const OTHER = `${SOURCE_ROOT}/Other`
 
+// 2026-08-30 addition: 29 further enhanced photographs, supplied in a sibling
+// enhanced-display/ folder rather than in SKAT-Enhanced/.
+//
+// REPRODUCIBILITY CAVEAT — read before running the optimizer.
+// This path is local-only and is NOT present on other machines, exactly like
+// SKAT-Enhanced/ above. optimize-portfolio-images.mjs validates that every
+// `source` exists and aborts the whole run if any is missing, so it cannot
+// currently run for ANY entry in this manifest — not these, and not the 123
+// that came before them. The committed JPEGs under public/assets/portfolio/
+// are therefore the only reproducible artefact of that step.
+// generate-portfolio-data.mjs is unaffected: it measures the committed files
+// and never reads `source`.
+// Resolving this needs a decision: either archive these originals alongside
+// wherever SKAT-Enhanced/ is kept and document that requirement, or decouple
+// validation from local-only source folders.
+const ENHANCED = '../enhanced-display'
+
 export const manifest = [
   // ---------------------------------------------------------------------
-  // pos-displays (39) — floor displays, counter displays, shelf-ready trays
+  // pos-displays (52) — floor displays, counter displays, shelf-ready trays
   // ---------------------------------------------------------------------
   { source: `${PODOV}/pos-displays-hero.png`, category: 'pos-displays', role: 'hero', dest: 'pos-displays-hero-v2.jpg',
     alt: 'Three black FIFA World Cup 2026 floor display stands shown side by side — one filled with footballs, one empty with a rainbow-striped back panel, one closed',
@@ -148,8 +165,47 @@ export const manifest = [
     alt: 'Kraft shelf-ready display tray for Hortmann Clinic sanitary pads, with a tear-away lid and a colour-coded product-range strip',
     altBg: 'Крафт готова за рафт дисплей тарелка за дамски превръзки Hortmann Clinic, с откъсващ се капак и цветна лента с продуктовата гама' },
 
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_20_16 PM.png`, category: 'pos-displays', role: 'gallery', dest: 'pos-displays-39-v2.jpg',
+    alt: 'Tall Grivas Organic Food floor display with a pistachio photograph header and four wood-print shelves stocked with coffee and nut packs',
+    altBg: 'Висок подов дисплей Grivas Organic Food с топер със снимка на шам-фъстък и четири рафта с дървесен принт, заредени с пакети кафе и ядки' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_20_25 PM.png`, category: 'pos-displays', role: 'gallery', dest: 'pos-displays-40-v2.jpg',
+    alt: 'Kamenitza Fresh counter display in pale yellow with a citrus and water-splash header and two round bottle cut-outs',
+    altBg: 'Щанд за каса Kamenitza Fresh в бледожълто с топер с цитруси и водни пръски и два кръгли отвора за бутилки' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_20_27 PM.png`, category: 'pos-displays', role: 'gallery', dest: 'pos-displays-41-v2.jpg',
+    alt: 'Barrel-shaped Kamenitza Staro Pivo floor display in cream with six compartments and a round 135-years anniversary topper',
+    altBg: 'Подов дисплей Каменица „Старо пиво“ във формата на бъчва, в кремаво, с шест отделения и кръгъл топер за 135 години' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_20_44 PM.png`, category: 'pos-displays', role: 'gallery', dest: 'pos-displays-42-v2.jpg',
+    alt: 'Pink Bulgarian Rose Lady\'s Joy floor display with four shelves and a die-cut rose header',
+    altBg: 'Розов подов дисплей Bulgarian Rose Lady\'s Joy с четири рафта и щанцован топер с рози' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_20_47 PM.png`, category: 'pos-displays', role: 'gallery', dest: 'pos-displays-43-v2.jpg',
+    alt: 'White two-tier Christmas counter display with a Merry Christmas header and 0.99 lv price flashes',
+    altBg: 'Бял двуетажен щанд за каса за Коледа с топер „Весела Коледа“ и ценови стикери 0,99 лв.' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_20_55 PM.png`, category: 'pos-displays', role: 'gallery', dest: 'pos-displays-44-v2.jpg',
+    alt: 'Red Malibu shelf-ready display box for dipped wafers with a chocolate-splash header',
+    altBg: 'Червена шелф-реди дисплей кутия Malibu за тунквани вафли с топер с шоколадови пръски' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_21_08 PM.png`, category: 'pos-displays', role: 'gallery', dest: 'pos-displays-45-v2.jpg',
+    alt: 'Fuze Tea floor display with three shelves and botanical leaf and hibiscus artwork',
+    altBg: 'Подов дисплей Fuze Tea с три рафта и ботанически десен с листа и хибискус' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_21_10 PM.png`, category: 'pos-displays', role: 'gallery', dest: 'pos-displays-46-v2.jpg',
+    alt: 'Burgasko floor display with three shelves, a sunburst and wave design and a sailing-ship logo header',
+    altBg: 'Подов дисплей „Бургаско“ с три рафта, дизайн със слънчеви лъчи и вълни и топер с логото с кораб' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_21_13 PM.png`, category: 'pos-displays', role: 'gallery', dest: 'pos-displays-47-v2.jpg',
+    alt: 'Red Coca-Cola counter display with die-cut sneaker side panels and a beach photograph promotional header',
+    altBg: 'Червен щанд за каса Coca-Cola с щанцовани странични панели във форма на кецове и промоционален топер с плажна снимка' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_21_22 PM.png`, category: 'pos-displays', role: 'gallery', dest: 'pos-displays-48-v2.jpg',
+    alt: 'Orange and white children\'s toy floor display with four shelves and cartoon animal and doll characters',
+    altBg: 'Оранжево-бял подов дисплей за детски играчки с четири рафта и анимационни герои — животни и кукли' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_21_34 PM.png`, category: 'pos-displays', role: 'gallery', dest: 'pos-displays-49-v2.jpg',
+    alt: 'Orange Cappy Pulpy floor display with four shelves and a die-cut juice-splash header',
+    altBg: 'Оранжев подов дисплей Cappy Pulpy с четири рафта и щанцован топер с пръски сок' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_21_38 PM.png`, category: 'pos-displays', role: 'gallery', dest: 'pos-displays-50-v2.jpg',
+    alt: 'Black and gold Bushmills Irish Whiskey floor display with two tiers and a festive bauble pattern',
+    altBg: 'Черно-златен подов дисплей Bushmills Irish Whiskey с два етажа и празничен десен с коледни топки' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_21_47 PM.png`, category: 'pos-displays', role: 'gallery', dest: 'pos-displays-51-v2.jpg',
+    alt: 'Blue Alaska Vodka counter display tray with a mountain photograph and a free-glass promotional header',
+    altBg: 'Син щанд за каса Alaska Vodka с планинска снимка и промоционален топер за подарък чаша' },
   // ---------------------------------------------------------------------
-  // food-packaging (23)
+  // food-packaging (26)
   // ---------------------------------------------------------------------
   { source: `${FOODS}/food-packaging-hero.png`, category: 'food-packaging', role: 'hero', dest: 'food-packaging-hero-v2.jpg',
     alt: 'Two Lucciola Notte Bianca cartons for double biscuits, one in cocoa brown and one in milk cream beige, each with a die-cut display window',
@@ -221,8 +277,17 @@ export const manifest = [
     alt: 'Vereya yogurt promotional multipack carton in yellow and blue, with a die-cut window and a carry handle',
     altBg: 'Промоционална мултипак кутия за кисело мляко Верея в жълто и синьо, с щанцован прозорец и дръжка за носене' },
 
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_20_58 PM.png`, category: 'food-packaging', role: 'gallery', dest: 'food-packaging-23-v2.jpg',
+    alt: 'Tender Food sous-vide ready meal carton in white and amber for Thai chicken curry with basmati rice, 340g',
+    altBg: 'Картонена опаковка Tender Food за готово ястие sous vide в бяло и кехлибарено — пилешко тай-къри с ориз басмати, 340 г' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_21_55 PM.png`, category: 'food-packaging', role: 'gallery', dest: 'food-packaging-24-v2.jpg',
+    alt: 'Kraft corrugated coffee capsule box with a navy line illustration of a coffee branch',
+    altBg: 'Крафт вълнообразна кутия за кафе капсули с тъмносиня линейна илюстрация на клонка кафе' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_22_18 PM.png`, category: 'food-packaging', role: 'gallery', dest: 'food-packaging-25-v2.jpg',
+    alt: 'Yellow Healty bag-in-box carton for cold-pressed apple juice with a die-cut carry handle',
+    altBg: 'Жълта bag-in-box кутия Healty за студено пресован ябълков сок с щанцована дръжка за носене' },
   // ---------------------------------------------------------------------
-  // alcohol-packaging (28)
+  // alcohol-packaging (38)
   // ---------------------------------------------------------------------
   { source: `${ALCOHOL}/alcohol-packaging-hero.png`, category: 'alcohol-packaging', role: 'hero', dest: 'alcohol-packaging-hero-v2.jpg',
     alt: 'Three matte black Zitara single-bottle wine boxes with copper foil lettering, one standing open',
@@ -309,8 +374,38 @@ export const manifest = [
     alt: 'Blue Savoy Vodka Melon shelf-ready shipper opened into a display tray, printed with a party crowd scene',
     altBg: 'Син готов за рафт кашон Savoy Vodka Melon, отворен като дисплей тарелка, с отпечатана сцена от парти' },
 
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_20_37 PM.png`, category: 'alcohol-packaging', role: 'gallery', dest: 'alcohol-packaging-28-v2.jpg',
+    alt: 'Pale yellow five-litre bag-in-box wine carton with a die-cut carry handle and a photograph of white and red wine glasses',
+    altBg: 'Бледожълта петлитрова bag-in-box кутия за вино с щанцована дръжка и снимка на чаши с бяло и червено вино' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_20_50 PM.png`, category: 'alcohol-packaging', role: 'gallery', dest: 'alcohol-packaging-29-v2.jpg',
+    alt: 'Green Kamenitza six-bottle carrier with a die-cut handle, shown holding six bottles',
+    altBg: 'Зелен кашон-носач Kamenitza за шест бутилки с щанцована дръжка, показан зареден с шест бутилки' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_20_53 PM.png`, category: 'alcohol-packaging', role: 'gallery', dest: 'alcohol-packaging-30-v2.jpg',
+    alt: 'Black gloss single-bottle wine box with a gold foil monogram and a spot-varnish pattern',
+    altBg: 'Черна гланцова кутия за една бутилка вино със златен фолиран монограм и лаков десен' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_21_25 PM.png`, category: 'alcohol-packaging', role: 'gallery', dest: 'alcohol-packaging-31-v2.jpg',
+    alt: 'Black Chateau Dionis single-bottle box with gold foil lettering, a gold-lined interior and a full-height window',
+    altBg: 'Черна кутия Chateau Dionis за една бутилка със златен фолиран надпис, златна вътрешност и прозорец по цялата височина' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_21_29 PM.png`, category: 'alcohol-packaging', role: 'gallery', dest: 'alcohol-packaging-32-v2.jpg',
+    alt: 'White and gold Stella Artois limited edition gift pack for three 50cl bottles and a chalice glass, with a die-cut chalice window',
+    altBg: 'Бяло-златна подаръчна опаковка Stella Artois лимитирана серия за три бутилки 50 сл и бокал, с щанцован прозорец във формата на бокал' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_21_32 PM.png`, category: 'alcohol-packaging', role: 'gallery', dest: 'alcohol-packaging-33-v2.jpg',
+    alt: 'Black Zagreus Winery Vinica Enoteca carry case with orange foil scrollwork and a die-cut handle',
+    altBg: 'Черна кутия-куфар Zagreus Winery Vinica Enoteca с оранжеви фолирани орнаменти и щанцована дръжка' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_21_36 PM.png`, category: 'alcohol-packaging', role: 'gallery', dest: 'alcohol-packaging-34-v2.jpg',
+    alt: 'Kraft two-bottle wine carrier with a Hand Made script print, a die-cut handle and two arched windows',
+    altBg: 'Крафт носач за две бутилки вино с ръкописен надпис Hand Made, щанцована дръжка и два сводести прозореца' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_21_49 PM.png`, category: 'alcohol-packaging', role: 'gallery', dest: 'alcohol-packaging-35-v2.jpg',
+    alt: 'Villa Lyubimets Traminer three-litre bag-in-box carton in green and white',
+    altBg: 'Трилитрова bag-in-box кутия Villa Lyubimets Traminer в зелено и бяло' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_22_07 PM.png`, category: 'alcohol-packaging', role: 'gallery', dest: 'alcohol-packaging-36-v2.jpg',
+    alt: 'Kraft Bratanov Family Winery two-bottle carrier box with a die-cut handle',
+    altBg: 'Крафт кутия-носач Bratanov Family Winery за две бутилки с щанцована дръжка' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_22_13 PM.png`, category: 'alcohol-packaging', role: 'gallery', dest: 'alcohol-packaging-37-v2.jpg',
+    alt: 'Grey and pink lavarose two-bottle wine box from Damianitza Winery with a black ink illustration',
+    altBg: 'Сиво-розова кутия lavarose за две бутилки вино от Damianitza Winery с черна илюстрация с туш' },
   // ---------------------------------------------------------------------
-  // cosmetics-packaging (15)
+  // cosmetics-packaging (18)
   // ---------------------------------------------------------------------
   { source: `${COSMETICS}/cosmetics-packaging-hero.png`, category: 'cosmetics-packaging', role: 'hero', dest: 'cosmetics-packaging-hero-v2.jpg',
     alt: 'Line-up of nine pharmacy cartons for children\'s vitamins and herbal lozenges, including Dr. Frei Multi Vitamins and Immunity with cartoon monster characters',
@@ -358,6 +453,15 @@ export const manifest = [
     alt: 'Open Medavita mailer box with a marbled kraft exterior and a deep purple interior carrying a gold foil message',
     altBg: 'Отворена куриерска кутия Medavita с мраморен крафт външен слой и наситено лилава вътрешност със златно фолио послание' },
 
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_20_33 PM.png`, category: 'cosmetics-packaging', role: 'gallery', dest: 'cosmetics-packaging-15-v2.jpg',
+    alt: 'Black Evterpa Lux gift set carton for men\'s eau de parfum and deodorant, with gold script and a product window',
+    altBg: 'Черна подаръчна кутия Evterpa Lux за мъжки парфюм и дезодорант, със златен ръкописен надпис и прозорец' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_21_45 PM.png`, category: 'cosmetics-packaging', role: 'gallery', dest: 'cosmetics-packaging-16-v2.jpg',
+    alt: 'White and gold Celebrate Beauty carton for collagen anti-age face cream, 50ml',
+    altBg: 'Бяло-златна кутия Celebrate Beauty за крем за лице с колаген против стареене, 50 мл' },
+  { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_22_03 PM.png`, category: 'cosmetics-packaging', role: 'gallery', dest: 'cosmetics-packaging-17-v2.jpg',
+    alt: 'Deep red Valcena Paris carton for Lift Supreme rose serum, printed edge to edge with a rose photograph',
+    altBg: 'Наситено червена кутия Valcena Paris за розов серум Lift Supreme, с печат от край до край със снимка на роза' },
   // ---------------------------------------------------------------------
   // custom-packaging (18)
   // ---------------------------------------------------------------------
