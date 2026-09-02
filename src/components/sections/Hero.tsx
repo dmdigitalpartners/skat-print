@@ -1,9 +1,37 @@
 'use client'
 
+import { Fragment, useEffect, useState, type ReactNode } from 'react'
 import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import type { Translation } from '@/lib/useTranslation'
+
+/** How long each hero message stays on screen. */
+const ROTATE_MS = 5000
+
+/**
+ * Stacks every hero variant in a single grid cell so the container is always
+ * sized by the tallest one — the text can change without shifting anything
+ * below it. Only opacity animates; inactive variants stay mounted but are
+ * hidden from assistive tech and cannot be clicked or selected.
+ */
+function Stack({ activeIndex, items }: { activeIndex: number; items: ReactNode[] }) {
+  return (
+    <span className="grid">
+      {items.map((node, i) => (
+        <span
+          key={i}
+          aria-hidden={i !== activeIndex}
+          className={`col-start-1 row-start-1 transition-opacity duration-500 motion-reduce:transition-none ${
+            i === activeIndex ? 'opacity-100' : 'opacity-0 pointer-events-none select-none'
+          }`}
+        >
+          {node}
+        </span>
+      ))}
+    </span>
+  )
+}
 
 const stagger = {
   hidden: {},
@@ -22,6 +50,17 @@ interface Props {
 
 export default function Hero({ t, lang }: Props) {
   const reduced = useReducedMotion()
+  const variants = t.hero.variants
+  const [index, setIndex] = useState(0)
+
+  // Rotation is opt-out for reduced motion: the first variant simply stays.
+  useEffect(() => {
+    if (reduced || variants.length <= 1) return
+    const id = setInterval(() => setIndex((i) => (i + 1) % variants.length), ROTATE_MS)
+    return () => clearInterval(id)
+  }, [reduced, variants.length])
+
+  const activeIndex = reduced ? 0 : index
 
   return (
     <section className="relative flex flex-col overflow-hidden h-[calc(100dvh-var(--mobile-bar-height)-env(safe-area-inset-bottom))] md:h-[100dvh]">
@@ -88,8 +127,15 @@ export default function Hero({ t, lang }: Props) {
             variants={reduced ? undefined : item}
             className="font-display font-bold text-[2.6rem] leading-[0.92] tracking-tight text-white"
           >
-            <span className="block mb-2">{t.hero.headline_line1}</span>
-            <span className="block">{t.hero.headline_line2}</span>
+            <Stack
+              activeIndex={activeIndex}
+              items={variants.map((v, i) => (
+                <Fragment key={i}>
+                  <span className="block mb-2">{v.headline_line1}</span>
+                  <span className="block">{v.headline_line2}</span>
+                </Fragment>
+              ))}
+            />
           </motion.h1>
 
           {/* One-sentence description */}
@@ -97,7 +143,7 @@ export default function Hero({ t, lang }: Props) {
             variants={reduced ? undefined : item}
             className="text-[13px] text-white/60 leading-relaxed max-w-[340px] mx-auto"
           >
-            {t.hero.mobile_desc}
+            <Stack activeIndex={activeIndex} items={variants.map((v) => v.mobile_desc)} />
           </motion.p>
 
           {/* CTAs — both visible, equal width, single line each */}
@@ -166,8 +212,15 @@ export default function Hero({ t, lang }: Props) {
               variants={reduced ? undefined : item}
               className="font-display font-bold text-[2.2rem] leading-[0.95] tracking-tight text-white mb-5 sm:text-6xl md:text-6xl"
             >
-              <span className="block">{t.hero.headline_line1}</span>
-              <span className="block">{t.hero.headline_line2}</span>
+              <Stack
+                activeIndex={activeIndex}
+                items={variants.map((v, i) => (
+                  <Fragment key={i}>
+                    <span className="block">{v.headline_line1}</span>
+                    <span className="block">{v.headline_line2}</span>
+                  </Fragment>
+                ))}
+              />
             </motion.h1>
 
             {/* Subheadline */}
@@ -175,7 +228,7 @@ export default function Hero({ t, lang }: Props) {
               variants={reduced ? undefined : item}
               className="text-base md:text-lg text-white/65 leading-relaxed max-w-sm mb-8"
             >
-              {t.hero.subheadline}
+              <Stack activeIndex={activeIndex} items={variants.map((v) => v.subheadline)} />
             </motion.p>
 
             {/* CTAs */}

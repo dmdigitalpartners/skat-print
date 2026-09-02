@@ -197,7 +197,7 @@ export default async function AboutPage({
       />
 
       {/* Video */}
-      <VideoSection t={t} />
+      <VideoSection t={t} lang={currentLang} />
 
       <CTABanner t={t} lang={currentLang} />
     </>

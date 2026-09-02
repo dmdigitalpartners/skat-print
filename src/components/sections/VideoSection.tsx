@@ -1,7 +1,7 @@
-import type { Translation } from '@/lib/useTranslation'
+import type { Translation, Lang } from '@/lib/useTranslation'
 import VideoPlayer from '@/components/ui/VideoPlayer'
 
-export default function VideoSection({ t }: { t: Translation }) {
+export default function VideoSection({ t, lang }: { t: Translation; lang: Lang }) {
   return (
     <section
       className="section-padding"
@@ -21,7 +21,7 @@ export default function VideoSection({ t }: { t: Translation }) {
               {t.video_section.subheading}
             </p>
           </div>
-          <VideoPlayer t={t} />
+          <VideoPlayer t={t} lang={lang} />
         </div>
       </div>
     </section>

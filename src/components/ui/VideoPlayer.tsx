@@ -2,9 +2,16 @@
 
 import { useRef, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
-import type { Translation } from '@/lib/useTranslation'
+import type { Translation, Lang } from '@/lib/useTranslation'
 
-export default function VideoPlayer({ t }: { t: Translation }) {
+// One cut of the company film per language — never fall back across
+// languages, an English visitor should not get the Bulgarian voice-over.
+const VIDEO_SRC: Record<Lang, string> = {
+  bg: '/assets/video/company-intro.mp4',
+  en: '/assets/video/company-intro-en.mp4',
+}
+
+export default function VideoPlayer({ t, lang }: { t: Translation; lang: Lang }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [played, setPlayed] = useState(false)
   const [error, setError] = useState(false)
@@ -46,7 +53,7 @@ export default function VideoPlayer({ t }: { t: Translation }) {
       ) : (
         <video
           ref={videoRef}
-          src="/assets/video/company-intro.mp4"
+          src={VIDEO_SRC[lang]}
           poster="/assets/about/production-2020.jpg"
           controls={played}
           preload="metadata"
