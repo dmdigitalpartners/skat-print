@@ -148,7 +148,7 @@ export default async function IndustryPage({
           </p>
           <div className="flex flex-wrap gap-4 mt-8">
             <Link
-              href={`/${currentLang}/samples`}
+              href={`/${currentLang}/contact`}
               className="inline-flex items-center justify-center min-h-[48px] px-8 py-3 rounded-[var(--radius-md)] bg-[var(--color-accent-text)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-[background-color] shadow-[var(--shadow-accent)]"
             >
               {data.cta_label}
@@ -313,7 +313,7 @@ export default async function IndustryPage({
                 {lang === 'bg' ? 'Отговаряме в рамките на 4 работни часа.' : 'We respond within 4 business hours.'}
               </p>
               <Link
-                href={`/${currentLang}/samples`}
+                href={`/${currentLang}/contact`}
                 className="block w-full text-center text-sm font-semibold bg-[var(--color-accent-text)] hover:bg-[var(--color-accent-hover)] text-white py-2.5 px-4 rounded-[var(--radius-sm)] transition-[background-color]"
               >
                 {ind.request_samples_cta} →

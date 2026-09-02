@@ -63,7 +63,7 @@ export default function CTABanner({ t, lang }: Props) {
             {t.cta_banner.button}
           </Link>
           <Link
-            href={`/${lang}/samples`}
+            href={`/${lang}/contact`}
             onClick={() => trackEvent({ name: 'cta_click', section: 'cta_banner', label: t.cta_banner.samples_cta })}
             className="inline-flex items-center justify-center min-h-[52px] px-8 py-3.5 rounded-[var(--radius-md)] border border-white/30 text-white text-sm font-medium hover:border-white/60 hover:bg-white/5 transition-[border-color,background-color] duration-200"
           >

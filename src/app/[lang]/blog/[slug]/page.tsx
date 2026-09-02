@@ -97,10 +97,10 @@ export default async function BlogPostPage({
         {/* Footer CTA */}
         <div className="mt-12 pt-8 border-t border-[var(--color-border)] flex flex-col sm:flex-row gap-4">
           <Link
-            href={`/${lang}/samples`}
+            href={`/${lang}/contact`}
             className="inline-flex items-center justify-center min-h-[48px] px-8 py-3 rounded-[var(--radius-md)] bg-[var(--color-accent-text)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-[background-color] shadow-[var(--shadow-accent)]"
           >
-            {isBg ? 'Заявете мостри →' : 'Request Free Samples →'}
+            {isBg ? 'Поискайте оферта →' : 'Request a Quote →'}
           </Link>
           <Link
             href={`/${lang}/contact`}

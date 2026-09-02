@@ -1,59 +1,18 @@
-import type { Metadata } from 'next'
-import { getTranslation } from '@/lib/useTranslation'
-import type { Lang } from '@/lib/useTranslation'
-import { LANGS } from '@/config/routes'
-import { buildPageMetadata } from '@/lib/metadata'
-import SamplesForm from '@/components/sections/SamplesForm'
+import { redirect } from 'next/navigation'
 
-export async function generateStaticParams() {
-  return LANGS.map(lang => ({ lang }))
+export function generateStaticParams() {
+  return [{ lang: 'en' }, { lang: 'bg' }]
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ lang: string }>
-}): Promise<Metadata> {
-  const { lang } = await params
-  const t = getTranslation(lang)
-  return buildPageMetadata({
-    title: t.meta.samples.title,
-    description: t.meta.samples.description,
-    path: '/samples',
-    lang,
-  })
-}
-
+// The free-sample offer was withdrawn — SKAT does not send free samples. The
+// route is kept as a redirect (not deleted) so existing inbound links and
+// bookmarks land on the quote request instead of a 404, matching how
+// /products and /portfolio are handled.
 export default async function SamplesPage({
   params,
 }: {
   params: Promise<{ lang: string }>
 }) {
   const { lang } = await params
-  const t = getTranslation(lang)
-  const currentLang = (lang === 'bg' ? 'bg' : 'en') as Lang
-  const s = t.samples
-
-  return (
-    <div className="container-site py-16 md:py-24">
-      <div className="max-w-2xl mx-auto">
-        {/* Page header */}
-        <div className="mb-10 md:mb-12">
-          <span className="inline-flex items-center gap-2 text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent-text)] mb-4">
-            <span className="block w-5 h-px bg-[var(--color-accent)]" />
-            {s.page_eyebrow}
-            <span className="block w-5 h-px bg-[var(--color-accent)]" />
-          </span>
-          <h1 className="font-display font-bold text-3xl md:text-4xl text-[var(--color-text)] leading-tight mb-4">
-            {s.page_heading}
-          </h1>
-          <p className="text-[var(--color-text-muted)] text-lg leading-relaxed">
-            {s.page_subheading}
-          </p>
-        </div>
-
-        <SamplesForm t={t} lang={currentLang} />
-      </div>
-    </div>
-  )
+  redirect(`/${lang}/contact`)
 }

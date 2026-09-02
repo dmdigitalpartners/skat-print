@@ -25,8 +25,8 @@
       "description": "Frequently asked questions about custom packaging from Skat Print. Learn about minimum quantities, lead times, printing methods, materials, and international shipping."
     },
     "samples": {
-      "title": "Request Free Samples — Skat Print",
-      "description": "Request free packaging samples from Skat Print. Select your product categories, provide shipping details, and we'll send samples within 4 business hours of confirmation."
+      "title": "Request a Quote — Skat Print",
+      "description": "Request a packaging quote from Skat Print. Tell us about your project and we'll prepare a proposal covering materials, finishes and quantities."
     }
   },
   "nav": {
@@ -46,18 +46,15 @@
     "headline_line2": "Our Craft.",
     "subheadline": "Custom corrugated packaging and POS displays, made to your exact spec. B2B manufacturing partner since 1995.",
     "mobile_desc": "Custom corrugated packaging and POS displays — manufactured in Bulgaria since 1995.",
-    "cta_primary": "Request Free Samples",
+    "cta_primary": "Request a Quote",
     "cta_secondary": "View Products"
   },
   "trust": {
-    "stat_years_label": "Years Experience",
-    "stat_categories_number": "5",
-    "stat_categories_suffix": "",
-    "stat_categories_label": "Product Categories",
-    "stat_categories_label_mobile": "Products",
-    "stat_units_number": "1",
-    "stat_units_suffix": "M+",
-    "stat_units_label": "Units Packaged",
+    "capabilities": [
+      "In-house corrugated board production",
+      "Offset printing and lamination",
+      "Die-cutting and finishing"
+    ],
     "client_sentence": "Trusted by brands including Coca-Cola, LIDL, Johnnie Walker, Stella Artois, Finlandia, and Jack Daniel's."
   },
   "trusted_by": {
@@ -127,19 +124,19 @@
         "slug": "pos-displays",
         "title": "POS Displays & Shelving",
         "description": "Custom corrugated displays, stands, and stoppers.",
-        "image": "/assets/portfolio/pos-displays/pos-displays-19-v2.jpg"
+        "image": "/assets/portfolio/pos-displays/pos-displays-29-v2.jpg"
       },
       {
         "slug": "food-packaging",
         "title": "Food Packaging",
         "description": "Corrugated and cardboard packaging for food safety.",
-        "image": "/assets/portfolio/food-packaging/food-packaging-15-v2.jpg"
+        "image": "/assets/portfolio/food-packaging/food-packaging-02-v2.jpg"
       },
       {
         "slug": "alcohol-packaging",
         "title": "Wine & Spirits Packaging",
         "description": "Bag-in-Box and luxury corrugated alcohol packaging.",
-        "image": "/assets/portfolio/alcohol-packaging/alcohol-packaging-01-v2.jpg"
+        "image": "/assets/portfolio/alcohol-packaging/alcohol-packaging-21-v2.jpg"
       },
       {
         "slug": "cosmetics-packaging",
@@ -266,8 +263,8 @@
     ],
     "sidebar": {
       "heading": "Not sure yet?",
-      "body": "Request a sample pack to see our print quality and material finishes before you order.",
-      "cta": "Request a Sample",
+      "body": "Tell us about your project and we'll prepare a quote covering materials, finishes and quantities.",
+      "cta": "Request a Quote",
       "detail_lead": "Lead time: 10–15 working days",
       "detail_moq": "Min. order: 500 units",
       "detail_custom": "Custom sizes accepted"
@@ -307,16 +304,16 @@
     ]
   },
   "samples": {
-    "page_eyebrow": "Free Samples",
+    "page_eyebrow": "Quote Request",
     "page_heading": "See Our Quality First-Hand",
-    "page_subheading": "Choose the product types you're interested in and we'll send representative samples to your door — no commitment required.",
-    "step1_heading": "What would you like samples of?",
+    "page_subheading": "Choose the product types you're interested in and we'll prepare a quote for your project.",
+    "step1_heading": "What would you like a quote for?",
     "step2_heading": "Where should we send them?",
     "step3_heading": "Request sent!",
-    "step3_subheading": "We respond within 4 business hours to confirm your sample shipment.",
+    "step3_subheading": "We'll review your request and come back to you with a quote.",
     "continue": "Continue",
     "back": "Back",
-    "submit": "Send Sample Request",
+    "submit": "Send Quote Request",
     "submitting": "Sending…",
     "select_at_least_one": "Please select at least one product type.",
     "category_labels": {
@@ -339,7 +336,7 @@
     "subheading": "Tell us what you need. We'll handle the rest.",
     "response_time": "We respond within 1 business day.",
     "button": "Contact Our Team",
-    "samples_cta": "Request Free Samples"
+    "samples_cta": "Request a Quote"
   },
   "footer": {
     "tagline": "Custom corrugated packaging and print solutions since 1995.",
@@ -362,7 +359,7 @@
       "designer": "designer@skatoil.com",
       "marketing": "marketing@skatoil.com"
     },
-    "copyright": "© Skat Oil EOOD 2009–2026. All rights reserved.",
+    "copyright": "© Skat Oil EOOD {year}. All rights reserved.",
     "company_title": "Company",
     "founded": "Manufacturing since 1995",
     "links": {
@@ -673,7 +670,7 @@
     "back_to_industries": "← All Industries",
     "related_products": "Related Products",
     "related_industries": "Related Industries",
-    "request_samples_cta": "Request Samples",
+    "request_samples_cta": "Request a Quote",
     "get_quote_cta": "Get a Quote",
     "food_packaging": {
       "meta_title": "Food Packaging Manufacturer Bulgaria — Skat Print",
@@ -721,7 +718,7 @@
         }
       ],
       "case_study_index": 1,
-      "cta_label": "Request Food Packaging Samples",
+      "cta_label": "Request a Quote for Food Packaging",
       "related_product_slugs": ["food-packaging", "custom-packaging"],
       "related_industry_slugs": ["cosmetics-packaging", "wine-spirits-packaging"]
     },
@@ -771,7 +768,7 @@
         }
       ],
       "case_study_index": 0,
-      "cta_label": "Request Cosmetics Packaging Samples",
+      "cta_label": "Request a Quote for Cosmetics Packaging",
       "related_product_slugs": ["cosmetics-packaging", "pos-displays"],
       "related_industry_slugs": ["food-packaging", "retail-pos-displays"]
     },
@@ -821,7 +818,7 @@
         }
       ],
       "case_study_index": 0,
-      "cta_label": "Request Wine & Spirits Packaging Samples",
+      "cta_label": "Request a Quote for Wine & Spirits Packaging",
       "related_product_slugs": ["alcohol-packaging", "pos-displays"],
       "related_industry_slugs": ["food-packaging", "retail-pos-displays"]
     },
@@ -871,7 +868,7 @@
         }
       ],
       "case_study_index": 2,
-      "cta_label": "Request POS Display Samples",
+      "cta_label": "Request a Quote for POS Displays",
       "related_product_slugs": ["pos-displays", "custom-packaging"],
       "related_industry_slugs": ["food-packaging", "cosmetics-packaging"]
     }
