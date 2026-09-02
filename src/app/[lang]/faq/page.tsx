@@ -71,7 +71,7 @@ export default async function FAQPage({
             {/* FAQ accordion */}
             <FAQSection t={t} layout="sidebar" />
 
-            {/* Sample Request sidebar */}
+            {/* Quote request sidebar */}
             <div className="lg:sticky lg:top-24 space-y-4">
               {/* Main CTA card */}
               <div className="bg-white border border-[var(--color-border)] rounded-[var(--radius-lg)] p-6 md:p-8">

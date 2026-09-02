@@ -16,7 +16,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     routes.push({ url: `${BASE_URL}/${lang}/about`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.6 })
     routes.push({ url: `${BASE_URL}/${lang}/faq`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 })
     routes.push({ url: `${BASE_URL}/${lang}/contact`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.7 })
-    routes.push({ url: `${BASE_URL}/${lang}/samples`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 })
     // privacy/terms are deliberately omitted: both set robots: { index: false }
     // in their own metadata, so listing them here would contradict that.
     routes.push({ url: `${BASE_URL}/${lang}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 })

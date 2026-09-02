@@ -9,6 +9,11 @@ interface Props {
 
 export default function Footer({ t, lang }: Props) {
   const base = `/${lang}`
+  // Server component, so this resolves once per render on the server and
+  // cannot drift between server and client output. The previous range
+  // started at 2009, inherited from the legacy Joomla site's footer, and
+  // ended at a hardcoded 2026.
+  const copyright = t.footer.copyright.replace('{year}', String(new Date().getFullYear()))
 
   const navLinks = [
     { href: `${base}#products`, label: t.nav.products },
@@ -156,7 +161,7 @@ export default function Footer({ t, lang }: Props) {
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <p className="text-xs text-[var(--color-text-muted)]">{t.footer.copyright}</p>
+            <p className="text-xs text-[var(--color-text-muted)]">{copyright}</p>
             <div className="flex items-center gap-4">
               <Link
                 href={`${base}/privacy`}

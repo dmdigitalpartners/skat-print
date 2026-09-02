@@ -93,7 +93,7 @@ export default function Navbar({ t, lang }: Props) {
               alt="Skat Print"
               width={130}
               height={62}
-              className="object-contain h-11 w-auto"
+              className="object-contain h-11 lg:h-14 w-auto"
               priority
             />
           </Link>

@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
 import Button from '@/components/ui/Button'
-import CountUp from '@/components/ui/CountUp'
 import type { Translation } from '@/lib/useTranslation'
 
 const stagger = {
@@ -107,7 +106,7 @@ export default function Hero({ t, lang }: Props) {
             className="flex items-center gap-3 pt-1"
           >
             <Button
-              href={`/${lang}/samples`}
+              href={`/${lang}/contact`}
               variant="primary"
               className="flex-1 !px-3 !text-[13px] whitespace-nowrap"
             >
@@ -131,24 +130,13 @@ export default function Hero({ t, lang }: Props) {
            gap between this bar and the fixed bar below it. ── */}
       <div className="md:hidden relative z-10 border-t border-white/10 bg-black/70 backdrop-blur-md">
         <div className="grid grid-cols-3 divide-x divide-white/10 py-3">
-          <div className="flex flex-col items-center justify-center px-1.5">
-            <div className="font-display font-bold text-[1.05rem] leading-none text-[var(--color-accent)]">
-              <CountUp to={30} suffix="+" />
+          {t.trust.capabilities.map((capability) => (
+            <div key={capability} className="flex flex-col items-center justify-center px-1.5">
+              <div className="text-[10px] text-white/70 font-condensed uppercase tracking-wider leading-tight text-center">
+                {capability}
+              </div>
             </div>
-            <div className="text-[10px] text-white/70 mt-1 font-condensed uppercase tracking-wider leading-tight text-center">{t.trust.stat_years_label}</div>
-          </div>
-          <div className="flex flex-col items-center justify-center px-1.5">
-            <div className="font-display font-bold text-[1.05rem] leading-none text-[var(--color-accent)]">
-              <CountUp to={parseInt(t.trust.stat_categories_number)} suffix={t.trust.stat_categories_suffix} />
-            </div>
-            <div className="text-[10px] text-white/70 mt-1 font-condensed uppercase tracking-wider leading-tight text-center">{t.trust.stat_categories_label_mobile}</div>
-          </div>
-          <div className="flex flex-col items-center justify-center px-1.5">
-            <div className="font-display font-bold text-[1.05rem] leading-none text-[var(--color-accent)]">
-              <CountUp to={parseInt(t.trust.stat_units_number)} suffix={t.trust.stat_units_suffix} />
-            </div>
-            <div className="text-[10px] text-white/70 mt-1 font-condensed uppercase tracking-wider leading-tight text-center">{t.trust.stat_units_label}</div>
-          </div>
+          ))}
         </div>
       </div>
 
@@ -192,7 +180,7 @@ export default function Hero({ t, lang }: Props) {
 
             {/* CTAs */}
             <motion.div variants={reduced ? undefined : item} className="flex items-center gap-3">
-              <Button href={`/${lang}/samples`} variant="primary">
+              <Button href={`/${lang}/contact`} variant="primary">
                 {t.hero.cta_primary}
               </Button>
               <Button href={`/${lang}#products`} variant="secondary">
@@ -206,24 +194,13 @@ export default function Hero({ t, lang }: Props) {
       {/* ── Desktop stats bar — absolute ── */}
       <div className="hidden md:block absolute bottom-0 left-0 right-0 border-t border-white/12 bg-black/55 backdrop-blur-md z-10">
         <div className="container-site flex divide-x divide-white/15 py-5">
-          <div className="flex-1 text-center">
-            <div className="font-display font-bold text-3xl text-[var(--color-accent)]">
-              <CountUp to={30} suffix="+" />
+          {t.trust.capabilities.map((capability) => (
+            <div key={capability} className="flex-1 text-center">
+              <div className="text-[11px] text-white/55 font-condensed uppercase tracking-wide">
+                {capability}
+              </div>
             </div>
-            <div className="text-[11px] text-white/55 mt-0.5 font-condensed uppercase tracking-wide">{t.trust.stat_years_label}</div>
-          </div>
-          <div className="flex-1 text-center">
-            <div className="font-display font-bold text-3xl text-[var(--color-accent)]">
-              <CountUp to={parseInt(t.trust.stat_categories_number)} suffix={t.trust.stat_categories_suffix} />
-            </div>
-            <div className="text-[11px] text-white/55 mt-0.5 font-condensed uppercase tracking-wide">{t.trust.stat_categories_label}</div>
-          </div>
-          <div className="flex-1 text-center">
-            <div className="font-display font-bold text-3xl text-[var(--color-accent)]">
-              <CountUp to={parseInt(t.trust.stat_units_number)} suffix={t.trust.stat_units_suffix} />
-            </div>
-            <div className="text-[11px] text-white/55 mt-0.5 font-condensed uppercase tracking-wide">{t.trust.stat_units_label}</div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

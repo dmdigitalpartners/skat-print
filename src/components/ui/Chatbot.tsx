@@ -249,7 +249,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
     const step1Q = lang === 'bg' ? 'Какъв вид опаковки търсите?' : "What type of packaging are you looking for?"
     const step1Chips =
       lang === 'bg'
-        ? ['POS дисплеи и щендери', 'Опаковки за храни', 'Вино и спиртни напитки', 'Козметика и парфюмерия', 'Нестандартни и подаръчни']
+        ? ['POS дисплеи и стелажи', 'Опаковки за храни', 'Вино и спиртни напитки', 'Козметика и парфюмерия', 'Нестандартни и подаръчни']
         : ['POS Displays & Shelving', 'Food Packaging', 'Wine & Spirits Packaging', 'Cosmetics & Perfumery', 'Custom & Gift Packaging']
 
     injectBot(transition, [], undefined, 600)
