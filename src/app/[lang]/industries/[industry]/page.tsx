@@ -310,7 +310,7 @@ export default async function IndustryPage({
             >
               <p className="font-semibold mb-2">{data.cta_label}</p>
               <p className="text-white/70 text-sm mb-4 leading-relaxed">
-                {lang === 'bg' ? 'Отговаряме в рамките на 4 работни часа.' : 'We respond within 4 business hours.'}
+                {lang === 'bg' ? 'Отговаряме в рамките на 24 часа.' : 'We respond within 24 hours.'}
               </p>
               <Link
                 href={`/${currentLang}/contact`}

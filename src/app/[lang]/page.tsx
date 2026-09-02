@@ -42,7 +42,7 @@ export default async function HomePage({
       <Hero t={t} lang={currentLang} />
       <TrustedBy t={t} />
       <ProductsCatalog t={t} lang={currentLang} />
-      <VideoSection t={t} />
+      <VideoSection t={t} lang={currentLang} />
       <Differentiators t={t} />
       <CTABanner t={t} lang={currentLang} />
     </>

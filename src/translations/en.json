@@ -42,10 +42,32 @@
     "eyebrow_country": "Bulgaria",
     "eyebrow_year": "1995",
     "eyebrow_industry": "Packaging & Print",
-    "headline_line1": "Your Brand.",
-    "headline_line2": "Our Craft.",
-    "subheadline": "Custom corrugated packaging and POS displays, made to your exact spec. B2B manufacturing partner since 1995.",
-    "mobile_desc": "Custom corrugated packaging and POS displays — manufactured in Bulgaria since 1995.",
+    "variants": [
+      {
+        "headline_line1": "Your brand.",
+        "headline_line2": "Seen on shelf.",
+        "subheadline": "Custom packaging and POS displays, made to your specification — printed and finished to present your brand in store.",
+        "mobile_desc": "Custom packaging and POS displays, made in Bulgaria since 1995."
+      },
+      {
+        "headline_line1": "Every step",
+        "headline_line2": "in our hands.",
+        "subheadline": "Our own corrugated board line, offset printing, lamination, die-cutting and finishing — the process stays with us.",
+        "mobile_desc": "Our own corrugated line, offset printing and finishing in-house."
+      },
+      {
+        "headline_line1": "Made to your",
+        "headline_line2": "own dimensions.",
+        "subheadline": "We design and produce packaging and displays in non-standard sizes — with lamination, die-cutting and embossing.",
+        "mobile_desc": "Packaging and displays in non-standard sizes, designed to your brief."
+      },
+      {
+        "headline_line1": "One standard.",
+        "headline_line2": "Every run.",
+        "subheadline": "A family manufacturer since 1995. You approve a pre-production sample, and following orders are produced to the same standard.",
+        "mobile_desc": "A family manufacturer since 1995. A sample approved before every run."
+      }
+    ],
     "cta_primary": "Request a Quote",
     "cta_secondary": "View Products"
   },
@@ -58,16 +80,16 @@
     "client_sentence": "Trusted by brands including Coca-Cola, LIDL, Johnnie Walker, Stella Artois, Finlandia, and Jack Daniel's."
   },
   "trusted_by": {
-    "eyebrow": "What Clients Say",
-    "heading": "Trusted by Businesses Across Bulgaria",
+    "eyebrow": "Testimonials",
+    "heading": "What Our Clients Say",
     "subheading": "Businesses choose Skat Print for reliable production, consistent quality, and long-term partnerships.",
     "source_label": "via Google",
     "google_badge_suffix": "on Google",
     "items": [
       { "quote": "Skat Print produced branded boxes for our Artisannel line — we were delighted with how stylish the final result turned out.", "name": "Artisannel", "rating": 5 },
-      { "quote": "Communication was smooth throughout, especially with Elena on the team, and turnaround was consistently fast.", "name": "Елена Сулева", "rating": 5 },
+      { "quote": "Communication was smooth throughout, especially with Elena on the team, and turnaround was consistently fast.", "name": "Elena Suleva", "rating": 5 },
       { "quote": "Excellent print quality, fast turnaround, and responsive customer service throughout.", "name": "Ilian Gochev", "rating": 5 },
-      { "quote": "Quality and speed came together for a perfect result.", "name": "Чавдар Димов", "rating": 5 }
+      { "quote": "Quality and speed came together for a perfect result.", "name": "Chavdar Dimov", "rating": 5 }
     ]
   },
   "services_section": {
@@ -334,7 +356,7 @@
   "cta_banner": {
     "heading": "Get Your Custom Quote Today",
     "subheading": "Tell us what you need. We'll handle the rest.",
-    "response_time": "We respond within 1 business day.",
+    "response_time": "We respond within 24 hours.",
     "button": "Contact Our Team",
     "samples_cta": "Request a Quote"
   },
@@ -382,7 +404,7 @@
   },
   "contact_page": {
     "heading": "Get in Touch",
-    "subheading": "Tell us about your packaging project. We'll follow up within one business day.",
+    "subheading": "Tell us about your packaging project. We respond within 24 hours.",
     "locations_heading": "Our Locations",
     "email_heading": "Email",
     "phone_heading": "Phone",
@@ -434,7 +456,7 @@
       "submit": "Send Request",
       "submitting": "Sending...",
       "success_heading": "Request received.",
-      "success_body": "We'll follow up within one business day.",
+      "success_body": "We respond within 24 hours.",
       "error": "Something went wrong. Please call us directly at +359 888 35 15 53.",
       "error_name": "Please enter your name (at least 2 characters).",
       "error_company": "Please enter your company name.",
@@ -614,7 +636,7 @@
     "panel_subtitle": "How can I help you today?",
     "online": "Online",
     "send": "Send",
-    "response_time_promise": "We respond within 4 business hours.",
+    "response_time_promise": "We respond within 24 hours.",
     "send_request": "Send My Request",
     "email_placeholder": "Your email address",
     "request_sent": "Request sent! We'll be in touch soon."

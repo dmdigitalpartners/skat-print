@@ -177,9 +177,9 @@ export const INTENTS: Intent[] = [
       'как да се свържа с вас', 'искам да говоря',
     ],
     response_en:
-      "You can reach us by email at office@skatoil.com or through our contact form — we'll follow up within one business day. Happy to help!",
+      "You can reach us by email at office@skatoil.com or through our contact form — we respond within 24 hours. Happy to help!",
     response_bg:
-      'Можете да се свържете с нас по имейл на office@skatoil.com или чрез формата за контакт — ще се свържем с вас в рамките на един работен ден. С удоволствие ще помогнем!',
+      'Можете да се свържете с нас по имейл на office@skatoil.com или чрез формата за контакт — отговаряме в рамките на 24 часа. С удоволствие ще помогнем!',
     followUps_en: ['Request a callback', 'Get a quick price estimate', 'How fast is production?'],
     followUps_bg: ['Заявете обратно обаждане', 'Бърза оценка на цената', 'Колко бързо е производството?'],
   },
