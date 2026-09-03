@@ -18,7 +18,7 @@ import sharp from 'sharp'
 import { writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { manifest } from './portfolio-manifest.mjs'
+import { manifest, POS_GROUP_LABELS } from './portfolio-manifest.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const REPO_ROOT = path.resolve(__dirname, '..')
@@ -44,6 +44,15 @@ function quote(value) {
 
 async function run() {
   const byCategory = new Map(CATEGORIES.map(([slug]) => [slug, []]))
+  const categoriesWithGroupHeadings = new Set()
+
+  // Contiguity check state: a `group` slug must appear in one unbroken run
+  // across the manifest. If it reappears after the scan has moved on to a
+  // different group, a future one-line manifest edit would silently produce
+  // a duplicate, non-adjacent heading on the live page — fail the build
+  // instead.
+  let lastGroup = null
+  const seenGroups = new Set()
 
   for (const entry of manifest) {
     const bucket = byCategory.get(entry.category)
@@ -57,8 +66,40 @@ async function run() {
       throw new Error(`Could not read dimensions for ${src}`)
     }
 
+    // pos-displays gallery entries carry a `group` slug that resolves to a
+    // bilingual heading label (PortfolioGrid.tsx renders one whenever the
+    // group changes between adjacent tiles). Every other entry must NOT
+    // have one — fail loud rather than silently rendering a stray heading
+    // or silently omitting one that was meant to be there.
+    let group
+    let groupBg
+    if (entry.category === 'pos-displays' && entry.role === 'gallery') {
+      if (!entry.group) {
+        throw new Error(`Missing 'group' on pos-displays gallery entry ${entry.dest}`)
+      }
+      const label = POS_GROUP_LABELS[entry.group]
+      if (!label) {
+        throw new Error(`Unknown pos-displays group slug '${entry.group}' on ${entry.dest}`)
+      }
+      if (entry.group !== lastGroup) {
+        if (seenGroups.has(entry.group)) {
+          throw new Error(
+            `Non-contiguous pos-displays group '${entry.group}': it reappears after another group. ` +
+              `Entries sharing a group must be adjacent in the manifest.`
+          )
+        }
+        seenGroups.add(entry.group)
+        lastGroup = entry.group
+      }
+      group = label.label
+      groupBg = label.labelBg
+      categoriesWithGroupHeadings.add(entry.category)
+    } else if (entry.group) {
+      throw new Error(`Unexpected 'group' on non-pos-displays-gallery entry ${entry.dest}`)
+    }
+
     // Manifest order is preserved; the manifest lists each category's hero first.
-    bucket.push({ entry, src, width, height })
+    bucket.push({ entry, src, width, height, group, groupBg })
   }
 
   const lines = [
@@ -74,6 +115,11 @@ async function run() {
     '  // tile at its true aspect ratio (no cropping/distortion) in PortfolioGrid.tsx.',
     '  width: number',
     '  height: number',
+    '  // Subgroup heading (e.g. "Floor Displays"), set only for categories in',
+    '  // categoriesWithGroupHeadings below. PortfolioGrid.tsx renders one whenever',
+    '  // this differs from the previous tile\'s group.',
+    '  group?: string',
+    '  groupBg?: string',
     '}',
     '',
     '// GENERATED FILE — do not edit by hand.',
@@ -89,10 +135,11 @@ async function run() {
     const items = byCategory.get(slug)
     total += items.length
     lines.push(`  // ${heading} (${items.length})`)
-    for (const { entry, src, width, height } of items) {
+    for (const { entry, src, width, height, group, groupBg } of items) {
+      const groupFields = group ? ` group: ${quote(group)}, groupBg: ${quote(groupBg)},` : ''
       lines.push(
         `  { src: ${quote(src)}, alt: ${quote(entry.alt)}, altBg: ${quote(entry.altBg)}, ` +
-          `category: '${slug}', width: ${width}, height: ${height} },`
+          `category: '${slug}', width: ${width}, height: ${height},${groupFields} },`
       )
     }
     lines.push('')
@@ -102,11 +149,24 @@ async function run() {
   lines.pop()
   lines.push(']', '')
 
+  // Derived from the data itself (not hardcoded) so a page component can ask
+  // "does this category have subgroup headings?" without a literal string
+  // comparison against 'pos-displays'.
+  lines.push(
+    '// Categories whose gallery tiles carry `group`/`groupBg` and should render',
+    '// subgroup headings (see PortfolioGrid.tsx\'s `showGroupHeadings` prop).',
+    'export const categoriesWithGroupHeadings: PortfolioCategory[] = [',
+    ...[...categoriesWithGroupHeadings].sort().map((slug) => `  '${slug}',`),
+    ']',
+    ''
+  )
+
   await writeFile(DATA_FILE, lines.join('\n'), 'utf-8')
   console.log(`Wrote ${total} portfolio items to ${path.relative(REPO_ROOT, DATA_FILE)}`)
   for (const [slug, heading] of CATEGORIES) {
     console.log(`  ${heading.padEnd(21)} ${byCategory.get(slug).length}`)
   }
+  console.log(`  categoriesWithGroupHeadings: ${[...categoriesWithGroupHeadings].join(', ')}`)
 }
 
 run().catch((err) => {
