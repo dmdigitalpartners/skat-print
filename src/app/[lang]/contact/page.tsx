@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { getTranslation } from '@/lib/useTranslation'
 import { buildPageMetadata } from '@/lib/metadata'
 import { buildBreadcrumbSchema } from '@/lib/schema'
+import { LOCATION_PHONES } from '@/config/contact'
 import ContactForm from '@/components/sections/ContactForm'
 import PageHero from '@/components/ui/PageHero'
 
@@ -85,16 +86,16 @@ export default async function ContactPage({
                   {c.phone_heading}
                 </h2>
                 <div className="space-y-6">
-                  {c.locations.map((loc) => (
+                  {c.locations.map((loc, i) => (
                     <div key={loc.name}>
                       <p className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">
                         {loc.name}
                       </p>
                       <a
-                        href={`tel:${loc.phone.replace(/\s/g, '')}`}
+                        href={`tel:${LOCATION_PHONES[i].tel}`}
                         className="text-sm text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors duration-150"
                       >
-                        {loc.phone}
+                        {LOCATION_PHONES[i].display}
                       </a>
                       <p className="text-xs text-[var(--color-text-muted)] mt-0.5">{loc.address}</p>
                     </div>

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { LANGS, VALID_CATEGORIES, VALID_INDUSTRIES } from '@/config/routes'
 import { SITE_URL as BASE_URL } from '@/config/site'
+import { FEATURES } from '@/config/features'
 import { getPostSlugs } from '@/lib/blog'
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -18,15 +19,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     routes.push({ url: `${BASE_URL}/${lang}/contact`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.7 })
     // privacy/terms are deliberately omitted: both set robots: { index: false }
     // in their own metadata, so listing them here would contradict that.
-    routes.push({ url: `${BASE_URL}/${lang}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 })
 
-    for (const slug of getPostSlugs(lang)) {
-      routes.push({
-        url: `${BASE_URL}/${lang}/blog/${slug}`,
-        lastModified: new Date(),
-        changeFrequency: 'monthly',
-        priority: 0.6,
-      })
+    // Blog is withheld from production — see src/config/features.ts. The
+    // routes still 404 with noindex, but omitting them here too means the
+    // sitemap never even points a crawler at them.
+    if (FEATURES.blog) {
+      routes.push({ url: `${BASE_URL}/${lang}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 })
+
+      for (const slug of getPostSlugs(lang)) {
+        routes.push({
+          url: `${BASE_URL}/${lang}/blog/${slug}`,
+          lastModified: new Date(),
+          changeFrequency: 'monthly',
+          priority: 0.6,
+        })
+      }
     }
 
     for (const product of VALID_CATEGORIES) {

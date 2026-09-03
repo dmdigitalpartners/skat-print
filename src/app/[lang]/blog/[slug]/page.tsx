@@ -3,11 +3,15 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { LANGS } from '@/config/routes'
+import { FEATURES } from '@/config/features'
 import { getPost, getPostSlugs } from '@/lib/blog'
 import { buildPageMetadata } from '@/lib/metadata'
 import { SITE_URL } from '@/config/site'
 
 export async function generateStaticParams() {
+  // Blog is withheld from production — see src/config/features.ts. No
+  // params means Next never prerenders these routes.
+  if (!FEATURES.blog) return []
   return LANGS.flatMap(lang =>
     getPostSlugs(lang).map(slug => ({ lang, slug }))
   )
@@ -18,6 +22,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ lang: string; slug: string }>
 }): Promise<Metadata> {
+  if (!FEATURES.blog) return { robots: { index: false, follow: false } }
   const { lang, slug } = await params
   const post = getPost(lang, slug)
   if (!post) return {}
@@ -34,6 +39,7 @@ export default async function BlogPostPage({
 }: {
   params: Promise<{ lang: string; slug: string }>
 }) {
+  if (!FEATURES.blog) notFound()
   const { lang, slug } = await params
   const post = getPost(lang, slug)
   if (!post) notFound()

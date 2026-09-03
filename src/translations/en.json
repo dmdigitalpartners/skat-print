@@ -131,7 +131,7 @@
   },
   "video_section": {
     "heading": "See How We Work",
-    "subheading": "Our own production facility in Hisarya, plus a head office in Trud — vertical integration from raw board to finished packaging, all under our direct control.",
+    "subheading": "Production bases in Trud and Hisarya — vertical integration from raw board to finished packaging, all under our direct control.",
     "watch_label": "Watch Video"
   },
   "products_section": {
@@ -276,7 +276,7 @@
       },
       {
         "question": "Do you hold any sustainability certifications?",
-        "answer": "We don't currently hold formal third-party certifications such as ISO or FSC. All our materials are 100% recyclable and contain no harmful substances, and our production line was upgraded through an EU-co-funded energy-efficiency investment. Contact us if you need specific compliance documentation for your market."
+        "answer": "We don't currently hold formal third-party certifications such as ISO or FSC. All our materials are 100% recyclable and contain no harmful substances. Contact us if you need specific compliance documentation for your market."
       },
       {
         "question": "What are your delivery options?",
@@ -295,13 +295,6 @@
   "differentiators": {
     "eyebrow": "Why Choose Us",
     "title": "Why Skat Print",
-    "certifications_heading": "Quality & Compliance",
-    "certifications": [
-      {
-        "code": "BG16RFOP002",
-        "label": "EU Co-funded Project"
-      }
-    ],
     "items": [
       {
         "icon": "print",
@@ -366,14 +359,12 @@
     "contact_title": "Contact",
     "locations": [
       {
-        "name": "Skat Print, Main Office",
-        "address": "Village of Trud, Plovdiv Region, Stopanski dvor № 2",
-        "phone": "+359 888 35 15 53"
+        "name": "Production & Main Office: Trud",
+        "address": "Village of Trud, Plovdiv Region, Stopanski dvor № 2"
       },
       {
-        "name": "Production Base, Hisarya",
-        "address": "8 Yordan Yovkov St, Hisarya",
-        "phone": "+359 887 46 10 28"
+        "name": "Production Base: Hisarya",
+        "address": "8 Yordan Yovkov St, Hisarya"
       }
     ],
     "emails": {
@@ -388,15 +379,8 @@
       "privacy": "Privacy Policy",
       "terms": "Terms of Use"
     },
-    "eu_badge_label": "Co-funded by the European Union",
-    "eu_badge_code": "BG16RFOP002-3.001-0074-C01",
-    "eu_badge_description": "EU-co-funded investment in energy-efficient manufacturing equipment",
     "legal_entity": "Skat Oil EOOD",
     "region": "Plovdiv Region, Bulgaria",
-    "eik_label": "EIK",
-    "eik": "825131194",
-    "vat_label": "VAT",
-    "vat": "BG825131194",
     "social_linkedin": "https://uk.linkedin.com/company/skatprint",
     "social_linkedin_label": "LinkedIn",
     "social_instagram": "https://www.instagram.com/skatprint_/",
@@ -410,16 +394,14 @@
     "phone_heading": "Phone",
     "locations": [
       {
-        "name": "Main Office",
+        "name": "Production & Main Office: Trud",
         "address": "Village of Trud, Plovdiv Region, Stopanski dvor № 2",
-        "phone": "+359 888 35 15 53",
-        "map_title": "Skat Print, Village of Trud"
+        "map_title": "Skat Print, Trud — Production & Main Office"
       },
       {
-        "name": "Production Base",
+        "name": "Production Base: Hisarya",
         "address": "8 Yordan Yovkov St, Hisarya",
-        "phone": "+359 887 46 10 28",
-        "map_title": "Skat Print, Hisarya Production Base"
+        "map_title": "Skat Print, Hisarya — Production Base"
       }
     ],
     "form": {
@@ -493,7 +475,7 @@
       },
       {
         "heading": "One Point of Contact, Two Sites",
-        "copy": "One team, full accountability across both our Hisarya facility and Trud office, from brief to delivery."
+        "copy": "One team, full accountability across both our production sites in Trud and Hisarya, from brief to delivery."
       }
     ],
     "timeline_eyebrow": "Our Journey",

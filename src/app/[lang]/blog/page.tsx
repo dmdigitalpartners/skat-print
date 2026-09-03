@@ -1,10 +1,15 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 import { LANGS } from '@/config/routes'
+import { FEATURES } from '@/config/features'
 import { getAllPosts } from '@/lib/blog'
 import { buildPageMetadata } from '@/lib/metadata'
 
 export async function generateStaticParams() {
+  // Blog is withheld from production — see src/config/features.ts. No
+  // params means Next never prerenders these routes.
+  if (!FEATURES.blog) return []
   return LANGS.map(lang => ({ lang }))
 }
 
@@ -13,6 +18,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ lang: string }>
 }): Promise<Metadata> {
+  if (!FEATURES.blog) return { robots: { index: false, follow: false } }
   const { lang } = await params
   const isBg = lang === 'bg'
   return buildPageMetadata({
@@ -30,6 +36,7 @@ export default async function BlogIndexPage({
 }: {
   params: Promise<{ lang: string }>
 }) {
+  if (!FEATURES.blog) notFound()
   const { lang } = await params
   const isBg = lang === 'bg'
   const posts = getAllPosts(lang)

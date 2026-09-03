@@ -23,6 +23,10 @@ Open [http://localhost:3000](http://localhost:3000) (falls back to the next avai
 
 Locale-prefixed routes live under `src/app/[lang]/` (`bg` default, `en` available). Site copy is centralized in `src/translations/en.json` and `src/translations/bg.json`.
 
+## Feature flags
+
+`src/config/features.ts` gates features that are built but withheld from production. Currently just `blog` (off — content and routes stay in the repo, but are undiscoverable and 404 in production). Flip the flag to `true` to bring a feature back.
+
 ## Media assets
 
 `public/assets/` and `public/favicon/` are tracked in version control — they are required for Git-based Vercel builds. `brand_assets/` is intentionally excluded (see `.gitignore`): it is design-source material, unreferenced by the site, and kept only on local machines that hold those files.
