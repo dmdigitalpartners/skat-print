@@ -85,7 +85,7 @@ export default async function IndustryPage({
   const industryLabels: Record<string, string> = {
     'food-packaging': lang === 'bg' ? 'Хранителни опаковки' : 'Food Packaging',
     'cosmetics-packaging': lang === 'bg' ? 'Козметични опаковки' : 'Cosmetics Packaging',
-    'wine-spirits-packaging': lang === 'bg' ? 'Вино & Алкохол' : 'Wine & Spirits',
+    'wine-spirits-packaging': lang === 'bg' ? 'Вино и алкохол' : 'Wine & Spirits',
     'retail-pos-displays': lang === 'bg' ? 'Търговски POS дисплеи' : 'Retail POS Displays',
   }
   const productLabels: Record<string, string> = {

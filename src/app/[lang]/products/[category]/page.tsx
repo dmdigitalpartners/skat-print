@@ -10,6 +10,7 @@ import PortfolioGrid from '@/components/sections/PortfolioGrid'
 import PageHero from '@/components/ui/PageHero'
 import SpecsAccordion from '@/components/ui/SpecsAccordion'
 import { VALID_CATEGORIES, type CategorySlug } from '@/config/routes'
+import { categoriesWithGroupHeadings } from '@/lib/portfolio-data'
 
 export function generateStaticParams() {
   const langs = ['en', 'bg']
@@ -98,6 +99,7 @@ export default async function ProductCategoryPage({
         filterCategory={category as CategorySlug}
         galleryHeading={t.product_detail.gallery_heading}
         className="!pt-8 md:!pt-12"
+        showGroupHeadings={categoriesWithGroupHeadings.includes(category as CategorySlug)}
       />
 
       <CTABanner t={t} lang={currentLang} />

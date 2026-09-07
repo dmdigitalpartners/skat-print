@@ -244,7 +244,7 @@ export const INTENTS: Intent[] = [
       'материали', 'хартия', 'картон', 'качество', 'сертификат', 'покритие', 'ламинат',
     ],
     response_en:
-      'We use premium coated and uncoated papers, corrugated board (velpape), and specialty substrates — all 100% recyclable and produced under strict in-house quality control. Not sure what material suits your product? We can advise on the best fit for your type and budget.',
+      'We use premium coated and uncoated papers, corrugated board, and specialty substrates — all 100% recyclable and produced under strict in-house quality control. Not sure what material suits your product? We can advise on the best fit for your type and budget.',
     response_bg:
       'Използваме висококачествени покрити и непокрити хартии, велпапе и специални субстрати — всички 100% рециклируеми и произведени под строг вътрешен контрол на качеството. Не знаете кой материал подхожда? Ще ви посъветваме за най-доброто решение.',
     followUps_en: ['Get a quick price estimate', 'Our services', 'Contact us'],
