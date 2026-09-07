@@ -36,6 +36,7 @@
     "faq": "FAQ",
     "contact": "Contact",
     "get_quote": "Get a Quote",
+    "call_us": "Call Us",
     "blog": "Blog"
   },
   "hero": {
@@ -76,6 +77,11 @@
       "In-house corrugated board production",
       "Offset printing and lamination",
       "Die-cutting and finishing"
+    ],
+    "capabilities_short": [
+      "In-house corrugated",
+      "Offset print & lamination",
+      "Die-cutting & finishing"
     ],
     "client_sentence": "Trusted by brands including Coca-Cola, LIDL, Johnnie Walker, Stella Artois, Finlandia, and Jack Daniel's."
   },
@@ -132,7 +138,8 @@
   "video_section": {
     "heading": "See How We Work",
     "subheading": "Production bases in Trud and Hisarya — vertical integration from raw board to finished packaging, all under our direct control.",
-    "watch_label": "Watch Video"
+    "watch_label": "Watch Video",
+    "subheading_short": "Production bases in Trud and Hisarya, from raw board to finished packaging."
   },
   "products_section": {
     "eyebrow": "Product Range",
@@ -299,22 +306,26 @@
       {
         "icon": "print",
         "heading": "Offset-Corrugated Printing",
-        "copy": "We combine offset-printed laminate bonded to corrugated substrate, Roland and Heidelberg presses, die-cutting, and embossing — all under our direct control."
+        "copy": "We combine offset-printed laminate bonded to corrugated substrate, Roland and Heidelberg presses, die-cutting, and embossing — all under our direct control.",
+        "copy_short": "Offset-printed laminate bonded to corrugated board, die-cut and embossed in-house."
       },
       {
         "icon": "layers",
         "heading": "Vertical Integration",
-        "copy": "Our own corrugated cardboard production line means faster turnaround, tighter quality control, and no dependency on third-party substrates."
+        "copy": "Our own corrugated cardboard production line means faster turnaround, tighter quality control, and no dependency on third-party substrates.",
+        "copy_short": "Our own corrugated board line: faster turnaround and no third-party substrates."
       },
       {
         "icon": "shield",
         "heading": "Years of Reliability",
-        "copy": "Family-owned since 1995. Same ownership, same standards. Long-term partnerships with global brands are built on that consistency."
+        "copy": "Family-owned since 1995. Same ownership, same standards. Long-term partnerships with global brands are built on that consistency.",
+        "copy_short": "Family-owned since 1995. Same ownership, same standards, year after year."
       },
       {
         "icon": "leaf",
         "heading": "100% Recyclable Materials",
-        "copy": "All our packaging is produced from ecologically clean, recyclable materials that contain no harmful substances."
+        "copy": "All our packaging is produced from ecologically clean, recyclable materials that contain no harmful substances.",
+        "copy_short": "Produced from 100% recyclable materials with no harmful substances."
       }
     ]
   },
@@ -347,6 +358,7 @@
     "cta_browse": "Browse Our Products"
   },
   "cta_banner": {
+    "eyebrow": "Skat Print",
     "heading": "Get Your Custom Quote Today",
     "subheading": "Tell us what you need. We'll handle the rest.",
     "response_time": "We respond within 24 hours.",

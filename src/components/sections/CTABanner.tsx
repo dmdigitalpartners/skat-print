@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 import type { Translation, Lang } from '@/lib/useTranslation'
 import { trackEvent } from '@/lib/analytics'
+import SectionHeader from '@/components/ui/SectionHeader'
 
 interface Props {
   t: Translation
@@ -40,20 +41,19 @@ export default function CTABanner({ t, lang }: Props) {
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        <span className="inline-flex items-center gap-2 text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent)] mb-6">
-          <span className="block w-5 h-px bg-[var(--color-accent)]" />
-          Skat Print
-          <span className="block w-5 h-px bg-[var(--color-accent)]" />
-        </span>
-        <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-[1.05] mb-5">
-          {t.cta_banner.heading}
-        </h2>
-        <p className={`text-white/70 text-lg md:text-xl mb-4 leading-relaxed mx-auto ${lang === 'bg' ? 'max-w-2xl' : 'max-w-xl'}`}>
-          {t.cta_banner.subheading}
-        </p>
-        <p className="text-white/75 text-sm mb-10">
-          {t.cta_banner.response_time}
-        </p>
+        <SectionHeader
+          eyebrow={t.cta_banner.eyebrow}
+          heading={t.cta_banner.heading}
+          description={t.cta_banner.subheading}
+          align="center"
+          tone="dark"
+          size="lg"
+          className=""
+        >
+          <p className="text-white/75 text-sm mt-4 mb-10">
+            {t.cta_banner.response_time}
+          </p>
+        </SectionHeader>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href={`/${lang}/contact`}
