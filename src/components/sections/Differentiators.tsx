@@ -74,27 +74,6 @@ export default function Differentiators({ t, sectionStyle }: { t: Translation; s
           </ScrollReveal>
         ))}
       </div>
-
-      {/* Certifications block — verify each entry with client before launch */}
-      <ScrollReveal>
-        <div className="mt-16 md:mt-20 pt-10 border-t border-[var(--color-border)]">
-          <p className="text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-6">
-            {t.differentiators.certifications_heading}
-          </p>
-          <div className="flex flex-wrap md:flex-nowrap gap-3">
-            {t.differentiators.certifications.map((cert) => (
-              <div
-                key={cert.code}
-                className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-bg)]"
-              >
-                <span className="font-display font-bold text-sm text-[var(--color-text)]">{cert.code}</span>
-                <span className="h-3.5 w-px bg-[var(--color-border)]" aria-hidden />
-                <span className="text-xs text-[var(--color-text-muted)]">{cert.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </ScrollReveal>
     </SectionWrapper>
   )
 }
