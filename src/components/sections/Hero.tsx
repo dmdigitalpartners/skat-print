@@ -105,14 +105,17 @@ export default function Hero({ t, lang }: Props) {
 
       {/* ── Mobile layout ─────────────────────────────── */}
       <div className="md:hidden flex-1 flex flex-col items-center justify-center relative z-10 px-5 pt-16">
+        {/* Spacing is set per element rather than with a blanket space-y so the
+            heading and its supporting line read as one composed block, with the
+            larger break falling before the buttons. */}
         <motion.div
           variants={reduced ? undefined : stagger}
           initial="hidden"
           animate="show"
-          className="w-full text-center space-y-4"
+          className="w-full text-center"
         >
           {/* Eyebrow */}
-          <motion.div variants={reduced ? undefined : item}>
+          <motion.div variants={reduced ? undefined : item} className="mb-4">
             <span className="inline-flex items-center gap-2 text-[11px] font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent)]">
               {t.hero.eyebrow_country}
               <span className="text-white/30">·</span>
@@ -123,15 +126,20 @@ export default function Hero({ t, lang }: Props) {
           </motion.div>
 
           {/* Headline — slogan, the largest element */}
+          {/* The two headline lines are separate blocks, so the only way a
+              variant reaches three lines is one of them wrapping. The clamp
+              scales the type with the viewport so the longest BG variant
+              ("Вашата марка. / Видима на рафта.") still sets two lines at
+              360px, without shrinking the type at 390px and above. */}
           <motion.h1
             variants={reduced ? undefined : item}
-            className="font-display font-bold text-[2.6rem] leading-[0.92] tracking-tight text-white"
+            className="font-display font-bold text-[clamp(1.95rem,8.4vw,2.6rem)] leading-[0.95] tracking-tight text-white mb-3"
           >
             <Stack
               activeIndex={activeIndex}
               items={variants.map((v, i) => (
                 <Fragment key={i}>
-                  <span className="block mb-2">{v.headline_line1}</span>
+                  <span className="block mb-1">{v.headline_line1}</span>
                   <span className="block">{v.headline_line2}</span>
                 </Fragment>
               ))}
@@ -141,7 +149,7 @@ export default function Hero({ t, lang }: Props) {
           {/* One-sentence description */}
           <motion.p
             variants={reduced ? undefined : item}
-            className="text-[13px] text-white/60 leading-relaxed max-w-[340px] mx-auto"
+            className="text-[13px] text-white/60 leading-relaxed max-w-[340px] mx-auto mb-6"
           >
             <Stack activeIndex={activeIndex} items={variants.map((v) => v.mobile_desc)} />
           </motion.p>
@@ -149,7 +157,7 @@ export default function Hero({ t, lang }: Props) {
           {/* CTAs — both visible, equal width, single line each */}
           <motion.div
             variants={reduced ? undefined : item}
-            className="flex items-center gap-3 pt-1"
+            className="flex items-center gap-3"
           >
             <Button
               href={`/${lang}/contact`}
@@ -175,8 +183,11 @@ export default function Hero({ t, lang }: Props) {
            needed here, or the reservation doubles up and leaves a blank
            gap between this bar and the fixed bar below it. ── */}
       <div className="md:hidden relative z-10 border-t border-white/10 bg-black/70 backdrop-blur-md">
+        {/* Shortened labels on mobile: the full wording ran to three and four
+            lines in a ~110px column. capabilities_short says the same thing in
+            the same validated terminology; desktop keeps the full version. */}
         <div className="grid grid-cols-3 divide-x divide-white/10 py-3">
-          {t.trust.capabilities.map((capability) => (
+          {t.trust.capabilities_short.map((capability) => (
             <div key={capability} className="flex flex-col items-center justify-center px-1.5">
               <div className="text-[10px] text-white/70 font-condensed uppercase tracking-wider leading-tight text-center">
                 {capability}
