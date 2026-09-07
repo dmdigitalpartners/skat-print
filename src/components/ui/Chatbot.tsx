@@ -130,9 +130,6 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
   const [isConversationLocked, setIsConversationLocked] = useState(false)
   const [sessionLoaded, setSessionLoaded] = useState(false)
 
-  // ── Mobile detection
-  const [isMobile, setIsMobile] = useState(false)
-
   // ── Lead submission state
   const [leadEmail, setLeadEmail] = useState('')
   const [leadSubmitted, setLeadSubmitted] = useState(false)
@@ -181,15 +178,6 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
     document.addEventListener('keydown', handler)
     return () => document.removeEventListener('keydown', handler)
   }, [isOpen])
-
-  // ── Mobile breakpoint detection (shared with Tailwind's md = 768px)
-  useEffect(() => {
-    const mql = window.matchMedia('(max-width: 767px)')
-    const check = () => setIsMobile(mql.matches)
-    check()
-    mql.addEventListener('change', check)
-    return () => mql.removeEventListener('change', check)
-  }, [])
 
   // ─── Core helpers ─────────────────────────────────────────────────────────
 
@@ -636,7 +624,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
     <>
       {/* ── Desktop FAB — shown when panel is closed */}
       <AnimatePresence>
-        {!isOpen && !isMobile && (
+        {!isOpen && (
           <motion.button
             {...fabMotion}
             onClick={openChat}
@@ -662,7 +650,7 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
 
       {/* ── Desktop chat panel */}
       <AnimatePresence>
-        {isOpen && !isMobile && (
+        {isOpen && (
           <motion.div
             {...panelMotion}
             role="dialog"
@@ -680,64 +668,10 @@ export default function Chatbot({ t, lang }: ChatbotProps) {
         )}
       </AnimatePresence>
 
-      {/* ── Mobile FAB — shown when drawer is closed */}
-      <AnimatePresence>
-        {!isOpen && isMobile && (
-          <motion.button
-            {...fabMotion}
-            onClick={openChat}
-            aria-label={t.chatbot.aria_open}
-            className="fixed bottom-[calc(var(--mobile-bar-height)+env(safe-area-inset-bottom)+16px)] right-6 z-50 flex md:hidden items-center justify-center w-14 h-14 rounded-full bg-[var(--color-accent-text)] text-white select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
-            style={{
-              boxShadow: '0 4px 24px rgba(0,152,212,0.40), 0 2px 8px rgba(0,0,0,0.16)',
-            }}
-            whileHover={reduced ? {} : { scale: 1.08 }}
-            whileTap={reduced ? {} : { scale: 0.95 }}
-          >
-            {!reduced && (
-              <span
-                className="absolute inset-0 rounded-full bg-[var(--color-accent)]"
-                style={{ animation: 'chatbot-fab-ring 2.2s ease-out infinite' }}
-              />
-            )}
-            <IconMsg cls="w-6 h-6 relative z-10" />
-            <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-green-400 border-2 border-white" />
-          </motion.button>
-        )}
-      </AnimatePresence>
-
-      {/* ── Mobile drawer — slides up from bottom */}
-      <AnimatePresence>
-        {isOpen && isMobile && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={reduced ? false : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={reduced ? {} : { opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              onClick={() => setIsOpen(false)}
-              className="fixed inset-0 z-50 bg-black/40"
-              aria-hidden="true"
-            />
-            {/* Drawer panel */}
-            <motion.div
-              initial={reduced ? false : { y: '100%' }}
-              animate={{ y: 0 }}
-              exit={reduced ? {} : { y: '100%' }}
-              transition={{ type: 'spring', stiffness: 280, damping: 28 }}
-              role="dialog"
-              aria-modal="true"
-              aria-label={lang === 'bg' ? 'Чат поддръжка' : 'Chat support'}
-              className="fixed inset-x-0 bottom-0 z-[51] flex flex-col h-[90vh] rounded-t-2xl overflow-hidden"
-              style={{ boxShadow: '0 -8px 40px rgba(0,0,0,0.20)' }}
-            >
-              {renderHeader(() => setIsOpen(false))}
-              {renderBody()}
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+      {/* The mobile FAB and slide-up drawer were removed: the chatbot is now
+          desktop-only and DesktopChatbot.tsx does not mount this component
+          below the md breakpoint at all. On mobile the bottom-right corner
+          belongs to the call bar. */}
     </>
   )
 }

@@ -3,6 +3,7 @@
 import { useReducedMotion } from 'framer-motion'
 import type { Translation } from '@/lib/useTranslation'
 import GoogleRatingBadge from '@/components/ui/GoogleRatingBadge'
+import SectionHeader from '@/components/ui/SectionHeader'
 
 interface Props {
   t: Translation
@@ -24,18 +25,13 @@ export default function TrustedBy({ t }: Props) {
       style={{ background: 'linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-primary-light) 100%)' }}
     >
       <div className="container-site py-16 md:py-20">
-        {/* Centered heading + subheading */}
-        <div className="flex flex-col items-center gap-3 md:gap-4 mb-10 md:mb-12 text-center">
-          <p className="text-xs md:text-sm font-condensed font-semibold uppercase tracking-widest text-white/60">
-            {t.trusted_by.eyebrow}
-          </p>
-          <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-white tracking-tight leading-tight max-w-2xl">
-            {t.trusted_by.heading}
-          </h2>
-          <p className="text-sm md:text-base text-white/65 leading-relaxed max-w-lg">
-            {t.trusted_by.subheading}
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow={t.trusted_by.eyebrow}
+          heading={t.trusted_by.heading}
+          description={t.trusted_by.subheading}
+          align="center"
+          tone="dark"
+        />
 
         {/* Testimonial marquee */}
         <div className="overflow-hidden" aria-label={t.trusted_by.eyebrow}>

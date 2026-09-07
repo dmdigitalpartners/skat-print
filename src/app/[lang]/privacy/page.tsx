@@ -33,7 +33,7 @@ export async function generateMetadata({
 const contentEn = [
   {
     heading: 'Data Controller',
-    body: 'Skat Oil EOOD (EIK 825131194), Village of Trud, 4204, Plovdiv Province, Bulgaria. Email: office@skatoil.com',
+    body: 'Skat Oil EOOD, Village of Trud, 4204, Plovdiv Province, Bulgaria. Email: office@skatoil.com',
   },
   {
     heading: 'What Data We Collect',
@@ -68,7 +68,7 @@ const contentEn = [
 const contentBg = [
   {
     heading: 'Администратор на лични данни',
-    body: 'Скат Ойл ЕООД (ЕИК 825131194), с. Труд, 4204, обл. Пловдив, България. Имейл: office@skatoil.com',
+    body: 'Скат Ойл ЕООД, с. Труд, 4204, обл. Пловдив, България. Имейл: office@skatoil.com',
   },
   {
     heading: 'Какви данни събираме',

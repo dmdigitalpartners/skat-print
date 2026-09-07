@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useState, useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import LanguageToggle from './LanguageToggle'
+import { CONTACT } from '@/config/contact'
 import type { Translation, Lang } from '@/lib/useTranslation'
 
 interface Props {
@@ -246,14 +247,29 @@ export default function Navbar({ t, lang }: Props) {
             </Link>
           ))}
 
-          <div className="pt-4 mt-2 flex items-center justify-end border-t border-[var(--color-border)]">
+          {/* Two ways to start a conversation, side by side. The quote CTA keeps
+              the filled accent and carries the accent shadow so it stays the
+              primary; calling is the direct alternative for buyers who would
+              rather talk. Both are full-height touch targets. */}
+          <div className="pt-4 mt-2 grid grid-cols-2 gap-3 border-t border-[var(--color-border)]">
             <Link
               href={`${base}/contact`}
-              className="px-5 py-2.5 rounded-[var(--radius-md)] bg-[var(--color-accent-text)] text-white font-semibold text-sm hover:bg-[var(--color-accent-hover)] transition-colors duration-200"
+              className="inline-flex items-center justify-center min-h-12 px-3 rounded-[var(--radius-md)] bg-[var(--color-accent-text)] text-white font-semibold text-sm whitespace-nowrap shadow-[var(--shadow-accent)] transition-[background-color,box-shadow] duration-200 hover:bg-[var(--color-accent-hover)] focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] focus-visible:outline-offset-2"
               onClick={() => setMobileOpen(false)}
             >
               {t.nav.get_quote}
             </Link>
+            <a
+              href={`tel:${CONTACT.phone_primary}`}
+              aria-label={`${t.nav.call_us} ${CONTACT.phone_primary_display}`}
+              className="inline-flex items-center justify-center gap-2 min-h-12 px-3 rounded-[var(--radius-md)] border border-[var(--color-border)] text-[var(--color-text)] font-semibold text-sm whitespace-nowrap transition-[background-color,border-color] duration-200 hover:border-[var(--color-accent)] hover:bg-[var(--color-accent-subtle)] focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] focus-visible:outline-offset-2"
+              onClick={() => setMobileOpen(false)}
+            >
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden className="w-4 h-4 shrink-0">
+                <path d="M2.5 4.5c0-.83.67-1.5 1.5-1.5h2.1c.65 0 1.22.42 1.42 1.04l.79 2.43c.17.53-.01 1.11-.46 1.45l-1.2.9a11.4 11.4 0 0 0 4.53 4.53l.9-1.2c.34-.45.92-.63 1.45-.46l2.43.79c.62.2 1.04.77 1.04 1.42V16c0 .83-.67 1.5-1.5 1.5h-.5C8.6 17.5 2.5 11.4 2.5 4.5Z" />
+              </svg>
+              {t.nav.call_us}
+            </a>
           </div>
         </nav>
       </div>

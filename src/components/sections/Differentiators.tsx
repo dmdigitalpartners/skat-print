@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
 import SectionWrapper from '@/components/ui/SectionWrapper'
+import SectionHeader from '@/components/ui/SectionHeader'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import type { Translation } from '@/lib/useTranslation'
 import { getYearsSince } from '@/lib/constants'
@@ -45,14 +46,13 @@ export default function Differentiators({ t, sectionStyle }: { t: Translation; s
   return (
     <SectionWrapper surface style={sectionStyle}>
       <ScrollReveal>
-        {/* Eyebrow */}
-        <span className="inline-flex items-center gap-2 text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent-text)] mb-5">
-          <span className="block w-5 h-px bg-[var(--color-accent)] shrink-0" />
-          {t.differentiators.eyebrow}
-        </span>
-        <h2 className="font-display font-bold text-4xl md:text-5xl text-[var(--color-text)] max-w-xl mb-14 md:mb-20">
-          {t.differentiators.title}
-        </h2>
+        {/* Deliberately larger bottom margin than the shared default: this
+            section's heading stands alone above a four-column grid. */}
+        <SectionHeader
+          eyebrow={t.differentiators.eyebrow}
+          heading={t.differentiators.title}
+          className="mb-14 md:mb-20"
+        />
       </ScrollReveal>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
@@ -69,7 +69,16 @@ export default function Differentiators({ t, sectionStyle }: { t: Translation; s
                 {item.icon === 'shield' ? `${getYearsSince()} ${item.heading}` : item.heading}
                 <span className="absolute bottom-0 left-0 h-px w-0 bg-[var(--color-accent)] transition-[width] duration-300 group-hover:w-full" />
               </h3>
-              <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">{item.copy}</p>
+              {/* Four stacked paragraphs at three to four lines each was the
+                  longest read on the mobile homepage. copy_short keeps every
+                  technical claim and the same terminology in about half the
+                  length; the full version still runs from md up. */}
+              <p className="text-sm text-[var(--color-text-muted)] leading-relaxed md:hidden">
+                {item.copy_short}
+              </p>
+              <p className="text-sm text-[var(--color-text-muted)] leading-relaxed hidden md:block">
+                {item.copy}
+              </p>
             </div>
           </ScrollReveal>
         ))}

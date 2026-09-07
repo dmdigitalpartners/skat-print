@@ -1,5 +1,11 @@
 # Phase 5 — Design System
 
+> **This document is descriptive, not aspirational.** It was rewritten in the
+> Batch 3 design pass after it was found to describe a palette and typeface
+> pairing the site has never shipped (copper-orange `#E8502A` with Barlow /
+> DM Sans). The authoritative source is always `src/styles/tokens.css`; this
+> file explains it. If they disagree again, the CSS is right.
+
 ## Brand Identity
 
 Derived from logo analysis, brand guidelines PNG, and existing site.
@@ -8,37 +14,49 @@ Derived from logo analysis, brand guidelines PNG, and existing site.
 
 | Role | Font | Weights | Use |
 |---|---|---|---|
-| Display | Barlow | 700, 800 | Hero headlines, section headings, large CTAs |
-| Body | DM Sans | 400, 500 | Paragraphs, UI labels, navigation |
-| Accent | Barlow Condensed | 500, 600 | Category badges, tags, metadata, captions |
+| Display (`font-display`) | Montserrat | 600, 700, 800 | Hero headlines, section headings, card titles |
+| Body (default) | Inter | 400, 500, 600 | Paragraphs, UI labels, navigation |
+| Accent (`font-condensed`) | Montserrat | 600 | Eyebrows, badges, metadata, capability strip |
 
-Loaded via Google Fonts. Only the weights listed are loaded to minimize font payload.
+Loaded with `next/font/google` in `src/app/layout.tsx` (self-hosted at build
+time, `latin` + `cyrillic` subsets). `--font-condensed` deliberately resolves to
+the same Montserrat family as `--font-display`; the name is historical, and
+there is no separate condensed face loaded.
 
 ## Color Palette
+
+The site is **light-first**. Dark values are used by specific bands (hero,
+video, testimonials, CTA banner), not as a global default.
 
 ```css
 :root {
   /* Brand */
   --color-primary: #1A2B4A;       /* deep navy — authority, industrial */
-  --color-primary-dark: #0F1C33;  /* darker navy — hover, depth */
-  --color-accent: #E8502A;        /* copper-orange — CTAs, active states */
-  --color-accent-hover: #C93D1A;  /* darker accent for hover */
+  --color-primary-dark: #0F1C33;  /* darker navy — mobile bar, gradients */
+  --color-primary-light: #243563;
+  --color-accent: #0098D4;        /* brand blue — CTAs, rules, active states */
+  --color-accent-hover: #007DB5;
+  --color-accent-text: #007CAB;   /* WCAG-AA variant: small text on light bg */
+  --color-accent-subtle: rgba(0, 152, 212, 0.10);
 
-  /* Backgrounds */
-  --color-bg: #0B0F1A;            /* near-black — primary dark bg */
-  --color-bg-surface: #141929;    /* card surfaces on dark bg */
-  --color-bg-light: #F5F4F2;      /* off-white — light sections */
-  --color-bg-light-surface: #EDECEA; /* cards on light bg */
+  /* Light backgrounds (default) */
+  --color-bg: #FAFAF8;
+  --color-bg-surface: #F4F2ED;
+  --color-bg-elevated: #EDEAE3;
+
+  /* Dark section backgrounds */
+  --color-bg-dark: #141C27;
+  --color-bg-dark-surface: #1E2A3C;
 
   /* Text */
-  --color-text: #F0EDE8;          /* warm white — on dark bg */
-  --color-text-dark: #1A1A1A;     /* near-black — on light bg */
-  --color-text-muted: #9BA3B2;    /* muted — on dark bg */
-  --color-text-muted-dark: #6B7280; /* muted — on light bg */
+  --color-text: #1A1A1A;          /* on light bg */
+  --color-text-muted: #5E6679;    /* muted on light bg */
+  --color-text-dark: #EDE8E0;     /* on dark bg */
+  --color-text-muted-dark: #8C95A8;
 
   /* UI */
-  --color-border: #2A3550;        /* subtle border on dark */
-  --color-border-light: #E2E0DC;  /* subtle border on light */
+  --color-border: #DDD9D3;
+  --color-border-dark: #263148;
 
   /* Semantic */
   --color-success: #2D9E6B;
@@ -46,6 +64,10 @@ Loaded via Google Fonts. Only the weights listed are loaded to minimize font pay
   --color-warning: #D97706;
 }
 ```
+
+**Accent rule that matters:** use `--color-accent-text` (`#007CAB`) for small
+text on light backgrounds and `--color-accent` (`#0098D4`) on dark ones. The
+brighter blue does not meet AA at small sizes on `--color-bg`.
 
 ## Spacing Scale (4px base)
 
@@ -92,6 +114,27 @@ Loaded via Google Fonts. Only the weights listed are loaded to minimize font pay
 ```
 
 ## Component Patterns
+
+### Section headers — `src/components/ui/SectionHeader.tsx`
+
+Every top-of-section block (eyebrow + H2 + optional description) goes through
+this one component. Before Batch 3 all five homepage sections hand-rolled it and
+had drifted apart on eyebrow colour, eyebrow margin, heading size and
+description measure. Do not hand-roll a new one.
+
+- **Eyebrow** — `text-xs font-condensed font-semibold uppercase tracking-widest`,
+  `mb-5`, preceded by a 20px hairline rule. `align="center"` puts a rule on both
+  sides.
+- **H2** — `font-display font-bold text-3xl sm:text-4xl md:text-5xl`,
+  `tracking-tight leading-[1.05]`. `size="lg"` adds `lg:text-6xl` (CTA banner only).
+- **Description** — `text-base md:text-lg max-w-xl`. Pass `descriptionShort` to
+  render shorter wording below `md`.
+- **Tone** — `tone="light"` on light backgrounds, `tone="dark"` on dark bands.
+  This picks the correct accent (see the accent rule above), so set it rather
+  than overriding colours.
+
+`SectionWrapper` handles the band itself (background + `section-padding` +
+`container-site`); `PageHero` is the `<h1>` page-banner equivalent.
 
 ### Buttons
 - **Primary:** accent bg (#E8502A), white text, 44px min height, rounded-md, hover darkens accent
