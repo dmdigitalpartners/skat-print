@@ -249,6 +249,14 @@
       ]
     }
   },
+  "lightbox": {
+    "aria_dialog": "Image viewer",
+    "aria_close": "Close image viewer",
+    "aria_prev": "Previous image",
+    "aria_next": "Next image",
+    "aria_enlarge": "Enlarge image",
+    "counter_of": "of"
+  },
   "faq": {
     "heading": "Frequently Asked Questions",
     "subtitle": "Everything you need to know about ordering custom packaging from Skat Print.",
