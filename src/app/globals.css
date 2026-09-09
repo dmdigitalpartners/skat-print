@@ -148,6 +148,48 @@ body {
   }
 }
 
+/* Portfolio lightbox (PortfolioLightbox.tsx) — chrome reservations.
+   The image is centred inside the stage's *padded* content box, so these
+   values are what keep it clear of the close button and the control row
+   instead of sliding underneath them.
+
+   The site ships Next's default viewport meta (no viewport-fit=cover), so the
+   safe-area variables can be undefined. Explicit 0px fallbacks keep the
+   declaration valid today; max() keeps the minimum chrome inset and will use
+   a larger device inset if viewport-fit is enabled later. */
+.lightbox-root {
+  --lb-inset-x: max(0.75rem, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
+  --lb-inset-top: max(0.75rem, env(safe-area-inset-top, 0px));
+  --lb-inset-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+  --lb-chrome-x: var(--lb-inset-x);
+  --lb-chrome-top: calc(var(--lb-inset-top) + 3.5rem);
+  /* Taller than the top: on mobile the prev/next row and the caption line
+     both sit at the bottom. */
+  --lb-chrome-bottom: calc(var(--lb-inset-bottom) + 6rem);
+}
+
+@media (min-width: 768px) {
+  .lightbox-root {
+    --lb-inset-x: max(1.5rem, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
+    --lb-inset-top: max(1.5rem, env(safe-area-inset-top, 0px));
+    --lb-inset-bottom: max(1.5rem, env(safe-area-inset-bottom, 0px));
+    /* The chevrons move to the flanks on desktop, so the image yields
+       horizontally instead of vertically. */
+    --lb-chrome-x: calc(var(--lb-inset-x) + 4.5rem);
+    --lb-chrome-top: calc(var(--lb-inset-top) + 3.5rem);
+    --lb-chrome-bottom: calc(var(--lb-inset-bottom) + 3.5rem);
+  }
+}
+
+/* The global :focus-visible ring above is brand cyan, tuned for the light
+   shell. Inside the dark overlay it has to be white. This must be a scoped
+   *unlayered* rule: Tailwind v4 puts utilities in @layer utilities, and
+   unlayered CSS always beats layered CSS, so a focus-visible:outline-white
+   utility would silently lose to the rule above. */
+.lightbox-root :focus-visible {
+  outline-color: #fff;
+}
+
 /* Logo marquee conveyor */
 @keyframes marquee {
   from { transform: translateX(0); }
