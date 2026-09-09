@@ -74,9 +74,9 @@ export default function SectionHeader({
       )}
 
       <h2
-        className={`font-display font-bold tracking-tight leading-[1.05] ${headingColor} ${
+        className={`font-display font-bold tracking-tight leading-[1.05] md:text-balance ${headingColor} ${
           size === 'lg' ? 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl' : 'text-3xl sm:text-4xl md:text-5xl'
-        } ${description || children ? 'mb-4 md:mb-5' : ''} ${centered ? 'mx-auto max-w-3xl' : ''}`}
+        } ${description || children ? 'mb-4 md:mb-5' : ''} ${centered ? 'mx-auto max-w-3xl md:max-w-4xl lg:max-w-5xl' : ''}`}
       >
         {heading}
       </h2>

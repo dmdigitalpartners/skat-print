@@ -35,7 +35,7 @@ export default function CTABanner({ t, lang }: Props) {
       />
 
       <motion.div
-        className="relative container-site py-20 md:py-28 text-center max-w-3xl mx-auto"
+        className="relative container-site py-20 md:py-28 text-center max-w-3xl md:max-w-5xl mx-auto"
         initial={reduced ? false : { opacity: 0, y: 24 }}
         whileInView={reduced ? {} : { opacity: 1, y: 0 }}
         viewport={{ once: true }}
