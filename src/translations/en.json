@@ -274,7 +274,7 @@
       },
       {
         "question": "What printing methods do you use?",
-        "answer": "We use offset printing on Roland (52×74cm) and Heidelberg (71×102cm) presses, the same technology used for high-quality commercial printing. This gives significantly sharper results than flexographic printing on corrugated cardboard."
+        "answer": "We use offset printing on Roland and Heidelberg presses, the same technology used for high-quality commercial printing. This gives significantly sharper results than flexographic printing on corrugated cardboard."
       },
       {
         "question": "Do you offer design and pre-press support?",
@@ -501,7 +501,7 @@
     "milestones": [
       { "year": "1995", "label": "Founded", "desc": "Family business established in the Plovdiv region" },
       { "year": "2000", "label": "First Export", "desc": "First international packaging clients across Europe" },
-      { "year": "2010", "label": "Roland Press", "desc": "Investment in Roland 52×74cm offset press" },
+      { "year": "2010", "label": "Roland Press", "desc": "Investment in a Roland offset press" },
       { "year": "2015", "label": "Vertical Integration", "desc": "In-house corrugated cardboard production line added" },
       { "year": "2021", "label": "29% Growth", "desc": "Revenue reaches €1.87M, our strongest year on record" }
     ]
@@ -518,7 +518,7 @@
     "offset-printing": {
       "heading": "Offset Printing",
       "bullets": [
-        "Roland (52×74cm) and Heidelberg (71×102cm) presses",
+        "Roland and Heidelberg presses",
         "CMYK + spot colour support, precise colour accuracy",
         "Applied to laminate before corrugated bonding",
         "Sharper, more vivid output than flexographic alternatives",
