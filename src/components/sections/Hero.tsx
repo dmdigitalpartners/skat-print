@@ -89,6 +89,7 @@ export default function Hero({ t, lang }: Props) {
           alt=""
           fill
           sizes="100vw"
+          quality={90}
           className="object-cover object-[60%_center]"
           preload
           aria-hidden
