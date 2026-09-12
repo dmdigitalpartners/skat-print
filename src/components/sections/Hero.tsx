@@ -63,8 +63,9 @@ export default function Hero({ t, lang }: Props) {
   const activeIndex = reduced ? 0 : index
 
   return (
-    <section className="relative flex flex-col overflow-hidden h-[calc(100dvh-var(--mobile-bar-height)-env(safe-area-inset-bottom))] md:h-[100dvh]">
-      {/* Mobile background image */}
+    <section className="relative flex flex-col overflow-hidden h-[calc(100dvh-var(--mobile-bar-height)-env(safe-area-inset-bottom))] md:h-[100dvh] md:bg-[var(--color-hero-wall)]">
+      {/* Mobile background image — still the dark studio scene until a
+          portrait version of the light product composition exists. */}
       <div className="absolute inset-0 md:hidden">
         <Image
           src="/assets/hero/hero-mobile.jpg"
@@ -72,27 +73,36 @@ export default function Hero({ t, lang }: Props) {
           fill
           sizes="100vw"
           className="object-cover object-center"
-          priority
+          preload
           aria-hidden
         />
       </div>
 
-      {/* Desktop background image */}
+      {/* Desktop background image — light studio composition. The products
+          are staged in the right half of the frame so the copy sits on
+          empty wall. The 60% anchor only matters on screens narrower than
+          16:9: it takes more of the crop from the empty left wall, so the
+          CYXO box on the far right is not cut off on 16:10 laptops. */}
       <div className="absolute inset-0 hidden md:block">
         <Image
-          src="/assets/hero/hero-packaging-collection.jpg"
+          src="/assets/hero/hero-products-light.jpg"
           alt=""
           fill
           sizes="100vw"
-          className="object-cover object-center"
-          priority
+          className="object-cover object-[60%_center]"
+          preload
           aria-hidden
         />
       </div>
 
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/15" />
+      {/* Mobile gradient overlays — keep the white copy legible on the dark image */}
+      <div className="absolute inset-0 md:hidden bg-gradient-to-t from-black/95 via-black/50 to-black/15" />
       <div className="absolute inset-0 md:hidden bg-gradient-to-r from-black/20 via-transparent to-black/20" />
+
+      {/* Tablet and small-laptop scrim. Below xl the text column reaches into
+          the product cluster, so the wall colour is carried in behind the copy.
+          From xl up the products clear the text on their own. */}
+      <div className="absolute inset-0 hidden md:block xl:hidden bg-gradient-to-r from-[var(--color-hero-wall)]/90 via-[var(--color-hero-wall)]/60 to-transparent" />
 
       {/* Grain texture */}
       <div
@@ -198,6 +208,9 @@ export default function Hero({ t, lang }: Props) {
       </div>
 
       {/* ── Desktop layout ────────────────────────────── */}
+      {/* Dark copy on the light wall. The wall behind the text is a mid taupe
+          (~#D1C9C2), which is too dark for the muted grey and the cyan as text,
+          so both are carried in navy; cyan stays on the decorative rule. */}
       <div className="hidden md:flex flex-1 flex-col justify-center relative z-10 pb-20">
         <div className="container-site text-left">
           <motion.div
@@ -208,12 +221,12 @@ export default function Hero({ t, lang }: Props) {
           >
             {/* Eyebrow */}
             <motion.div variants={reduced ? undefined : item}>
-              <span className="inline-flex items-center gap-2 text-[11px] font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent)] mb-5">
+              <span className="inline-flex items-center gap-2 text-[11px] font-condensed font-semibold uppercase tracking-widest text-[var(--color-primary)] mb-5">
                 <span className="block w-5 h-px bg-[var(--color-accent)] shrink-0" />
                 {t.hero.eyebrow_country}
-                <span className="text-white/30">·</span>
+                <span className="text-[var(--color-primary)]/30">·</span>
                 {t.hero.eyebrow_year}
-                <span className="text-white/30">·</span>
+                <span className="text-[var(--color-primary)]/30">·</span>
                 {t.hero.eyebrow_industry}
               </span>
             </motion.div>
@@ -221,7 +234,7 @@ export default function Hero({ t, lang }: Props) {
             {/* Headline */}
             <motion.h1
               variants={reduced ? undefined : item}
-              className="font-display font-bold text-[2.2rem] leading-[0.95] tracking-tight text-white mb-5 sm:text-6xl md:text-6xl"
+              className="font-display font-bold text-[2.2rem] leading-[0.95] tracking-tight text-[var(--color-primary)] mb-5 sm:text-6xl md:text-6xl"
             >
               <Stack
                 activeIndex={activeIndex}
@@ -237,7 +250,7 @@ export default function Hero({ t, lang }: Props) {
             {/* Subheadline */}
             <motion.p
               variants={reduced ? undefined : item}
-              className="text-base md:text-lg text-white/65 leading-relaxed max-w-sm mb-8"
+              className="text-base md:text-lg text-[var(--color-primary)]/80 leading-relaxed max-w-sm mb-8"
             >
               <Stack activeIndex={activeIndex} items={variants.map((v) => v.subheadline)} />
             </motion.p>
@@ -247,7 +260,7 @@ export default function Hero({ t, lang }: Props) {
               <Button href={`/${lang}/contact`} variant="primary">
                 {t.hero.cta_primary}
               </Button>
-              <Button href={`/${lang}#products`} variant="secondary">
+              <Button href={`/${lang}#products`} variant="outline">
                 {t.hero.cta_secondary}
               </Button>
             </motion.div>
@@ -255,12 +268,12 @@ export default function Hero({ t, lang }: Props) {
         </div>
       </div>
 
-      {/* ── Desktop stats bar — absolute ── */}
-      <div className="hidden md:block absolute bottom-0 left-0 right-0 border-t border-white/12 bg-black/55 backdrop-blur-md z-10">
-        <div className="container-site flex divide-x divide-white/15 py-5">
+      {/* ── Desktop stats bar — absolute, frosted light glass over the photo ── */}
+      <div className="hidden md:block absolute bottom-0 left-0 right-0 border-t border-[var(--color-border)] bg-[var(--color-bg)]/75 backdrop-blur-md z-10">
+        <div className="container-site flex divide-x divide-[var(--color-border)] py-5">
           {t.trust.capabilities.map((capability) => (
             <div key={capability} className="flex-1 text-center">
-              <div className="text-[11px] text-white/55 font-condensed uppercase tracking-wide">
+              <div className="text-[11px] text-[var(--color-text-muted)] font-condensed uppercase tracking-wide">
                 {capability}
               </div>
             </div>

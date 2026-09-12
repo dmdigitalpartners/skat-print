@@ -26,6 +26,10 @@
   --color-bg-dark-surface: #1E2A3C;
   --color-bg-dark-elevated: #263148;
 
+  /* Light hero wall — sampled from the desktop hero photo
+     (hero-products-light.jpg). Loading fallback and tablet scrim colour. */
+  --color-hero-wall: #E4DAD4;
+
   /* Text on light backgrounds */
   --color-text: #1A1A1A;
   --color-text-muted: #5E6679;
