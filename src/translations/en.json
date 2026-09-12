@@ -147,7 +147,6 @@
     "subtitle": "Five specialized packaging product lines.",
     "cta": "View Products",
     "item_cta": "View Product",
-    "view_portfolio": "View POS Display Portfolio",
     "items": [
       {
         "slug": "pos-displays",
@@ -401,8 +400,6 @@
     },
     "legal_entity": "Skat Oil EOOD",
     "region": "Plovdiv Region, Bulgaria",
-    "social_linkedin": "https://uk.linkedin.com/company/skatprint",
-    "social_linkedin_label": "LinkedIn",
     "social_instagram": "https://www.instagram.com/skatprint_/",
     "social_instagram_label": "Instagram"
   },
@@ -513,9 +510,8 @@
     "years_label": "Years in Business",
     "leadtime_label": "Day Lead Time",
     "leadtime_display": "10–15",
-    "units_number": "1",
-    "units_suffix": "M+",
-    "units_label": "Packaging Units Produced Since 1995"
+    "bases_number": "2",
+    "bases_label": "Production Bases"
   },
   "service_detail": {
     "specs_heading": "Specifications",

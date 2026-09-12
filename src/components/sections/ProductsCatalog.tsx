@@ -104,32 +104,6 @@ export default function ProductsCatalog({ t, lang, hideHeader }: Props) {
             )
           })}
         </div>
-
-        {/* Section footer CTA — an outlined secondary control, not a text link.
-             It reads as an entry point to the catalogue while staying clearly
-             below the filled "Request a Quote" primary in the hierarchy.
-             Colour is --color-accent-text (the AA-safe variant) because this is
-             small text on a light background. */}
-        <div className="mt-8 md:mt-10">
-          {/* Was `/portfolio`, which itself just redirects to `/products`,
-               which redirects to this same section's own anchor — a
-               pointless double-redirect back to where the user already is.
-               Send them straight to a real gallery page instead. */}
-          <Link
-            href={`/${lang}/products/${t.products_section.items[0].slug}`}
-            className="group inline-flex items-center gap-2.5 min-h-[44px] px-5 rounded-[var(--radius-md)] border border-[var(--color-border)] text-sm md:text-base font-semibold text-[var(--color-accent-text)] transition-[background-color,border-color,color] duration-200 hover:border-[var(--color-accent)] hover:bg-[var(--color-accent-subtle)] focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] focus-visible:outline-offset-2"
-          >
-            {t.products_section.view_portfolio}
-            <svg
-              viewBox="0 0 20 20"
-              fill="none"
-              aria-hidden
-              className="w-4 h-4 shrink-0 transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none"
-            >
-              <path d="M4 10h11M11 5.5 15.5 10 11 14.5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </Link>
-        </div>
       </div>
     </section>
   )

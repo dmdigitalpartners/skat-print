@@ -104,13 +104,6 @@ export default function PortfolioGrid({
               {displayed.map((item, idx) => {
                 const prevGroup = idx > 0 ? displayed[idx - 1].group : undefined
                 const showHeading = showGroupHeadings && !!item.group && item.group !== prevGroup
-                // The ungrouped leading tile (the manifest's hero entry — it never
-                // carries a `group`) sits alone before the first heading forces a
-                // column break, which would otherwise strand it in column 1 with
-                // two empty columns beside it. Spanning it full-width instead reads
-                // as an intentional lead banner rather than a layout gap.
-                const isLeadingTile = showGroupHeadings && idx === 0 && !item.group
-
                 return (
                   <Fragment key={item.src}>
                     {showHeading && (
@@ -126,7 +119,7 @@ export default function PortfolioGrid({
                       ref={(element) => { tileRefs.current[idx] = element }}
                       onClick={() => goToIndex(idx)}
                       aria-label={`${t.lightbox.aria_enlarge}: ${lang === 'bg' ? item.altBg : item.alt}`}
-                      className={`group relative mb-3 block w-full cursor-zoom-in break-inside-avoid overflow-hidden rounded-[var(--radius-md)] bg-[var(--color-bg-light-surface)] p-0 text-left md:mb-4 ${isLeadingTile ? '[column-span:all]' : ''}`}
+                      className={`group relative mb-3 block w-full cursor-zoom-in break-inside-avoid overflow-hidden rounded-[var(--radius-md)] bg-[var(--color-bg-light-surface)] p-0 text-left md:mb-4`}
                       initial={reduced ? false : { opacity: 0, y: 12 }}
                       whileInView={reduced ? {} : { opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: '-40px' }}

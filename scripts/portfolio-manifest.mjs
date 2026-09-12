@@ -59,10 +59,10 @@ export const manifest = [
   // ---------------------------------------------------------------------
   // pos-displays (52) — floor displays, counter displays, shelf-ready trays
   // ---------------------------------------------------------------------
-  { source: `${PODOV}/pos-displays-hero.png`, category: 'pos-displays', role: 'hero', dest: 'pos-displays-hero-v2.jpg',
+  // Floor Displays / Подови дисплеи
+  { source: `${PODOV}/pos-displays-hero.png`, category: 'pos-displays', role: 'hero', dest: 'pos-displays-hero-v2.jpg', group: 'floor-displays',
     alt: 'Three black FIFA World Cup 2026 floor display stands shown side by side — one filled with footballs, one empty with a rainbow-striped back panel, one closed',
     altBg: 'Три черни подови дисплея FIFA World Cup 2026, показани един до друг — един зареден с футболни топки, един празен с дъгоцветен заден панел и един затворен' },
-  // Floor Displays / Подови дисплеи
   { source: `${ENHANCED}/ChatGPT Image Aug 30, 2026, 03_21_38 PM.png`, category: 'pos-displays', role: 'gallery', dest: 'pos-displays-50-v2.jpg', group: 'floor-displays',
     alt: 'Black and gold Bushmills Irish Whiskey floor display with two tiers and a festive bauble pattern',
     altBg: 'Черно-златен подов дисплей Bushmills Irish Whiskey с два етажа и празничен десен с коледни топки' },

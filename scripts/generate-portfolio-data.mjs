@@ -66,16 +66,16 @@ async function run() {
       throw new Error(`Could not read dimensions for ${src}`)
     }
 
-    // pos-displays gallery entries carry a `group` slug that resolves to a
+    // Every pos-displays entry — hero included — carries a `group` slug that resolves to a
     // bilingual heading label (PortfolioGrid.tsx renders one whenever the
     // group changes between adjacent tiles). Every other entry must NOT
     // have one — fail loud rather than silently rendering a stray heading
     // or silently omitting one that was meant to be there.
     let group
     let groupBg
-    if (entry.category === 'pos-displays' && entry.role === 'gallery') {
+    if (entry.category === 'pos-displays') {
       if (!entry.group) {
-        throw new Error(`Missing 'group' on pos-displays gallery entry ${entry.dest}`)
+        throw new Error(`Missing 'group' on pos-displays entry ${entry.dest}`)
       }
       const label = POS_GROUP_LABELS[entry.group]
       if (!label) {
@@ -95,7 +95,7 @@ async function run() {
       groupBg = label.labelBg
       categoriesWithGroupHeadings.add(entry.category)
     } else if (entry.group) {
-      throw new Error(`Unexpected 'group' on non-pos-displays-gallery entry ${entry.dest}`)
+      throw new Error(`Unexpected 'group' on non-pos-displays entry ${entry.dest}`)
     }
 
     // Manifest order is preserved; the manifest lists each category's hero first.

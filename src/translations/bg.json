@@ -94,7 +94,7 @@
     "items": [
       { "quote": "Скат Принт изработи брандирани кутии за нашата линия Artisannel — бяхме възхитени от стилния краен резултат.", "name": "Artisannel", "rating": 5 },
       { "quote": "Комуникацията беше гладка през целия процес, особено с Елена от екипа, а сроковете — неизменно бързи.", "name": "Елена Сулева", "rating": 5 },
-      { "quote": "Отлично качество на печат, бърза работа и отзивчиво обслужване на клиенти.", "name": "Ilian Gochev", "rating": 5 },
+      { "quote": "Отлично качество на печат, бърза работа и отзивчиво обслужване на клиенти.", "name": "Илиан Гочев", "rating": 5 },
       { "quote": "Качеството и скоростта се събраха в перфектен резултат.", "name": "Чавдар Димов", "rating": 5 }
     ]
   },
@@ -147,7 +147,6 @@
     "subtitle": "Пет специализирани опаковъчни продуктови линии.",
     "cta": "Виж продуктите",
     "item_cta": "Виж продукта",
-    "view_portfolio": "Вижте портфолиото с POS дисплеи",
     "items": [
       {
         "slug": "pos-displays",
@@ -401,8 +400,6 @@
     },
     "legal_entity": "Скат Ойл ЕООД",
     "region": "Пловдивска обл., България",
-    "social_linkedin": "https://uk.linkedin.com/company/skatprint",
-    "social_linkedin_label": "LinkedIn",
     "social_instagram": "https://www.instagram.com/skatprint_/",
     "social_instagram_label": "Instagram"
   },
@@ -510,12 +507,11 @@
     ]
   },
   "about_stats": {
-    "years_label": "Години производствен опит",
-    "leadtime_label": "Работни дни срок",
+    "years_label": "Години опит",
+    "leadtime_label": "Работни дни",
     "leadtime_display": "10–15",
-    "units_number": "1",
-    "units_suffix": "M+",
-    "units_label": "произведени опаковъчни единици от 1995 г."
+    "bases_number": "2",
+    "bases_label": "Производствени бази"
   },
   "service_detail": {
     "specs_heading": "Спецификации",

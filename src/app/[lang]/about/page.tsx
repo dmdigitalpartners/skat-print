@@ -79,13 +79,13 @@ export default async function AboutPage({
               </p>
             </div>
 
-            {/* Units Produced */}
+            {/* Production Bases */}
             <div className="flex flex-col items-center text-center px-3 md:px-6">
               <div className="font-display font-bold text-3xl md:text-5xl text-[var(--color-accent)] leading-none mb-2">
-                {s.units_number}{s.units_suffix}
+                {s.bases_number}
               </div>
               <p className="text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-text-muted-dark)]">
-                {s.units_label}
+                {s.bases_label}
               </p>
             </div>
           </div>
