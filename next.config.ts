@@ -8,8 +8,13 @@ const nextConfig: NextConfig = {
 
   images: {
     formats: ['image/avif', 'image/webp'],
-    deviceSizes: [640, 750, 828, 1080, 1280, 1440, 1920],
+    // 2560 and 3840 let full-bleed images (the desktop hero) stay sharp on
+    // retina laptops and large monitors instead of being capped at 1920.
+    deviceSizes: [640, 750, 828, 1080, 1280, 1440, 1920, 2560, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // 75 is the default for everything; 90 is reserved for the hero photo,
+    // where AVIF at 75 visibly smeared the product print.
+    qualities: [75, 90],
   },
 
   async headers() {

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-type Variant = 'primary' | 'secondary' | 'ghost'
+type Variant = 'primary' | 'secondary' | 'outline' | 'ghost'
 
 interface ButtonProps {
   variant?: Variant
@@ -21,6 +21,9 @@ const variants: Record<Variant, string> = {
     'bg-[var(--color-accent-text)] text-white hover:bg-[var(--color-accent-hover)] shadow-[var(--shadow-accent)]',
   secondary:
     'bg-white/10 backdrop-blur-sm border border-white/60 text-white hover:bg-white/20 hover:border-white',
+  // Light-surface counterpart to `secondary` — used over the light desktop hero.
+  outline:
+    'bg-white/50 backdrop-blur-sm border border-[var(--color-primary)]/35 text-[var(--color-primary)] hover:bg-white/80 hover:border-[var(--color-primary)]/70 active:bg-white',
   ghost:
     'bg-transparent text-[var(--color-text-muted)] hover:text-[var(--color-text)]',
 }
