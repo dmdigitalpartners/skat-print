@@ -64,22 +64,6 @@ export default function Hero({ t, lang }: Props) {
 
   return (
     <section className="relative flex flex-col overflow-hidden h-[calc(100dvh-var(--mobile-bar-height)-env(safe-area-inset-bottom))] md:h-[100dvh] bg-[var(--color-hero-floor)] md:bg-[var(--color-hero-wall)]">
-      {/* Mobile background image — portrait version of the light studio
-          composition. Anchored to the top so the Cadbury header always clears
-          the navbar; the empty floor below the products carries the copy. */}
-      <div className="absolute inset-0 md:hidden">
-        <Image
-          src="/assets/hero/hero-products-light-mobile.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          quality={90}
-          className="object-cover object-top"
-          preload
-          aria-hidden
-        />
-      </div>
-
       {/* Desktop background image — light studio composition. The products
           are staged in the right half of the frame so the copy sits on
           empty wall. The 60% anchor only matters on screens narrower than
@@ -97,12 +81,6 @@ export default function Hero({ t, lang }: Props) {
           aria-hidden
         />
       </div>
-
-      {/* Mobile floor scrim. On taller phones the copy sits on empty floor;
-          on short ones (iPhone SE class, under 700px tall) the photo fills the
-          width and the products reach down into the copy, so the floor colour
-          is carried further up behind the text. */}
-      <div className="absolute inset-x-0 bottom-0 h-1/2 [@media(max-height:700px)]:h-[72%] md:hidden bg-gradient-to-t from-[var(--color-hero-floor)] via-[var(--color-hero-floor)]/70 to-transparent" />
 
       {/* Tablet and small-laptop scrim. Below xl the text column reaches into
           the product cluster, so the wall colour is carried in behind the copy.
@@ -122,10 +100,40 @@ export default function Hero({ t, lang }: Props) {
           taupes, too dark for the muted grey and the cyan as text, so both are
           carried in navy; cyan stays on the desktop eyebrow rule. */}
 
+      {/* ── Mobile product stage ───────────────────────── */}
+      {/* On mobile the photo gets its own band above the copy instead of
+          sitting behind it, so the products can never run into the text at
+          any phone size. The band takes whatever height the copy leaves (capped
+          so it never gets taller than the products need). The image is a wide
+          strip — products centred, plain wall and floor either side — so
+          object-cover always scales it by height and only trims empty wall.
+          It is rendered wider than the viewport, so the sizes hint accounts
+          for that. */}
+      <div className="md:hidden relative flex-1 min-h-0 max-h-[125vw] mt-16">
+        <Image
+          src="/assets/hero/hero-products-light-mobile.jpg"
+          alt=""
+          fill
+          // The strip renders wider than the viewport (object-cover scales it
+          // by the band's HEIGHT, not the viewport width), so a plain "100vw"
+          // would under-request and bring back the blur this hero was fixed
+          // for. 180vw selects a near-native source on tall 3x phones without
+          // making Next upscale the 3249px master to its 3840px candidate.
+          sizes="180vw"
+          quality={90}
+          className="object-cover"
+          preload
+          aria-hidden
+        />
+        {/* The photo's floor dissolves into the flat floor behind the copy. */}
+        <div className="absolute inset-x-0 bottom-0 h-1/5 bg-gradient-to-b from-transparent to-[var(--color-hero-floor)]" />
+      </div>
+
       {/* ── Mobile layout ─────────────────────────────── */}
-      {/* Anchored to the bottom of the hero so the copy sits on the empty
-          floor below the products instead of over them. */}
-      <div className="md:hidden flex-1 flex flex-col items-center justify-end relative z-10 px-5 pt-16 pb-6">
+      {/* The copy band sits on the flat floor colour below the stage. On tall
+          phones, where the stage has reached its cap, the auto margins take the
+          spare height, so the copy and buttons sit centred in the band. */}
+      <div className="md:hidden flex-none my-auto relative z-10 px-5 pt-3 pb-6">
         {/* Spacing is set per element rather than with a blanket space-y so the
             heading and its supporting line read as one composed block, with the
             larger break falling before the buttons. */}
@@ -137,7 +145,7 @@ export default function Hero({ t, lang }: Props) {
         >
           {/* Eyebrow */}
           <motion.div variants={reduced ? undefined : item} className="mb-4">
-            <span className="inline-flex items-center gap-2 text-[11px] font-condensed font-semibold uppercase tracking-widest text-[var(--color-primary)]">
+            <span className="inline-flex items-center gap-2 text-[11px] font-condensed font-semibold uppercase tracking-widest text-[var(--color-primary)] [@media(max-width:340px)]:gap-1 [@media(max-width:340px)]:text-[10px] [@media(max-width:340px)]:tracking-wide">
               {t.hero.eyebrow_country}
               <span className="text-[var(--color-primary)]/30">·</span>
               {t.hero.eyebrow_year}
@@ -154,7 +162,7 @@ export default function Hero({ t, lang }: Props) {
               360px, without shrinking the type at 390px and above. */}
           <motion.h1
             variants={reduced ? undefined : item}
-            className="font-display font-bold text-[clamp(1.95rem,8.4vw,2.6rem)] leading-[0.95] tracking-tight text-[var(--color-primary)] mb-3"
+            className="font-display font-bold text-[clamp(1.95rem,8.4vw,2.6rem)] leading-[0.95] tracking-tight text-[var(--color-primary)] mb-3 [@media(max-width:340px)]:text-[1.75rem]"
           >
             <Stack
               activeIndex={activeIndex}
