@@ -63,21 +63,7 @@ export default function Hero({ t, lang }: Props) {
   const activeIndex = reduced ? 0 : index
 
   return (
-    <section className="relative flex flex-col overflow-hidden h-[calc(100dvh-var(--mobile-bar-height)-env(safe-area-inset-bottom))] md:h-[100dvh] md:bg-[var(--color-hero-wall)]">
-      {/* Mobile background image — still the dark studio scene until a
-          portrait version of the light product composition exists. */}
-      <div className="absolute inset-0 md:hidden">
-        <Image
-          src="/assets/hero/hero-mobile.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
-          preload
-          aria-hidden
-        />
-      </div>
-
+    <section className="relative flex flex-col overflow-hidden h-[calc(100dvh-var(--mobile-bar-height)-env(safe-area-inset-bottom))] md:h-[100dvh] bg-[var(--color-hero-floor)] md:bg-[var(--color-hero-wall)]">
       {/* Desktop background image — light studio composition. The products
           are staged in the right half of the frame so the copy sits on
           empty wall. The 60% anchor only matters on screens narrower than
@@ -96,10 +82,6 @@ export default function Hero({ t, lang }: Props) {
         />
       </div>
 
-      {/* Mobile gradient overlays — keep the white copy legible on the dark image */}
-      <div className="absolute inset-0 md:hidden bg-gradient-to-t from-black/95 via-black/50 to-black/15" />
-      <div className="absolute inset-0 md:hidden bg-gradient-to-r from-black/20 via-transparent to-black/20" />
-
       {/* Tablet and small-laptop scrim. Below xl the text column reaches into
           the product cluster, so the wall colour is carried in behind the copy.
           From xl up the products clear the text on their own. */}
@@ -114,8 +96,44 @@ export default function Hero({ t, lang }: Props) {
         }}
       />
 
+      {/* Copy is navy on both layouts. The photo's wall and floor are warm
+          taupes, too dark for the muted grey and the cyan as text, so both are
+          carried in navy; cyan stays on the desktop eyebrow rule. */}
+
+      {/* ── Mobile product stage ───────────────────────── */}
+      {/* On mobile the photo gets its own band above the copy instead of
+          sitting behind it, so the products can never run into the text at
+          any phone size. The band takes whatever height the copy leaves (capped
+          so it never gets taller than the products need). The image is a wide
+          strip — products centred, plain wall and floor either side — so
+          object-cover always scales it by height and only trims empty wall.
+          It is rendered wider than the viewport, so the sizes hint accounts
+          for that. */}
+      <div className="md:hidden relative flex-1 min-h-0 max-h-[125vw] mt-16">
+        <Image
+          src="/assets/hero/hero-products-light-mobile.jpg"
+          alt=""
+          fill
+          // The strip renders wider than the viewport (object-cover scales it
+          // by the band's HEIGHT, not the viewport width), so a plain "100vw"
+          // would under-request and bring back the blur this hero was fixed
+          // for. 180vw selects a near-native source on tall 3x phones without
+          // making Next upscale the 3249px master to its 3840px candidate.
+          sizes="180vw"
+          quality={90}
+          className="object-cover"
+          preload
+          aria-hidden
+        />
+        {/* The photo's floor dissolves into the flat floor behind the copy. */}
+        <div className="absolute inset-x-0 bottom-0 h-1/5 bg-gradient-to-b from-transparent to-[var(--color-hero-floor)]" />
+      </div>
+
       {/* ── Mobile layout ─────────────────────────────── */}
-      <div className="md:hidden flex-1 flex flex-col items-center justify-center relative z-10 px-5 pt-16">
+      {/* The copy band sits on the flat floor colour below the stage. On tall
+          phones, where the stage has reached its cap, the auto margins take the
+          spare height, so the copy and buttons sit centred in the band. */}
+      <div className="md:hidden flex-none my-auto relative z-10 px-5 pt-3 pb-6">
         {/* Spacing is set per element rather than with a blanket space-y so the
             heading and its supporting line read as one composed block, with the
             larger break falling before the buttons. */}
@@ -127,11 +145,11 @@ export default function Hero({ t, lang }: Props) {
         >
           {/* Eyebrow */}
           <motion.div variants={reduced ? undefined : item} className="mb-4">
-            <span className="inline-flex items-center gap-2 text-[11px] font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent)]">
+            <span className="inline-flex items-center gap-2 text-[11px] font-condensed font-semibold uppercase tracking-widest text-[var(--color-primary)] [@media(max-width:340px)]:gap-1 [@media(max-width:340px)]:text-[10px] [@media(max-width:340px)]:tracking-wide">
               {t.hero.eyebrow_country}
-              <span className="text-white/30">·</span>
+              <span className="text-[var(--color-primary)]/30">·</span>
               {t.hero.eyebrow_year}
-              <span className="text-white/30">·</span>
+              <span className="text-[var(--color-primary)]/30">·</span>
               {t.hero.eyebrow_industry}
             </span>
           </motion.div>
@@ -144,7 +162,7 @@ export default function Hero({ t, lang }: Props) {
               360px, without shrinking the type at 390px and above. */}
           <motion.h1
             variants={reduced ? undefined : item}
-            className="font-display font-bold text-[clamp(1.95rem,8.4vw,2.6rem)] leading-[0.95] tracking-tight text-white mb-3"
+            className="font-display font-bold text-[clamp(1.95rem,8.4vw,2.6rem)] leading-[0.95] tracking-tight text-[var(--color-primary)] mb-3 [@media(max-width:340px)]:text-[1.75rem]"
           >
             <Stack
               activeIndex={activeIndex}
@@ -160,7 +178,7 @@ export default function Hero({ t, lang }: Props) {
           {/* One-sentence description */}
           <motion.p
             variants={reduced ? undefined : item}
-            className="text-[13px] text-white/60 leading-relaxed max-w-[340px] mx-auto mb-6"
+            className="text-[13px] text-[var(--color-primary)]/80 leading-relaxed max-w-[340px] mx-auto mb-6"
           >
             <Stack activeIndex={activeIndex} items={variants.map((v) => v.mobile_desc)} />
           </motion.p>
@@ -179,7 +197,7 @@ export default function Hero({ t, lang }: Props) {
             </Button>
             <Button
               href={`/${lang}#products`}
-              variant="secondary"
+              variant="outline"
               className="flex-1 !px-3 !text-[13px] whitespace-nowrap"
             >
               {t.hero.cta_secondary}
@@ -193,14 +211,14 @@ export default function Hero({ t, lang }: Props) {
            reserved once, on the section's own height above — no margin
            needed here, or the reservation doubles up and leaves a blank
            gap between this bar and the fixed bar below it. ── */}
-      <div className="md:hidden relative z-10 border-t border-white/10 bg-black/70 backdrop-blur-md">
+      <div className="md:hidden relative z-10 border-t border-[var(--color-border)] bg-[var(--color-bg)]/75 backdrop-blur-md">
         {/* Shortened labels on mobile: the full wording ran to three and four
             lines in a ~110px column. capabilities_short says the same thing in
             the same validated terminology; desktop keeps the full version. */}
-        <div className="grid grid-cols-3 divide-x divide-white/10 py-3">
+        <div className="grid grid-cols-3 divide-x divide-[var(--color-border)] py-3">
           {t.trust.capabilities_short.map((capability) => (
             <div key={capability} className="flex flex-col items-center justify-center px-1.5">
-              <div className="text-[10px] text-white/70 font-condensed uppercase tracking-wider leading-tight text-center">
+              <div className="text-[10px] text-[var(--color-text-muted)] font-condensed uppercase tracking-wider leading-tight text-center">
                 {capability}
               </div>
             </div>
@@ -209,9 +227,6 @@ export default function Hero({ t, lang }: Props) {
       </div>
 
       {/* ── Desktop layout ────────────────────────────── */}
-      {/* Dark copy on the light wall. The wall behind the text is a mid taupe
-          (~#D1C9C2), which is too dark for the muted grey and the cyan as text,
-          so both are carried in navy; cyan stays on the decorative rule. */}
       <div className="hidden md:flex flex-1 flex-col justify-center relative z-10 pb-20">
         <div className="container-site text-left">
           <motion.div

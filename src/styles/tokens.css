@@ -29,6 +29,10 @@
   /* Light hero wall — sampled from the desktop hero photo
      (hero-products-light.jpg). Loading fallback and tablet scrim colour. */
   --color-hero-wall: #E4DAD4;
+  /* Floor below the products in the mobile hero photo
+     (hero-products-light-mobile.jpg). Mobile loading fallback and the
+     scrim behind the mobile copy. */
+  --color-hero-floor: #EBDAD0;
 
   /* Text on light backgrounds */
   --color-text: #1A1A1A;
