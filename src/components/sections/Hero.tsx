@@ -103,23 +103,27 @@ export default function Hero({ t, lang }: Props) {
       {/* ── Mobile product stage ───────────────────────── */}
       {/* On mobile the photo gets its own band above the copy instead of
           sitting behind it, so the products can never run into the text at
-          any phone size. The band takes whatever height the copy leaves (capped
-          so it never gets taller than the products need). The image is a wide
-          strip — products centred, plain wall and floor either side — so
-          object-cover always scales it by height and only trims empty wall.
-          It is rendered wider than the viewport, so the sizes hint accounts
-          for that. */}
-      <div className="md:hidden relative flex-1 min-h-0 max-h-[125vw] mt-16">
+          any phone size. The band's height is a bounded function of the
+          viewport (not flex-grow) precisely so it does NOT consume every
+          pixel of leftover space — the copy block below needs real leftover
+          space to centre into. The image is a wide strip — products centred,
+          plain wall and floor either side — so object-cover always scales it
+          by height and only ever trims empty wall, never a product. */}
+      {/* The short-viewport override (older/compact phones, ~568px tall)
+          shrinks the stage further — the clamp's own 180px floor still left
+          the copy content too tall for the leftover space at that height,
+          pushing the buttons under the stats bar. */}
+      <div className="md:hidden relative shrink-0 mt-16 h-[clamp(180px,34dvh,380px)] [@media(max-height:620px)]:h-[clamp(120px,26dvh,180px)]">
         <Image
           src="/assets/hero/hero-products-light-mobile.jpg"
           alt=""
           fill
           // The strip renders wider than the viewport (object-cover scales it
-          // by the band's HEIGHT, not the viewport width), so a plain "100vw"
-          // would under-request and bring back the blur this hero was fixed
-          // for. 180vw selects a near-native source on tall 3x phones without
-          // making Next upscale the 3249px master to its 3840px candidate.
-          sizes="180vw"
+          // by the band's HEIGHT, not the viewport width). 750px comfortably
+          // covers the band's max rendered width (380px cap × 1.9 aspect ≈
+          // 722px) — a plain "100vw" would under-request and bring back the
+          // blur this hero was fixed for.
+          sizes="750px"
           quality={90}
           className="object-cover"
           preload
@@ -130,10 +134,12 @@ export default function Hero({ t, lang }: Props) {
       </div>
 
       {/* ── Mobile layout ─────────────────────────────── */}
-      {/* The copy band sits on the flat floor colour below the stage. On tall
-          phones, where the stage has reached its cap, the auto margins take the
-          spare height, so the copy and buttons sit centred in the band. */}
-      <div className="md:hidden flex-none my-auto relative z-10 px-5 pt-3 pb-6">
+      {/* The copy band takes every pixel the stage and stats bar leave behind
+          (flex-1) and centres its content inside that space with
+          justify-center — so the heading and buttons sit vertically centred
+          between the products and the stats bar on every phone, not just
+          when the stage happens to be capped. */}
+      <div className="md:hidden flex-1 min-h-0 flex flex-col justify-center relative z-10 px-5 py-3">
         {/* Spacing is set per element rather than with a blanket space-y so the
             heading and its supporting line read as one composed block, with the
             larger break falling before the buttons. */}
