@@ -108,8 +108,8 @@ export default function PortfolioGrid({
                   <Fragment key={item.src}>
                     {showHeading && (
                       <h3 className="[column-span:all] mb-3 mt-8 first:mt-0 md:mb-4 md:mt-10">
-                        <span className="inline-flex items-center gap-2 text-xs font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent-text)]">
-                          <span className="block h-px w-5 shrink-0 bg-[var(--color-accent)]" />
+                        <span className="inline-flex items-center gap-2.5 text-[0.9rem]/[1.2rem] font-condensed font-semibold uppercase tracking-widest text-[var(--color-accent-text)]">
+                          <span className="block h-px w-6 shrink-0 bg-[var(--color-accent)]" />
                           {lang === 'bg' ? item.groupBg : item.group}
                         </span>
                       </h3>

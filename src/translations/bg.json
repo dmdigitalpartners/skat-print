@@ -152,31 +152,31 @@
         "slug": "pos-displays",
         "title": "POS дисплеи и стелажи",
         "description": "Дисплеи, щандове и стопери от велпапе по поръчка.",
-        "image": "/assets/portfolio/pos-displays/pos-displays-29-v2.jpg"
+        "image": "/assets/product-cards/pos-displays-v1.jpg"
       },
       {
         "slug": "food-packaging",
         "title": "Опаковки за храни",
         "description": "Опаковки от велпапе и картон за хранителната индустрия.",
-        "image": "/assets/portfolio/food-packaging/food-packaging-02-v2.jpg"
+        "image": "/assets/product-cards/food-packaging-v1.jpg"
       },
       {
         "slug": "alcohol-packaging",
         "title": "Опаковки за вино и алкохол",
         "description": "Bag-in-Box и луксозни опаковки от велпапе за алкохол.",
-        "image": "/assets/portfolio/alcohol-packaging/alcohol-packaging-21-v2.jpg"
+        "image": "/assets/product-cards/alcohol-packaging-v1.jpg"
       },
       {
         "slug": "cosmetics-packaging",
         "title": "Козметика и парфюмерия",
         "description": "Луксозни картонени и ламинирани кутии с висококачествени покрития.",
-        "image": "/assets/portfolio/cosmetics-packaging/cosmetics-packaging-09-v2.jpg"
+        "image": "/assets/product-cards/cosmetics-packaging-v1.jpg"
       },
       {
         "slug": "custom-packaging",
         "title": "Нестандартни и подаръчни опаковки",
         "description": "Нестандартни размери и висококачествени покрития за специални нужди.",
-        "image": "/assets/portfolio/custom-packaging/custom-packaging-02-v2.jpg"
+        "image": "/assets/product-cards/custom-packaging-v1.jpg"
       }
     ]
   },

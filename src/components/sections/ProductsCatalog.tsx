@@ -46,10 +46,11 @@ export default function ProductsCatalog({ t, lang, hideHeader }: Props) {
                   featured ? 'aspect-square md:aspect-[4/5]' : 'aspect-[4/5]'
                 }`}
               >
-                {/* Image well — fills the card edge-to-edge. Each product's
-                    image was chosen for a close aspect-ratio match to this
-                    card (see products_section.items), so the cover crop is
-                    a light, even trim on one axis, not a hard cut. */}
+                {/* Image well — fills the card edge-to-edge. The covers in
+                    public/assets/product-cards/ are composed at exactly 4:5
+                    with a margin round the package (the POS one also clears
+                    the featured card's square mobile crop), so object-cover
+                    never cuts into a package. */}
                 <div className="absolute inset-0">
                   <Image
                     src={product.image}
