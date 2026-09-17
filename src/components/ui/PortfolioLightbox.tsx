@@ -318,8 +318,10 @@ export default function PortfolioLightbox({
               pointer-events-none so clicks here still reach the stage. */}
           <div className="pointer-events-none absolute inset-x-0 bottom-[var(--lb-inset-bottom)] z-10 flex min-h-11 flex-col items-center justify-center gap-1.5 px-[calc(var(--lb-inset-x)+3.5rem)] md:px-[var(--lb-inset-x)]">
             {groupLabel && (
-              <span className="inline-flex items-center gap-2 rounded-[var(--radius-sm)] border border-white/15 bg-white/5 px-2.5 py-1 font-condensed text-[11px] font-semibold uppercase tracking-widest text-[var(--color-text-dark)]">
-                <span className="block h-px w-4 shrink-0 bg-[var(--color-accent)]" />
+              {/* 13px on phones: the widest label at 13.5px overflows the gap
+                  between the prev/next buttons on a 360px-wide screen. */}
+              <span className="inline-flex items-center gap-2.5 rounded-[var(--radius-sm)] border border-white/15 bg-white/5 px-3 py-[5px] font-condensed text-[13px] md:text-[13.5px] font-semibold uppercase tracking-widest text-[var(--color-text-dark)]">
+                <span className="block h-px w-5 shrink-0 bg-[var(--color-accent)]" />
                 {groupLabel}
               </span>
             )}

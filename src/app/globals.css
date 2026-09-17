@@ -177,7 +177,7 @@ body {
        horizontally instead of vertically. */
     --lb-chrome-x: calc(var(--lb-inset-x) + 4.5rem);
     --lb-chrome-top: calc(var(--lb-inset-top) + 3.5rem);
-    --lb-chrome-bottom: calc(var(--lb-inset-bottom) + 3.5rem);
+    --lb-chrome-bottom: calc(var(--lb-inset-bottom) + 3.75rem);
   }
 }
 
